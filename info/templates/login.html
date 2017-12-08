@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <title>Login</title>
+    <link href="{% static "style.css" %}" rel="stylesheet">
+
+     <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}" media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg">
+        <div class="rectangle-2">
+            <div class="rectangle">
+                <p class="important">Login</p>
+
+                <p class="already-don-t-have-a">Already don't have an account? <a href="/register">Register here</a></p>
+                <form class="form-login" method="POST">
+                    {% csrf_token %}
+                    <div class="input-field" style="margin-left: 10%;margin-top: 10%;margin-right: 10%;">
+                        <input placeholder="Placeholder" id="first_name" name="username" value="{{form.body}}" type="text" class="validate">
+                        <label for="first_name">First Name</label>
+                    </div>
+
+                    <div class="input-field" style="margin-left: 10%;margin-top: 7%;margin-right: 10%;">
+                        <input placeholder="Placeholder" id="password" name="password" value="{{form.body}}" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+
+                    <input type="checkbox" id="remember">
+                    <label for="remember" style="margin-left: 10%;">Remember me</label>
+
+                    <div>
+                        <button class="but" type="submit">Enter ➡</button>
+                        <a href="/register"><p class="forgot-password">Forgot password?</p></a>
+                    </div>
+
+                    {% if errors %}
+                      <div class="alert alert-danger alert-dismissible" role="alert">
+                         <strong>Warning!</strong>
+                         {% for message in errors %}
+                                 {{ message }}
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
+
+</body>
+</html>
