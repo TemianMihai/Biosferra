@@ -1,1 +1,110 @@
-aaaa
+.rectangle-2 {
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #70C664 160%);
+}
+
+.rectangle-22 {
+	height: 100%;
+	width: 100%;
+	border: 1px solid #979797;
+	background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #70C664 150%);
+}
+
+.bg {
+    /* The image used */
+    background-image: url("http://propfood.org/wp-content/uploads/2017/06/lukas-budimaier-93293.jpg");
+
+    /* Full height */
+    height: 100%;
+    opacity: 0.80;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg2 {
+    /* The image used */
+    background-image: url("http://www.bumblebar.com/wp-content/uploads/2017/08/jakub-kapusnak-296131.jpg");
+    /* Full height */
+    height: 100%;
+    opacity: 0.80;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.rectangle {
+    height: 70%;
+    width: 30%;
+    position: absolute;
+    margin-left: 33%;
+    margin-top: 7%;
+    border-radius: 7px;
+    background-color: #FFFFFF;
+    background-position: center;
+    box-shadow: 0 22px 54px 0 rgba(0,0,0,0.5);
+ }
+
+.rectangle-b {
+    height: 90%;
+    width: 60%;
+    position: absolute;
+    margin-left: 19%;
+    margin-top: 2%;
+    border-radius: 7px;
+    background-color: #FFFFFF;
+    background-position: center;
+    box-shadow: 0 22px 54px 0 rgba(0,0,0,0.5);
+ }
+
+p.important {
+	height: 43px;
+	color: #212121;
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 36px;
+	font-weight: 600;
+	line-height: 43px;
+	text-align: center;
+}
+
+p.already-don-t-have-a {
+	height: 21px;
+	color: #6C6C6C;
+	font-family: rial, Helvetica, sans-serif;
+	font-size: 15px;
+	line-height: 21px;
+	text-align: center;
+}
+
+p.forgot-password {
+	height: 14px;
+	color: #6C6C6C;
+	font-family: rial, Helvetica, sans-serif;;
+	font-size: 14px;
+	line-height: 19px;
+	text-align: center;
+}
+a{
+    text-decoration: none;
+    color: #6FC564;
+}
+
+.but{
+    height: 40px;
+    width: 150px;
+    margin-left: 33%;
+    margin-top: 2%;
+    border-radius: 24px;
+    color: #fff;
+    background-color: #6FC564;
+}
+
+.path-6 {
+    border-left: 3px solid green;
+    height: 71%;
+    position: absolute;
+    left: 50%;
+}

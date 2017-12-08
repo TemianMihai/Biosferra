@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+	{% load widget_tweaks %}
+    <title>Register</title>
+    <link href="{% static "style.css" %}" rel="stylesheet">
+
+     <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}" media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="bg2">
+        <div class="rectangle-22">
+            <div class="row">
+                <div class="rectangle-b">
+
+                    <p class="important">Register</p>
+                    <form class="form-register" method="POST">
+                        {% csrf_token %}
+                        <div class="col s6">
+                            <div class="input-field" style="margin-left: 9%;margin-right:20%; margin-bottom:2%;">
+                                <input placeholder="Placeholder" id="first_name" name="username" value="{{form.body}}" type="text" class="validate">
+                                <label for="first_name">Username</label>
+                            </div>
+
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <input placeholder="Placeholder" id="first_name" name="email" value="{{form.body}}" type="text" class="validate">
+                                <label for="first_name">Email</label>
+                            </div>
+
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <input placeholder="Placeholder" id="first_name" name="first_name" value="{{form.body}}" type="text" class="validate">
+                                <label for="first_name">First Name</label>
+                            </div>
+
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <input placeholder="Placeholder" id="first_name" name="last_name" value="{{form.body}}" type="text" class="validate">
+                                <label for="first_name">Last Name</label>
+                            </div>
+
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <input placeholder="Placeholder" id="password" name="password" value="{{form.body}}" type="password" class="validate">
+                                <label for="password">Password</label>
+                            </div>
+
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <input placeholder="Placeholder" id="password" name="retypepassword" value="{{form.body}}" type="password" class="validate">
+                                <label for="password">Confirm password</label>
+                            </div>
+                        </div>
+
+                        <div class="col s6">
+                            <div class="path-6">
+
+                            </div>
+                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
+                                <input placeholder="Placeholder" id="first_name" name="country" value="{{acc_form.body}}" type="text" class="validate">
+                                <label for="first_name">Country</label>
+                            </div>
+
+                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
+                                <input placeholder="Placeholder" id="first_name" name="city" value="{{acc_form.body}}" type="text" class="validate">
+                                <label for="first_name">City</label>
+                            </div>
+
+                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
+                                <input placeholder="Placeholder" id="first_name" name="state" value="{{acc_form.body}}" type="text" class="validate">
+                                <label for="first_name">State</label>
+                            </div>
+
+                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
+                                <input placeholder="Placeholder" id="first_name" name="adress" value="{{acc_form.body}}" type="text" class="validate">
+                                <label for="first_name">Adress</label>
+                            </div>
+
+                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
+                                <input placeholder="Placeholder" id="first_name" name="phonenumber" value="{{acc_form.body}}" type="text" class="validate">
+                                <label for="first_name">Phonenumber</label>
+                            </div>
+
+                            <div>
+                                <button class="but" type="submit">Register ➜</button>
+                            </div>
+                            {% if errors %}
+                              <div class="alert alert-danger alert-dismissible" role="alert">
+                                 <strong>Warning!</strong>
+                                 {% for message in errors %}
+                                         {{ message }}
+                                {% endfor %}
+                              </div>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
+</body>
+</html>
