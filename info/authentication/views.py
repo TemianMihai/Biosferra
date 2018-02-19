@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from form import LoginForm,UserRegisterForm,AccRegisterForm
 from django.contrib.auth import logout, authenticate, login
-from django.contrib.auth.decorators import login_required
 
 def login_view(request):
     if request.user.is_authenticated():
@@ -11,8 +10,8 @@ def login_view(request):
         form = LoginForm(request.POST)
         if request.method == 'POST':
             if form.is_valid():
-                user = authenticate(username = form.cleaned_data['username'],
-                                    password = form.cleaned_data['password'])
+                user = authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password'])
                 if user is not None:
                     login(request, user)
                     return redirect('/')
