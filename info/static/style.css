@@ -8,18 +8,21 @@
 	height: 100%;
 	width: 100%;
 	border: 1px solid #979797;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #70C664 400%);
+
+}
+
+.rectangle-23 {
+    height: 100%;
+    width: 100%;
     background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #70C664 300%);
 
 }
 
 .bg {
-    /* The image used */
-    background-image: url("http://propfood.org/wp-content/uploads/2017/06/lukas-budimaier-93293.jpg");
-
-    /* Full height */
+    background-image: url("login-background.jpg");
     height: 100%;
     opacity: 0.80;
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -32,6 +35,13 @@
     height: 100%;
     opacity: 0.80;
     /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg3 {
+    background-image: url("bg.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -53,13 +63,51 @@
     height: 90%;
     width: 60%;
     position: absolute;
-    margin-left: 19%;
     margin-top: 2%;
+    margin-left: 17%;
     border-radius: 7px;
     background-color: #FFFFFF;
     background-position: center;
     box-shadow: 0 22px 54px 0 rgba(0,0,0,0.5);
  }
+
+.join {
+
+    border: 2px solid #6FC564;
+    border-radius: 5px;
+}
+
+.it-s-time-to-get-hea {
+    color: #FFFFFF;
+    margin-top: 15%;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 54px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 81px;
+}
+
+.this-website-is-ment {
+    color: #FFFFFF;
+    padding-right: 13%;
+    margin-top: -7%;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 24px;
+    line-height: 38px;
+    text-align: justify;
+}
+
+.shop-now {
+    height: 6%;
+    width: 25%;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 20px 0 rgba(0,0,0,0.5);
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 21px;
+}
 
 p.important {
 	height: 43px;
@@ -74,7 +122,7 @@ p.important {
 p.already-don-t-have-a {
 	height: 21px;
 	color: #6C6C6C;
-	font-family: rial, Helvetica, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 	font-size: 15px;
 	line-height: 21px;
 	text-align: center;
@@ -83,7 +131,7 @@ p.already-don-t-have-a {
 p.forgot-password {
 	height: 14px;
 	color: #6C6C6C;
-	font-family: rial, Helvetica, sans-serif;;
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 	font-size: 14px;
     margin-top: 4%;
 	line-height: 19px;
@@ -117,10 +165,30 @@ a{
     background-color: #6FC564;
 }
 
+.buttt{
+    height: 35px;
+    width: 80px;
+    border: 2px solid #6FC564;
+    border-radius: 100px;
+    background-color: #fff;
+}
+
 .path-6 {
     border-left: 2px solid #6FC564;
     height: 71%;
     position: absolute;
     margin-top: 1px;
     left: 50%;
+}
+
+.path-12 {
+    box-sizing: border-box;
+    height: 1px;
+    width: 120px;
+    border: 1px solid #6FC564;
+}
+
+.las {
+    box-sizing: border-box;
+    border: 1px solid #979797;
 }

@@ -12,6 +12,7 @@
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <style>
 
     body, html {
@@ -25,86 +26,91 @@
     <div class="bg2">
         <div class="rectangle-22">
             <div class="row">
-                <div class="rectangle-b">
+            <div class="col"></div>
+                <div class="col m6">
+                    <div class="rectangle-b">
+                        <div class="col s12">
+                        <p class="important">Register</p>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="col s6">
+                                <div class="input-field" style="margin-left: 9%;margin-right:20%; margin-bottom:2%;">
+                                    <input placeholder="Username"  name="username" value="{{form.body}}" type="text" class="validate">
+                                    <label>Username</label>
+                                </div>
 
-                    <p class="important">Register</p>
-                    <form class="form-register" method="POST">
-                        {% csrf_token %}
-                        <div class="col s6">
-                            <div class="input-field" style="margin-left: 9%;margin-right:20%; margin-bottom:2%;">
-                                <input placeholder="Placeholder" id="first_name" name="username" value="{{form.body}}" type="text" class="validate">
-                                <label for="first_name">Username</label>
+                                <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                    <input placeholder="Email"  name="email" value="{{form.body}}" type="text" class="validate">
+                                    <label>Email</label>
+                                </div>
+
+                                <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                    <input placeholder="First name" name="first_name" value="{{form.body}}" type="text" class="validate">
+                                    <label>First Name</label>
+                                </div>
+
+                                <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                    <input placeholder="Last name" name="last_name" value="{{form.body}}" type="text" class="validate">
+                                    <label>Last Name</label>
+                                </div>
+
+                                <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                    <input placeholder="Password" name="password" value="{{form.body}}" type="password" class="validate">
+                                    <label>Password</label>
+                                </div>
+
+                                <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                    <input placeholder="Retype password" name="retypepassword" value="{{form.body}}" type="password" class="validate">
+                                    <label>Confirm password</label>
+                                </div>
                             </div>
 
-                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                <input placeholder="Placeholder" id="first_name" name="email" value="{{form.body}}" type="text" class="validate">
-                                <label for="first_name">Email</label>
-                            </div>
+                            <div class="col s6">
+                                <div class="path-6">
 
-                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                <input placeholder="Placeholder" id="first_name" name="first_name" value="{{form.body}}" type="text" class="validate">
-                                <label for="first_name">First Name</label>
-                            </div>
+                                </div>
+                                <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
+                                    <input placeholder="Country" name="country" value="{{acc_form.body}}" type="text" class="validate">
+                                    <label>Country</label>
+                                </div>
 
-                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                <input placeholder="Placeholder" id="first_name" name="last_name" value="{{form.body}}" type="text" class="validate">
-                                <label for="first_name">Last Name</label>
-                            </div>
+                                <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
+                                    <input placeholder="City" name="city" value="{{acc_form.body}}" type="text" class="validate">
+                                    <label>City</label>
+                                </div>
 
-                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                <input placeholder="Placeholder" id="password" name="password" value="{{form.body}}" type="password" class="validate">
-                                <label for="password">Password</label>
-                            </div>
+                                <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
+                                    <input placeholder="State"  name="state" value="{{acc_form.body}}" type="text" class="validate">
+                                    <label>State</label>
+                                </div>
 
-                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                <input placeholder="Placeholder" id="password" name="retypepassword" value="{{form.body}}" type="password" class="validate">
-                                <label for="password">Confirm password</label>
+                                <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
+                                    <input placeholder="Adress" name="adress" value="{{acc_form.body}}" type="text" class="validate">
+                                    <label>Adress</label>
+                                </div>
+
+                                <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
+                                    <input placeholder="Phone number" name="phonenumber" value="{{acc_form.body}}" type="text" class="validate">
+                                    <label>Phone number</label>
+                                </div>
+                                                                {% if errors %}
+                                  <div class="alert alert-danger alert-dismissible" role="alert">
+                                     <strong>Warning!</strong>
+                                     {% for message in errors %}
+                                             {{ message }}
+                                    {% endfor %}
+                                  </div>
+                                {% endif %}
+
+                                <div>
+                                    <input class="but" type="submit" placeholder="Register ➜">
+                                </div>
                             </div>
+                        </form>
                         </div>
-
-                        <div class="col s6">
-                            <div class="path-6">
-
-                            </div>
-                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                <input placeholder="Placeholder" id="first_name" name="country" value="{{acc_form.body}}" type="text" class="validate">
-                                <label for="first_name">Country</label>
-                            </div>
-
-                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                <input placeholder="Placeholder" id="first_name" name="city" value="{{acc_form.body}}" type="text" class="validate">
-                                <label for="first_name">City</label>
-                            </div>
-
-                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                <input placeholder="Placeholder" id="first_name" name="state" value="{{acc_form.body}}" type="text" class="validate">
-                                <label for="first_name">State</label>
-                            </div>
-
-                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                <input placeholder="Placeholder" id="first_name" name="adress" value="{{acc_form.body}}" type="text" class="validate">
-                                <label for="first_name">Adress</label>
-                            </div>
-
-                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                <input placeholder="Placeholder" id="first_name" name="phonenumber" value="{{acc_form.body}}" type="text" class="validate">
-                                <label for="first_name">Phonenumber</label>
-                            </div>
-
-                            <div>
-                                <button class="but" type="submit">Register ➜</button>
-                            </div>
-                            {% if errors %}
-                              <div class="alert alert-danger alert-dismissible" role="alert">
-                                 <strong>Warning!</strong>
-                                 {% for message in errors %}
-                                         {{ message }}
-                                {% endfor %}
-                              </div>
-                            {% endif %}
-                        </div>
-                    </form>
+                    </div>
                 </div>
+            <div class="col m3 col s3 col l3"></div>
             </div>
         </div>
     </div>

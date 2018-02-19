@@ -1,1 +1,211 @@
-aaa
+<html>
+
+<head>
+    {% load staticfiles %}
+    <title>Biosfera</title>
+    <link href="{% static "style.css" %}" rel="stylesheet">
+
+     <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}" media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <style>
+
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+
+    input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid green;
+        border-radius: 20px;
+    }
+
+    </style>
+</head>
+<body>
+
+<div class="bg3">
+  <div class="rectangle-23">
+    
+      <nav style=" padding-left:  9%;padding-right: 9%; background-color: #fff; height:80px;">
+        <div class="nav-wrapper">
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><img src='{% static "logo.png" %}' style="margin-top: 13%;"></li>
+            <li><a href="sass.html">Home</a></li>
+            <li><a href="badges.html">About our products</a></li>
+            <li><a href="collapsible.html">About us</a></li>
+            <li><a href="collapsible.html">Contact us</a></li>
+          </ul>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+             <li><a href="/login">Login</a></li>
+             <li class="join"><a href="/register" style="color:#6FC564">Join</a></li>
+          </ul>
+        </div>
+      </nav>
+  <div class="container" style="margin:0;">
+    <div class="row">
+      <div class="col m8" style="margin-left: 12%;">
+          <p class="it-s-time-to-get-hea">It's time to get healthy!</p>
+    <p class="this-website-is-ment">This website is ment to be used by busy people
+      who want their fruits and vegetables
+      right infront of their houses. </p>
+
+
+      <button class="shop-now"><a href="/register" style="color:#212121;">SHOP NOW</a></button>
+      </div>
+
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+    <h5 align="center" style="margin-top: 5%; font-weight: 600;">How does it works?</h5>
+    <div class="path-12" style="margin-left: 45%;margin-bottom: 50px;"></div>
+
+
+
+<div class="container">
+  <div class="row">
+          <div class="col m4">
+            <div class="card blue-grey darken-1" style="
+            border-radius: 6px;
+            border: 2px solid #6FC564;
+            height: 40%;">
+              <div class="card-content white-text">
+                <img src='{% static "3.png" %}' style="width: 20%; margin-left:40%;padding-top: 11px;">
+                <h5 style="font-weight: 600; margin-top: 14%; margin-bottom: 5%; text-align: center;">Create a post</h5>
+                <p style="  font-size: 13px; text-align: center;">Producers will create a post. They will complete fields with a name, price, delivery time and a short description.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col m4">
+            <div class="card blue-grey darken-1" style="
+            border-radius: 6px;
+            border: 2px solid #6FC564;
+            height: 40%;">
+              <div class="card-content white-text">
+                <img src='{% static "2.png" %}' style="width: 32%; margin-left:35%;padding-top: 11px;">
+                <h5 style="font-weight: 600; margin-top: 14%; margin-bottom: 5%; text-align: center;">Delivery</h5>
+                <p style="  font-size: 13px; text-align: center;">They will create a basket with fruits or vegetables from offer and our partners will take care of delivery.</p>
+              </div>
+            </div>
+          </div>
+
+           <div class="col m4">
+            <div class="card blue-grey darken-1" style="
+            border-radius: 6px;
+            border: 2px solid #6FC564;
+            height: 40%;">
+              <div class="card-content white-text">
+                <img src='{% static "1.png" %}' style="width: 24%; margin-left:40%;padding-top: 11px;">
+                <h5 style="text-align: center;margin-top: 14%; margin-bottom: 5%;font-weight: 600;">Get paid</h5>
+                <p style="  font-size: 13px; text-align: center;">You will get paid when the basket will arrive to the reciever. Or people will pay their basket if they come to get it from you.</p>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="row">
+    <div class="col m6" >
+      <h5 style="font-weight: 600;">How does this website works?</h5>
+      <div class="path-12"></div>
+      <p style="font-size: 16px;">Biosphera is a service that has the purpose to help people with their selling. Producers of vegetables or fruits will post their offer and people who want to eat healthy but don't have enough time to go to the market will find the perfect pack here. It's an easier way for producers to promote their goods and a faster way for other people to find healthy vegetables or fruits.</p>
+    </div>
+    <div class="col m6">
+      <img width="100%" src='{% static "img 1.png" %}'>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col m6">
+      <img width="100%" src='{% static "img 2.png" %}'>
+    </div>
+    <div class="col m6" >
+      <h5 style="font-weight: 600;">About our producers</h5>
+      <div class="path-12"></div>
+      <p style="font-size: 16px;">Our service wants to help independent producers to promote their goods. To use this service they have to agree a document that say any user can visit them any time. So if you are near a seller and want to see what you are going to eat you can go to his house and check his product.</p>
+    </div>
+  </div>
+
+   <h5 align="center" style="margin-top: 5%; font-weight: 600;">Our members</h5>
+   <div class="path-12" style="margin-left: 44%;margin-bottom: 50px;"></div>
+
+
+ <div class="row">
+    <div class="col m4" style="margin-left: 17%">
+      <div class="card blue-grey darken-1" style="
+      border-radius: 6px;
+      border: 2px solid #6FC564">
+        <div class="card-content white-text">
+          <img src='{% static "temy poza.png" %}' style="width: 32%; margin-left:35%;">
+          <h5 style="font-weight: 600; margin-top: 10%; margin-bottom: 5%; text-align: center;">Mihai Temian</h5>
+          <p style="  font-size: 13px; text-align: center;">My name is Temian Mihai, i'm 17 and i'm from Romania. I started to love programming 4 years ago and for 2 years i'm a web developer.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col m4">
+      <div class="card blue-grey darken-1" style="
+      border-radius: 6px;
+      border: 2px solid #6FC564">
+        <div class="card-content white-text">
+          <img src='{% static "poza cezar.png" %}' style="width: 32%; margin-left:35%;">
+          <h5 style="font-weight: 600; margin-top: 10%; margin-bottom: 5%; text-align: center;">Fagadar Cezar</h5>
+          <p style="  font-size: 13px; text-align: center;">My Name is Fagadar Cezar and i’m 17 years old, i’m from Romania and I started designing like 2 years ago,first I started with logos, now I do web design. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <h5 align="center" style="margin-top: 5%; font-weight: 600;">Contact us</h5>
+   <div class="path-12" style="margin-left: 44%;margin-bottom: 50px;"></div>
+
+   <div class="row">
+    <div class="col m5" style="margin-left: 10%">
+        <input placeholder="Your Name" name="username" value="{{form.body}}" type="text" class="validate" style="margin-bottom: 10%;">
+        <input placeholder="Your Email"  name="username" value="{{form.body}}" type="text" class="validate">
+        <textarea placeholder="Your Message" type="text" class="materialize-textarea"></textarea>
+        <button class="buttt" type="submit"><p style="margin:0; color: #6FC564;">Send</p></button>
+    </div>
+
+    <div class="col m5">
+      <img src='{% static "mail.png" %}' style="width: 10%;">
+      <p>Biosfera@gmail.com</p>
+    </div>
+   </div>
+</div>
+
+<footer class="page-footer" style="background-color: #3B3B3B; margin-top: 70px;">
+  <nav style=" padding-left:  9%;padding-right: 9%; height:90px;">
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><img src='{% static "logoo.png" %}'></li>
+      </ul>
+      <ul id="nav-mobile" class="right hide-on-med-and-down" style="line-height: 35px;">
+        <li><a href="sass.html" style="color: #fff;">Home</a></li>
+        <li><a href="badges.html" style="color: #fff;">About our products</a></li>
+        <li><a href="collapsible.html" style="color: #fff;">About us</a></li>
+        <li><a href="collapsible.html" style="color: #fff;">Contact us</a></li>
+      </ul>
+    </div>
+  </nav>
+    <div class="las" style=" margin-left: 100px;margin-right: 100px;margin-bottom: 40px;"></div>
+    <p align="center" style="padding-bottom: 15px; color: #BBBBBB;">@All rights reserved</p>
+</footer>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
+  </body>
+</html>

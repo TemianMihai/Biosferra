@@ -29,15 +29,15 @@
                 <p class="important">Login</p>
 
                 <p class="already-don-t-have-a">Already don't have an account? <a href="/register">Register here</a></p>
-                <form class="form-login" method="POST">
+                <form method="POST">
                     {% csrf_token %}
                     <div class="input-field" style="margin-left: 10%;margin-top: 10%;margin-right: 10%;">
-                        <input placeholder="Placeholder" id="first_name" name="username" value="{{form.body}}" type="text" class="validate">
-                        <label for="first_name">First Name</label>
+                        <input placeholder="Placeholder" name="username" value="{{form.body}}" type="text" class="validate">
+                        <label for="first_name">Username</label>
                     </div>
 
                     <div class="input-field" style="margin-left: 10%;margin-top: 7%;margin-right: 10%;">
-                        <input placeholder="Placeholder" id="password" name="password" value="{{form.body}}" type="password" class="validate">
+                        <input placeholder="Placeholder" name="password" value="{{form.body}}" type="password" class="validate">
                         <label for="password">Password</label>
                     </div>
 
