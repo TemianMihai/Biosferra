@@ -1,10 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    {% load staticfiles %}
+    <title>Biosfera</title>
+    <link href="{% static "style.css" %}" rel="stylesheet">
+
+     <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}" media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <style>
+
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
+    </style>
 </head>
 <body>
+<div class="bg4">
+  <div class="rectangle-23">
+      <nav style=" padding-left:  9%;padding-right: 9%; background-color: #fff; height:80px;">
+        <div class="nav-wrapper">
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><img src='{% static "logo.png" %}' style="margin-top: 13%;"></li>
+             <li class="join"><a href="/create-post" style="color:#6FC564">Create a post</a></li>
+          </ul>
 
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><img src='{% static "profile photo.png" %}' style="margin-top: 20%; margin-left: -200%;"><li><a href="/profile" style="margin-left: -80%;">{{ user.username }}</a></li></li>
+            <li><img src='{% static "home.png" %}' style="margin-top: 13%; margin-left: -100%;"></li>
+            <li><img src='{% static "shopping-basket.png" %}' style="margin-top: 13%;"></li>
+          </ul>
+        </div>
+      </nav>
+
+      <nav>
+        <div class="nav-wrapper">
+          <form>
+            <div class="input-field" style="padding-left: 17%; margin-right: 48%;">
+              <input id="search" type="search" style="background-color: #fff; position: absolute">
+                <button type="submit" style="margin-left:100%; ">Register ➜</button>
+            </div>
+          </form>
+        </div>
+      </nav>
+  </div>
+</div>
 </body>
 </html>

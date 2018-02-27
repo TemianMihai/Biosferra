@@ -33,13 +33,17 @@ def register_view(request):
     acc_form = AccRegisterForm(data=request.POST or None)
     errors = []
     if request.method == 'POST':
+        print form.is_valid()
+        print acc_form.errors
         if form.is_valid() == True and acc_form.is_valid() == True:
+            print "Valid"
             form.instance.set_password(form.cleaned_data['password'])
             form.save()
             acc_form.instance.user = form.instance
             acc_form.save()
             user = authenticate(username=form.instance.username,
                                 password=form.cleaned_data['password'])
+            print 'cevaaaaaaa'
             login(request, user)
             return redirect('/')
     return render(request, "register.html", {
