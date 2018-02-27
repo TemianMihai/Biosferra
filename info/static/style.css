@@ -47,6 +47,13 @@
     background-size: cover;
 }
 
+.bg4 {
+    background-image: url("landing photo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .rectangle {
     height: 72%;
     width: 30%;

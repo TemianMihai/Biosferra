@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     {% load staticfiles %}
+    {% load widget_tweaks %}
     <title>Register</title>
     <link href="{% static "style.css" %}" rel="stylesheet">
 
@@ -31,37 +32,103 @@
                     <div class="rectangle-b">
                         <div class="col s12">
                         <p class="important">Register</p>
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="col s6">
                                 <div class="input-field" style="margin-left: 9%;margin-right:20%; margin-bottom:2%;">
                                     <input placeholder="Username"  name="username" value="{{form.body}}" type="text" class="validate">
                                     <label>Username</label>
+
+                                    {% if form.username.errors %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.username.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                        </div>
+                                    {% endif %}
+
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <input placeholder="Email"  name="email" value="{{form.body}}" type="text" class="validate">
                                     <label>Email</label>
+
+                                    {% if form.email.errors %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.email.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                        </div>
+                                    {% endif %}
+
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <input placeholder="First name" name="first_name" value="{{form.body}}" type="text" class="validate">
                                     <label>First Name</label>
+
+                                    {% if form.first_name.errors %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.first_name.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                        </div>
+                                    {% endif %}
+
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <input placeholder="Last name" name="last_name" value="{{form.body}}" type="text" class="validate">
                                     <label>Last Name</label>
+
+                                    {% if form.last_name.errors %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.last_name.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                        </div>
+                                    {% endif %}
+
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <input placeholder="Password" name="password" value="{{form.body}}" type="password" class="validate">
                                     <label>Password</label>
+
+                                    {% if form.password.errors %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.password.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                        </div>
+                                    {% endif %}
+
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <input placeholder="Retype password" name="retypepassword" value="{{form.body}}" type="password" class="validate">
                                     <label>Confirm password</label>
+
+                                    {% if form.retypepassword.errors %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.retypepassword.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                        </div>
+                                    {% endif %}
+
                                 </div>
                             </div>
 
@@ -72,38 +139,83 @@
                                 <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
                                     <input placeholder="Country" name="country" value="{{acc_form.body}}" type="text" class="validate">
                                     <label>Country</label>
+
+                                    {% if acc_form.country.errors %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in acc_form.country.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                        </div>
+                                    {% endif %}
+
                                 </div>
 
                                 <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
                                     <input placeholder="City" name="city" value="{{acc_form.body}}" type="text" class="validate">
                                     <label>City</label>
+
+                                    {% if acc_form.city.errors %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in acc_form.city.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                        </div>
+                                    {% endif %}
+
                                 </div>
 
                                 <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
                                     <input placeholder="State"  name="state" value="{{acc_form.body}}" type="text" class="validate">
                                     <label>State</label>
+
+                                    {% if acc_form.state.errors %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in acc_form.state.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                        </div>
+                                    {% endif %}
+
                                 </div>
 
                                 <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
                                     <input placeholder="Adress" name="adress" value="{{acc_form.body}}" type="text" class="validate">
                                     <label>Adress</label>
+
+                                    {% if acc_form.adress.errors %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in acc_form.adress.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                        </div>
+                                    {% endif %}
                                 </div>
 
                                 <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
                                     <input placeholder="Phone number" name="phonenumber" value="{{acc_form.body}}" type="text" class="validate">
                                     <label>Phone number</label>
                                 </div>
-                                                                {% if errors %}
-                                  <div class="alert alert-danger alert-dismissible" role="alert">
-                                     <strong>Warning!</strong>
-                                     {% for message in errors %}
-                                             {{ message }}
-                                    {% endfor %}
-                                  </div>
-                                {% endif %}
+
+                                {% if acc_form.phonenumber.errors %}
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in acc_form.phonenumber.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                        </div>
+                                    {% endif %}
 
                                 <div>
-                                    <input class="but" type="submit" placeholder="Register ➜">
+                                    <button class="but" type="submit">Register ➜</button>
                                 </div>
                             </div>
                         </form>

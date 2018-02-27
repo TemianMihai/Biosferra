@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authentication'
+    'widget_tweaks',
+    'django_extensions',
+    'authentication',
+    'post'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -128,3 +131,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ( os.path.join(os.path.dirname(os.path.dirname(__file__)), "static"), )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

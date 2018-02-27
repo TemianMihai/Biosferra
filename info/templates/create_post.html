@@ -1,0 +1,118 @@
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    {% load widget_tweaks %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BookVenue</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+</head>
+
+    <div class="col-lg-12">
+        <h2 class="page-header" align="center">Post your offer right now</h2>
+    </div>
+    <form  method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <label>Name of event</label>
+        <input name="name" value="{{form.body}}" type="text" placeholder="Name" />
+
+         {% if form.name.errors %}
+         <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.name.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                                            </div>
+                                             {% endif %}
+
+         <label>Delivery time</label>
+        <input name="delivery_time" value="{{form.body}}" type="text" placeholder="YYYY-MM-DD" />
+
+         {% if form.delivery_time.errors %}
+         <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.delivery_time.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                                            </div>
+                                             {% endif %}
+
+
+            <label>Cantity</label>
+        <input name="cantity" value="{{form.body}}" type="text" placeholder="Price" />
+
+         {% if form.cantity.errors %}
+         <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.cantity.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                                            </div>
+                                             {% endif %}
+
+
+
+        <label>Price</label>
+        <input name="price" value="{{form.body}}" type="text" placeholder="Price" />
+
+         {% if form.price.errors %}
+         <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.price.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                                            </div>
+                                             {% endif %}
+
+
+
+            <label>Details</label>
+        <input name="details" value="{{form.body}}" type="text" placeholder="Details" />
+
+         {% if form.details.errors %}
+         <div class="alert alert-danger alert-dismissible" role="alert">
+
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.details.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                                            </div>
+                                             {% endif %}
+
+
+
+            <label>Image</label>
+
+                      {{ form.image1|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+
+           {% if form.image1.errors %}
+           <div class="alert alert-danger alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.image1.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                                            </div>
+                                             {% endif %}
+
+
+
+
+<br>
+        <button type="submit" class="btn btn-success">Submit</button>
+
+</form>
+
+</body>
+</html>

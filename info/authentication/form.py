@@ -25,7 +25,7 @@ class UserRegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email',  'password', 'first_name', 'last_name']
+        fields = ['username', 'email',  'password', 'first_name', 'last_name', 'retypepassword']
         widgets = {
             'username': forms.TextInput({'required': 'required',
                                          'placeholder': 'Username'}),
@@ -38,6 +38,9 @@ class UserRegisterForm(forms.ModelForm):
                                          'placeholder': 'First Name'}),
             'last_name': forms.TextInput({'required': 'required',
                                          'placeholder': 'Last Name'}),
+            'retypepassword': forms.PasswordInput(attrs={'required':'required',
+                                                         'placeholder':'Retype password',
+                                                         'type':'password'}),
         }
 
     def clean_email(self):
@@ -70,8 +73,8 @@ class UserRegisterForm(forms.ModelForm):
         return password2
 
 
-    def clean_firstname(self):
-        first_name = self.cleaned_data['firstname']
+    def clean_first_name(self):
+        first_name = self.cleaned_data['first_name']
         if (
                 not (first_name.isalnum() or first_name.isalpha())
         ):
@@ -79,8 +82,8 @@ class UserRegisterForm(forms.ModelForm):
         return first_name
 
 
-    def clean_lastname(self):
-        last_name = self.cleaned_data['lastname']
+    def clean_last_name(self):
+        last_name = self.cleaned_data['last_name']
         if (
                 not (last_name.isalnum() or last_name.isalpha())
         ):
@@ -89,7 +92,6 @@ class UserRegisterForm(forms.ModelForm):
 
 
 class AccRegisterForm(forms.ModelForm):
-    recaptcha = ReCaptchaField()
     class Meta:
         model = Account
         fields = ['phonenumber','city','country', 'adress', 'state']
@@ -98,7 +100,7 @@ class AccRegisterForm(forms.ModelForm):
             'city' : forms.TextInput({'required':'required','placeholder':'City'}),
             'country' : forms.TextInput({'required':'required','placeholder':'Country'}),
             'adress': forms.TextInput({'required': 'required', 'placeholder': 'Country'}),
-            'state': forms.TextInput({'required': 'required', 'placeholder': 'Country'}),
+            'state': forms.TextInput({'required': 'required', 'placeholder': 'Country'})
         }
     def clean_phonenumber(self):
         phone_number = self.cleaned_data['phonenumber']
