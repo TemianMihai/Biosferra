@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('authentication.urls')),
     url(r'^', include('homepages.urls')),
-    url(r'^', include('post.urls'))
+    url(r'^', include('post.urls')),
+    url(r'^profile/', include('user_profile.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

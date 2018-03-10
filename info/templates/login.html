@@ -25,39 +25,45 @@
 
     <div class="bg">
         <div class="rectangle-2">
-            <div class="rectangle">
-                <p class="important">Login</p>
+            <div class="row">
+                <div class="col s6 offset-s4">
+                    <div class="rectangle">
+                        <div class="col s12">
+                            <p class="important">Autentificare</p>
 
-                <p class="already-don-t-have-a">Already don't have an account? <a href="/register">Register here</a></p>
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="input-field" style="margin-left: 10%;margin-top: 10%;margin-right: 10%;">
-                        <input placeholder="Placeholder" name="username" value="{{form.body}}" type="text" class="validate">
-                        <label for="first_name">Username</label>
+                            <p class="already-don-t-have-a">Nu ai deja un cont? <a href="/register">Inregistreaza-te aici</a></p>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="input-field" style="margin-left: 10%;margin-top: 10%;margin-right: 10%;">
+                                    <input placeholder="Nume utilizator" name="username" value="{{form.body}}" type="text" class="validate">
+                                    <label for="first_name">Nume utilizator</label>
+                                </div>
+
+                                <div class="input-field" style="margin-left: 10%;margin-top: 7%;margin-right: 10%;">
+                                    <input placeholder="Parola" name="password" value="{{form.body}}" type="password" class="validate">
+                                    <label for="password">Parola</label>
+                                </div>
+
+                                <input type="checkbox" id="remember">
+                                <label for="remember" style="margin-left: 10%;">Retine-ma</label>
+
+                                <div>
+                                    <button class="butt" type="submit">Continua ➜</button>
+                                    <a href="/register"><p class="forgot-password">Ti-ai uitat parola?</p></a>
+                                </div>
+
+                                {% if errors %}
+                                  <div class="alert alert-danger alert-dismissible" role="alert">
+                                     <strong>Warning!</strong>
+                                     {% for message in errors %}
+                                             {{ message }}
+                                    {% endfor %}
+                                  </div>
+                                {% endif %}
+                            </form>
+                        </div>
                     </div>
-
-                    <div class="input-field" style="margin-left: 10%;margin-top: 7%;margin-right: 10%;">
-                        <input placeholder="Placeholder" name="password" value="{{form.body}}" type="password" class="validate">
-                        <label for="password">Password</label>
-                    </div>
-
-                    <input type="checkbox" id="remember">
-                    <label for="remember" style="margin-left: 10%;">Remember me</label>
-
-                    <div>
-                        <button class="butt" type="submit">Enter ➜</button>
-                        <a href="/register"><p class="forgot-password">Forgot password?</p></a>
-                    </div>
-
-                    {% if errors %}
-                      <div class="alert alert-danger alert-dismissible" role="alert">
-                         <strong>Warning!</strong>
-                         {% for message in errors %}
-                                 {{ message }}
-                        {% endfor %}
-                      </div>
-                    {% endif %}
-                </form>
+                </div>
             </div>
         </div>
     </div>

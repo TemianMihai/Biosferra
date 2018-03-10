@@ -1,7 +1,7 @@
 .rectangle-2 {
 	height: 100%;
 	width: 100%;
-	background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #70C664 160%);
+	background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #70C664 200%);
 }
 
 .rectangle-22 {
@@ -20,7 +20,7 @@
 }
 
 .bg {
-    background-image: url("login-background.jpg");
+    background-image: url("images/login-background.png");
     height: 100%;
     opacity: 0.80;
     background-position: center;
@@ -30,7 +30,7 @@
 
 .bg2 {
     /* The image used */
-    background-image: url("Group 2.png");
+    background-image: url("images/Group 2.png");
     /* Full height */
     height: 100%;
     opacity: 0.80;
@@ -41,14 +41,14 @@
 }
 
 .bg3 {
-    background-image: url("bg.png");
+    background-image: url("images/bg.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .bg4 {
-    background-image: url("landing photo.png");
+    background-image: url("images/landing photo.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -58,7 +58,6 @@
     height: 72%;
     width: 30%;
     position: absolute;
-    margin-left: 33%;
     margin-top: 6%;
     border-radius: 7px;
     background-color: #FFFFFF;
@@ -198,4 +197,37 @@ a{
 .las {
     box-sizing: border-box;
     border: 1px solid #979797;
+}
+
+.filtre{
+    margin-left: 5%;
+    margin-top: 2%;
+	height: 200px;
+	width: 220px;
+	border: 2px solid #DCDCDC;
+	border-radius: 2px;
+}
+
+.filtre2{
+    margin-left: 5%;
+    margin-top: 2%;
+	height: 230px;
+	width: 220px;
+	border: 2px solid #DCDCDC;
+	border-radius: 2px;
+}
+
+.liniee {
+	box-sizing: border-box;
+	height: 2px;
+    margin-left: -11%;
+	width: 111%;
+	border: 1px solid #E5E5E5;
+}
+
+.anunt {
+	height: 380px;
+	width: 270px;
+	border: 1px solid #6FC564;
+	border-radius: 3px;
 }

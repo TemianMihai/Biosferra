@@ -27,17 +27,16 @@
     <div class="bg2">
         <div class="rectangle-22">
             <div class="row">
-            <div class="col"></div>
                 <div class="col m6">
                     <div class="rectangle-b">
                         <div class="col s12">
-                        <p class="important">Register</p>
+                        <p class="important">Inregistrare</p>
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="col s6">
                                 <div class="input-field" style="margin-left: 9%;margin-right:20%; margin-bottom:2%;">
-                                    <input placeholder="Username"  name="username" value="{{form.body}}" type="text" class="validate">
-                                    <label>Username</label>
+                                    <input placeholder="Nume utilizator"  name="username" value="{{form.body}}" type="text" class="validate">
+                                    <label>Nume utilizator</label>
 
                                     {% if form.username.errors %}
                                         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -68,8 +67,8 @@
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                    <input placeholder="First name" name="first_name" value="{{form.body}}" type="text" class="validate">
-                                    <label>First Name</label>
+                                    <input placeholder="Prenume" name="first_name" value="{{form.body}}" type="text" class="validate">
+                                    <label>Prenume</label>
 
                                     {% if form.first_name.errors %}
                                         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -84,8 +83,8 @@
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                    <input placeholder="Last name" name="last_name" value="{{form.body}}" type="text" class="validate">
-                                    <label>Last Name</label>
+                                    <input placeholder="Nume" name="last_name" value="{{form.body}}" type="text" class="validate">
+                                    <label>Nume</label>
 
                                     {% if form.last_name.errors %}
                                         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -100,8 +99,8 @@
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                    <input placeholder="Password" name="password" value="{{form.body}}" type="password" class="validate">
-                                    <label>Password</label>
+                                    <input placeholder="Parola" name="password" value="{{form.body}}" type="password" class="validate">
+                                    <label>Parola</label>
 
                                     {% if form.password.errors %}
                                         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -116,8 +115,8 @@
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                    <input placeholder="Retype password" name="retypepassword" value="{{form.body}}" type="password" class="validate">
-                                    <label>Confirm password</label>
+                                    <input placeholder="Confirma parola" name="retypepassword" value="{{form.body}}" type="password" class="validate">
+                                    <label>Confirma parola</label>
 
                                     {% if form.retypepassword.errors %}
                                         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -137,8 +136,8 @@
 
                                 </div>
                                 <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                    <input placeholder="Country" name="country" value="{{acc_form.body}}" type="text" class="validate">
-                                    <label>Country</label>
+                                    <input placeholder="Tara" name="country" value="{{acc_form.body}}" type="text" class="validate">
+                                    <label>Tara</label>
 
                                     {% if acc_form.country.errors %}
                                         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -153,8 +152,8 @@
                                 </div>
 
                                 <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                    <input placeholder="City" name="city" value="{{acc_form.body}}" type="text" class="validate">
-                                    <label>City</label>
+                                    <input placeholder="Oras" name="city" value="{{acc_form.body}}" type="text" class="validate">
+                                    <label>Oras</label>
 
                                     {% if acc_form.city.errors %}
                                         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -169,8 +168,8 @@
                                 </div>
 
                                 <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                    <input placeholder="State"  name="state" value="{{acc_form.body}}" type="text" class="validate">
-                                    <label>State</label>
+                                    <input placeholder="Judet"  name="state" value="{{acc_form.body}}" type="text" class="validate">
+                                    <label>Judet</label>
 
                                     {% if acc_form.state.errors %}
                                         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -185,8 +184,8 @@
                                 </div>
 
                                 <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                    <input placeholder="Adress" name="adress" value="{{acc_form.body}}" type="text" class="validate">
-                                    <label>Adress</label>
+                                    <input placeholder="Adresa" name="adress" value="{{acc_form.body}}" type="text" class="validate">
+                                    <label>Adresa</label>
 
                                     {% if acc_form.adress.errors %}
                                         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -200,8 +199,8 @@
                                 </div>
 
                                 <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                    <input placeholder="Phone number" name="phonenumber" value="{{acc_form.body}}" type="text" class="validate">
-                                    <label>Phone number</label>
+                                    <input placeholder="Numar de telefon" name="phonenumber" value="{{acc_form.body}}" type="text" class="validate">
+                                    <label>Numar de telefon</label>
                                 </div>
 
                                 {% if acc_form.phonenumber.errors %}
@@ -215,14 +214,13 @@
                                     {% endif %}
 
                                 <div>
-                                    <button class="but" type="submit">Register ➜</button>
+                                    <button class="but" type="submit">Continua ➜</button>
                                 </div>
                             </div>
                         </form>
                         </div>
                     </div>
                 </div>
-            <div class="col m3 col s3 col l3"></div>
             </div>
         </div>
     </div>
