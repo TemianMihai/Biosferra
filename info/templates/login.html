@@ -22,55 +22,47 @@
     </style>
 </head>
 <body>
+<div class="bg">
+    <div class="container">
+        <div class="row">
+            <div class="col s5 offset-s3">
+                <div class="rectangle">
 
-    <div class="bg">
-        <div class="rectangle-2">
-            <div class="row">
-                <div class="col s6 offset-s4">
-                    <div class="rectangle">
-                        <div class="col s12">
-                            <p class="important">Autentificare</p>
+                    <p class="important">Autentificare</p>
+                    <p class="already-don-t-have-a">Nu ai deja un cont? <a href="/register"><b>Inregistreaza-te aici</b></a></p>
 
-                            <p class="already-don-t-have-a">Nu ai deja un cont? <a href="/register">Inregistreaza-te aici</a></p>
-                            <form method="POST">
-                                {% csrf_token %}
-                                <div class="input-field" style="margin-left: 10%;margin-top: 10%;margin-right: 10%;">
-                                    <input placeholder="Nume utilizator" name="username" value="{{form.body}}" type="text" class="validate">
-                                    <label for="first_name">Nume utilizator</label>
-                                </div>
-
-                                <div class="input-field" style="margin-left: 10%;margin-top: 7%;margin-right: 10%;">
-                                    <input placeholder="Parola" name="password" value="{{form.body}}" type="password" class="validate">
-                                    <label for="password">Parola</label>
-                                </div>
-
-                                <input type="checkbox" id="remember">
-                                <label for="remember" style="margin-left: 10%;">Retine-ma</label>
-
-                                <div>
-                                    <button class="butt" type="submit">Continua ➜</button>
-                                    <a href="/register"><p class="forgot-password">Ti-ai uitat parola?</p></a>
-                                </div>
-
-                                {% if errors %}
-                                  <div class="alert alert-danger alert-dismissible" role="alert">
-                                     <strong>Warning!</strong>
-                                     {% for message in errors %}
-                                             {{ message }}
-                                    {% endfor %}
-                                  </div>
-                                {% endif %}
-                            </form>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="input-field" style="margin-left: 10%;margin-top: 10%;margin-right: 10%;">
+                            <label for="first_name"><b>Nume utilizator</b></label>
+                            <input placeholder="Nume utilizator" name="username" value="{{form.body}}" type="text" class="validate">
                         </div>
-                    </div>
+
+                        <div class="input-field" style="margin-left: 10%;margin-top: 7%;margin-right: 10%;">
+                            <label for="password"><b>Parola</b></label>
+                            <input placeholder="Parola" name="password" value="{{form.body}}" type="password" class="validate">
+                        </div>
+                        <input type="checkbox" id="remember">
+                        <label for="remember" style="margin-left: 10%;">Retine-ma</label>
+
+                        <div>
+                            <button class="butt" type="submit">Continua ➜</button>
+                        </div>
+                        <br>
+                        {% if errors %}
+                          <div class="alert alert-danger alert-dismissible" role="alert">
+                             <strong>Warning!</strong>
+                             {% for message in errors %}
+                                     {{ message }}
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                    </form>
+
                 </div>
             </div>
         </div>
     </div>
-
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
-
+</div>
 </body>
 </html>

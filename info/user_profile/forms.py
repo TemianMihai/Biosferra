@@ -37,7 +37,7 @@ class Edit_profile(forms.ModelForm):
         return user_name
 
     def clean_firstname(self):
-        first_name = self.cleaned_data['firstname']
+        first_name = self.cleaned_data['first_name']
         if (
                 not (first_name.isalnum() or first_name.isalpha())
         ):
@@ -46,7 +46,7 @@ class Edit_profile(forms.ModelForm):
 
 
     def clean_lastname(self):
-        last_name = self.cleaned_data['lastname']
+        last_name = self.cleaned_data['last_name']
         if (
                 not (last_name.isalnum() or last_name.isalpha())
         ):
@@ -57,11 +57,10 @@ class Edit_profile(forms.ModelForm):
 class Edit_profile2(forms.ModelForm):
     class Meta:
         model = Account
-        fields = ['phonenumber','city','country', 'adress', 'state']
+        fields = ['phonenumber','city', 'adress', 'state']
         widgets = {
             'phonenumber' : forms.TextInput({'required':'required','placeholder':'Phonenumber'}),
             'city' : forms.TextInput({'required':'required','placeholder':'City'}),
-            'country' : forms.TextInput({'required':'required','placeholder':'Country'}),
             'adress': forms.TextInput({'required': 'required', 'placeholder': 'Country'}),
             'state': forms.TextInput({'required': 'required', 'placeholder': 'Country'})
         }
@@ -81,12 +80,6 @@ class Edit_profile2(forms.ModelForm):
         if city.isalpha == False:
             raise forms.ValidationError("City name contains invalid characters")
         return city
-
-    def clean_country(self):
-        country = self.cleaned_data['country']
-        if country.isalpha == False:
-            raise forms.ValidationError("Country name contains invalid characters")
-        return country
 
     def clean_adress(self):
         adress = self.cleaned_data['adress']

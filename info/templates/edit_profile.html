@@ -6,7 +6,7 @@
 </head>
 <body>
  <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-        <form method="post">
+        <form method="POST" enctype="multipart/form-data">
         {%csrf_token%}
     <label>Username</label>
 					<div class="input-group">
@@ -30,14 +30,6 @@
 					</div>
 
 
-            <label>Country</label>
-					<div class="input-group">
-					  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-					  {{ account_form.country|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-					</div>
-
-
             <label>Phonenumber</label>
                     <div class="input-group">
                       <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
@@ -53,6 +45,13 @@
 					  {{ account_form.city|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
 					</div>
 
+                <label>Adress</label>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+              {{ account_form.adress|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+            </div>
+
 
             <label>E-mail</label>
 					<div class="input-group">
@@ -61,15 +60,9 @@
 					  {{ form.email|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
 					</div>
 
-        <div class="form-group">
-          <label class="col-md-3 control-label"></label>
-          <div class="col-md-8">
+
             <button type="submit">Save changes</button>
-            <span></span>
-          </div>
-        </div>
         </form>
     </div>
-  </div>
 </body>
 </html>
