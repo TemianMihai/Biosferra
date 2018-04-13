@@ -21,4 +21,4 @@ def create_post(request):
 
 def get_post(request, slug):
     post = get_object_or_404(PostModel,slug=slug)
-    return render(request, 'posts/Offer-page.html', {'posts':post , 'user':request.user})
+    return render(request, 'Post-page.html', {'posts':post , 'user':request.user})
