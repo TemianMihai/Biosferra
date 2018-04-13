@@ -13,6 +13,8 @@ def profile_detail(request):
             user_form.save()
             account_form.save()
             return redirect('/')
+        else:
+            print 'sadsadsassssssss'
     return render(request, 'edit_profile.html', {
         'form': user_form,
         'account_form': account_form

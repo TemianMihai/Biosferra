@@ -28,11 +28,11 @@
                 <div class="col m6">
                     <div class="rectangle-b">
                         <div class="col s12">
-                        <p class="important">Inregistrare</p>
+                        <p class="important" style="font-size: 35px;">Inregistrare</p>
 
                         <div class="buttons">
-                            <a href="/register-cumparator"><div class="button1"><p align="center" style="margin: 0; padding-top: 10px; color: #fff;"><b>Cumparator</b></p></div></a>
-                            <a href="/register-vanzator"><p style="margin-left: 67%;margin-top: -10%; color: #6C6C6C;"><b>Vanzator</b></p></a>
+                            <a href="/register-cumparator"><p style="padding-left: 45px;color: #6C6C6C;"><b>Cumparator</b></p></a>
+                            <a href="/register-vanzator"><div class="button1" style="height: 42px; margin-top: -17%;margin-left: 50%;"><p align="center" style="margin: 0; padding-top: 10px; color: #fff;"><b>Vanzator</b></p></div></a>
                         </div>
                         <br>
 
@@ -72,7 +72,7 @@
                             </div>
 
                             <div class="col s6">
-                                <div class="path-6" style="height: 72%;"></div>
+                                <div class="path-6"></div>
                                 <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
                                     <label>Oras</label>
                                     <input placeholder="Oras" name="city" value="{{acc_form.body}}" type="text" class="validate">
@@ -95,18 +95,7 @@
                                 <div>
                                     <button class="but" type="submit">Continua ➜</button>
                                 </div>
-                                <br>
-                                {% if form.errors %}
-                                  <div class="alert alert-danger alert-dismissible" role="alert">
-                                     <b>Atentie! Va rugam reintroduceti:</b>
-                                     {% for message in form.errors %}
-                                             {{ message }}
-                                    {% endfor %}
-                                      {% for message in acc_form.errors %}
-                                             {{ message }}
-                                    {% endfor %}
-                                  </div>
-                                {% endif %}
+
                             </div>
                         </form>
                         </div>
@@ -115,9 +104,8 @@
             </div>
         </div>
     </div>
-
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
+
 </body>
 </html>
