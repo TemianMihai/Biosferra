@@ -123,6 +123,31 @@
                                              {% endif %}
 
 
+
+     <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          {%  for categorii in form.categorie %}
+            <a class="dropdown-item" href="#">{{ categorii }}</a>
+          {% endfor %}
+  </div>
+</div>
+
+
+
+           {% if form.categorie.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                        <strong>Warning!</strong>
+				                                        {% for errors in form.categorie.errors %}
+				                                                {{ errors }}
+				                                        {% endfor %}
+                                                            </div>
+                                             {% endif %}
+
+
                                             <div class="form-group">
                                             <br>
                                             <label for="exampleInputFile">Choose some representative pictures, they are optional! (first photo will appear on front page)</label>
