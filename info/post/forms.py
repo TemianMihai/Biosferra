@@ -2,12 +2,13 @@ from django import forms
 from datetime import date
 from .models import PostModel
 from category.models import Category
+from categorie.models import Categorie
 from django.shortcuts import get_object_or_404
 
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = PostModel
-        fields = ['name', 'delivery_time', 'cantity', 'price', 'details', 'image1', 'image2','image3','image4','category']
+        fields = ['name', 'delivery_time', 'cantity', 'price', 'details', 'image1', 'image2','image3','image4','category','categorie']
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -52,6 +53,11 @@ class CreatePostForm(forms.ModelForm):
         category = get_object_or_404(Category,
                                      name=self.cleaned_data['category'])
         return category
+
+    def clean_categorie(self):
+        categorie = get_object_or_404(Categorie,
+                                     name=self.cleaned_data['categorie'])
+        return categorie
 
     def clean_cantity(self):
         cantity = self.cleaned_data['cantity']

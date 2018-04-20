@@ -19,9 +19,13 @@ def create_post(request):
         'form': form,
     })
 
+
+
 def get_post(request, slug):
     post = get_object_or_404(PostModel,slug=slug)
     return render(request, 'Post-page.html', {'posts':post , 'user':request.user})
+
+
 
 @login_required
 def delete_post(request, slug):

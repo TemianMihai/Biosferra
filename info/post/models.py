@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 import uuid
 from category.models import Category
-
+from categorie.models import Categorie
 
 
 # Create your models here.
@@ -27,6 +27,7 @@ class PostModel(models.Model):
     image4 = models.ImageField(upload_to = upload_location,
                               null=True, blank=True)
     price = models.CharField(max_length=15)
+    categorie = models.ForeignKey(Categorie, null=True)
     category = models.ForeignKey(Category, null=True)
     delivery_time = models.CharField(max_length=50)
 
