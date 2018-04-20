@@ -8,7 +8,7 @@ def index(request):
     if request.user.is_authenticated():
         template = "home.html"
     else:
-        template = "index.html"
+        template = "register.html"
     return render_to_response(template, {
         'user':request.user,
         'post':post,

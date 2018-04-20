@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.db import models
 import uuid
 from category.models import Category
@@ -28,3 +29,6 @@ class PostModel(models.Model):
     price = models.CharField(max_length=15)
     category = models.ForeignKey(Category, null=True)
     delivery_time = models.CharField(max_length=50)
+
+    def get_delete_url(self):
+        return reverse("post:delete-post", kwargs={"slug": self.slug})
