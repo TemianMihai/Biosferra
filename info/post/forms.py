@@ -64,3 +64,8 @@ class CreatePostForm(forms.ModelForm):
         if delivery_time.isdigit() == False:
             raise forms.ValidationError("Invalid delivery time")
         return delivery_time
+
+class DeleteNewForm(forms.ModelForm):
+    class Meta:
+        model = PostModel
+        fields = []
