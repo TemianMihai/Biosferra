@@ -17,8 +17,6 @@ def profile_detail(request):
             user_form.save()
             account_form.save()
             return redirect('/')
-        else:
-            print 'sadsadsassssssss'
     return render(request, 'edit_profile.html', {
         'form': user_form,
         'user':current_user,
@@ -33,11 +31,11 @@ def profile_detail(request):
 def profile(request, slug):
     anunturi = PostModel.objects.all()
     user2 = Account2.objects.all().filter(slug=slug)
-    if user2.count != 0:
+    if user2.count() != 0:
         return  render(request, 'view_profilee.html', {
             'user': request.user,
             'anunturi':anunturi,
             'user2':user2
         })
     else:
-        return HttpResponseForbidden
+        return HttpResponseForbidden()
