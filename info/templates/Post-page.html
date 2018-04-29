@@ -7,6 +7,8 @@
 <body>
 <h3>{{ posts.name }}</h3>
 {{ posts.author }}
+<span class="meta">Posted by <a href="/view-profile/{{posts.author.slug}}">{{posts.author.username}}</a>
+
   {% if posts.author == user %}
       <a href='{{posts.get_delete_url}}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete post</a>
   {% endif %}

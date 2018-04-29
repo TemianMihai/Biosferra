@@ -63,6 +63,14 @@
 
             <button type="submit">Save changes</button>
         </form>
+
+
+       {% for post in posts %}
+		<tr>
+
+			<td><a href="/post/{{post.slug}}/">{{ post.name }}</a></td>
+		</tr>
+    {% endfor %}
     </div>
 </body>
 </html>

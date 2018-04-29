@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
-from authentication.models import Account
+from authentication.models import Account2
 
 class Edit_profile(forms.ModelForm):
 
@@ -56,13 +56,15 @@ class Edit_profile(forms.ModelForm):
 
 class Edit_profile2(forms.ModelForm):
     class Meta:
-        model = Account
-        fields = ['phonenumber','city', 'adress', 'state']
+        model = Account2
+        fields = ['phonenumber','city', 'adress', 'state', 'file1', 'file2']
         widgets = {
             'phonenumber' : forms.TextInput({'required':'required','placeholder':'Phonenumber'}),
             'city' : forms.TextInput({'required':'required','placeholder':'City'}),
             'adress': forms.TextInput({'required': 'required', 'placeholder': 'Country'}),
-            'state': forms.TextInput({'required': 'required', 'placeholder': 'Country'})
+            'state': forms.TextInput({'required': 'required', 'placeholder': 'Country'}),
+            'file1': forms.FileInput({'required':'required', 'placeholder': 'Country'}),
+            'file2': forms.FileInput({'required':'required', 'placeholder': 'Country'})
         }
 
     def __init__(self, *args, **kwargs):
@@ -92,3 +94,11 @@ class Edit_profile2(forms.ModelForm):
         if state.isalpha == False:
             raise forms.ValidationError("State name contains invalid characters")
         return state
+
+    def clean_file1(self):
+        file1 = self.cleaned_data['file1']
+        return file1
+
+    def clean_file2(self):
+        file2 = self.cleaned_data['file2']
+        return file2
