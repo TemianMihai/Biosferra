@@ -61,7 +61,7 @@ def register_view2(request):
             user = authenticate(username=form.instance.username,
                                 password=form.cleaned_data['password'])
             login(request, user)
-            return redirect('/')
+            return redirect('/profile')
     return render(request, "register2.html", {
         'form': form,
         'acc_form2' : acc_form2,

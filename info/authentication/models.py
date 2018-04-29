@@ -15,6 +15,7 @@ class Account(models.Model):
     adress = models.CharField(max_length= 50, null= True)
     state = models.CharField(max_length= 20, null= True)
 
+
 class Account2(models.Model):
     user = models.OneToOneField(User, primary_key=True)
     phonenumber = models.CharField(max_length = 10)
@@ -25,3 +26,4 @@ class Account2(models.Model):
                               null=True, blank=True)
     file2 = models.FileField(upload_to = upload_location,
                               null=True, blank=True)
+    slug = models.SlugField(unique=True, default=uuid.uuid1)
