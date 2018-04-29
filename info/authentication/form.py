@@ -2,7 +2,6 @@ from django.core.validators import validate_email
 from django.contrib.auth.models import User
 from django import forms
 from .models import Account, Account2
-from captcha.fields import ReCaptchaField
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=30, label='Username',
