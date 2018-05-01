@@ -12,5 +12,70 @@
   {% if posts.author == user %}
       <a href='{{posts.get_delete_url}}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete post</a>
   {% endif %}
+
+
+
+{% for comment in comm_parent %}
+                    <div class="row">
+                        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>{{ comment.user }}</strong> <span class="text-muted">{{ comment.created_date}}</span>
+                            {% if comment.user == requested.user %}
+                            <a href='{{comment.get_delete_comm}}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete comment</a>
+                            {% endif %}
+                        </div>
+
+                        <div class="panel-body">
+                            {{ comment.body }}
+                        </div><!-- /panel-body -->
+
+                    </div><!-- /panel panel-default -->
+
+
+                            {% for reply in comment.children %}
+
+                        <div class="col-sm-10">
+                            <div class="panel panel-comment panel-default">
+                                <div class="panel-heading-comment panel-heading">
+                                    <strong>{{ reply.user }}</strong> <span class="text-muted">{{ reply.created_date}}</span>
+                                    {% if reply.user == user %}
+                                    <a href='{{ reply.get_delete_comm }}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete reply</a>
+                                    {% endif %}
+                                </div>
+                                <div class="panel-body">
+                                    {{ reply.body }}
+                                </div><!-- /panel-body -->
+                            </div><!-- /panel panel-default -->
+                        </div><!-- /col-sm-5 -->
+                        {% endfor %}
+
+
+
+                            <form action="." method='post'>
+                                {% csrf_token %}
+                                <div class="col-lg-5">
+                                <input type='hidden' name='parent_id' value={{comment.id}}>
+                                <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Your reply" />
+                                    <button class="btn btn-success btn-circle text-uppercase" type="submit"><span class="glyphicon glyphicon-send"></span> Reply</button>
+                                </div>
+                            </form>
+                    </div>
+                            <br>
+                    {% endfor %}
+
+                        <div class="row">
+                            <form action="." method='post'>
+                                {% csrf_token %}
+                                <div class="col-lg-9">
+                                    <label class="col-sm-6 control-label">Post a comment </label>
+
+                                        <input class="form-control" name="body" value="{{form.body}}"/>
+                                        <div class="form-group">
+                                            <button class="btn btn-success btn-circle text-uppercase" type="submit"><span class="glyphicon glyphicon-send"></span> Submit comment</button>
+                                        </div>
+
+                                </div>
+                            </form>
+
 </body>
 </html>
