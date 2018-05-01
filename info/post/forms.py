@@ -1,6 +1,6 @@
 from django import forms
 from datetime import date
-from .models import PostModel
+from .models import PostModel, Comment
 from category.models import Category
 from categorie.models import Categorie
 from django.shortcuts import get_object_or_404
@@ -71,7 +71,15 @@ class CreatePostForm(forms.ModelForm):
             raise forms.ValidationError("Invalid delivery time")
         return delivery_time
 
+
 class DeleteNewForm(forms.ModelForm):
     class Meta:
         model = PostModel
         fields = []
+
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ['body']

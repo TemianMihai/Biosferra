@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
 import uuid
+from django.conf import settings
+from django.utils import timezone
 from category.models import Category
 from categorie.models import Categorie
 
@@ -33,3 +35,17 @@ class PostModel(models.Model):
 
     def get_delete_url(self):
         return reverse("post:delete-post", kwargs={"slug": self.slug})
+
+class Comment(models.Model):
+    post = models.ForeignKey('post.PostModel', related_name='comments')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
+    body = models.TextField()
+    created_date = models.DateField(default=timezone.now)
+    parent = models.ForeignKey("self", blank=True, null=True)
+    is_parent = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.text
+
+    def children(self):
+        return Comment.objects.filter(parent=self)

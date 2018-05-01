@@ -26,4 +26,4 @@ class Account2(models.Model):
                               null=True, blank=True)
     file2 = models.FileField(upload_to = upload_location,
                               null=True, blank=True)
-    slug = models.SlugField(unique=True, default=uuid.uuid1)
+    slug = models.SlugField(unique=True, default=uuid.uuid1, null= True)
