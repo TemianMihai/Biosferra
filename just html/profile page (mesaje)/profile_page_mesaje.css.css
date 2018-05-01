@@ -1,0 +1,263 @@
+/* Mesaje CSS */
+.mesaj-stanga {
+    width: 64%;
+    font-size: 16px;
+    padding-right: 10px;
+}
+
+.mesaje-mesaj {
+    padding: 1rem;
+    display: inline-flex;
+    border: 1px solid #E5E5E5;
+}
+
+.mesaje-mesaj h6 {
+    font-size: 18px;
+    color: #6C6C6C;
+}
+
+.mesaje {
+    width: 100%;
+}
+
+
+/* Side CSS classes */
+.side-menu {
+
+}
+
+.side-menu-button-selected {
+    padding: 0.5rem;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    border: 1px solid #B4B4B4;
+    background-color: #1CC661;
+    border-radius: 2px;
+    text-align: left;
+    color: white;
+}
+
+.side-menu-button {
+    padding: 0.5rem;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    border: 1px solid #B4B4B4;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    text-align: left;
+}
+
+/* Body CSS Classes */
+table {
+    width: 100%;
+    text-align: center;
+}
+
+table tr {
+    border: 1px solid #E5E5E5; 
+}
+
+.lowest-header tr th {
+    border: none;
+}
+
+table tr th {
+    border: 1px solid #E5E5E5; 
+    font-weight: normal;
+}
+
+table tr .active {
+    color: white;
+    background-color: #1CC661;
+}
+
+table .lower-header {
+    width: 100%;
+}
+
+.top-header th {
+    padding: 10px;
+}
+
+.content .body {
+    height: 850px;
+    border: 1px solid #DCDCDC;
+    border-radius: 4px;
+}
+
+.header {
+    height: 60px;
+    border: 1px solid #DCDCDC;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    display: inline-flex;
+    margin-bottom: 10px;
+}
+
+.header .tab {
+    padding-top: 15px;
+    border-right: 1px solid #E5E5E5;
+    margin-left: 51px;
+    padding-right: 51px;
+}
+
+.header .tab-active {
+    color: #6FC564;
+}
+
+.descriere {
+    height: 404px;
+    border: 1px solid #DCDCDC;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.gradina {
+    height: 230px;
+    border: 1px solid #DCDCDC;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+.gradina .items ul {
+    list-style-type: none;
+    padding: 0;
+    overflow-y: scroll;
+    height: 150px;
+    color: #6FC564;
+}
+
+.gradina .items li {
+    padding: 5px;
+}
+
+.descriere .break {
+    margin-top: 30px;
+    box-sizing: border-box;
+    height: 2px;
+    border: 1px solid #DCDCDC;
+}
+
+.profile {
+    height: 439px;
+    border: 1px solid #DCDCDC;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile .lower-side p {
+    /*margin-top: */
+    font-size: 17px;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.profile .lower-side {
+    padding-left: 20px;
+}
+
+.profile .rating {
+    height: 35px;   
+    width: 170px;   
+    border: 1px solid #DCDCDC;  
+    border-radius: 2px;
+    margin: auto;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+.profile .profile-image {
+    height: 100px;  
+    width: 150.04px;
+    background-color: green;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.profile .break {
+    margin-top: 30px;
+    box-sizing: border-box;
+    height: 2px;
+    border: 1px solid #DCDCDC;
+}
+
+.content {
+    margin-top: 10px;
+}
+
+.checked {
+    color: #6FC564;
+}
+
+/*****************************************/
+/* Navbar CSS Classes */
+.navbar-box {     
+    background-color: #FFFFFF;  
+    box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);
+    align-items: center;
+}
+
+.navbar {
+    padding: 10px;
+    color: #FFFFFF;
+}
+
+.navbar .nav-item {
+    padding: 0 50px 0 0;
+}
+
+.navbar li img {
+    padding-top: 7px;
+    padding-left: 50px;
+}
+
+.navbar .btn {
+    height: 100%;
+
+    color: white;
+    background-color: #1CC661;
+}
+
+.dropdown-item:hover {
+    background-color: #1CC661;
+}
+
+.pseudo-nav .row .col-sm{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.break-line {
+    box-sizing: border-box;
+    height: 2px;
+    width: 100%;
+    border: 1px solid #E5E5E5;
+}
+
+.tab-button {
+    height: 45px;
+    text-align: center;
+    padding: 8px;
+    border-left: 1px solid #E5E5E5;
+}
+
+.tab-button-active {
+    color: #6FC564;
+    border-bottom: 5px solid #6FC564
+}
+
+.tab-button-bot {
+    box-sizing: border-box;
+    height: 1px;
+    width: 100%;
+    border: 4px solid #6FC564;
+}
+
+.tab-button a {
+    text-decoration: none;
+    color: inherit;
+}

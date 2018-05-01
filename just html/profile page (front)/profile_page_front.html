@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Not BioSfera</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="profile_page_front.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+<body>
+    <div class="navbar-box">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+        <!-- Brand Logo -->
+        <a class="navbar-brand" href="#"><img src="brand.png"></a>
+        <!-- Button enables when screen size is small -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Will get collapsed -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+                <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
+                <input class="form-control mr-sm-2" type="search" placeholder="Cauta orice" aria-label="Search">
+                <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+            </form>
+            <ul class="navbar-nav mr-auto">
+
+                <!-- Username dropdown -->
+                <li class="img"><img src="avatar-copy.png"></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {UserName}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Magazinul Tau</a>
+                    <a class="dropdown-item" href="#">Mesaje</a>
+                    <a class="dropdown-item" href="#">Istoric</a>
+                    <a class="dropdown-item" href="#">Favorite</a>
+                    <a class="dropdown-item" href="#">Setari</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Deconectare</a>
+                </div>
+                </li>
+
+                <!-- Cosul meu -->
+                <li class="img"><img src="shopping-basket.png"></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cosul Meu</a>
+                </li>
+
+                <li class="nav-item" id="creeazaPostare">
+                    <button class="btn">+ Creeaza o postare</button>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <div class="break-line"></div>
+
+    <div class="content">
+    <div class="container" style="padding-top: 5%; padding-left: 0;">
+        <div class="row">
+            <div class="col-md-4" style="padding: 5%; padding-top: 10px;">
+                <div class="profile">
+                    <div class="upper-side">
+                        <div class="profile-image"></div>
+                        <p>Cezarica22</p>
+                        <div class="rating">                         
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            &nbsp;&nbsp;&nbsp;3
+                        </div>
+                        <div class="break"></div>
+                    </div>
+                    <div class="lower-side">
+                        <div> <img src=""> <p>Timisora, Jud. Timis</p> </div>
+                        <div> <img src=""> <p>Membru din 12/7/2018</p> </div>
+                    </div>
+                    <hr>
+                    <div class="lower-side" style="display: inline-flex;">
+                        <div> <img src=""> <p>In concediu</p> 
+                            <input type="checkbox" name="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="side-menu">
+                    <div>
+                        <button class="side-menu-button-selected">Management</button>
+                    </div>
+                    <div>
+                        <button class="side-menu-button">Anunturile tale</button>
+                    </div>
+                    <div>
+                        <button class="side-menu-button">Recenzi</button>
+                    </div>
+                    <div>
+                        <button class="side-menu-button">Despre</button>
+                    </div>                    
+                </div>
+
+                <div class="gradina">
+                    <p>Gradina utilizatorului</p>
+                    <div class="items">
+                        <ul>
+                            <li>Mere</li>
+                            <li>Visine</li>
+                            <li>Capsuni</li>
+                            <li>Caise</li>
+                            <li>Pere</li>
+                            <li>Mere (again)</li>
+                            <li>Prune</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="descriere">
+                    <p style="font-size: 18px;"><b>Descriere</b></p>
+                    <p>There is no denying that the succes of an advertisement lies mostly in the headline. The headline should attract the reader and make him read the rest of the advertisement. The head line should be simply catchy and various key points should be imbedded.</p>
+                    <div class="break"></div> <br>
+                    <p style="font-size: 18px;">Alte conturi</p>
+                    <p style="color: #6FC564; font-size: 18px;"><i class="fa fa-facebook-official"></i>&nbsp;&nbsp;&nbsp;Facebook</p>
+                </div>
+            </div>
+            <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
+                <div class="row" id="up-side">    
+                    <div><img src=""></div>
+                    <button id="favorite"><span><img src="favorite.png"></span>&nbsp;Favorite</button>
+                    <button id="mesaj-privat"><span><img src="speech-bubble.png"></span>&nbsp;Mesaj privat</button>
+                    <br> <br>
+                    <hr>
+                    <div>
+                        <h1 id="Anunturile">Anunturile producatorului</h1>
+                        <form class="cauta-anunt">
+                            <input type="text" name="cauta-anunt" id="cauta-anunt" placeholder="Cauta anunt">
+                            <button>Cauta</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">       
+                    <div class="card-deck">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="veggies.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Temi Boii &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Azi la 18:30</h5>
+                                <hr>
+                                <h5>Mere de calitate</h5>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                (8)
+                                <hr>
+                                <p class="card-text card-price">3.27 lei/kg</p>
+                                <p class="card-text">Kansas City ribs are serious business when it comes to BBQ.</p>
+                                <hr>
+                                <div style="display: inline-block;">
+                                    <a href="#" class="btn btn-default">Vezi produs</a>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-deck">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="veggies.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Temi Boii &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Azi la 18:30</h5>
+                                <hr>
+                                <h5>Mere de calitate</h5>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                (8)
+                                <hr>
+                                <p class="card-text card-price">3.27 lei/kg</p>
+                                <p class="card-text">Kansas City ribs are serious business when it comes to BBQ.</p>
+                                <hr>
+                                <div style="display: inline-block;">
+                                    <a href="#" class="btn btn-default">Vezi produs</a>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-deck">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="veggies.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Temi Boii &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Azi la 18:30</h5>
+                                <hr>
+                                <h5>Mere de calitate</h5>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                (8)
+                                <hr>
+                                <p class="card-text card-price">3.27 lei/kg</p>
+                                <p class="card-text">Kansas City ribs are serious business when it comes to BBQ.</p>
+                                <hr>
+                                <div style="display: inline-block;">
+                                    <a href="#" class="btn btn-default">Vezi produs</a>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
