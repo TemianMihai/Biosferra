@@ -1,0 +1,25 @@
+.footer .container {
+    background-color: #3B3B3B;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 1rem;
+}
+
+.footer .container .col-2 {
+    padding: 0.5rem;
+}
+
+.hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+body {
+    height: 100%;
+}
