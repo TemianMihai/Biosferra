@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Not BioSfera</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+<body>
+    <div class="navbar-box">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+        <!-- Brand Logo -->
+        <a class="navbar-brand" href="#"><img src="brand.png"></a>
+        <!-- Button enables when screen size is small -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Will get collapsed -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+                <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
+                <input class="form-control mr-sm-2" type="search" placeholder="Cauta orice" aria-label="Search">
+                <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+            </form>
+            <ul class="navbar-nav mr-auto">
+
+                <!-- Username dropdown -->
+                <li class="img"><img src="avatar-copy.png"></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {UserName}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Magazinul Tau</a>
+                    <a class="dropdown-item" href="#">Mesaje</a>
+                    <a class="dropdown-item" href="#">Istoric</a>
+                    <a class="dropdown-item" href="#">Favorite</a>
+                    <a class="dropdown-item" href="#">Setari</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Deconectare</a>
+                </div>
+                </li>
+
+                <!-- Cosul meu -->
+                <li class="img"><img src="shopping-basket.png"></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cosul Meu</a>
+                </li>
+
+                <li class="nav-item" id="creeazaPostare">
+                    <button class="btn">+ Creeaza o postare</button>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <div class="break-line"></div>
+
+    <div class="container content">
+        <h1>Creeaza un anunt</h1>
+        <hr>
+        <br>
+        <form>
+            <div class="form-group">
+                <label for="titlu-field">Titlul</label>
+                <input type="text" class="form-control" id="titlu-field" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">30 de caractere ramase</small>
+            </div>
+            <hr>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="produs-field">Produs</label>
+                        <select name="produs-field" id="produs-field">
+                            <option value="default">Fruct sau leguma</option>
+                            <option value="fruct">Fruct</option>
+                            <option value="leguma">Leguma</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="categorie-field">Categorie</label>
+                        <select name="categorie-field" id="categorie-field">
+                            <option value="default">Toamna, Vara etc...</option>
+                            <option value="toamna">Toamna</option>
+                            <option value="vara">Vara</option>
+                            <option value="primavara">Primavara</option>
+                            <option value="indiferent">Indiferent</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="cantitate-field">Cantitate</label>
+                        <select name="cantitate-field" id="cantitate-field">
+                            <option value="1">1 kg</option>
+                            <option value="1">2 kg</option>
+                            <option value="3">3 kg</option>
+                            <option value="4">4 kg</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="pret-field">Pret</label>
+                        <input type="text" class="form-control" id="pret-field" placeholder="Pret per kilogram">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Descriere</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label for="foto-field">Fotografii</label>
+                <input type="file" class="form-control" id="foto-field">
+            </div>
+        </form> 
+    </div>
+</body>
+</html>
