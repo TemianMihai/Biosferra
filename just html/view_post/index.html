@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Not BioSfera</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+<body>
+    <div class="navbar-box">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+        <!-- Brand Logo -->
+        <a class="navbar-brand" href="#"><img src="brand.png"></a>
+        <!-- Button enables when screen size is small -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Will get collapsed -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+                <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
+                <input class="form-control mr-sm-2" type="search" placeholder="Cauta orice" aria-label="Search">
+                <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+            </form>
+            <ul class="navbar-nav mr-auto">
+
+                <!-- Username dropdown -->
+                <li class="img"><img src="avatar-copy.png"></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {UserName}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Magazinul Tau</a>
+                    <a class="dropdown-item" href="#">Mesaje</a>
+                    <a class="dropdown-item" href="#">Istoric</a>
+                    <a class="dropdown-item" href="#">Favorite</a>
+                    <a class="dropdown-item" href="#">Setari</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Deconectare</a>
+                </div>
+                </li>
+
+                <!-- Cosul meu -->
+                <li class="img"><img src="shopping-basket.png"></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cosul Meu</a>
+                </li>
+
+                <li class="nav-item" id="creeazaPostare">
+                    <button class="btn">Devino vanzator</button>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <div class="break-line"></div>
+
+    <div class="container content">
+        <div class="row">
+            <div class="col-6 thumbnail">
+                <img src="legume.jpg" alt="">
+            </div>
+            <div class="col-6 info">
+                <h1>Mere de calitate</h1>
+                <table style="width: 100%">
+                    <tr>
+                        <th></th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    </tr>
+                    <tr> <td>
+                        <div class="profile">
+                            <div class="upper-side">
+                                <div class="profile-image"></div>
+                                <p>Cezarica22</p>
+                                <div class="rating">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    &nbsp;&nbsp;&nbsp;3
+                                </div>
+                                <div class="break"></div>
+                            </div>
+                            <div class="lower-side">
+                                <div>
+                                    <img src="">
+                                    <p>Timisora, Jud. Timis</p>
+                                </div>
+                                <div>
+                                    <img src="">
+                                    <p>Membru din 12/7/2018</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="lower-side" style="display: inline-flex;">
+                                <div>
+                                    <img src="">
+                                    <p>In concediu</p>
+                                    <input type="checkbox" name="">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>      
+                        <div class="cumpara">
+                            <h2>Cantitate</h2>
+                            <form action="">
+                                <select name="cant" id="cant">
+                                    <option value="1">1 kg</option>
+                                    <option value="2">2 kg</option>
+                                    <option value="3">3 kg</option>
+                                    <option value="4">4 kg</option>
+                                </select>
+                            </form>
+                            <p>Total: </p>
+                            <button>Adauga in cos</button>
+                            <button>Adauga la favorite</button>
+                        </div>
+                    </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div class="row descriere">
+            <h2>Descriere</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque ducimus consequuntur eius explicabo voluptas eligendi voluptate architecto excepturi consectetur quod, illum nulla in iste veritatis dolorum quidem aperiam fugiat at?</p>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <table class="valori-nutritionale">
+                    <tr>
+                        <th>
+                            <h2>Valori nutritionale</h2>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Calorii (kcal/100g)</td>
+                        <td class="value">160</td>
+                    </tr>
+                    <tr>
+                        <td>Carbohidrati (100g)</td>
+                        <td class="value">0,30</td>
+                    </tr>
+                    <tr>
+                        <td>Zahar (100g)</td>
+                        <td class="value">0,03</td>
+                    </tr>
+                    <tr>
+                        <td>Proteine (100g)</td>
+                        <td class="value">0,88</td>
+                    </tr>
+                    <tr>
+                        <td>Calorii (kcal/100g)</td>
+                        <td class="value">0,88</td>
+                    </tr>
+                    <tr>
+                        <td>Grasime (kcal/100g)</td>
+                        <td class="value">0,88</td>
+                    </tr>
+                    <tr>
+                        <td>Saturati (kcal/100g)</td>
+                        <td class="value">0,88</td>
+                    </tr>
+                    <tr>
+                        <td>Fibre (kcal/100g)</td>
+                        <td class="value">0,88</td>
+                    </tr>     
+                </table>
+
+                <div class="col-8" style="margin: auto;"><h6>182 vizualizari</h6></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
