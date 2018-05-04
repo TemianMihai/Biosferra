@@ -43,13 +43,21 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ user.username }}
                 </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
+                 {% if user.account2.slug %}
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/view-profile/{{current_user.account2.slug }}">Profilul Tau</a>
                     <a class="dropdown-item" href="#">Mesaje</a>
                     <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">Deconectare</a>
                 </div>
+                    {% else %}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Mesaje</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Deconectare</a>
+                </div>
+                {% endif %}
                 </li>
 
                 <!-- Cosul meu -->
@@ -58,9 +66,15 @@
                     <a class="nav-link" href="#">Cosul Meu</a>
                 </li>
 
+                {% if user.account2.slug %}
                 <li class="nav-item" id="creeazaPostare">
-                    <button class="btn">+ Creeaza o postare</button>
+                    <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
                 </li>
+                    {% else %}
+                    <li class="nav-item" id="creeazaPostare">
+                        <a href="/register-vanzator"><button class="btn">Devin-o vanzator</button></a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
         </div>
@@ -74,7 +88,7 @@
                 <div class="profile">
                     <div class="upper-side">
                         <div class="profile-image"></div>
-                        <h5>{{ user2.username }}</h5>
+                        <h5>{{ user2.user.username }}</h5>
                         <div class="rating">
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
@@ -143,8 +157,8 @@
                     <hr>
                     <div>
                         <h1 id="Anunturile">Anunturile producatorului</h1>
-                        <form class="cauta-anunt">
-                            <input type="text" name="cauta-anunt" id="cauta-anunt" placeholder="Cauta anunt">
+                        <form class="cauta-anunt" method="GET" action="">
+                            <input  id="cauta-anunt"  name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
                             <button>Cauta</button>
                         </form>
                     </div>
@@ -152,7 +166,7 @@
                 <div class="row">
                     <div class="card-deck">
                         {% for post in anunturi %}
-                            {% if users.username == post.author %}
+                            {% if user2.user == post.author %}
                                 <div class="card" style="width: 18rem;">
                                     <img class="card-img-top" src="{% static "images/veggies.jpg" %}" alt="Card image cap">
                                     <div class="card-body">
@@ -200,7 +214,11 @@
                     <a href="/edit_profile" style="color: #fff"><p>Editeaza profilul</p></a>
                 </div>
                 <div class="col-2">
-                   <p><a href="" style="color: #fff">Devin-o vanzator</p></a>
+                    {% if user.account2.slug %}
+                   <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
+                    {% else %}
+                    <p><a href="/register-vanzator" style="color: #fff">Devin-o vanzator</p></a>
+                    {% endif %}
                 </div>
             </div>
             <hr class="hr">

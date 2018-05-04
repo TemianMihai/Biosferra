@@ -31,12 +31,12 @@ def profile_detail(request):
 @login_required
 def profile(request, slug):
     anunturi = PostModel.objects.all()
-    user2 = Account2.objects.filter(slug=slug)
-    if user2.count() != 0:
-        return  render(request, 'view_profilee.html', {
-            'user': request.user,
-            'anunturi':anunturi,
-            'user2':user2,
-        })
-    else:
-        return HttpResponseForbidden()
+    user2 = Account2.objects.get(slug=slug)
+    query = request.GET.get("q")
+    if query:
+        anunturi = anunturi.filter(name__contains=query)
+    return  render(request, 'view_profilee.html', {
+        'user': request.user,
+        'anunturi':anunturi,
+        'user2':user2
+    })
