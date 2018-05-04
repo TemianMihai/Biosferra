@@ -45,7 +45,7 @@ class Comment(models.Model):
     is_parent = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.text
+        return self.body
 
     def children(self):
         return Comment.objects.filter(parent=self)

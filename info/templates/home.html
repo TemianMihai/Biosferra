@@ -1,179 +1,425 @@
+<!DOCTYPE html>
 <html>
 <head>
     {% load staticfiles %}
-    <title>Biosfera</title>
-    <link href="{% static "style.css" %}" rel="stylesheet">
 
-     <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}" media="screen,projection"/>
-
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <style>
-
-    body, html {
-        height: 100%;
-        margin: 0;
-    }
-
-
-    </style>
+    <title>Biosferra</title>
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="{% static "images/brand.png" %}" />
 </head>
 <body>
-<div class="bg4">
-  <div class="rectangle-23">
-      <nav style=" padding-left:  9%;padding-right: 9%; background-color: #fff; height:80px;">
-        <div class="nav-wrapper">
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><img src='{% static "images/logo.png" %}' style="margin-top: 13%;"></li>
-          </ul>
 
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><img src='{% static "images/profile photo.png" %}' style="margin-top: 10%; margin-left: -200%;"><li><a href="/profile" style="margin-left: -80%; margin-top: -5%;">{{ user.username }}</a></li></li>
-              <li><img src='{% static "images/read hearth.png" %}' style="margin-top: 13%; margin-left: -100%;"><li><a  style="margin-top: -5%; margin-left: -30%;">Favorite</a></li></li>
-            <li><img src='{% static "images/shopping-basket.png" %}' style="margin-top: 13%;"><li><a href="/profile" style="margin-top: -5%;">Cosul meu</a></li></li>
-          </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+        <!-- Brand Logo -->
+        <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
+        <!-- Button enables when screen size is small -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Will get collapsed -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0" method="GET" action="">
+                <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
+                <input class="form-control mr-sm-2" name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
+                <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+            </form>
+            <ul class="navbar-nav mr-auto">
 
-        </div>
+                <!-- Username dropdown -->
+                <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ user.username }}
+                </a>
 
-      </nav>
-                              <div class="liniee"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col s12">
-              <nav>
-                <div class="nav-wrapper " style="margin-top: 16%; margin-left: 15%">
-                  <form>
-                    <div class="input-field" style="padding-left: 10%; margin-right: 50%; height: 54px;">
-                      <input id="search" type="search" placeholder="Cauta legume si fructe" style="background-color: #fff; position: absolute">
-                      <button class="btn waves-effect waves-light btn-large" type="submit" name="action" style="margin-left: 125%;">
-                          Submit
-                      </button>
-                    </div>
-                  </form>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/view-profile/{{ current_user.account2.slug }}">Profilul Tau</a>
+                    <a class="dropdown-item" href="#">Mesaje</a>
+                    <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Deconectare</a>
                 </div>
-              </nav>
+                </li>
+
+                <!-- Cosul meu -->
+                <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cosul Meu</a>
+                </li>
+
+                {% if account2.file1 %}
+                <li class="nav-item" id="creeazaPostare">
+                    <button class="btn">+ Creeaza o postare</button>
+                </li>
+                    {% else %}
+                    <li class="nav-item" id="creeazaPostare">
+                    <button class="btn">Devin-o vanzator</button>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <br> <br>
+    <!-- Legume/Fructe/Anunturi reducere -->
+    <div class="container">
+
+        <div class="section">
+            <h1>Legume</h1>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="hold">
+                        <ul class="items">
+                            <li>Toamna</li>
+                            <li>Vara</li>
+                            <li>Primavara</li>
+                            <li>Iarna</li>
+                            <li>Toate</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="veggie-img">
+                        <img src="{% static "images/veggies.jpg" %}" style="height: 100%; width: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br>
+        <div class="section">
+            <h1>Fructe</h1>
+             <div class="row">
+                <div class="col-sm-4">
+                    <div class="hold">
+                        <ul class="items">
+                            <li>Toamna</li>
+                            <li>Vara</li>
+                            <li>Primavara</li>
+                            <li>Iarna</li>
+                            <li>Toate</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="veggie-img">
+                        <img src="{% static "images/veggies.jpg" %}" style="height: 100%; width: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br>
+        <div class="container anunturi">
+            <h1>Anunturi la reducere</h1>
+            <div class="card-deck">
+                {% for post in post %}
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
+                        <hr>
+                        <h5><b>{{ post.name }}</b></h5>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        (8)
+                        <hr>
+                        <p class="card-text card-price">{{ post.price }} lei / {{ post.category }}</p>
+                        <p class="card-text">{{ post.details }}</p>
+                        <hr>
+                        <div style="display: inline-block;">
+                            <a href="/post/{{post.slug}}" class="btn btn-default">Vezi produs</a>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <br> <br>
+
+        <div class="container producator">
+            <h1>Cumpara dupa utilizator</h1>
+            <div class="row">
+                <div class="col-3">
+                    <!-- Sorteaza dupa -->
+                    <div class="side-menu">
+                        <p class="head">Sorteaza dupa</p>
+                        <form>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Utilizator</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Pret crescator</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Pret descrescator</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Ordine Alfabetica</label>
+                          </div>
+                        </form>
+                    </div>
+                    <br> <br>
+
+                    <!-- Fructe -->
+                    <div class="side-menu">
+                        <p class="head">Fructe</p>
+                        <form>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Ananas</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Lamaie</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Mar</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Lime</label>
+                          </div>
+                        <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Portocale</label>
+                        </div>
+                        </form>
+                    </div>
+                    <br> <br>
+
+                    <!-- Legume -->
+                    <div class="side-menu">
+                        <p class="head">Legume</p>
+                        <form>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Morcovi</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Dovleci</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Cartofi</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Rosii</label>
+                          </div>
+                        <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Pastarnac</label>
+                        </div>
+                        </form>
+                    </div>
+                    <br> <br>
+
+                    <!-- Reviewuri -->
+                    <div class="side-menu reviewuri">
+                        <p class="head">Reviewuri</p>
+                        <form>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                            </label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star "></span></label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </label>
+                          </div>
+                        <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span></label>
+                        </div>
+                        </form>
+                    </div>
+                    <br> <br>
+
+                    <!-- Gramaj -->
+                    <div class="side-menu">
+                        <p class="head">Gramaj</p>
+                        <form>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">0 - 1,00 kg</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">1,00 - 2,00 kg</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">3,00 - 5,00 kg</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Peste 5,00 kg</label>
+                          </div>
+                        </form>
+                    </div>
+                    <br> <br>
+
+                    <!-- Pret -->
+                    <div class="side-menu">
+                        <p class="head">Pret</p>
+                        <form>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">0 - 1,00 leu</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">1,00 - 2,00 lei</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">2,00 - 3,00 lei</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews">Peste 4,00 lei</label>
+                          </div>
+                        </form>
+                    </div>
+                    <br> <br>
+                </div>
+                <div class="col-9">
+                    {% for users in users %}
+                    <!-- Carduri pentru clienti -->
+                        <h1><a href="/view-profile/{{ users.account2.slug }}">{{ users.username }}|&nbsp;</a> <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span></h1>
+
+                    <div class="card-deck">
+                        {% for post in post %}
+                            {% if users == post.author %}
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
+                                        <hr>
+                                        <h5><b>{{ post.name }}</b></h5>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        (8)
+                                        <hr>
+                                        <p class="card-text card-price">{{ post.price }} lei / {{ post.category }}</p>
+                                        <p class="card-text">{{ post.details }}</p>
+                                        <hr>
+                                        <div style="display: inline-block;">
+                                            <a href="/post/{{post.slug}}" class="btn btn-default">Vezi produs</a>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                        <br> <br>
+                    {% endfor %}
+                </div>
+        </div>
+        <br>
+    </div>
+
+        <div style="text-align: center;">
+            <div id="vezi-mai-mult">
+                <p>Vezi mai mult</p>
             </div>
         </div>
     </div>
 
-  </div>
-</div>
+    <br>
 
-    <h5 align="center" style="margin-top: 5%; font-weight: 600;">Postarile utilizatorilor</h5>
-    <div class="path-12" style="margin-left: 45%;margin-bottom: 50px;"></div>
-
-
-<div style="margin-left: 80%;">
- <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Sortare dupa</a>
-
-  <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content'>
-    <li><a href="#!">Sortare dupa</a></li>
-    <li><a href="#!">Ordine alfabetica</a></li>
-    <li><a href="#!">Pret crescator</a></li>
-    <li><a href="#!">Pret descrescator</a></li>
-  </ul>
-</div>
-
-
-
-<div class="filtre">
-    <p align="left" style="font-weight: 600; margin-left: 10%;">Fructe</p>
-
-        <input type="checkbox" id="remember1">
-    <label for="remember1" style="margin-left: 10%; margin-bottom: 4%;">Ananas</label>
-
-        <input type="checkbox" id="remember2">
-    <label for="remember2" style="margin-left: 10%; margin-bottom: 4%;">Maaaaaaaaaar</label>
-
-        <input type="checkbox" id="remember3">
-    <label for="remember3" style="margin-left: 10%; margin-bottom: 4%;">Portocalaaaaa</label>
-
-        <input type="checkbox" id="remember4">
-    <label for="remember4" style="margin-left: 10%; margin-bottom: 4%;">Banana</label>
-</div>
-
-<div class="anunt">
-
-</div>
-
-
-
-<div class="filtre">
-    <p align="left" style="font-weight: 600; margin-left: 10%;">Legume</p>
-
-        <input type="checkbox" id="remember5">
-    <label for="remember5" style="margin-left: 10%; margin-bottom: 4%;">Morcoooov</label>
-
-        <input type="checkbox" id="remember6">
-    <label for="remember6" style="margin-left: 10%; margin-bottom: 4%;">Dovleaaaac</label>
-
-        <input type="checkbox" id="remember7">
-    <label for="remember7" style="margin-left: 10%; margin-bottom: 4%;">Caaaartooof</label>
-
-        <input type="checkbox" id="remember8">
-    <label for="remember8" style="margin-left: 10%; margin-bottom: 4%;">Rosiee</label>
-</div>
-
-<div class="filtre2">
-<p align="left" style="font-weight: 600; margin-left: 10%;">Review-uri</p>
-</div>
-
-<div class="filtre2">
-<p align="left" style="font-weight: 600; margin-left: 10%;">Pret</p>
-
-        <input type="checkbox" id="remember14">
-    <label for="remember14" style="margin-left: 10%; margin-bottom: 4%;">0 - 1,00 lei</label>
-
-        <input type="checkbox" id="remember15">
-    <label for="remember15" style="margin-left: 10%; margin-bottom: 4%;">1,00 - 2,00 lei</label>
-
-        <input type="checkbox" id="remember16">
-    <label for="remember16" style="margin-left: 10%; margin-bottom: 4%;">2,00 - 3,00 lei</label>
-
-        <input type="checkbox" id="remember17">
-    <label for="remember17" style="margin-left: 10%; margin-bottom: 4%;">3,00 - 4,00 lei</label>
-
-        <input type="checkbox" id="remember18">
-    <label for="remember18" style="margin-left: 10%; margin-bottom: 4%;">Peste 4,00 lei</label>
-</div>
-
-
-
-
-
-
-{% for anunturi in post %}
-   <h2> {{   anunturi.name }} </h2>
-{% endfor %}
-
-
-
-
-
-<footer class="page-footer" style="background-color: #3B3B3B; margin-top: 70px;">
-  <nav style=" padding-left:  9%;padding-right: 9%; height:90px;">
-    <div class="nav-wrapper">
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><img src='{% static "images/logoo.png" %}'></li>
-      </ul>
-      <ul id="nav-mobile" class="right hide-on-med-and-down" style="line-height: 35px;">
-        <li><a href="sass.html" style="color: #fff;">Home</a></li>
-        <li><a href="badges.html" style="color: #fff;">About our products</a></li>
-        <li><a href="collapsible.html" style="color: #fff;">About us</a></li>
-        <li><a href="collapsible.html" style="color: #fff;">Contact us</a></li>
-      </ul>
-    </div>
-  </nav>
-    <div class="las" style=" margin-left: 100px;margin-right: 100px;margin-bottom: 40px;"></div>
-    <p align="center" style="padding-bottom: 15px; color: #BBBBBB;">@All rights reserved</p>
-</footer>
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
+    <footer class="footer">
+            <div class="row">
+                <div class="col-4">
+                    <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
+                </div>
+                <div class="col-2">
+                    <a href="/" style="color: #fff"><p>Acasa</p></a>
+                </div>
+                <div class="col-2">
+                    <a href="/view-profile/{{ current_user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
+                </div>
+                <div class="col-2">
+                    <a href="/edit_profile" style="color: #fff"><p>Editeaza profilul</p></a>
+                </div>
+                <div class="col-2">
+                   <p><a href="" style="color: #fff">Devin-o vanzator</p></a>
+                </div>
+            </div>
+            <hr class="hr">
+            <div class="row">
+                <div class="col-12">
+                    <p>@All rights reserverd</p>
+                </div>
+            </div>
+    </footer>
 </body>
 </html>

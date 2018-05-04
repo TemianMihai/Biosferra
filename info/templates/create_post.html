@@ -1,207 +1,271 @@
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
     {% load staticfiles %}
-    {% load widget_tweaks %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <title>BookVenue</title>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+        {% load widget_tweaks %}
+    <title>Biosferra</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/styleee.css" %}">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="{% static "images/brand.png" %}" />
 
-</head>
+    </head>
+<body>
+    <div class="navbar-box">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+        <!-- Brand Logo -->
+        <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
+        <!-- Button enables when screen size is small -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Will get collapsed -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+                <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
+                <input class="form-control mr-sm-2" type="search" placeholder="Cauta orice" aria-label="Search">
+                <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+            </form>
+            <ul class="navbar-nav mr-auto">
 
-    <div class="col-lg-12">
-        <h2 class="page-header" align="center">Post your offer right now</h2>
+                <!-- Username dropdown -->
+                <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ user.username }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/view-profile/{{ current_user.account2.slug }}">Profilul Tau</a>
+                    <a class="dropdown-item" href="#">Mesaje</a>
+                    <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Deconectare</a>
+                </div>
+                </li>
+
+                <!-- Cosul meu -->
+                <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cosul Meu</a>
+                </li>
+
+                <li class="nav-item" id="creeazaPostare">
+                    <button class="btn">+ Creeaza o postare</button>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <div class="break-line"></div>
+
+    <div class="container content">
+        <h1>Creeaza un anunt</h1>
+        <hr>
+        <br>
+       <form  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="form-group">
+                <label for="titlu-field">Titlul anuntului</label>
+                <input name="name" value="{{form.body}}" type="text" placeholder="Titlu" id="titlu-field" class="form-control"/>
+
+                 {% if form.name.errors %}
+                 <div class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>Warning!</strong>
+                    {% for errors in form.name.errors %}
+                            {{ errors }}
+                    {% endfor %}
+                 </div>
+                 {% endif %}
+
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <label>Timpul de livrare</label>
+                <input name="delivery_time" value="{{form.body}}" type="text" placeholder="In cate zile livrati produsul" id="titlu-field" class="form-control"/>
+
+                 {% if form.delivery_time.errors %}
+                 <div class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>Warning!</strong>
+                    {% for errors in form.delivery_time.errors %}
+                            {{ errors }}
+                    {% endfor %}
+                 </div>
+                 {% endif %}
+
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <label>Cantitate</label>
+                <input name="cantity" value="{{form.body}}" type="text" placeholder="Cantitatea pentru o livrare" id="titlu-field" class="form-control"/>
+
+                 {% if form.cantity.errors %}
+                 <div class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>Warning!</strong>
+                    {% for errors in form.cantity.errors %}
+                            {{ errors }}
+                    {% endfor %}
+                 </div>
+                 {% endif %}
+
+            </div>
+
+            <hr>
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Anotimpul in care e crescut produsul</label>
+                        {{ form.categorie|add_class:"form-control "|attr:"required:required"}}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Kg/Bucata</label>
+                        {{ form.category|add_class:"form-control "|attr:"required:required"}}
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                       <label>Pret</label>
+                        <input name="price" value="{{form.body}}" type="text" placeholder="Pret per buc/kg" id="titlu-field" class="form-control"/>
+
+                         {% if form.price.errors %}
+                         <div class="alert alert-danger alert-dismissible" role="alert">
+                            <strong>Warning!</strong>
+                            {% for errors in form.price.errors %}
+                                    {{ errors }}
+                            {% endfor %}
+                         </div>
+                         {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <label>Descriere</label>
+                <input name="details" value="{{form.body}}" type="text" placeholder="O scurta descriere despre produs" id="titlu-field" class="form-control" />
+
+                 {% if form.details.errors %}
+                 <div class="alert alert-danger alert-dismissible" role="alert">
+
+                    <strong>Warning!</strong>
+                    {% for errors in form.details.errors %}
+                            {{ errors }}
+                    {% endfor %}
+                 </div>
+                 {% endif %}
+
+            </div>
+            <hr>
+            <div class="form-group">
+                <br>
+                <label for="exampleInputFile">Alegeti cateva poze cu produsul dumneavoastra</label>
+
+                     {{ form.image1|add_class:"form-control " }}
+                        {% if form.image1.errors %}
+                            <div class="alert alert-danger fade in" id="input-alert">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Warning!</strong>
+                                {% for error in form.image1.errors %}
+                                        {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    <br>
+
+                     {{ form.image2|add_class:"form-control " }}
+                        {% if form.image2.errors %}
+                            <div class="alert alert-danger fade in" id="input-alert">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Warning!</strong>
+                                {% for error in form.image2.errors %}
+                                        {{ error }}
+                                {% endfor %}
+                            </div>
+                         {% endif %}
+
+                    <br>
+
+                     {{ form.image3|add_class:"form-control " }}
+                        {% if form.image3.errors %}
+                            <div class="alert alert-danger fade in" id="input-alert">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Warning!</strong>
+                                {% for error in form.image3.errors %}
+                                        {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                <br>
+
+                     {{ form.image4|add_class:"form-control " }}
+                        {% if form.image4.errors %}
+                            <div class="alert alert-danger fade in" id="input-alert">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Warning!</strong>
+                                {% for error in form.image4.errors %}
+                                        {{ error }}
+                                {% endfor %}
+                            </div>
+                         {% endif %}
+            </div>
+                   <button type="submit" class="btn btn-success">Submit</button>
+
+        </form>
+
     </div>
-    <form  method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="container">
-        <label>Name of event</label>
-        <input name="name" value="{{form.body}}" type="text" placeholder="Name" />
 
-         {% if form.name.errors %}
-         <div class="alert alert-danger alert-dismissible" role="alert">
+     <br>
 
-                                                        <strong>Warning!</strong>
-				                                        {% for errors in form.name.errors %}
-				                                                {{ errors }}
-				                                        {% endfor %}
-                                                            </div>
-                                             {% endif %}
-
-         <label>Delivery time</label>
-        <input name="delivery_time" value="{{form.body}}" type="text" placeholder="YYYY-MM-DD" />
-
-         {% if form.delivery_time.errors %}
-         <div class="alert alert-danger alert-dismissible" role="alert">
-
-                                                        <strong>Warning!</strong>
-				                                        {% for errors in form.delivery_time.errors %}
-				                                                {{ errors }}
-				                                        {% endfor %}
-                                                            </div>
-                                             {% endif %}
-
-
-            <label>Cantity</label>
-        <input name="cantity" value="{{form.body}}" type="text" placeholder="Price" />
-
-         {% if form.cantity.errors %}
-         <div class="alert alert-danger alert-dismissible" role="alert">
-
-                                                        <strong>Warning!</strong>
-				                                        {% for errors in form.cantity.errors %}
-				                                                {{ errors }}
-				                                        {% endfor %}
-                                                            </div>
-                                             {% endif %}
-
-
-
-        <label>Price</label>
-        <input name="price" value="{{form.body}}" type="text" placeholder="Price" />
-
-         {% if form.price.errors %}
-         <div class="alert alert-danger alert-dismissible" role="alert">
-
-                                                        <strong>Warning!</strong>
-				                                        {% for errors in form.price.errors %}
-				                                                {{ errors }}
-				                                        {% endfor %}
-                                                            </div>
-                                             {% endif %}
-
-
-
-            <label>Details</label>
-        <input name="details" value="{{form.body}}" type="text" placeholder="Details" />
-
-         {% if form.details.errors %}
-         <div class="alert alert-danger alert-dismissible" role="alert">
-
-                                                        <strong>Warning!</strong>
-				                                        {% for errors in form.details.errors %}
-				                                                {{ errors }}
-				                                        {% endfor %}
-                                                            </div>
-                                             {% endif %}
-            <label>Category</label>
-
-
-
-
-
-
-    <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          {%  for categori in form.category %}
-            <a class="dropdown-item" href="#">{{ categori }}</a>
-          {% endfor %}
-  </div>
-</div>
-
-
-
-           {% if form.category.errors %}
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                        <strong>Warning!</strong>
-				                                        {% for errors in form.category.errors %}
-				                                                {{ errors }}
-				                                        {% endfor %}
-                                                            </div>
-                                             {% endif %}
-
-
-
-     <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          {%  for categorii in form.categorie %}
-            <a class="dropdown-item" href="#">{{ categorii }}</a>
-          {% endfor %}
-  </div>
-</div>
-
-
-
-           {% if form.categorie.errors %}
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                        <strong>Warning!</strong>
-				                                        {% for errors in form.categorie.errors %}
-				                                                {{ errors }}
-				                                        {% endfor %}
-                                                            </div>
-                                             {% endif %}
-
-
-                                            <div class="form-group">
-                                            <br>
-                                            <label for="exampleInputFile">Choose some representative pictures, they are optional! (first photo will appear on front page)</label>
-
-                                                 {{ form.image1|add_class:"form-control " }}
-                                                {% if form.image1.errors %}
-                                                        <div class="alert alert-danger fade in" id="input-alert">
-                                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                        <strong>Warning!</strong>
-				                                        {% for error in form.image1.errors %}
-				                                                {{ error }}
-				                                        {% endfor %}
-                                                            </div>
-                                             {% endif %}<br>
-                                                 {{ form.image2|add_class:"form-control " }}
-                                                {% if form.image2.errors %}
-                                                        <div class="alert alert-danger fade in" id="input-alert">
-                                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                        <strong>Warning!</strong>
-				                                        {% for error in form.image2.errors %}
-				                                                {{ error }}
-				                                        {% endfor %}
-                                                            </div>
-                                             {% endif %}<br>
-                                                 {{ form.image3|add_class:"form-control " }}
-                                                {% if form.image3.errors %}
-                                                        <div class="alert alert-danger fade in" id="input-alert">
-                                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                        <strong>Warning!</strong>
-				                                        {% for error in form.image3.errors %}
-				                                                {{ error }}
-				                                        {% endfor %}
-                                                            </div>
-                                             {% endif %}<br>
-                                                 {{ form.image4|add_class:"form-control " }}
-                                                {% if form.image4.errors %}
-                                                        <div class="alert alert-danger fade in" id="input-alert">
-                                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                        <strong>Warning!</strong>
-				                                        {% for error in form.image4.errors %}
-				                                                {{ error }}
-				                                        {% endfor %}
-                                                            </div>
-                                             {% endif %}
-
-                                            </div>
-
-
-
-
-<br>
-        <button type="submit" class="btn btn-success">Submit</button>
-
-</form>
-
+    <footer class="footer">
+            <div class="row">
+                <div class="col-4">
+                    <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
+                </div>
+                <div class="col-2">
+                    <a href="/" style="color: #fff"><p>Acasa</p></a>
+                </div>
+                <div class="col-2">
+                    <a href="/view-profile/{{ current_user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
+                </div>
+                <div class="col-2">
+                    <a href="/edit_profile" style="color: #fff"><p>Editeaza profilul</p></a>
+                </div>
+                <div class="col-2">
+                   <p><a href="" style="color: #fff">Devin-o vanzator</p></a>
+                </div>
+            </div>
+            <hr class="hr">
+            <div class="row">
+                <div class="col-12">
+                    <p>@All rights reserverd</p>
+                </div>
+            </div>
+    </footer>
 </body>
 </html>
