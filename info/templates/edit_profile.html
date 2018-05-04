@@ -63,6 +63,7 @@
                 {{ user.username }}
                 </a>
 
+                {% if user.account2.slug %}
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
                     <a class="dropdown-item" href="#">Mesaje</a>
@@ -70,6 +71,13 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">Deconectare</a>
                 </div>
+                    {% else %}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Mesaje</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Deconectare</a>
+                </div>
+                {% endif %}
                 </li>
 
                 <!-- Cosul meu -->
@@ -78,9 +86,15 @@
                     <a class="nav-link" href="#">Cosul Meu</a>
                 </li>
 
+                {% if user.account2.slug %}
                 <li class="nav-item" id="creeazaPostare">
-                    <button class="btn">+ Creeaza o postare</button>
+                    <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
                 </li>
+                    {% else %}
+                    <li class="nav-item" id="creeazaPostare">
+                        <a href="/register-vanzator"><button class="btn">Devin-o vanzator</button></a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
         </div>
@@ -172,7 +186,11 @@
                     <a href="/edit_profile" style="color: #fff"><p>Editeaza profilul</p></a>
                 </div>
                 <div class="col-2">
-                   <p><a href="" style="color: #fff">Devin-o vanzator</p></a>
+                    {% if user.account2.slug %}
+                   <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
+                    {% else %}
+                    <p><a href="/register-vanzator" style="color: #fff">Devin-o vanzator</p></a>
+                    {% endif %}
                 </div>
             </div>
             <hr class="hr">
