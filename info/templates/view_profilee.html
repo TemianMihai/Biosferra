@@ -168,7 +168,7 @@
                         {% for post in anunturi %}
                             {% if user2.user == post.author %}
                                 <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{% static "images/veggies.jpg" %}" alt="Card image cap">
+                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
                                     <div class="card-body">
                                         <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
                                         <hr>
