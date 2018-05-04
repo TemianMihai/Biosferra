@@ -15,8 +15,10 @@ def create_post(request):
             post = form.instance
             post.author = current_user
             form.save()
+            return redirect('/')
     return render(request, "create_post.html", {
         'form': form,
+        'current_user':request.user
     })
 
 

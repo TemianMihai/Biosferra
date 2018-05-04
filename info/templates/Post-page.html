@@ -1,81 +1,235 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    {% load staticfiles %}
+    <title>Biosferra</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/stylee.css" %}">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="{% static "images/brand.png" %}" />
+    </head>
 <body>
-<h3>{{ posts.name }}</h3>
-{{ posts.author }}
-<span class="meta">Posted by <a href="/view-profile/{{posts.author.account2.slug}}">{{posts.author.username}}</a>
+    <div class="navbar-box">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+        <!-- Brand Logo -->
+        <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
+        <!-- Button enables when screen size is small -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Will get collapsed -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+                <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
+                <input class="form-control mr-sm-2" type="search" placeholder="Cauta orice" aria-label="Search">
+                <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+            </form>
+            <ul class="navbar-nav mr-auto">
 
-  {% if posts.author == user %}
+                <!-- Username dropdown -->
+                <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ user.username }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
+                    <a class="dropdown-item" href="#">Mesaje</a>
+                    <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Deconectare</a>
+                </div>
+                </li>
+
+                <!-- Cosul meu -->
+                <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cosul Meu</a>
+                </li>
+
+                <li class="nav-item" id="creeazaPostare">
+                    <button class="btn">Devino vanzator</button>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    </div>
+    <div class="break-line"></div>
+
+    <div class="container content">
+        <div class="row">
+            <div class="col-5 thumbnail">
+                <img src="{{  posts.image1.url }}" class="img-fluid" alt="Responsive image">
+                <img src="{{  posts.image2.url }}" class="img-fluid" alt="Responsive image" style=" width: 20%;margin-top: 2%;position: absolute;">
+                <img src="{{  posts.image3.url }}" class="img-fluid" alt="Responsive image" style="    margin-left: 23%; width: 20%;position: absolute;margin-top: 10px;">
+                <img src="{{  posts.image4.url }}" class="img-fluid" alt="Responsive image" style="margin-left: 46%;width: 20%;position: absolute;margin-top: 2%;">
+
+            </div>
+            <div class="col-6 info">
+                <h1 style="color: #1CC661">{{ posts.name }}</h1>
+                  {% if posts.author == user %}
       <a href='{{posts.get_delete_url}}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete post</a>
   {% endif %}
-
-
-
-{% for comment in comm_parent %}
-                    <div class="row">
-                        <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <strong>{{ comment.user }}</strong> <span class="text-muted">{{ comment.created_date}}</span>
-                            {% if comment.user == requested.user %}
-                            <a href='{{comment.get_delete_comm}}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete comment</a>
-                            {% endif %}
-                        </div>
-
-                        <div class="panel-body">
-                            {{ comment.body }}
-                        </div><!-- /panel-body -->
-
-                    </div><!-- /panel panel-default -->
-
-
-                            {% for reply in comment.children %}
-
-                        <div class="col-sm-10">
-                            <div class="panel panel-comment panel-default">
-                                <div class="panel-heading-comment panel-heading">
-                                    <strong>{{ reply.user }}</strong> <span class="text-muted">{{ reply.created_date}}</span>
-                                    {% if reply.user == user %}
-                                    <a href='{{ reply.get_delete_comm }}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete reply</a>
-                                    {% endif %}
+                <table style="width: 100%">
+                    <tr>
+                        <th></th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                    </tr>
+                    <tr> <td>
+                        <div class="profile">
+                            <div class="upper-side">
+                                <div class="profile-image"></div>
+                                <a href="/view-profile/{{ posts.author.account2.slug }}"><p style="color:#1CC661;"><b>{{ posts.author }}</b></p></a>
+                                <div class="rating">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    &nbsp;&nbsp;&nbsp;3
                                 </div>
-                                <div class="panel-body">
-                                    {{ reply.body }}
-                                </div><!-- /panel-body -->
-                            </div><!-- /panel panel-default -->
-                        </div><!-- /col-sm-5 -->
-                        {% endfor %}
+                                <div class="break"></div>
+                            </div>
+                            <div class="lower-side">
+                                <div>
+                                    <img src="">
+                                    <p>{{ posts.author.account2.city }}, Jud. {{ posts.author.account2.state }}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cumpara">
+                            <h2>Cantitate: {{ posts.cantity }} {{ posts.category }}</h2>
+                            <h2>Pret: {{ posts.price }} lei</h2>
+                            <button class="btn btn-success btn-circle text-uppercase" type="submit"><span class="glyphicon glyphicon-send"></span> Adauga in cos</button>
+                            <button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span> Adauga la favorite</button>
+                        </div>
+                    </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <br>
+        <div class="row descriere" style="margin-top: 5%;">
+            <h2>Descriere:</h2>
+            <br>
+            <p>{{ posts.details }}</p>
+        </div>
+    <hr>
+    </div>
 
 
+  <div class="container">
+        <div class="row">
+        <!-- Contenedor Principal -->
+            <div class="comments-container">
+                <h1>Comentarii:</h1>
+                <ul id="comments-list" class="comments-list">
+                    {% for comment in comm_parent %}
+                        <li>
+                            <div class="comment-main-level">
+                                <!-- Avatar -->
+                                <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+                                <!-- Contenedor del Comentario -->
+                                <div class="comment-box">
+                                    <div class="comment-head">
+                                        <h6 class="comment-name by-author"><a href="/view-profile/{{ comment.user.account2.slug }}">{{ comment.user }}</a></h6>
+                                    </div>
+                                    <div class="comment-content">
+                                        {{ comment.body }}
+                                    </div>
+                                </div>
+                            </div>
+                            {% for reply in comment.children %}
+                            <!-- Respuestas de los comentarios -->
+                            <ul class="comments-list reply-list">
+                                <li>
+                                    <!-- Avatar -->
+                                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+                                    <!-- Contenedor del Comentario -->
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name"><a href="/view-profile/{{ reply.user.account2.slug }}">{{ reply.user }}</a></h6>
+                                        </div>
+                                        <div class="comment-content">
+                                        {{ reply.body }}
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            {% endfor %}
 
                             <form action="." method='post'>
                                 {% csrf_token %}
                                 <div class="col-lg-5">
                                 <input type='hidden' name='parent_id' value={{comment.id}}>
-                                <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Your reply" />
-                                    <button class="btn btn-success btn-circle text-uppercase" type="submit"><span class="glyphicon glyphicon-send"></span> Reply</button>
+                                <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Raspunsul dumneavoastra" />
+                                    <button class="btn btn-success btn-circle text-uppercase" type="submit"><span class="glyphicon glyphicon-send"></span> Raspundeti</button>
                                 </div>
                             </form>
-                    </div>
-                            <br>
+
+                        </li>
                     {% endfor %}
+                </ul>
+<br>
+                <form action="." method='post'>
+                    {% csrf_token %}
+                    <div class="col-lg-9">
+                        <label class="col-sm-6 control-label"><h5>Postati un comentariu</h5> </label>
 
-                        <div class="row">
-                            <form action="." method='post'>
-                                {% csrf_token %}
-                                <div class="col-lg-9">
-                                    <label class="col-sm-6 control-label">Post a comment </label>
+                            <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Comentariul dumneavoastra"/>
+                            <div class="form-group">
+                                <button class="btn btn-success btn-circle text-uppercase" type="submit"><span class="glyphicon glyphicon-send"></span>Comentati</button>
+                            </div>
 
-                                        <input class="form-control" name="body" value="{{form.body}}"/>
-                                        <div class="form-group">
-                                            <button class="btn btn-success btn-circle text-uppercase" type="submit"><span class="glyphicon glyphicon-send"></span> Submit comment</button>
-                                        </div>
+                    </div>
+                </form>
 
-                                </div>
-                            </form>
+            </div>
+        </div>
+  </div>
+
+ <br>
+
+    <footer class="footer">
+            <div class="row">
+                <div class="col-4">
+                    <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
+                </div>
+                <div class="col-2">
+                    <a href="/" style="color: #fff"><p>Acasa</p></a>
+                </div>
+                <div class="col-2">
+                    <a href="/view-profile/{{ current_user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
+                </div>
+                <div class="col-2">
+                    <a href="/edit_profile" style="color: #fff"><p>Editeaza profilul</p></a>
+                </div>
+                <div class="col-2">
+                   <p><a href="" style="color: #fff">Devin-o vanzator</p></a>
+                </div>
+            </div>
+            <hr class="hr">
+            <div class="row">
+                <div class="col-12">
+                    <p>@All rights reserverd</p>
+                </div>
+            </div>
+    </footer>
 
 </body>
 </html>

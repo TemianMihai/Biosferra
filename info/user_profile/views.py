@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from forms import Edit_profile, Edit_profile2
 from authentication.models import Account2
 from post.models import PostModel
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 
@@ -30,12 +31,12 @@ def profile_detail(request):
 @login_required
 def profile(request, slug):
     anunturi = PostModel.objects.all()
-    user2 = Account2.objects.all().filter(slug=slug)
+    user2 = Account2.objects.filter(slug=slug)
     if user2.count() != 0:
         return  render(request, 'view_profilee.html', {
             'user': request.user,
             'anunturi':anunturi,
-            'user2':user2
+            'user2':user2,
         })
     else:
         return HttpResponseForbidden()
