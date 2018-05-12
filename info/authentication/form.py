@@ -162,16 +162,12 @@ class AccRegisterForm2(forms.ModelForm):
             raise forms.ValidationError("State name contains invalid characters")
         return state
 
-    def clean_file1(self):
+    def clean_file2(self):
         file1 = self.cleaned_data['file1']
+        file2 = self.cleaned_data['file2']
         file_names = []
         if (file1 and not isinstance(file1, (int, float))):
             file_names.append(file1.name)
-        return file1
-
-    def clean_file2(self):
-        file2 = self.cleaned_data['file2']
-        file_names = []
         if (file2 and not isinstance(file2, (int, float))):
-            file_names.append(file2.name)
+             file_names.append(file2.name)
         return file2

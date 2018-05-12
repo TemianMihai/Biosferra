@@ -50,7 +50,7 @@ def register_view(request):
 
 def register_view2(request):
     form = UserRegisterForm(data=request.POST or None)
-    acc_form2 = AccRegisterForm2(data=request.POST or None)
+    acc_form2 = AccRegisterForm2(request.POST or None, request.FILES or None)
     errors = []
     if request.method == 'POST':
         if form.is_valid() == True and acc_form2.is_valid() == True:
@@ -60,6 +60,8 @@ def register_view2(request):
             acc_form2.save()
             user = authenticate(username=form.instance.username,
                                 password=form.cleaned_data['password'])
+            user.is_active = False
+            user.save()
             login(request, user)
             return redirect('/')
     return render(request, "register2.html", {

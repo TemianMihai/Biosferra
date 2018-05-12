@@ -22,8 +22,8 @@ class Account2(models.Model):
     city = models.CharField(max_length = 20)
     adress = models.CharField(max_length= 50, null= True)
     state = models.CharField(max_length= 20, null= True)
-    file1 = models.FileField(upload_to = upload_location,
+    slug = models.SlugField(unique=True, default=uuid.uuid1)
+    file1 = models.ImageField(upload_to = upload_location,
                               null=True, blank=True)
-    file2 = models.FileField(upload_to = upload_location,
+    file2 = models.ImageField(upload_to = upload_location,
                               null=True, blank=True)
-    slug = models.SlugField(unique=True, default=uuid.uuid1, null= True)

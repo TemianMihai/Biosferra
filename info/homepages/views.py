@@ -25,3 +25,4 @@ def index(request):
         'account2':account2,
         'current_user':current_user
     })
+

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'categorie',
     'category',
+    'lfcat',
     'user_profile',
     'authentication',
     'post'
