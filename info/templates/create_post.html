@@ -18,6 +18,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="{% static "images/brand.png" %}" />
 
+    <style>
+        .modal  {
+    /*   display: block;*/
+    padding-right: 0px;
+    background-color: rgba(4, 4, 4, 0.8);
+    }
+
+    .modal-dialog {
+            top: 20%;
+                width: 100%;
+    position: absolute;
+        }
+        .modal-content {
+                border-radius: 0px;
+                border: none;
+    top: 40%;
+            }
+            .modal-body {
+                    background-color: #0f8845;
+    color: white;
+                }
+
+    </style>
+
     </head>
 <body>
     <div class="navbar-box">
@@ -91,7 +115,7 @@
         {% csrf_token %}
             <div class="form-group">
                 <label for="titlu-field">Titlul anuntului</label>
-                <input name="name" value="{{form.body}}" type="text" placeholder="Titlu" id="titlu-field" class="form-control"/>
+                <input name="name" value="{{form.body}}" type="text" placeholder="Titlu. Ex: Mere de gradina" id="titlu-field" class="form-control"/>
 
                  {% if form.name.errors %}
                  <div class="alert alert-danger alert-dismissible" role="alert">
@@ -108,7 +132,7 @@
 
             <div class="form-group">
                 <label>Timpul de livrare</label>
-                <input name="delivery_time" value="{{form.body}}" type="text" placeholder="In cate zile livrati produsul" id="titlu-field" class="form-control"/>
+                <input name="delivery_time" value="{{form.body}}" type="text" placeholder="In cate zile livrati produsul. Ex: 2" id="titlu-field" class="form-control"/>
 
                  {% if form.delivery_time.errors %}
                  <div class="alert alert-danger alert-dismissible" role="alert">
@@ -125,7 +149,7 @@
 
             <div class="form-group">
                 <label>Cantitate</label>
-                <input name="cantity" value="{{form.body}}" type="text" placeholder="Cantitatea pentru o livrare" id="titlu-field" class="form-control"/>
+                <input name="cantity" value="{{form.body}}" type="text" placeholder="Cantitatea pentru o livrare. Ex: 10" id="titlu-field" class="form-control"/>
 
                  {% if form.cantity.errors %}
                  <div class="alert alert-danger alert-dismissible" role="alert">
@@ -143,7 +167,7 @@
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
-                        <label>Anotimpul in care e crescut produsul</label>
+                        <label>Anotimpul produsului</label>
                         {{ form.categorie|add_class:"form-control "|attr:"required:required"}}
                     </div>
                 </div>
@@ -151,6 +175,13 @@
                     <div class="form-group">
                         <label>Kg/Bucata</label>
                         {{ form.category|add_class:"form-control "|attr:"required:required"}}
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label>Legume sau fructe</label>
+                        {{ form.lfcategory|add_class:"form-control "|attr:"required:required"}}
                     </div>
                 </div>
             </div>
@@ -161,7 +192,7 @@
                 <div class="col">
                     <div class="form-group">
                        <label>Pret</label>
-                        <input name="price" value="{{form.body}}" type="text" placeholder="Pret per buc/kg" id="titlu-field" class="form-control"/>
+                        <input name="price" value="{{form.body}}" type="text" placeholder="Pret per buc/kg. Ex: 2" id="titlu-field" class="form-control"/>
 
                          {% if form.price.errors %}
                          <div class="alert alert-danger alert-dismissible" role="alert">
@@ -248,10 +279,9 @@
                             </div>
                          {% endif %}
             </div>
+       <p>Inainte ca anuntul dumneavoastra sa fie postat el va trebui verificat de un admin. Veti primi un mail in legatura cu statutul acestuia. </p>
                    <button type="submit" class="btn btn-success">Submit</button>
-
         </form>
-
     </div>
 
      <br>
@@ -264,12 +294,14 @@
                 <div class="col-2">
                     <a href="/" style="color: #fff"><p>Acasa</p></a>
                 </div>
+                {% if current_user.account2.slug %}
                 <div class="col-2">
                     <a href="/view-profile/{{ current_user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
                 </div>
                 <div class="col-2">
-                    <a href="/edit_profile" style="color: #fff"><p>Editeaza profilul</p></a>
+                    <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
                 </div>
+                {% endif %}
                 <div class="col-2">
                     {% if current_user.account2.slug %}
                    <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>

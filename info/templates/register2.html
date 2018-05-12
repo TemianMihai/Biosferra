@@ -38,7 +38,7 @@
 
                                     <div class="buttons">
                                         <a href="/register-cumparator"><p style="padding-left: 45px;color: #6C6C6C;"><b>Cumparator</b></p></a>
-                                        <a href="/register-vanzator"><div class="button1" style="height: 43px; margin-top: -12%;margin-left: 50%;"><p align="center" style="margin: 0;margin-left: 47px; padding-top: 10px; color: #fff;"><b>Vanzator</b></p></div></a>
+                                        <a href="/register-vanzator"><div class="button1" style="height: 43px; margin-top: -8.5%;margin-left: 50%;"><p align="center" style="margin: 0;margin-left: 47px; padding-top: 10px; color: #fff;"><b>Vanzator</b></p></div></a>
                                     </div>
                                     <br>
                                         <div class="col s6">
@@ -77,22 +77,22 @@
                                             <div class="path-6"></div>
                                             <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
                                                 <label>Oras</label>
-                                                <input placeholder="Oras" name="city" value="{{acc_form.body}}" type="text" class="validate">
+                                                <input placeholder="Oras" name="city" value="{{acc_form2.body}}" type="text" class="validate">
                                             </div>
 
                                             <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
                                                 <label>Judet</label>
-                                                <input placeholder="Judet"  name="state" value="{{acc_form.body}}" type="text" class="validate">
+                                                <input placeholder="Judet"  name="state" value="{{acc_form2.body}}" type="text" class="validate">
                                             </div>
 
                                             <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
                                                 <label>Adresa</label>
-                                                <input placeholder="Adresa" name="adress" value="{{acc_form.body}}" type="text" class="validate">
+                                                <input placeholder="Adresa" name="adress" value="{{acc_form2.body}}" type="text" class="validate">
                                             </div>
 
                                             <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
                                                 <label>Numar de telefon</label>
-                                                <input placeholder="Numar de telefon" name="phonenumber" value="{{acc_form.body}}" type="text" class="validate">
+                                                <input placeholder="Numar de telefon" name="phonenumber" value="{{acc_form2.body}}" type="text" class="validate">
                                             </div>
                                             <div>
                                                 <button  class="btn disabled" style="margin-right: 30px;margin-left: 20%;margin-top: 10%;height: 70px;">Apasa urmatorul punct ➜</button>
@@ -116,45 +116,47 @@
 
                             <div class="carousel-item" href="#two!">
 
-                                <div class="rectangle-b">
+                                <div class="rectangle-b">s
                                     <p class="important" style="font-size: 35px;">Inregistrare</p>
 
                                     <div class="buttons">
                                         <a href="/register-cumparator"><p style="padding-left: 45px;color: #6C6C6C;"><b>Cumparator</b></p></a>
-                                        <a href="/register-vanzator"><div class="button1" style="height: 42px; margin-top: -12%;margin-left: 50%;"><p align="center" style="margin: 0;margin-left: 47px; padding-top: 10px; color: #fff;"><b>Vanzator</b></p></div></a>
+                                        <a href="/register-vanzator"><div class="button1" style="height: 42px; margin-top:-8.5%; margin-left: 50%;"><p align="center" style="margin: 0;margin-left: 75px; padding-top: 10px; color: #fff;"><b>Vanzator</b></p></div></a>
                                     </div>
                                     <br><br>
 
                                     <div class="col s6">
                                         <label style="font-size: 16px;">Atestat de producator</label>
-                                      <div class="file-field input-field">
-                                          <div class="btn">
-                                            <span>File</span>
-                                            <input type="file">
-                                          </div>
-                                          <div class="file-path-wrapper">
-                                            <input class="file-path validate" name="file1" value="{{acc_form2.body}}" type="text" placeholder="Atestat de producator">
-                                          </div>
-                                      </div>
+                                         {{ acc_form2.file1|add_class:"form-control " }}
+                                            {% if form.image1.errors %}
+                                                <div class="alert alert-danger fade in" id="input-alert">
+                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                    <strong>Warning!</strong>
+                                                    {% for error in form.image1.errors %}
+                                                            {{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
                                     </div>
                                     <div class="col s6">
                                         <label style="font-size: 16px;">Carnet de comercializare</label>
-                                      <div class="file-field input-field">
-                                          <div class="btn">
-                                            <span>File</span>
-                                            <input type="file">
-                                          </div>
-                                          <div class="file-path-wrapper">
-                                            <input class="file-path validate" name="file2" value="{{acc_form2.body}}" type="text" placeholder="Carnet de comercializare">
-                                          </div>
-                                      </div>
+                                         {{ acc_form2.file2|add_class:"form-control " }}
+                                            {% if form.image1.errors %}
+                                                <div class="alert alert-danger fade in" id="input-alert">
+                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                    <strong>Warning!</strong>
+                                                    {% for error in form.image1.errors %}
+                                                            {{ error }}
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
                                     </div>
                                     <input type="checkbox" id="remember">
-                                    <label for="remember" style="margin-top: 10%;margin-left: 33%;">Sunt de acord cu Termenii si Conditiile.</label>
+                                    <label for="remember" style="margin-top: 10%;margin-left: 36%;">Sunt de acord cu Termenii si Conditiile.</label>
                                     <div>
                                     <button class="but" type="submit" style="margin-left: 40%;">Continua ➜</button>
                                     </div>
-                                    <p class="already-don-t-have-a">Ai deja un cont? <a href="/login"><b>Autentifica-te aici</b></a></p>
+                                    <p class="already-don-t-have-a" style="margin-left: -5%;">Ai deja un cont? <a href="/login"><b>Autentifica-te aici</b></a></p>
                                 </div>
                             </div>
                         </div>

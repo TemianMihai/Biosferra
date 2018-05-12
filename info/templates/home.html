@@ -135,28 +135,30 @@
             <h1>Anunturi la reducere</h1>
             <div class="card-deck">
                 {% for post in post %}
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
-                    <div class="card-body">
-                        <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
-                        <hr>
-                        <h5><b>{{ post.name }}</b></h5>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        (8)
-                        <hr>
-                        <p class="card-text card-price">{{ post.price }} lei / {{ post.category }}</p>
-                        <p class="card-text">{{ post.details }}</p>
-                        <hr>
-                        <div style="display: inline-block;">
-                            <a href="/post/{{post.slug}}" class="btn btn-default">Vezi produs</a>
-                            <span class="fa fa-star"></span>
+                    {% if post.approved == True %}
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
+                            <div class="card-body">
+                                <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
+                                <hr>
+                                <h5><b>{{ post.name }}</b></h5>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                (8)
+                                <hr>
+                                <p class="card-text card-price">{{ post.price }} lei / {{ post.category }}</p>
+                                <p class="card-text">{{ post.details }}</p>
+                                <hr>
+                                <div style="display: inline-block;">
+                                    <a href="/post/{{post.slug}}" class="btn btn-default">Vezi produs</a>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -363,28 +365,30 @@
                     <div class="card-deck">
                         {% for post in post %}
                             {% if users == post.author %}
-                                <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
-                                        <hr>
-                                        <h5><b>{{ post.name }}</b></h5>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        (8)
-                                        <hr>
-                                        <p class="card-text card-price">{{ post.price }} lei / {{ post.category }}</p>
-                                        <p class="card-text">{{ post.details }}</p>
-                                        <hr>
-                                        <div style="display: inline-block;">
-                                            <a href="/post/{{post.slug}}" class="btn btn-default">Vezi produs</a>
+                                {% if post.approved == True %}
+                                    <div class="card" style="width: 18rem;">
+                                        <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
+                                        <div class="card-body">
+                                            <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
+                                            <hr>
+                                            <h5><b>{{ post.name }}</b></h5>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
                                             <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            (8)
+                                            <hr>
+                                            <p class="card-text card-price">{{ post.price }} lei / {{ post.category }}</p>
+                                            <p class="card-text">{{ post.details }}</p>
+                                            <hr>
+                                            <div style="display: inline-block;">
+                                                <a href="/post/{{post.slug}}" class="btn btn-default">Vezi produs</a>
+                                                <span class="fa fa-star"></span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                     </div>
@@ -413,12 +417,14 @@
                 <div class="col-2">
                     <a href="/" style="color: #fff"><p>Acasa</p></a>
                 </div>
+                {% if current_user.account2.slug %}
                 <div class="col-2">
                     <a href="/view-profile/{{ current_user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
                 </div>
                 <div class="col-2">
-                    <a href="/edit_profile" style="color: #fff"><p>Editeaza profilul</p></a>
+                    <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
                 </div>
+                {% endif %}
                 <div class="col-2">
                     {% if current_user.account2.slug %}
                    <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>

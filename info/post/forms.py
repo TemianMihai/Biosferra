@@ -1,14 +1,20 @@
 from django import forms
-from datetime import date
 from .models import PostModel, Comment
 from category.models import Category
 from categorie.models import Categorie
+from lfcat.models import Lfcategory
 from django.shortcuts import get_object_or_404
 
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = PostModel
-        fields = ['name', 'delivery_time', 'cantity', 'price', 'details', 'image1', 'image2','image3','image4','category','categorie']
+        fields = ['name', 'delivery_time', 'cantity', 'price', 'details', 'image1', 'image2','image3','image4','category','categorie','lfcategory']
+        widgets = {
+            'image1': forms.FileInput({'required': 'required', 'placeholder': "Image1"}),
+            'image2': forms.FileInput({'required': 'required', 'placeholder': "Image2"}),
+            'image3': forms.FileInput({'required': 'required', 'placeholder': "Image3"}),
+            'image4': forms.FileInput({'required': 'required', 'placeholder': "Image4"})
+        }
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -58,6 +64,11 @@ class CreatePostForm(forms.ModelForm):
         categorie = get_object_or_404(Categorie,
                                      name=self.cleaned_data['categorie'])
         return categorie
+
+    def clean_lfcategory(self):
+        lfcategory = get_object_or_404(Lfcategory,
+                                       name=self.cleaned_data['lfcategory'])
+        return lfcategory
 
     def clean_cantity(self):
         cantity = self.cleaned_data['cantity']

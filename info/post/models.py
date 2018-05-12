@@ -7,6 +7,7 @@ from django.conf import settings
 from django.utils import timezone
 from category.models import Category
 from categorie.models import Categorie
+from lfcat.models import Lfcategory
 
 
 # Create your models here.
@@ -31,7 +32,9 @@ class PostModel(models.Model):
     price = models.CharField(max_length=15)
     categorie = models.ForeignKey(Categorie, null=True)
     category = models.ForeignKey(Category, null=True)
+    lfcategory = models.ForeignKey(Lfcategory, null=True)
     delivery_time = models.CharField(max_length=50)
+    approved = models.BooleanField(default=False)
 
     def get_delete_url(self):
         return reverse("post:delete-post", kwargs={"slug": self.slug})
