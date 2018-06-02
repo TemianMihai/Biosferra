@@ -1,3 +1,7 @@
 from django.contrib import admin
+from models import Mesaje
 
-# Register your models here.
+class MesajeAdmin(admin.ModelAdmin):
+    list_display = ['titlu', 'autor', 'destinatar']
+
+admin.site.register(Mesaje, MesajeAdmin)

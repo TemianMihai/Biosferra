@@ -7,3 +7,4 @@ class PostModelAdmin(admin.ModelAdmin):
 
 admin.site.register(PostModel, PostModelAdmin)
 admin.site.register(Comment)
+
