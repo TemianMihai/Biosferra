@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django import forms
 from authentication.models import Account2
+from .models import Mesaje
 
 class Edit_profile(forms.ModelForm):
 
@@ -102,3 +103,21 @@ class Edit_profile2(forms.ModelForm):
     def clean_file2(self):
         file2 = self.cleaned_data['file2']
         return file2
+
+
+class CreateMesajeForm(forms.ModelForm):
+    class Meta:
+        model = Mesaje
+        fields = ['mesaj', 'titlu']
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(CreateMesajeForm, self).__init__(*args, **kwargs)
+
+    def clean_mesaj(self):
+        mesaj = self.cleaned_data['mesaj']
+        return mesaj
+
+    def clean_titlu(self):
+        titlu = self.cleaned_data['titlu']
+        return titlu

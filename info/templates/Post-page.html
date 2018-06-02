@@ -36,44 +36,54 @@
                 <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
             </form>
             <ul class="navbar-nav mr-auto">
-
-                <!-- Username dropdown -->
-                <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ user.username }}
-                </a>
-                {% if user.account2.slug %}
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
-                    <a class="dropdown-item" href="#">Mesaje</a>
-                    <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/logout">Deconectare</a>
-                </div>
-                    {% else %}
+                {% if user.is_authenticated %}
+                    <!-- Username dropdown -->
+                    <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ user.username }}
+                    </a>
+                    {% if user.account2.slug %}
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Mesaje</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/logout">Deconectare</a>
-                </div>
-                {% endif %}
-                </li>
-
-                <!-- Cosul meu -->
-                <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Cosul Meu</a>
-                </li>
-
-                {% if user.account2.slug %}
-                <li class="nav-item" id="creeazaPostare">
-                    <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
-                </li>
-                    {% else %}
-                    <li class="nav-item" id="creeazaPostare">
-                        <a href="/register-vanzator"><button class="btn">Devin-o vanzator</button></a>
+                        <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
+                        <a class="dropdown-item" href="#">Mesaje</a>
+                        <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">Deconectare</a>
+                    </div>
+                        {% else %}
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Mesaje</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">Deconectare</a>
+                    </div>
+                    {% endif %}
                     </li>
+
+                    <!-- Cosul meu -->
+                    <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cosul Meu</a>
+                    </li>
+
+                    {% if user.account2.slug %}
+                    <li class="nav-item" id="creeazaPostare">
+                        <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
+                    </li>
+                        {% else %}
+                        <li class="nav-item" id="creeazaPostare">
+                            <a href="/register-vanzator"><button class="btn">Devino vanzator</button></a>
+                        </li>
+                    {% endif %}
+
+                    {% else %}
+                        <li class="nav-item" id="creeazaPostare" style="margin-left: 97%;">
+                                <a href="/register-vanzator"><button class="btn">Devino vanzator</button></a>
+                        </li>
+                        <li class="nav-item" id="creeazaPostare">
+                            <a href="/register-cumparator"><button class="btn">Devino cumparator</button></a>
+                        </li>
+
                 {% endif %}
             </ul>
         </div>
@@ -238,7 +248,7 @@
                     {% if user.account2.slug %}
                    <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
                     {% else %}
-                    <p><a href="/register-vanzator" style="color: #fff">Devin-o vanzator</p></a>
+                    <p><a href="/register-vanzator" style="color: #fff">Devino vanzator</p></a>
                     {% endif %}
                 </div>
             </div>
