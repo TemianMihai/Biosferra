@@ -1,0 +1,6 @@
+Django==1.10
+django-extensions==2.0.7
+django-widget-tweaks==1.4.2
+Pillow==5.1.0
+six==1.11.0
+typing==3.6.4
