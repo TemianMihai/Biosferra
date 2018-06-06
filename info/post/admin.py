@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import PostModel, Comment
+from .models import PostModel, Comment
 
 
 class PostModelAdmin(admin.ModelAdmin):

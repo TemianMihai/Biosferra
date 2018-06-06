@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from forms import Edit_profile, Edit_profile2, CreateMesajeForm
+from .forms import Edit_profile, Edit_profile2, CreateMesajeForm
 from authentication.models import Account2
 from post.models import PostModel
 from django.contrib.auth.models import User

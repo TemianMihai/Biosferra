@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from models import Categorie
+from .models import Categorie
 
 
 class CategorieAdmin(admin.ModelAdmin):
