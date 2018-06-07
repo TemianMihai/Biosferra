@@ -4,13 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/info/authentication/views.py" line="39" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f54e3825-d52a-4fc9-a201-8796f7e80bf1" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/info/authentication/views.py" afterPath="$PROJECT_DIR$/info/authentication/views.py" />
-      <change beforePath="$PROJECT_DIR$/info/db.sqlite3" afterPath="$PROJECT_DIR$/info/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/info/info/settings.py" afterPath="$PROJECT_DIR$/info/info/settings.py" />
-      <change beforePath="$PROJECT_DIR$/info/templates/create_post.html" afterPath="$PROJECT_DIR$/info/templates/create_post.html" />
-    </list>
+    <list default="true" id="f54e3825-d52a-4fc9-a201-8796f7e80bf1" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +20,8 @@
       <file leaf-file-name="create_post.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/info/templates/create_post.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="110" column="28" lean-forward="false" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
+            <state relative-caret-position="416">
+              <caret line="136" column="0" lean-forward="true" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -592,8 +586,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/info/templates/create_post.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="110" column="28" lean-forward="false" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
+        <state relative-caret-position="416">
+          <caret line="136" column="0" lean-forward="true" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
           <folding />
         </state>
       </provider>
