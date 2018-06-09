@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import Edit_profile, Edit_profile2, CreateMesajeForm
+from .forms import Edit_profile, Edit_profile2, CreateMesajeForm, CreateReportForm
 from authentication.models import Account2
 from post.models import PostModel
 from django.contrib.auth.models import User
@@ -33,12 +33,18 @@ def profile(request, slug):
     anunturi = PostModel.objects.all()
     user2 = Account2.objects.get(slug=slug)
     form = CreateMesajeForm(request.POST or None)
+    form2 = CreateReportForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             mesaj = form.instance
             mesaj.autor = current_user
             mesaj.destinatar=user2.user
             form.save()
+        if form2.is_valid():
+            report = form2.instance
+            report.autor = current_user
+            report.destinatar = user2.user
+            form2.save()
     query = request.GET.get("q")
     if query:
         anunturi = anunturi.filter(name__contains=query)
@@ -46,5 +52,6 @@ def profile(request, slug):
         'user': current_user,
         'anunturi':anunturi,
         'form':form,
+        'form2':form2,
         'user2':user2
     })
