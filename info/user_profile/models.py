@@ -16,8 +16,15 @@ class Mesaje(models.Model):
 class Report(models.Model):
     autor = models.ForeignKey(to=User, related_name='report',
                               null=True, blank=True)
-    mesaj = models.CharField(max_length=1000)
-    titlu = models.CharField(max_length=100, null=True)
+    mesajj = models.CharField(max_length=1000)
+    titluu = models.CharField(max_length=100, null=True)
     destinatar = models.ForeignKey(to=User, related_name='reportt',
                                    null=True, blank=True)
     slug = models.SlugField(default=uuid.uuid1, unique=True)
+
+class Favorit(models.Model):
+    alegator = models.ForeignKey(to=User, related_name='favorit',
+                                 null=True, blank=True)
+    favorite = models.BooleanField(default=False)
+    ales = models.ForeignKey(to=User, related_name='favoritt',
+                             null=True, blank=True)
