@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django import forms
 from authentication.models import Account2
-from .models import Mesaje, Report
+from .models import Mesaje, Report, Favorit
 
 class Edit_profile(forms.ModelForm):
 
@@ -126,16 +126,26 @@ class CreateMesajeForm(forms.ModelForm):
 class CreateReportForm(forms.ModelForm):
     class Meta:
         model = Report
-        fields = ['mesaj', 'titlu']
+        fields = ['mesajj', 'titluu']
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(CreateReportForm, self).__init__(*args, **kwargs)
 
     def clean_mesaj(self):
-        mesaj = self.cleaned_data['mesaj']
-        return mesaj
+        mesajj = self.cleaned_data['mesajj']
+        return mesajj
 
     def clean_titlu(self):
-        titlu = self.cleaned_data['titlu']
-        return titlu
+        titluu = self.cleaned_data['titluu']
+        return titluu
+
+
+class CreateFavoritForm(forms.ModelForm):
+    class Meta:
+        model = Favorit
+        fields = []
+
+    def  __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(CreateFavoritForm, self).__init__(*args, **kwargs)

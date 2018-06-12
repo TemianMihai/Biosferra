@@ -42,7 +42,7 @@ def register_view(request):
             acc_form.instance.user = form.instance
             acc_form.save()
             subject = 'Registrare Biosferra'
-            message = "Iti multumim ca v-ati inregistrat pe Biosferra. Mai jos puteti sa gasiti informatiile dumneavoastra:"
+            message = "Iti multumim ca v-ati inregistrat pe Biosferra. Mai jos puteti sa gasiti informatiile dumneavoastra:Username: %s Prenume: %s Nume: %s Numar de telefon: %s Oras: %s Judet: %s" %(form.instance.username, form.instance.first_name, form.instance.last_name, acc_form.instance.phonenumber, acc_form.instance.city, acc_form.instance.state)
             from_email = settings.EMAIL_HOST_USER
             to_list = [settings.EMAIL_HOST_USER, form.instance.email]
 
