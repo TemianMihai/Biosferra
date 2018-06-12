@@ -189,6 +189,10 @@
                     <div><img src=""></div>
                     <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary " style="border-radius: 2px; background-color: #E53046;">&nbsp Raporteaza!</button>
                     <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaj privat</button>
+                   <form  method="POST" enctype="multipart/form-data">
+                       {% csrf_token %}
+                                <input type="submit" value="{{ form3.body }}" class="btn btn-primary active">
+                   </form>
                     <br> <br>
                     <hr>
                     <div>
@@ -274,12 +278,12 @@
                        {% csrf_token %}
                        <div class="form-group">
                             <label for="titlu-field">Titlu:</label>
-                            <input name="titlu" value="{{form.body}}" type="text" placeholder="Subiectul" id="titlu-field" class="form-control"/>
+                            <input name="titluu" value="{{form2.body}}" type="text" placeholder="Subiectul" id="titlu-field" class="form-control"/>
                         </div>
 
                         <div class="form-group">
                             <label for="titlu-field">Ce s-a intamplat:</label>
-                            <input name="mesaj" value="{{form.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
+                            <input name="mesajj" value="{{form2.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
