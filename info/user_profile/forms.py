@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django import forms
 from authentication.models import Account2
-from .models import Mesaje, Report, Favorit
+from .models import Mesaje, Report, Favorit, Profile
 
 class Edit_profile(forms.ModelForm):
 
@@ -104,6 +104,51 @@ class Edit_profile2(forms.ModelForm):
         file2 = self.cleaned_data['file2']
         return file2
 
+class CreateProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['produs1', 'produs2', 'produs3', 'produs4', 'produs5', 'descriere', 'image1', 'image2',]
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(CreateProfileForm, self).__init__(*args, **kwargs)
+
+    def clean_produs1(self):
+        produs1 = self.cleaned_data['produs1']
+        return produs1
+
+    def clean_produs2(self):
+        produs2 = self.cleaned_data['produs2']
+        return produs2
+
+    def clean_produs3(self):
+        produs3 = self.cleaned_data['produs3']
+        return produs3
+
+    def clean_produs4(self):
+        produs4 = self.cleaned_data['produs4']
+        return produs4
+
+    def clean_produs5(self):
+        produs5 = self.cleaned_data['produs5']
+        return produs5
+
+    def clean_descriere(self):
+        descriere = self.cleaned_data['descriere']
+        return descriere
+
+    def clean_image2(self):
+        image1 = self.cleaned_data['image1']
+        image2 = self.cleaned_data['image2']
+        image_names = []
+        if (image1 and not isinstance(image1, (int, float))):
+            image_names.append(image1.name)
+        if (image2 and not isinstance(image2, (int, float))):
+            image_names.append(image2.name)
+        if (len(image_names) - 1 == len(set(image_names))):
+            raise forms.ValidationError("You can't upload 2 images"
+                                        "that are the same")
+        return image2
 
 class CreateMesajeForm(forms.ModelForm):
     class Meta:
