@@ -115,213 +115,211 @@
         </div>
         </div>
     </nav>
+{% for p in profiles %}
     <div class="break-line"></div>
-
-    <div class="content">
-    <div class="container" style="padding-top: 5%; padding-left: 0;">
-        <div class="row">
-            <div class="col-md-4" style="padding: 5%; padding-top: 10px;">
-                <div class="profile">
-                    <div class="upper-side">
-                        <div class="profile-image"></div>
-                        <h5>{{ user2.user.username }}</h5>
-                        <div class="rating">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            &nbsp;&nbsp;&nbsp;3
+        <div class="content">
+        <div class="container" style="padding-top: 5%; padding-left: 0;">
+            <div class="row">
+                <div class="col-md-4" style="padding: 5%; padding-top: 10px;">
+                    <div class="profile">
+                        <div class="upper-side">
+                            <div class="profile-image"></div>
+                            <h5>{{ user2.user.username }}</h5>
+                            <div class="rating">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                &nbsp;&nbsp;&nbsp;3
+                            </div>
+                            <div class="break"></div>
                         </div>
-                        <div class="break"></div>
-                    </div>
-                    <div class="lower-side">
-                        <div> <img src=""> <p>{{ user2.city }}, Jud. {{ user2.state }}</p> </div>
-                    </div>
-                    <hr>
-                    <div class="lower-side" style="display: inline-flex;">
-                        <div> <img src=""> <p>In concediu</p>
-                            <input type="checkbox" name="">
+                        <div class="lower-side">
+                            <div> <img src=""> <p>{{ user2.city }}, Jud. {{ user2.state }}</p> </div>
+                        </div>
+                        <hr>
+                        <div class="lower-side" style="display: inline-flex;">
+                            <div> <img src=""> <p>In concediu</p>
+                                <input type="checkbox" name="">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="side-menu">
-                    <div>
-                        <button class="side-menu-button-selected">Management</button>
+                    <div class="side-menu">
+                        <div>
+                            <button class="side-menu-button-selected">Management</button>
+                        </div>
+                        <div>
+                            <button class="side-menu-button">Anunturile tale</button>
+                        </div>
+                        <div>
+                            <button class="side-menu-button">Recenzi</button>
+                        </div>
+                        <div>
+                            <button class="side-menu-button">Despre</button>
+                        </div>
                     </div>
-                    <div>
-                        <button class="side-menu-button">Anunturile tale</button>
+
+                    <div class="gradina">
+                        <p>Gradina utilizatorului</p>
+                        <div class="items">
+                            <ul>
+                                <li>{{p.produs1}}</li>
+                                <li>{{ p.produs2 }}</li>
+                                <li>{{ p.produs3 }}</li>
+                                <li>{{ p.produs4 }}</li>
+                                <li>{{ p.produs5 }}</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div>
-                        <button class="side-menu-button">Recenzi</button>
-                    </div>
-                    <div>
-                        <button class="side-menu-button">Despre</button>
+
+                    <div class="descriere">
+                        <p style="font-size: 18px;"><b>Descriere</b></p>
+                        <p>{{ p.descriere }}</p>
+                        <div class="break"></div> <br>
+                        <p style="font-size: 18px;">Alte conturi</p>
+                        <p style="color: #6FC564; font-size: 18px;"><i class="fa fa-facebook-official"></i>&nbsp;&nbsp;&nbsp;{{ profile.link }}</p>
                     </div>
                 </div>
-
-                <div class="gradina">
-                    <p>Gradina utilizatorului</p>
-                    <div class="items">
-                        <ul>
-                            <li>Mere</li>
-                            <li>Visine</li>
-                            <li>Capsuni</li>
-                            <li>Caise</li>
-                            <li>Pere</li>
-                            <li>Mere (again)</li>
-                            <li>Prune</li>
-                        </ul>
+                <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
+                    <div class="row" id="up-side">
+                        <div><img src=""></div>
+                        <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary " style="border-radius: 2px; background-color: #E53046;">&nbsp Raporteaza!</button>
+                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaj privat</button>
+                       <form  method="POST" enctype="multipart/form-data">
+                           {% csrf_token %}
+                                    <input type="submit" value="{{ form3.body }}" class="btn btn-primary active">
+                       </form>
+                        <br> <br>
+                        <hr>
+                        <div>
+                            <h1 id="Anunturile">Anunturile producatorului</h1>
+                            <form class="cauta-anunt" method="GET" action="">
+                                <input  id="cauta-anunt"  name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
+                                <button>Cauta</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-
-                <div class="descriere">
-                    <p style="font-size: 18px;"><b>Descriere</b></p>
-                    <p>There is no denying that the succes of an advertisement lies mostly in the headline. The headline should attract the reader and make him read the rest of the advertisement. The head line should be simply catchy and various key points should be imbedded.</p>
-                    <div class="break"></div> <br>
-                    <p style="font-size: 18px;">Alte conturi</p>
-                    <p style="color: #6FC564; font-size: 18px;"><i class="fa fa-facebook-official"></i>&nbsp;&nbsp;&nbsp;Facebook</p>
+                    <div class="row">
+                        <div class="card-deck">
+                            {% for post in anunturi %}
+                                {% if user2.user == post.author %}
+                                    <div class="card" style="width: 18rem;">
+                                        <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
+                                        <div class="card-body">
+                                            <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
+                                            <hr>
+                                            <h5><b>{{ post.name }}</b></h5>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            (8)
+                                            <hr>
+                                            <p class="card-text card-price">{{ post.price }} lei / {{ post.category }}</p>
+                                            <p class="card-text">{{ post.details|truncatechars:50 }}</p>
+                                            <hr>
+                                            <div style="display: inline-block;">
+                                                <a href="/post/{{post.slug}}" class="btn btn-default">Vezi produsul</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
-                <div class="row" id="up-side">
-                    <div><img src=""></div>
-                    <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary " style="border-radius: 2px; background-color: #E53046;">&nbsp Raporteaza!</button>
-                    <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaj privat</button>
-                   <form  method="POST" enctype="multipart/form-data">
-                       {% csrf_token %}
-                                <input type="submit" value="{{ form3.body }}" class="btn btn-primary active">
-                   </form>
-                    <br> <br>
-                    <hr>
-                    <div>
-                        <h1 id="Anunturile">Anunturile producatorului</h1>
-                        <form class="cauta-anunt" method="GET" action="">
-                            <input  id="cauta-anunt"  name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
-                            <button>Cauta</button>
+        </div>
+        </div>
+
+         <br>
+
+        <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="lineModalLabel"><b>Scrie un mesaj </b></h3>
+                    </div>
+                    <div class="modal-body">
+
+                       <form  method="POST" enctype="multipart/form-data">
+                           {% csrf_token %}
+                           <div class="form-group">
+                                <label for="titlu-field">Titlu:</label>
+                                <input name="titlu" value="{{form.body}}" type="text" placeholder="Subiectul" id="titlu-field" class="form-control"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="titlu-field">Mesaj:</label>
+                                <input name="mesaj" value="{{form.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
                         </form>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="card-deck">
-                        {% for post in anunturi %}
-                            {% if user2.user == post.author %}
-                                <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
-                                        <hr>
-                                        <h5><b>{{ post.name }}</b></h5>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        (8)
-                                        <hr>
-                                        <p class="card-text card-price">{{ post.price }} lei / {{ post.category }}</p>
-                                        <p class="card-text">{{ post.details|truncatechars:50 }}</p>
-                                        <hr>
-                                        <div style="display: inline-block;">
-                                            <a href="/post/{{post.slug}}" class="btn btn-default">Vezi produsul</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+            </div>
+        </div>
+{% endfor %}
+
+        <div class="modal fade" id="squarespaceModal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="lineModalLabel"><b>Spune-ne ce s-a intamplat</b></h3>
+                    </div>
+                    <div class="modal-body">
+
+                       <form  method="POST" enctype="multipart/form-data">
+                           {% csrf_token %}
+                           <div class="form-group">
+                                <label for="titlu-field">Titlu:</label>
+                                <input name="titluu" value="{{form2.body}}" type="text" placeholder="Subiectul" id="titlu-field" class="form-control"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="titlu-field">Ce s-a intamplat:</label>
+                                <input name="mesajj" value="{{form2.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-
-     <br>
-
-    <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="lineModalLabel"><b>Scrie un mesaj </b></h3>
-                </div>
-                <div class="modal-body">
-
-                   <form  method="POST" enctype="multipart/form-data">
-                       {% csrf_token %}
-                       <div class="form-group">
-                            <label for="titlu-field">Titlu:</label>
-                            <input name="titlu" value="{{form.body}}" type="text" placeholder="Subiectul" id="titlu-field" class="form-control"/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="titlu-field">Mesaj:</label>
-                            <input name="mesaj" value="{{form.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="modal fade" id="squarespaceModal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="lineModalLabel"><b>Spune-ne ce s-a intamplat</b></h3>
-                </div>
-                <div class="modal-body">
-
-                   <form  method="POST" enctype="multipart/form-data">
-                       {% csrf_token %}
-                       <div class="form-group">
-                            <label for="titlu-field">Titlu:</label>
-                            <input name="titluu" value="{{form2.body}}" type="text" placeholder="Subiectul" id="titlu-field" class="form-control"/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="titlu-field">Ce s-a intamplat:</label>
-                            <input name="mesajj" value="{{form2.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-   <footer class="footer">
-            <div class="row">
-                <div class="col-4">
-                    <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
-                </div>
-                <div class="col-2">
-                    <a href="/" style="color: #fff"><p>Acasa</p></a>
-                </div>
-                {% if user.account2.slug %}
-                <div class="col-2">
-                    <a href="/view-profile/{{ current_user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
-                </div>
-                <div class="col-2">
-                    <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
-                </div>
-                {% endif %}
-                <div class="col-2">
+        <footer class="footer">
+                <div class="row">
+                    <div class="col-4">
+                        <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
+                    </div>
+                    <div class="col-2">
+                        <a href="/" style="color: #fff"><p>Acasa</p></a>
+                    </div>
                     {% if user.account2.slug %}
-                   <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
-                    {% else %}
-                    <p><a href="/register-vanzator" style="color: #fff">Devino vanzator</p></a>
+                    <div class="col-2">
+                        <a href="/view-profile/{{ current_user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
+                    </div>
+                    <div class="col-2">
+                        <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
+                    </div>
                     {% endif %}
+                    <div class="col-2">
+                        {% if user.account2.slug %}
+                       <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
+                        {% else %}
+                        <p><a href="/register-vanzator" style="color: #fff">Devino vanzator</p></a>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-            <hr class="hr">
-            <div class="row">
-                <div class="col-12">
-                    <p>@All rights reserverd</p>
+                <hr class="hr">
+                <div class="row">
+                    <div class="col-12">
+                        <p>@All rights reserverd</p>
+                    </div>
                 </div>
-            </div>
-    </footer>
+        </footer>
+
 </body>
 </html>
