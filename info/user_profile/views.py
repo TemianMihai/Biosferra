@@ -34,7 +34,6 @@ def create_profile(request):
     profiles = Profile.objects.all().filter(userul=current_user)
     if len(profiles) > 0 :
         return redirect('/edit-profile')
-    #print profiles
     if request.method == 'POST':
         if form.is_valid():
             profile = form.instance
@@ -50,12 +49,13 @@ def create_profile(request):
 def profile(request, slug):
     current_user = request.user
     anunturi = PostModel.objects.all()
-    favoriit = Favorit.objects.all()
     user2 = Account2.objects.get(slug=slug)
     profiles = Profile.objects.all().filter(userul=user2.user)
+    favoriit = Favorit.objects.all().filter(ales=user2.user, alegator=current_user)
     form = CreateMesajeForm(request.POST or None)
     form2 = CreateReportForm(request.POST or None)
     form3 = CreateFavoritForm(request.POST or None)
+    print favoriit
     if request.method == 'POST':
         if form.is_valid():
             mesaj = form.instance
@@ -73,14 +73,13 @@ def profile(request, slug):
             to_list = [settings.EMAIL_HOST_USER]
             send_mail(subject, message, from_email, to_list, fail_silently=True)
         if form3.is_valid():
-            favorit = form3.instance
-            favorit.alegator = current_user
-            favorit.ales = user2.user
-            if favorit.favorite == True:
+            if len(favoriit) > 0:
                 favoriit.delete()
-            if favorit.favorite == False:
-                favorit.favorite = True
-            form3.save()
+            else:
+                favorit = form3.instance
+                favorit.alegator = current_user
+                favorit.ales = user2.user
+                form3.save()
     query = request.GET.get("q")
     if query:
         anunturi = anunturi.filter(name__contains=query)
