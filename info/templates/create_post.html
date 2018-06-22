@@ -112,6 +112,17 @@
 
         <hr>
         <br>
+        <div class="container">
+            {% if messages %}
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        {% for message in messages %}
+                            <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
        <form  method="POST" enctype="multipart/form-data">
         {% csrf_token %}
             <div class="form-group">

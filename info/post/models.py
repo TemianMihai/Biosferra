@@ -52,3 +52,12 @@ class Comment(models.Model):
 
     def children(self):
         return Comment.objects.filter(parent=self)
+
+
+class CosulMeu(models.Model):
+    anunturi = models.ForeignKey(to=PostModel, related_name='cos',
+                                 null=True, blank=True)
+    cumparator = models.ForeignKey(to=User, related_name='cos_cumparator',
+                                   null=True, blank=True)
+    vanzator = models.ForeignKey(to=User, related_name='cos_vanzator',
+                                 null=True, blank=True)
