@@ -137,7 +137,10 @@
                         <div class="cumpara">
                             <h2>Cantitate: {{ posts.cantity }} {{ posts.category }}</h2>
                             <h2>Pret: {{ posts.price }} lei</h2>
-                            <button class="btn btn-success btn-circle text-uppercase" type="submit"><span class="glyphicon glyphicon-send"></span> Adauga in cos</button>
+                       <form  method="POST" enctype="multipart/form-data">
+                           {% csrf_token %}
+                                    <input type="submit" value="{{ form2.body }}" class="btn btn-primary active">
+                       </form>
                             <button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span> Adauga la favorite</button>
                         </div>
                     </td>

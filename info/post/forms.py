@@ -1,5 +1,5 @@
 from django import forms
-from .models import PostModel, Comment
+from .models import PostModel, Comment, CosulMeu
 from category.models import Category
 from categorie.models import Categorie
 from lfcat.models import Lfcategory
@@ -94,3 +94,13 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['body']
+
+
+class CreateCosForm(forms.ModelForm):
+    class Meta:
+        model = CosulMeu
+        fields = []
+
+    def  __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(CreateCosForm, self).__init__(*args, **kwargs)

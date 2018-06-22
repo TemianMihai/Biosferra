@@ -123,7 +123,9 @@
                 <div class="col-md-4" style="padding: 5%; padding-top: 10px;">
                     <div class="profile">
                         <div class="upper-side">
-                            <div class="profile-image"></div>
+                            <div class="profile-image">
+                                <img src="{{  p.image2.url }}" class="img-fluid" alt="Responsive image">
+                            </div>
                             <h5>{{ user2.user.username }}</h5>
                             <div class="rating">
                                 <span class="fa fa-star checked"></span>
@@ -184,7 +186,20 @@
                 </div>
                 <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
                     <div class="row" id="up-side">
-                        <div><img src=""></div>
+                        <div>
+                            <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 100px">
+                        </div>
+                        <div class="container">
+                            {% if messages %}
+                                <div class="row">
+                                    <div class="col-sm-6 col-sm-offset-3">
+                                        {% for message in messages %}
+                                            <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
                         <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary " style="border-radius: 2px; background-color: #E53046;">&nbsp Raporteaza!</button>
                         <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaj privat</button>
                        <form  method="POST" enctype="multipart/form-data">
