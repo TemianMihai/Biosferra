@@ -82,3 +82,13 @@ def produsele(request):
         'user':current_user,
         'cosul':cosul
     })
+
+@login_required
+def comenzi(request):
+    current_user = request.user
+    print current_user.account2.user
+    cosul = CosulMeu.objects.all().filter(vanzator = current_user.account2.user)
+    return render(request, 'comenzi.html',{
+        'user':current_user,
+        'cosul':cosul
+    })

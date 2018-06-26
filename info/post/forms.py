@@ -57,17 +57,17 @@ class CreatePostForm(forms.ModelForm):
 
     def clean_category(self):
         category = get_object_or_404(Category,
-                                     name=self.cleaned_data['category'])
+        name=self.cleaned_data['category'])
         return category
 
     def clean_categorie(self):
         categorie = get_object_or_404(Categorie,
-                                     name=self.cleaned_data['categorie'])
+        name=self.cleaned_data['categorie'])
         return categorie
 
     def clean_lfcategory(self):
         lfcategory = get_object_or_404(Lfcategory,
-                                       name=self.cleaned_data['lfcategory'])
+        name=self.cleaned_data['lfcategory'])
         return lfcategory
 
     def clean_cantity(self):
