@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    {% load widget_tweaks %}
+
+    <title>Biosferra</title>
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="{% static "images/brand.png" %}" />
+
+
+    <style>
+    h1 {
+        color: #4B4B4B;
+        font-size: 34px;
+        font-weight: bold;
+    }
+
+    label {
+        color: #4B4B4B;
+        font-size: 24px;
+        font-weight: 500;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+        <!-- Brand Logo -->
+        <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
+        <!-- Button enables when screen size is small -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Will get collapsed -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline my-2 my-lg-0">
+                <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
+                <input class="form-control mr-sm-2" type="search" placeholder="Cauta orice" aria-label="Search">
+                <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+            </form>
+            <ul class="navbar-nav mr-auto">
+
+                <!-- Username dropdown -->
+                <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ user.username }}
+                </a>
+
+                {% if user.account2.slug %}
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
+                    <a class="dropdown-item" href="#">Mesaje</a>
+                    <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Deconectare</a>
+                </div>
+                    {% else %}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Mesaje</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Deconectare</a>
+                </div>
+                {% endif %}
+                </li>
+
+                <!-- Cosul meu -->
+                <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cosul Meu</a>
+                </li>
+
+                {% if user.account2.slug %}
+                <li class="nav-item" id="creeazaPostare">
+                    <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
+                </li>
+                    {% else %}
+                    <li class="nav-item" id="creeazaPostare">
+                        <a href="/register-vanzator"><button class="btn">Devino vanzator</button></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <br> <br>
+
+    <h1 align="center">Creeaza-ti profilul</h1>
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+            <label>Descirere</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.nume|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+            <br>
+            <label>Leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.prenume|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+            <br>
+            <label>leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.email|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+            <br>
+            <label>Leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.nrdetelefon|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+            <br>
+
+            <label>Leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.adresa|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+
+            <br>
+            <label>Leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.localitate|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+
+            <label>leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.judet|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+
+            <label>leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.codpostal|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+
+            <label>leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.nume2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+
+                        <label>leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.prenume2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+
+                        <label>leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.adresa2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+
+                        <label>leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.judet2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+
+                        <label>leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.localitate2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+
+                        <label>leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.codpostal2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+
+                        <label>leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.comentarii|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+
+            <br>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+
+    <br>
+
+    <footer class="footer">
+            <div class="row">
+                <div class="col-4">
+                    <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
+                </div>
+                <div class="col-2">
+                    <a href="/" style="color: #fff"><p>Acasa</p></a>
+                </div>
+                {% if user.account2.slug %}
+                <div class="col-2">
+                    <a href="/view-profile/{{ current_user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
+                </div>
+                <div class="col-2">
+                    <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
+                </div>
+                {% endif %}
+                <div class="col-2">
+                    {% if user.account2.slug %}
+                   <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
+                    {% else %}
+                    <p><a href="/register-vanzator" style="color: #fff">Devino vanzator</p></a>
+                    {% endif %}
+                </div>
+            </div>
+            <hr class="hr">
+            <div class="row">
+                <div class="col-12">
+                    <p>@All rights reserverd</p>
+                </div>
+            </div>
+    </footer>
+
+</body>
+</html>

@@ -89,8 +89,16 @@
             </div>
         </nav>
     </div>
-{% for cos in cosul %}
-    <p>{{cos.anunturi.name}}</p>
-{% endfor %}
+{% if comenzi %}
+    {% for comenzi in comenzi %}
+            <p>{{comenzi.postcomanda.name}}</p>
+            <p>{{comenzi.nume}}</p>
+            <p>{{comenzi.codpostal}}</p>
+            <a href='{{comenzi.get_delete_comanda_url}}'><button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span>Incheie comnada</button></a>
+    {% endfor %}
+
+    {% else %}
+    <p>assadassdadsa</p>
+{% endif %}
 </body>
 </html>

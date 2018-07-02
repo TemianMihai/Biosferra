@@ -139,9 +139,9 @@
                             <h2>Pret: {{ posts.price }} lei</h2>
                        <form  method="POST" enctype="multipart/form-data">
                            {% csrf_token %}
-                                    <input type="submit" value="{{ form2.body }}" class="btn btn-primary active">
+                                    <input type="submit" value="{{ form2.body }}" class="btn btn-primary active" name="btnform2">
                        </form>
-                            <button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span> Adauga la favorite</button>
+                            <a href='{{posts.get_comanda_url}}'><button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span>Comanda</button></a>
                         </div>
                     </td>
                     </tr>
@@ -204,7 +204,7 @@
                                 <div class="col-lg-5">
                                 <input type='hidden' name='parent_id' value={{comment.id}}>
                                 <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Raspunsul dumneavoastra" />
-                                    <button class="btn btn-success btn-circle text-uppercase" type="submit"><span class="glyphicon glyphicon-send"></span> Raspundeti</button>
+                                    <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1"><span class="glyphicon glyphicon-send"></span> Raspundeti</button>
                                 </div>
                             </form>
 
@@ -219,7 +219,7 @@
 
                             <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Comentariul dumneavoastra"/>
                             <div class="form-group">
-                                <button class="btn btn-success btn-circle text-uppercase" type="submit"><span class="glyphicon glyphicon-send"></span>Comentati</button>
+                                <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1"><span class="glyphicon glyphicon-send"></span>Comentati</button>
                             </div>
 
                     </div>
