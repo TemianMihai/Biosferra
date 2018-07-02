@@ -1,11 +1,10 @@
-from django.shortcuts import render, redirect, render_to_response,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import CreatePostForm, CommentForm
-from .forms import CreateCosForm
-from .models import PostModel, Comment, CosulMeu
+from .forms import CreateCosForm, CreateComandaForm
+from .models import PostModel, Comment, CosulMeu, AdresaDeFacturare
 from django.contrib import messages
-from django.views.decorators.http import require_POST
-from django.http import HttpResponse
+
 
 @login_required(login_url='/login')
 def create_post(request):
@@ -23,12 +22,11 @@ def create_post(request):
     })
 
 
-
 def get_post(request, slug):
     post = get_object_or_404(PostModel,slug=slug)
     comm_parent = Comment.objects.filter(is_parent=True).filter(post=post)
     form2 = CreateCosForm(request.POST)
-    if request.method == "POST":
+    if request.method == "POST" and 'btnform1' in request.POST:
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -48,6 +46,7 @@ def get_post(request, slug):
             comment.user = request.user
             comment.parent = parent_obj
             comment.save()
+    if request.method == "POST" and 'btnform2' in request.POST:
         if form2.is_valid():
             cos = form2.instance
             cos.anunturi = post
@@ -55,9 +54,6 @@ def get_post(request, slug):
             cos.vanzator = post.author
             form2.save()
             messages.success(request, 'Produsul a fost adaugat in cos')
-            print cos.cumparator
-            print cos.vanzator
-            print cos.anunturi
     return render(request, 'Post-page.html', {
         'posts':post ,
         'user':request.user,
@@ -66,12 +62,10 @@ def get_post(request, slug):
     })
 
 
-
 @login_required
 def delete_post(request, slug):
     PostModel.objects.filter(slug=slug).delete()
     return redirect('/')
-
 
 
 @login_required
@@ -84,11 +78,34 @@ def produsele(request):
     })
 
 @login_required
-def comenzi(request):
+def get_comanda(request,slug):
     current_user = request.user
-    print current_user.account2.user
-    cosul = CosulMeu.objects.all().filter(vanzator = current_user.account2.user)
+    comanda = PostModel.objects.get(slug=slug)
+    form = CreateComandaForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            comanda1 = form.instance
+            comanda1.creator = current_user
+            comanda1.posesor = comanda.author
+            comanda1.postcomanda = comanda
+            form.save()
+            return redirect('/')
+    return render(request, 'detalii_comanda.html', {
+        'user':current_user,
+        'form':form
+    })
+
+@login_required
+def comanda(request):
+    current_user = request.user
+    comenzi = AdresaDeFacturare.objects.all().filter(posesor = current_user)
     return render(request, 'comenzi.html',{
         'user':current_user,
-        'cosul':cosul
+        'comenzi':comenzi
     })
+
+@login_required
+def delete_comanda(request, slug):
+    AdresaDeFacturare.objects.filter(slug=slug).delete()
+    return redirect('/comenzile-mele')
+

@@ -202,10 +202,12 @@
                         </div>
                         <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary " style="border-radius: 2px; background-color: #E53046;">&nbsp Raporteaza!</button>
                         <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaj privat</button>
-                       <form  method="POST" enctype="multipart/form-data">
+
+                        <form  method="POST" enctype="multipart/form-data">
                            {% csrf_token %}
                                     <input type="submit" value="{{ form3.body }}" class="btn btn-primary active">
                        </form>
+
                         <br> <br>
                         <hr>
                         <div>
