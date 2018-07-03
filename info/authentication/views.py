@@ -68,21 +68,10 @@ def register_view2(request):
             form.save()
             acc_form2.instance.user = form.instance
             acc_form2.save()
-            subject='Registrare Biosferra'
-            message = "Bine ati venit pe Biosferra. Un administrator va verifica accountul dumneavoastra, iar in cateva minute veti putea sa va inregistarti in cazul in care ati fost acceptat. " \
-                      "Va multumim pentru intelegere. " \
-                      "Mai jos puteti sa gasiti detalile despre accountul dumneavoastra: Username: %s Prenume: %s Nume: %s Numar de telefon: %s Oras: %s Judet: %s" %(form.instance.username, form.instance.first_name, form.instance.last_name, acc_form2.instance.phonenumber, acc_form2.instance.city, acc_form2.instance.state)
-            from_email = settings.EMAIL_HOST_USER
-            to_list = [settings.EMAIL_HOST_USER, form.instance.email]
-
-            send_mail(subject, message, from_email, to_list, fail_silently=True)
-
             user = authenticate(username=form.instance.username,
                                 password=form.cleaned_data['password'])
-            user.is_active = False
-            user.save()
             login(request, user)
-            return redirect('/')
+            return redirect('/create-profile')
     return render(request, "register2.html", {
         'form': form,
         'acc_form2' : acc_form2,

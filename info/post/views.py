@@ -4,6 +4,9 @@ from .forms import CreatePostForm, CommentForm
 from .forms import CreateCosForm, CreateComandaForm
 from .models import PostModel, Comment, CosulMeu, AdresaDeFacturare
 from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail
+
 
 
 @login_required(login_url='/login')
@@ -77,6 +80,7 @@ def produsele(request):
         'cosul':cosul
     })
 
+
 @login_required
 def get_comanda(request,slug):
     current_user = request.user
@@ -89,23 +93,42 @@ def get_comanda(request,slug):
             comanda1.posesor = comanda.author
             comanda1.postcomanda = comanda
             form.save()
-            return redirect('/')
+            return redirect(comanda.get_finalizare_url())
     return render(request, 'detalii_comanda.html', {
         'user':current_user,
         'form':form
     })
 
+
 @login_required
 def comanda(request):
     current_user = request.user
     comenzi = AdresaDeFacturare.objects.all().filter(posesor = current_user)
+    comenzi2 = AdresaDeFacturare.objects.all().filter(creator = current_user)
     return render(request, 'comenzi.html',{
         'user':current_user,
+        'comenzi2':comenzi2,
         'comenzi':comenzi
     })
+
 
 @login_required
 def delete_comanda(request, slug):
     AdresaDeFacturare.objects.filter(slug=slug).delete()
     return redirect('/comenzile-mele')
+
+
+@login_required
+def get_finalizare(request, slug):
+    current_user = request.user
+    comanda = PostModel.objects.get(slug=slug)
+    subject = 'Efectuare comanda'
+    message = "Comanda dumneavoastra a fost realizata. Aceasta va ajunge la dumneavoastra in cel mai scurt timp. Daca comanda nu a ajuns la dumneavoastra in cel mult o saptamana, va rugam sa ne contactati"
+    from_email = settings.EMAIL_HOST_USER
+    to_list = [settings.EMAIL_HOST_USER, current_user.email]
+    send_mail(subject, message, from_email, to_list, fail_silently=True)
+    return render(request, "finalizare_comanda.html", {
+        'user':current_user,
+        'comanda':comanda
+    })
 

@@ -42,6 +42,9 @@ class PostModel(models.Model):
     def get_comanda_url(self):
         return reverse("post:get-comanda", kwargs={"slug":self.slug})
 
+    def get_finalizare_url(self):
+        return reverse("post:get-finalizare", kwargs={"slug":self.slug})
+
 
 class CosulMeu(models.Model):
     anunturi =  models.ForeignKey(to = PostModel, related_name='cos_comandaa',

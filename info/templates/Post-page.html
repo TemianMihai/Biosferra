@@ -137,11 +137,13 @@
                         <div class="cumpara">
                             <h2>Cantitate: {{ posts.cantity }} {{ posts.category }}</h2>
                             <h2>Pret: {{ posts.price }} lei</h2>
-                       <form  method="POST" enctype="multipart/form-data">
-                           {% csrf_token %}
+                            {% if posts.author != user %}
+                                <form  method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
                                     <input type="submit" value="{{ form2.body }}" class="btn btn-primary active" name="btnform2">
-                       </form>
-                            <a href='{{posts.get_comanda_url}}'><button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span>Comanda</button></a>
+                                </form>
+                                <a href='{{posts.get_comanda_url}}'><button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span>Comanda</button></a>
+                            {% endif %}
                         </div>
                     </td>
                     </tr>
@@ -151,8 +153,8 @@
         <hr>
         <br>
         <div class="row descriere" style="margin-top: 5%;">
-            <h2>Descriere:</h2>
-            <br>
+            <div class="col-sm-12"><h2>Descriere:</h2></div>
+            <br><br>
             <p>{{ posts.details }}</p>
         </div>
     <hr>
