@@ -90,15 +90,34 @@
         </nav>
     </div>
 {% if comenzi %}
+    <h1>Comenzi primite:</h1>
     {% for comenzi in comenzi %}
-            <p>{{comenzi.postcomanda.name}}</p>
-            <p>{{comenzi.nume}}</p>
-            <p>{{comenzi.codpostal}}</p>
+            <h3>{{comenzi.postcomanda.name}}</h3>
+            <h3>{{comenzi.nume}}</h3>
+            <h3>{{comenzi.codpostal}}</h3>
             <a href='{{comenzi.get_delete_comanda_url}}'><button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span>Incheie comnada</button></a>
     {% endfor %}
 
     {% else %}
-    <p>assadassdadsa</p>
+        {% if user.account2.slug %}
+            <h1>Nu aveti nici o comanda</h1>
+        {% endif %}
+{% endif %}
+
+
+{% if comenzi2 %}
+    <h1>Comenzi plasate in curs de efectuare:</h1>
+    {% for comenzi in comenzi2 %}
+            <h3>{{comenzi.postcomanda.name}}</h3>
+            <h3>{{comenzi.nume}}</h3>
+            <h3>{{comenzi.codpostal}}</h3>
+        <br><br>
+    {% endfor %}
+
+    {% else %}
+        {% if user.account2.slug != 0 %}
+            <h1>Nu exista produse cumparate in curs de efectuare </h1>
+        {% endif %}
 {% endif %}
 </body>
 </html>

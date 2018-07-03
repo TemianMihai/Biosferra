@@ -4,7 +4,7 @@ from django.contrib import messages
 from .forms import Edit_profile, Edit_profile2, CreateMesajeForm, CreateReportForm, CreateFavoritForm, CreateProfileForm
 from authentication.models import Account2
 from post.models import PostModel
-from .models import Favorit, Profile
+from .models import Favorit, Profile, Mesaje
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 
@@ -36,9 +36,21 @@ def create_profile(request):
         return redirect('/edit-profile')
     if request.method == 'POST':
         if form.is_valid():
+            userul = current_user
             profile = form.instance
             profile.userul = current_user
             form.save()
+            userul.is_active = False
+            userul.save()
+            subject = 'Registrare Biosferra'
+            message = "Bine ati venit pe Biosferra. Un administrator va verifica accountul dumneavoastra, iar in cateva minute veti putea sa va inregistarti in cazul in care ati fost acceptat. " \
+                      "Va multumim pentru intelegere. " \
+                      "Mai jos puteti sa gasiti detalile despre accountul dumneavoastra: Username: %s Prenume: %s Nume: %s Numar de telefon: %s Oras: %s Judet: %s" % (
+                      userul.username, userul.first_name, userul.last_name,
+                      userul.account2.phonenumber, userul.account2.city, userul.account2.state)
+            from_email = settings.EMAIL_HOST_USER
+            to_list = [settings.EMAIL_HOST_USER, userul.email]
+            send_mail(subject, message, from_email, to_list, fail_silently=True)
             return redirect('/')
     return render(request, 'create_profile.html', {
         'form': form,
@@ -55,14 +67,13 @@ def profile(request, slug):
     form2 = CreateReportForm(request.POST or None)
     form3 = CreateFavoritForm(request.POST or None)
     if request.method == 'POST':
-        if form.is_valid():
+        if form.is_valid() and 'btnform1' in request.POST:
             mesaj = form.instance
             mesaj.autor = current_user
             mesaj.destinatar = user2.user
             form.save()
             messages.success(request, 'Mesajul dumneavoastra a fost trimis')
-            return redirect('/')
-        if form2.is_valid():
+        if form2.is_valid() and 'btnform2' in request.POST:
             report = form2.instance
             report.autor = current_user
             report.destinatar = user2.user
@@ -73,8 +84,7 @@ def profile(request, slug):
             from_email = settings.EMAIL_HOST_USER
             to_list = [settings.EMAIL_HOST_USER]
             send_mail(subject, message, from_email, to_list, fail_silently=True)
-            return redirect('/')
-        if form3.is_valid():
+        if form3.is_valid() and 'btnform3' in request.POST:
             favoriit = Favorit.objects.all().filter(ales=user2.user, alegator=current_user)
             if len(favoriit) > 0:
                 favoriit.delete()
@@ -96,7 +106,33 @@ def profile(request, slug):
         'form3': form3,
         'profiles':profiles,
         'user2': user2
-
     })
 
+@login_required
+def favoriti(request):
+    current_user = request.user
+    favoriti = Favorit.objects.all().filter(alegator = current_user)
+    posturi = PostModel.objects.all()
+    return render(request, 'favoriti.html', {
+        'user':current_user,
+        'favoriti':favoriti,
+        'posturi':posturi
+    })
 
+@login_required
+def mesaje(request):
+    current_user = request.user
+    mesaje = Mesaje.objects.all().filter(destinatar = current_user)
+    return render(request, 'mesaje.html', {
+        'user':current_user,
+        'mesaje':mesaje
+    })
+
+@login_required
+def mesaje_trimise(request):
+    current_user = request.user
+    mesaje = Mesaje.objects.all().filter(autor = current_user)
+    return render(request, 'mesaje_trimise.html', {
+        'user':current_user,
+        'mesaje':mesaje
+    })

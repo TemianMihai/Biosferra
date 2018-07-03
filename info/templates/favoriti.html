@@ -99,112 +99,15 @@
         </div>
         </div>
     </nav>
-    <br> <br>
-
-    <h1 align="center">Creeaza-ti profilul</h1>
-    {{ user.account2.phonenumber }}
-    <div class="container">
-        <form method="POST" enctype="multipart/form-data">
-            {%csrf_token%}
-            <label>Descirere</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                  {{ form.descriere|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
-            <br>
-            <label>Leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                  {{ form.produs1|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
-            <br>
-            <label>leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                  {{ form.produs2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
-
-            <br>
-            <label>Leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                  {{ form.produs3|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
-
-            <br>
-            <label>Leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                  {{ form.produs4|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
-
-            <br>
-            <label>Leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                  {{ form.produs5|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
-
-            <br>
-            <label>Poza de profil</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                  {{ form.image2|add_class:"form-control" }}
-                </div>
-
-            <br>
-            <label>Poza de coperta</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
-
-                {{ form.image1|add_class:"form-control " }}
-                </div>
-
-            <br>
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
-    </div>
-
-    <br>
-
-    <footer class="footer">
-            <div class="row">
-                <div class="col-4">
-                    <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
-                </div>
-                <div class="col-2">
-                    <a href="/" style="color: #fff"><p>Acasa</p></a>
-                </div>
-                {% if user.account2.slug %}
-                <div class="col-2">
-                    <a href="/view-profile/{{ current_user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
-                </div>
-                <div class="col-2">
-                    <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
-                </div>
-                {% endif %}
-                <div class="col-2">
-                    {% if user.account2.slug %}
-                   <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
-                    {% else %}
-                    <p><a href="/register-vanzator" style="color: #fff">Devino vanzator</p></a>
-                    {% endif %}
-                </div>
-            </div>
-            <hr class="hr">
-            <div class="row">
-                <div class="col-12">
-                    <p>@All rights reserverd</p>
-                </div>
-            </div>
-    </footer>
-
 </body>
+    {% for favoriti in favoriti %}
+        {{ favoriti.ales }}
+
+        {% for posturi in posturi %}
+            {% if posturi.author == favoriti.ales %}
+                {{ posturi.name }}
+            {% endif %}
+        {% endfor %}
+
+    {% endfor %}
 </html>
