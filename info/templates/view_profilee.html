@@ -48,7 +48,7 @@
     <div class="navbar-box">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
+        <div class="container" style="margin-left: 135px;">
         <!-- Brand Logo -->
         <a class="navbar-brand" href="/"><img src= "{% static "images/brand.png" %}"></a>
         <!-- Button enables when screen size is small -->
@@ -124,17 +124,9 @@
                     <div class="profile">
                         <div class="upper-side">
                             <div class="profile-image">
-                                <img src="{{  p.image2.url }}" class="img-fluid" alt="Responsive image">
+                                <img src="{{  p.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;">
                             </div>
                             <h5>{{ user2.user.username }}</h5>
-                            <div class="rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                &nbsp;&nbsp;&nbsp;3
-                            </div>
                             <div class="break"></div>
                         </div>
                         <div class="lower-side">
@@ -187,7 +179,7 @@
                 <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
                     <div class="row" id="up-side">
                         <div>
-                            <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 100px">
+                            <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 200px; width: 92%;">
                         </div>
                         <div class="container">
                             {% if messages %}
@@ -200,17 +192,32 @@
                                 </div>
                             {% endif %}
                         </div>
+                    <br>
+                    {% if user != user2.user %}
                         <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary " style="border-radius: 2px; background-color: #E53046;">&nbsp Raporteaza!</button>
                         <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaj privat</button>
-
                         <form  method="POST" enctype="multipart/form-data">
                            {% csrf_token %}
                                     <input type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3">
                        </form>
+                    {% endif %}
+                        <br>
+                    {% if user == user2.user %}
+                        <div style="width: 92%;border: 1px solid #B4B4B4;border-radius: 0px;">
+                            <button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 34%" >Mesaje</button>
+                            <button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 33%;margin-left: -4px" >Comenzi primite</button>
+                            <button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 33%;margin-left: -5px;" >Comenzi plasate</button>
+                        </div>
 
-                        <br> <br>
-                        <hr>
+                         <div class="col-md-12">
+                            <div class="row">
+                             <div class="col-sm-6"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px;width: 99%" >Mesaje</button></div>
+                                <div class="col-sm-6"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 93%;margin-left: -35px" >Comenzi primite</button></div>
+                            </div>
+                         </div>
+                    {% endif %}
                         <div>
+
                             <h1 id="Anunturile">Anunturile producatorului</h1>
                             <form class="cauta-anunt" method="GET" action="">
                                 <input  id="cauta-anunt"  name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
@@ -225,22 +232,13 @@
                                     <div class="card" style="width: 18rem;">
                                         <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
                                         <div class="card-body">
-                                            <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
+                                            <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h5>
                                             <hr>
-                                            <h5><b>{{ post.name }}</b></h5>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                            (8)
+                                            <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                             <hr>
-                                            <p class="card-text card-price">{{ post.price }} lei / {{ post.category }}</p>
-                                            <p class="card-text">{{ post.details|truncatechars:50 }}</p>
+                                            <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
                                             <hr>
-                                            <div style="display: inline-block;">
-                                                <a href="/post/{{post.slug}}" class="btn btn-default">Vezi produsul</a>
-                                            </div>
+                                            <p class="card-text"><b>Desciere: </b>{{ post.details|truncatechars:50 }}</p>
                                         </div>
                                     </div>
                                 {% endif %}

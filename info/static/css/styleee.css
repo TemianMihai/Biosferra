@@ -8,7 +8,7 @@
     font-weight: bold;
 }
 
-.form-group label {
+label {
     color: #4B4B4B;
     font-size: 24px;
     font-weight: 500;
@@ -25,6 +25,7 @@
 .navbar {
     padding: 10px;
     color: #FFFFFF;
+    box-shadow: 0 2px 25px 0 rgba(0,0,0,0.2);
 }
 
 .navbar .nav-item {

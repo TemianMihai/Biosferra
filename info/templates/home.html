@@ -95,45 +95,48 @@
     <!-- Legume/Fructe/Anunturi reducere -->
     <div class="container">
 
-        <div class="section">
-            <h1>Legume</h1>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="hold">
-                        <ul class="items">
-                            <li>Toamna</li>
-                            <li>Vara</li>
-                            <li>Primavara</li>
-                            <li>Iarna</li>
-                            <li>Toate</li>
-                        </ul>
+        <div class="container anunturi">
+            <h1 style="margin-left: 15px;">Legume</h1>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="hold">
+                            <ul class="items">
+                                <li>Toamna</li>
+                                <li>Vara</li>
+                                <li>Primavara</li>
+                                <li>Toate</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-8">
-                    <div class="veggie-img">
-                        <img src="{% static "images/legume.png" %}" style="height: 100%; width: 100%;">
+
+                    <div class="col-sm-8">
+                        <div class="veggie-img">
+                            <img src="{% static "images/legume.png" %}" style="height: 95%; width: 100%;">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <br> <br>
-        <div class="section">
-            <h1>Fructe</h1>
-             <div class="row">
-                <div class="col-sm-4">
-                    <div class="hold">
-                        <ul class="items">
-                            <li>Toamna</li>
-                            <li>Vara</li>
-                            <li>Primavara</li>
-                            <li>Iarna</li>
-                            <li>Toate</li>
-                        </ul>
+
+            <br> <br>
+            <h1 style="margin-left: 15px;">Fructe</h1>
+             <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="hold">
+                            <ul class="items">
+                                <li>Toamna</li>
+                                <li>Vara</li>
+                                <li>Primavara</li>
+                                <li>Toate</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-8">
-                    <div class="veggie-img">
-                        <img src="{% static "images/fructe.png" %}" style="height: 100%; width: 100%;">
+
+                    <div class="col-sm-8">
+                        <div class="veggie-img">
+                            <img src="{% static "images/fructe.png" %}" style="height: 95%; width: 100%;">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -145,25 +148,15 @@
                 {% for post in post %}
                     {% if post.approved == True %}
                         <div class="card" style="width: 18rem;">
-                            <a href="/post/{{post.slug}}" ><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap"></a>
+                            <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
                             <div class="card-body">
-                                <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
+                                <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h5>
                                 <hr>
-                                <h5><b>{{ post.name }}</b></h5>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                (8)
+                                <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                 <hr>
-                                <p class="card-text card-price">{{ post.price }} lei / {{ post.category }}</p>
-                                <p class="card-text">{{ post.details|truncatechars:50 }}</p>
+                                <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
                                 <hr>
-                                <div style="display: inline-block;">
-                                    <a href="/post/{{post.slug}}" class="btn btn-default">Vezi produs</a>
-                                    <span class="fa fa-star"></span>
-                                </div>
+                                <p class="card-text"><b>Desciere: </b>{{ post.details|truncatechars:50 }}</p>
                             </div>
                         </div>
                     {% endif %}
@@ -254,62 +247,7 @@
                         </div>
                         </form>
                     </div>
-                    <br> <br>
 
-                    <!-- Reviewuri -->
-                    <div class="side-menu reviewuri">
-                        <p class="head">Reviewuri</p>
-                        <form>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star "></span></label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </label>
-                          </div>
-                        <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span></label>
-                        </div>
-                        </form>
-                    </div>
                     <br> <br>
 
                     <!-- Gramaj -->
@@ -364,36 +302,22 @@
                     {% for users in users %}
                         {% if users.account2.slug %}
                             <!-- Carduri pentru clienti -->
-                            <h1><a href="/view-profile/{{ users.account2.slug }}">{{ users.username }}|&nbsp;</a> <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span></h1>
+                            <h1><a href="/view-profile/{{ users.account2.slug }}">{{ users.username }}&nbsp;</a></h1>
 
                                 <div class="card-deck">
                                     {% for post in post %}
                                         {% if users == post.author %}
                                             {% if post.approved == True %}
                                                 <div class="card" style="width: 18rem;">
-                                                    <a href="/post/{{post.slug}}" ><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap"></a>
+                                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
                                                     <div class="card-body">
-                                                        <a href="/view-profile/{{post.author.account2.slug}}"><h5 class="card-title"><b>{{ post.author }}</b></h5></a>
+                                                        <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h5>
                                                         <hr>
-                                                        <h5><b>{{ post.name }}</b></h5>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        <span class="fa fa-star"></span>
-                                                        (8)
+                                                        <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                                         <hr>
-                                                        <p class="card-text card-price">{{ post.price }} lei / {{ post.category }}</p>
-                                                        <p class="card-text">{{ post.details|truncatechars:50 }}</p>
+                                                        <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
                                                         <hr>
-                                                        <div style="display: inline-block;">
-                                                            <a href="/post/{{post.slug}}" class="btn btn-default">Vezi produs</a>
-                                                            <span class="fa fa-star"></span>
-                                                        </div>
+                                                        <p class="card-text"><b>Desciere: </b>{{ post.details|truncatechars:50 }}</p>
                                                     </div>
                                                 </div>
                                             {% endif %}

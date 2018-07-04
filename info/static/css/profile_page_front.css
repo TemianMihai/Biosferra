@@ -249,9 +249,9 @@ table .lower-header {
 .profile .profile-image {
     height: 100px;  
     width: 150.04px;
-    background-color: green;
     margin: auto;
     margin-bottom: 15px;
+    margin-top: 30px;
 }
 
 .profile .break {
@@ -280,6 +280,7 @@ table .lower-header {
 .navbar {
     padding: 10px;
     color: #FFFFFF;
+    box-shadow: 0 2px 25px 0 rgba(0,0,0,0.2);
 }
 
 .navbar .nav-item {
@@ -305,13 +306,6 @@ table .lower-header {
 .pseudo-nav .row .col-sm{
     padding-left: 0;
     padding-right: 0;
-}
-
-.break-line {
-    box-sizing: border-box;
-    height: 2px;
-    width: 100%;
-    border: 1px solid #E5E5E5;
 }
 
 .tab-button {

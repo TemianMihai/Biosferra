@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import PostModel, Comment, AdresaDeFacturare , CosulMeu
 
 class PostModelAdmin(admin.ModelAdmin):
-    list_display = ['name', 'details', 'delivery_time', 'cantity', 'price']
+    list_display = ['name', 'details', 'cantity', 'price']
 
 class AdresaDeFacturareAdmin(admin.ModelAdmin):
     list_display = ['nume', 'prenume']
