@@ -33,7 +33,6 @@ class PostModel(models.Model):
     categorie = models.ForeignKey(Categorie, null=True)
     category = models.ForeignKey(Category, null=True)
     lfcategory = models.ForeignKey(Lfcategory, null=True)
-    delivery_time = models.CharField(max_length=50)
     approved = models.BooleanField(default=False)
 
     def get_delete_url(self):

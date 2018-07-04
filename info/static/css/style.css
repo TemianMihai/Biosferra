@@ -101,7 +101,7 @@ a{
 }
 
 .hold .items li {
-  padding: 7%;
+  padding: 4%;
   color: #B4B4B4;
   font-size: 28px;
   border: 1px solid #E5E5E5;
@@ -124,6 +124,7 @@ a{
 .navbar {
     padding: 10px;
     color: #FFFFFF;
+    box-shadow: 0 2px 25px 0 rgba(0,0,0,0.2);
 }
 
 .navbar .nav-item {

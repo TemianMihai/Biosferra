@@ -40,6 +40,13 @@
     color: white;
                 }
 
+    .path-44 {
+        box-sizing: border-box;
+        height: 1px;
+        width: 170px;
+        border: 1px solid #1CC661;
+    }
+
     </style>
 
     </head>
@@ -105,195 +112,183 @@
         </div>
         </div>
     </nav>
-    <div class="break-line"></div>
 
     <div class="container content">
-        <h1>Creeaza un anunt</h1>
+        <div class="col-sm-12">
+            <h1>Creeaza un anunt</h1>
 
-        <hr>
-        <br>
-        <div class="container">
-            {% if messages %}
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        {% for message in messages %}
-                            <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-       <form  method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-            <div class="form-group">
-                <label for="titlu-field">Titlul anuntului</label>
-                <input name="name" value="{{form.body}}" type="text" placeholder="Titlu. Ex: Mere de gradina" id="titlu-field" class="form-control"/>
-
-                 {% if form.name.errors %}
-                 <div class="alert alert-danger alert-dismissible" role="alert">
-                    <strong>Warning!</strong>
-                    {% for errors in form.name.errors %}
-                            {{ errors }}
-                    {% endfor %}
-                 </div>
-                 {% endif %}
-
-            </div>
+        <div class="path-44"></div>
 
             <hr>
+            <br>
 
-            <div class="form-group">
-                <label>Timpul de livrare</label>
-                <input name="delivery_time" value="{{form.body}}" type="text" placeholder="In cate zile livrati produsul. Ex: 2" id="titlu-field" class="form-control"/>
-
-                 {% if form.delivery_time.errors %}
-                 <div class="alert alert-danger alert-dismissible" role="alert">
-                    <strong>Warning!</strong>
-                    {% for errors in form.delivery_time.errors %}
-                            {{ errors }}
-                    {% endfor %}
-                 </div>
-                 {% endif %}
-
+            <div class="container">
+                {% if messages %}
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            {% for message in messages %}
+                                <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
             </div>
 
-            <hr>
-
-            <div class="form-group">
-                <label>Cantitate</label>
-                <input name="cantity" value="{{form.body}}" type="text" placeholder="Cantitatea pentru o livrare. Ex: 10" id="titlu-field" class="form-control"/>
-
-                 {% if form.cantity.errors %}
-                 <div class="alert alert-danger alert-dismissible" role="alert">
-                    <strong>Warning!</strong>
-                    {% for errors in form.cantity.errors %}
-                            {{ errors }}
-                    {% endfor %}
-                 </div>
-                 {% endif %}
-
-            </div>
-
-            <hr>
-
-            <div class="form-row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>Anotimp produs</label>
-                        {{ form.categorie|add_class:"form-control "|attr:"required:required"}}
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Kg/Bucata</label>
-                        {{ form.category|add_class:"form-control "|attr:"required:required"}}
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="form-group">
-                        <label>Legume sau fructe</label>
-                        {{ form.lfcategory|add_class:"form-control "|attr:"required:required"}}
-                    </div>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="form-row">
-                <div class="col">
-                    <div class="form-group">
-                       <label>Pret</label>
-                        <input name="price" value="{{form.body}}" type="text" placeholder="Pret per buc/kg. Ex: 2" id="titlu-field" class="form-control"/>
-
-                         {% if form.price.errors %}
+           <form  method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="col-sm-6" style="margin-left: -15px;">
+                        <label for="titlu-field">Titlul anuntului:</label>
+                        <input name="name" value="{{form.body}}" type="text" placeholder="Titlu. Ex: Mere de gradina" id="titlu-field" class="form-control"/>
+                         {% if form.name.errors %}
                          <div class="alert alert-danger alert-dismissible" role="alert">
                             <strong>Warning!</strong>
-                            {% for errors in form.price.errors %}
+                            {% for errors in form.name.errors %}
                                     {{ errors }}
                             {% endfor %}
                          </div>
                          {% endif %}
+                </div>
 
+                <hr>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                    <label>Legume sau fructe:</label>
+                            </div>
+                            <div class="col-sm-3" style="margin-left: -10px;">
+                                    {{ form.lfcategory|add_class:"form-control "|attr:"required:required"}}
+                            </div>
+                            <div class="col-sm-3">
+                                    <label>Anotimp produs:</label>
+                            </div>
+                            <div class="col-sm-3" style="margin-left: -50px;">
+                            {{ form.categorie|add_class:"form-control "|attr:"required:required"}}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <hr>
 
-            <hr>
 
-            <div class="form-group">
-                <label>Descriere</label>
-                <input name="details" value="{{form.body}}" type="text" placeholder="O scurta descriere despre produs" id="titlu-field" class="form-control" />
-
-                 {% if form.details.errors %}
-                 <div class="alert alert-danger alert-dismissible" role="alert">
-
-                    <strong>Warning!</strong>
-                    {% for errors in form.details.errors %}
-                            {{ errors }}
-                    {% endfor %}
-                 </div>
-                 {% endif %}
-
-            </div>
-            <hr>
-            <div class="form-group">
-                <br>
-                <label for="exampleInputFile">Alegeti cateva poze cu produsul dumneavoastra</label>
-
-                     {{ form.image1|add_class:"form-control " }}
-                        {% if form.image1.errors %}
-                            <div class="alert alert-danger fade in" id="input-alert">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <strong>Warning!</strong>
-                                {% for error in form.image1.errors %}
-                                        {{ error }}
-                                {% endfor %}
+               <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <label>Kg / Buc:</label>
                             </div>
-                        {% endif %}
+                            <div class="col-sm-2" style="margin-left: -10px;">
+                                {{ form.category|add_class:"form-control "|attr:"required:required"}}
+                            </div>
+                            <div class="col-sm-2" style="margin-left: 15px;">
+                                <label>Cantitate:</label>
+                            </div>
+                            <div class="col-sm-2" style="margin-left: -25px;">
+                                <input name="cantity" value="{{form.body}}" type="text" placeholder="Ex: 10" id="titlu-field" class="form-control"/>
+                                {% if form.cantity.errors %}
+                                     <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Warning!</strong>
+                                        {% for errors in form.cantity.errors %}
+                                                {{ errors }}
+                                        {% endfor %}
+                                     </div>
+                                 {% endif %}
+                            </div>
+                            <div class="col-sm-2" style="margin-left: 10px;">
+                                    <label>Pret:</label>
+                            </div>
+                            <div class="col-sm-2" style="margin-left: -50px;">
+                                <input name="price" value="{{form.body}}" type="text" placeholder="Ex: 2" id="titlu-field" class="form-control"/>
+                                {% if form.price.errors %}
+                                     <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Warning!</strong>
+                                        {% for errors in form.price.errors %}
+                                                {{ errors }}
+                                        {% endfor %}
+                                     </div>
+                                 {% endif %}
+                            </div>
+                        </div>
+                    </div>
+               </div>
 
+
+                <hr>
+
+                <div class="form-group">
+                    <label>Descriere:</label>
+                    <input name="details" value="{{form.body}}" type="text" placeholder="O scurta descriere despre produs" id="titlu-field" class="form-control" />
+
+                     {% if form.details.errors %}
+                     <div class="alert alert-danger alert-dismissible" role="alert">
+
+                        <strong>Warning!</strong>
+                        {% for errors in form.details.errors %}
+                                {{ errors }}
+                        {% endfor %}
+                     </div>
+                     {% endif %}
+
+                </div>
+                <hr>
+                <div class="form-group">
                     <br>
+                    <label for="exampleInputFile">Alegeti cateva poze cu produsul dumneavoastra:</label>
 
-                     {{ form.image2|add_class:"form-control " }}
-                        {% if form.image2.errors %}
-                            <div class="alert alert-danger fade in" id="input-alert">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <strong>Warning!</strong>
-                                {% for error in form.image2.errors %}
-                                        {{ error }}
-                                {% endfor %}
-                            </div>
-                         {% endif %}
+                         {{ form.image1|add_class:"form-control " }}
+                            {% if form.image1.errors %}
+                                <div class="alert alert-danger fade in" id="input-alert">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Warning!</strong>
+                                    {% for error in form.image1.errors %}
+                                            {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
 
-                    <br>
+                        <br>
 
-                     {{ form.image3|add_class:"form-control " }}
-                        {% if form.image3.errors %}
-                            <div class="alert alert-danger fade in" id="input-alert">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <strong>Warning!</strong>
-                                {% for error in form.image3.errors %}
-                                        {{ error }}
-                                {% endfor %}
-                            </div>
-                        {% endif %}
+                         {{ form.image2|add_class:"form-control " }}
+                            {% if form.image2.errors %}
+                                <div class="alert alert-danger fade in" id="input-alert">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Warning!</strong>
+                                    {% for error in form.image2.errors %}
+                                            {{ error }}
+                                    {% endfor %}
+                                </div>
+                             {% endif %}
 
-                <br>
+                        <br>
 
-                     {{ form.image4|add_class:"form-control " }}
-                        {% if form.image4.errors %}
-                            <div class="alert alert-danger fade in" id="input-alert">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <strong>Warning!</strong>
-                                {% for error in form.image4.errors %}
-                                        {{ error }}
-                                {% endfor %}
-                            </div>
-                         {% endif %}
-            </div>
-       <p>Inainte ca anuntul dumneavoastra sa fie postat el va trebui verificat de un admin. Veti primi un mail in legatura cu statutul acestuia. </p>
-                   <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+                         {{ form.image3|add_class:"form-control " }}
+                            {% if form.image3.errors %}
+                                <div class="alert alert-danger fade in" id="input-alert">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Warning!</strong>
+                                    {% for error in form.image3.errors %}
+                                            {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                         <br>
+
+                         {{ form.image4|add_class:"form-control " }}
+                            {% if form.image4.errors %}
+                                <div class="alert alert-danger fade in" id="input-alert">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Warning!</strong>
+                                    {% for error in form.image4.errors %}
+                                            {{ error }}
+                                    {% endfor %}
+                                </div>
+                             {% endif %}
+                </div>
+               <p>Inainte ca anuntul dumneavoastra sa fie postat el va trebui verificat de un admin. Veti primi un mail in legatura cu statutul acestuia. </p>
+               <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
     </div>
 
      <br>
@@ -329,5 +324,7 @@
                 </div>
             </div>
     </footer>
+
+
 </body>
 </html>

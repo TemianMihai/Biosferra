@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = PostModel
-        fields = ['name', 'delivery_time', 'cantity', 'price', 'details', 'image1', 'image2','image3','image4','category','categorie','lfcategory']
+        fields = ['name', 'cantity', 'price', 'details', 'image1', 'image2','image3','image4','category','categorie','lfcategory']
         widgets = {
             'image1': forms.FileInput({'required': 'required', 'placeholder': "Image1"}),
             'image2': forms.FileInput({'required': 'required', 'placeholder': "Image2"}),
@@ -76,12 +76,6 @@ class CreatePostForm(forms.ModelForm):
         if cantity.isdigit() == False:
             raise forms.ValidationError("Invalid cantity")
         return cantity
-
-    def clean_deliverytime(self):
-        delivery_time = self.cleaned_data['delivery_time']
-        if delivery_time.isdigit() == False:
-            raise forms.ValidationError("Invalid delivery time")
-        return delivery_time
 
 
 class DeleteNewForm(forms.ModelForm):
