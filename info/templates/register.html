@@ -17,107 +17,114 @@
 
 
     <style>
-    body, html {
-        height: 100%;
-        margin: 0;
+    body{
+        height: 100% !important;
+    }
+
+    body {
+    {#  -webkit-background-size: cover;#}
+      {#-moz-background-size: cover;#}
+      {#-o-background-size: cover;#}
+      {#background-size: cover;#}
+      {#  height: 240%;#}
+        background-size: auto 100%;
+        background: url('/static/images/register-cump.png') no-repeat fixed left top;
     }
     </style>
 </head>
 <body>
-    <div class="bg2">
-        <div class="rectangle-22">
-            <div class="row">
-                <div class="col m6">
-                    <div class="rectangle-b">
-                        <div class="col s12">
-                        <p class="important">Inregistrare</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col m12">
+                        <div class="col m8 offset-m1">
+                            <div class="rectangle-b">
+                                <div class="col m12">
+                                <p class="important">Inregistrare</p>
 
-                        <div class="buttons">
-                            <a href="/register-cumparator"><div class="button1"><p align="center" style="margin: 0; padding-top: 10px; color: #fff;"><b>Cumparator</b></p></div></a>
-                            <a href="/register-vanzator"><p style="margin-left: 67%;margin-top: -8%; color: #6C6C6C;"><b>Vanzator</b></p></a>
-                        </div>
-                        <br>
-
-                        <form method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="col s6">
-
-                                <div class="input-field" style="margin-left: 9%;margin-right:20%; margin-bottom:2%;">
-                                    <label>Nume utilizator</label>
-                                    <input placeholder="Nume utilizator"  name="username" value="{{form.body}}" type="text" class="validate">
-                                </div>
-
-                                <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                    <label>Email</label>
-                                    <input placeholder="Email"  name="email" value="{{form.body}}" type="text" class="validate">
-                                </div>
-
-                                <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                    <label>Prenume</label>
-                                    <input placeholder="Prenume" name="first_name" value="{{form.body}}" type="text" class="validate">
-                                </div>
-
-                                <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                    <label>Nume</label>
-                                    <input placeholder="Nume" name="last_name" value="{{form.body}}" type="text" class="validate">
-                                </div>
-
-                                <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                    <label>Parola</label>
-                                    <input placeholder="Parola" name="password" value="{{form.body}}" type="password" class="validate">
-                                </div>
-
-                                <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                    <label>Confirma parola</label>
-                                    <input placeholder="Confirma parola" name="retypepassword" value="{{form.body}}" type="password" class="validate">
-                                </div>
-                            </div>
-
-                            <div class="col s6">
-                                <div class="path-6" style="height: 72%;"></div>
-                                <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                    <label>Oras</label>
-                                    <input placeholder="Oras" name="city" value="{{acc_form.body}}" type="text" class="validate">
-                                </div>
-
-                                <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                    <label>Judet</label>
-                                    <input placeholder="Judet"  name="state" value="{{acc_form.body}}" type="text" class="validate">
-                                </div>
-
-                                <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                    <label>Adresa</label>
-                                    <input placeholder="Adresa" name="adress" value="{{acc_form.body}}" type="text" class="validate">
-                                </div>
-
-                                <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                    <label>Numar de telefon</label>
-                                    <input placeholder="Numar de telefon" name="phonenumber" value="{{acc_form.body}}" type="text" class="validate">
-                                </div>
-                                <div>
-                                    <button class="but" type="submit">Continua ➜</button>
+                                <div class="buttons">
+                                    <a href="/register-cumparator"><div class="button1"><p align="center" style="margin: 0; padding-top: 10px; color: #fff;"><b>Cumparator</b></p></div></a>
+                                    <a href="/register-vanzator"><p style="margin-left: 67%;margin-top: -8%; color: #6C6C6C;"><b>Vanzator</b></p></a>
                                 </div>
                                 <br>
-                                {% if form.errors %}
-                                  <div class="alert alert-danger alert-dismissible" role="alert">
-                                     <b>Atentie! Va rugam reintroduceti:</b>
-                                     {% for message in form.errors %}
-                                             {{ message }}
-                                    {% endfor %}
-                                      {% for message in acc_form.errors %}
-                                             {{ message }}
-                                    {% endfor %}
-                                  </div>
-                                {% endif %}
+
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="col m6">
+
+                                        <div class="input-field" style=" margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                            <label>Nume utilizator</label>
+                                            <input placeholder="Nume utilizator"  name="username" value="{{form.body}}" type="text" class="validate">
+                                        </div>
+
+                                        <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                            <label>Email</label>
+                                            <input placeholder="Email"  name="email" value="{{form.body}}" type="text" class="validate">
+                                        </div>
+
+                                        <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                            <label>Prenume</label>
+                                            <input placeholder="Prenume" name="first_name" value="{{form.body}}" type="text" class="validate">
+                                        </div>
+
+                                        <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                            <label>Nume</label>
+                                            <input placeholder="Nume" name="last_name" value="{{form.body}}" type="text" class="validate">
+                                        </div>
+
+                                        <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                            <label>Parola</label>
+                                            <input placeholder="Parola" name="password" value="{{form.body}}" type="password" class="validate">
+                                        </div>
+
+                                        <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                            <label>Confirma parola</label>
+                                            <input placeholder="Confirma parola" name="retypepassword" value="{{form.body}}" type="password" class="validate">
+                                        </div>
+                                    </div>
+
+                                    <div class="col m6">
+                                        <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                            <label>Oras</label>
+                                            <input placeholder="Oras" name="city" value="{{acc_form.body}}" type="text" class="validate">
+                                        </div>
+
+                                        <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                            <label>Judet</label>
+                                            <input placeholder="Judet"  name="state" value="{{acc_form.body}}" type="text" class="validate">
+                                        </div>
+
+                                        <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                            <label>Adresa</label>
+                                            <input placeholder="Adresa" name="adress" value="{{acc_form.body}}" type="text" class="validate">
+                                        </div>
+
+                                        <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                            <label>Numar de telefon</label>
+                                            <input placeholder="Numar de telefon" name="phonenumber" value="{{acc_form.body}}" type="text" class="validate">
+                                        </div>
+                                        <div>
+                                            <button class="but" type="submit">Continua ➜</button>
+                                        </div>
+                                        <br>
+                                        {% if form.errors %}
+                                          <div class="alert alert-danger alert-dismissible" role="alert">
+                                             <b>Atentie! Va rugam reintroduceti:</b>
+                                             {% for message in form.errors %}
+                                                     {{ message }}
+                                            {% endfor %}
+                                              {% for message in acc_form.errors %}
+                                                     {{ message }}
+                                            {% endfor %}
+                                          </div>
+                                        {% endif %}
+                                    </div>
+                                </form>
+                                </div>
                             </div>
-                        </form>
-                            <p class="already-don-t-have-a">Ai deja un cont? <a href="/login"><b>Autentifica-te aici</b></a></p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
