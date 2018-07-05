@@ -55,10 +55,8 @@
 }
 
 .rectangle {
-    height: 72%;
-    width: 30%;
-    position: absolute;
-    margin-top: 6%;
+    margin-top: 10%;
+    height: 500px;
     border-radius: 7px;
     background-color: #FFFFFF;
     background-position: center;
@@ -162,9 +160,7 @@ a{
 
 .butt{
     height: 40px;
-    width: 150px;
-    margin-top: 3%;
-    margin-left: 32%;
+    width: auto;
     border-color:#6FC564;
     border-radius: 24px;
     color: #fff;
