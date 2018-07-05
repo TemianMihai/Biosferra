@@ -20,173 +20,136 @@
     body, html {
         height: 100%;
         margin: 0;
+        background-image: url("/static/images/register-cump.png");
+        /* Full height */
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
     </style>
 </head>
 <body>
-    <div class="bg2">
-        <div class="rectangle-22">
-            <div class="row">
-                <div class="col s12">
+<div class="container">
+    <div class="row">
+        <div class="col m12">
+            <div class="col m8 offset-m1">
+                <div class="rectangle-b" style="margin-left: -10px;">
+                    <div class="col m12">
+                    <p class="important">Inregistrare</p>
+
+                    <div class="buttons">
+                        <a href="/register-cumparator"><div class="button1"><p align="center" style="margin: 0; padding-top: 10px; color: #fff;"><b>Cumparator</b></p></div></a>
+                        <a href="/register-vanzator"><p style="margin-left: 67%;margin-top: -8%; color: #6C6C6C;"><b>Vanzator</b></p></a>
+                    </div>
+                    <br>
+
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <div class="carousel carousel-slider" style="height: 800px;" data-indicators="true">
-                            <div class="carousel-item" href="#one!">
+                        <div class="col m6">
 
-                                <div class="rectangle-b">
-                                    <p class="important" style="font-size: 35px;">Inregistrare</p>
-
-                                    <div class="buttons">
-                                        <a href="/register-cumparator"><p style="padding-left: 45px;color: #6C6C6C;"><b>Cumparator</b></p></a>
-                                        <a href="/register-vanzator"><div class="button1" style="height: 43px; margin-top: -8.5%;margin-left: 50%;"><p align="center" style="margin: 0;margin-left: 47px; padding-top: 10px; color: #fff;"><b>Vanzator</b></p></div></a>
-                                    </div>
-                                    <br>
-                                        <div class="col s6">
-                                            <div class="input-field" style="margin-left: 9%;margin-right:20%; margin-bottom:2%;">
-                                                <label>Nume utilizator</label>
-                                                <input placeholder="Nume utilizator"  name="username" value="{{form.body}}" type="text" class="validate">
-                                            </div>
-
-                                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                                <label>Email</label>
-                                                <input placeholder="Email"  name="email" value="{{form.body}}" type="text" class="validate">
-                                            </div>
-
-                                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                                <label>Prenume</label>
-                                                <input placeholder="Prenume" name="first_name" value="{{form.body}}" type="text" class="validate">
-                                            </div>
-
-                                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                                <label>Nume</label>
-                                                <input placeholder="Nume" name="last_name" value="{{form.body}}" type="text" class="validate">
-                                            </div>
-
-                                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                                <label>Parola</label>
-                                                <input placeholder="Parola" name="password" value="{{form.body}}" type="password" class="validate">
-                                            </div>
-
-                                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
-                                                <label>Confirma parola</label>
-                                                <input placeholder="Confirma parola" name="retypepassword" value="{{form.body}}" type="password" class="validate">
-                                            </div>
-                                        </div>
-
-                                        <div class="col s6">
-                                            <div class="path-6"></div>
-                                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                                <label>Oras</label>
-                                                <input placeholder="Oras" name="city" value="{{acc_form2.body}}" type="text" class="validate">
-                                            </div>
-
-                                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                                <label>Judet</label>
-                                                <input placeholder="Judet"  name="state" value="{{acc_form2.body}}" type="text" class="validate">
-                                            </div>
-
-                                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                                <label>Adresa</label>
-                                                <input placeholder="Adresa" name="adress" value="{{acc_form2.body}}" type="text" class="validate">
-                                            </div>
-
-                                            <div class="input-field" style="margin-left: 20%;margin-right: 9%; margin-bottom:2%;">
-                                                <label>Numar de telefon</label>
-                                                <input placeholder="Numar de telefon" name="phonenumber" value="{{acc_form2.body}}" type="text" class="validate">
-                                            </div>
-                                            <div>
-                                                <button  class="btn disabled" style="margin-right: 30px;margin-left: 20%;margin-top: 10%;height: 70px;">Apasa urmatorul punct ➜</button>
-                                            </div>
-                                            <br>
-                                            {% if form.errors %}
-                                              <div class="alert alert-danger alert-dismissible" role="alert">
-                                                 <b>Atentie! Va rugam reintroduceti:</b>
-                                                 {% for message in form.errors %}
-                                                         {{ message }}
-                                                {% endfor %}
-                                                  {% for message in acc_form2.errors %}
-                                                         {{ message }}
-                                                {% endfor %}
-                                              </div>
-                                            {% endif %}
-                                        </div>
-                                </div>
+                            <div class="input-field" style=" margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <label>Nume utilizator</label>
+                                <input placeholder="Nume utilizator"  name="username" value="{{form.body}}" type="text" class="validate">
                             </div>
 
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <label>Email</label>
+                                <input placeholder="Email"  name="email" value="{{form.body}}" type="text" class="validate">
+                            </div>
 
-                            <div class="carousel-item" href="#two!">
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <label>Prenume</label>
+                                <input placeholder="Prenume" name="first_name" value="{{form.body}}" type="text" class="validate">
+                            </div>
 
-                                <div class="rectangle-b">s
-                                    <p class="important" style="font-size: 35px;">Inregistrare</p>
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <label>Nume</label>
+                                <input placeholder="Nume" name="last_name" value="{{form.body}}" type="text" class="validate">
+                            </div>
 
-                                    <div class="buttons">
-                                        <a href="/register-cumparator"><p style="padding-left: 45px;color: #6C6C6C;"><b>Cumparator</b></p></a>
-                                        <a href="/register-vanzator"><div class="button1" style="height: 42px; margin-top:-8.5%; margin-left: 50%;"><p align="center" style="margin: 0;margin-left: 75px; padding-top: 10px; color: #fff;"><b>Vanzator</b></p></div></a>
-                                    </div>
-                                    <br><br>
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <label>Parola</label>
+                                <input placeholder="Parola" name="password" value="{{form.body}}" type="password" class="validate">
+                            </div>
 
-                                    <div class="col s6">
-                                        <label style="font-size: 16px;">Atestat de producator</label>
-                                         {{ acc_form2.file1|add_class:"form-control " }}
-                                            {% if form.image1.errors %}
-                                                <div class="alert alert-danger fade in" id="input-alert">
-                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                    <strong>Warning!</strong>
-                                                    {% for error in form.image1.errors %}
-                                                            {{ error }}
-                                                    {% endfor %}
-                                                </div>
-                                            {% endif %}
-                                    </div>
-                                    <div class="col s6">
-                                        <label style="font-size: 16px;">Carnet de comercializare</label>
-                                         {{ acc_form2.file2|add_class:"form-control " }}
-                                            {% if form.image1.errors %}
-                                                <div class="alert alert-danger fade in" id="input-alert">
-                                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                    <strong>Warning!</strong>
-                                                    {% for error in form.image1.errors %}
-                                                            {{ error }}
-                                                    {% endfor %}
-                                                </div>
-                                            {% endif %}
-                                    </div>
-                                    <input type="checkbox" id="remember">
-                                    <label for="remember" style="margin-top: 10%;margin-left: 36%;">Sunt de acord cu Termenii si Conditiile.</label>
-                                    <div>
-                                    <button class="but" type="submit" style="margin-left: 40%;">Continua ➜</button>
-                                    </div>
-                                    <p class="already-don-t-have-a" style="margin-left: -5%;">Ai deja un cont? <a href="/login"><b>Autentifica-te aici</b></a></p>
-                                </div>
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <label>Confirma parola</label>
+                                <input placeholder="Confirma parola" name="retypepassword" value="{{form.body}}" type="password" class="validate">
                             </div>
                         </div>
+
+                        <div class="col m6">
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <label>Oras</label>
+                                <input placeholder="Oras" name="city" value="{{acc_form2.body}}" type="text" class="validate">
+                            </div>
+
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <label>Judet</label>
+                                <input placeholder="Judet"  name="state" value="{{acc_form2.body}}" type="text" class="validate">
+                            </div>
+
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <label>Adresa</label>
+                                <input placeholder="Adresa" name="adress" value="{{acc_form2.body}}" type="text" class="validate">
+                            </div>
+
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <label>Numar de telefon</label>
+                                <input placeholder="Numar de telefon" name="phonenumber" value="{{acc_form2.body}}" type="text" class="validate">
+                            </div>
+
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                 <label style="font-size: 16px;">Atestat de producator</label>
+                                 {{ acc_form2.file1|add_class:"form-control " }}
+                                    {% if form.image1.errors %}
+                                        <div class="alert alert-danger fade in" id="input-alert">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                            <strong>Warning!</strong>
+                                            {% for error in form.image1.errors %}
+                                                    {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
+                                <label style="font-size: 16px;">Carnet de comercializare</label>
+                                 {{ acc_form2.file2|add_class:"form-control " }}
+                                    {% if form.image1.errors %}
+                                        <div class="alert alert-danger fade in" id="input-alert">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                            <strong>Warning!</strong>
+                                            {% for error in form.image1.errors %}
+                                                    {{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                            </div>
+                            <div>
+                                <button class="but" type="submit">Continua ➜</button>
+                            </div>
+                            <br>
+                            {% if form.errors %}
+                              <div class="alert alert-danger alert-dismissible" role="alert">
+                                 <b>Atentie! Va rugam reintroduceti:</b>
+                                 {% for message in form.errors %}
+                                         {{ message }}
+                                {% endfor %}
+                                  {% for message in acc_form.errors %}
+                                         {{ message }}
+                                {% endfor %}
+                              </div>
+                            {% endif %}
+                        </div>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-
-
-
-
-
-
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-          $('.carousel').carousel(
-          {
-            dist: 0,
-            padding: 0,
-            fullWidth: true,
-            indicators: true,
-            duration: 100,
-          }
-          );
-        });
-</script>
 </body>
 </html>
