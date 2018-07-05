@@ -15,20 +15,29 @@
       <link rel="shortcut icon" href="{% static "images/brand.png" %}" />
 
     <style>
-  body{
+@media only screen and (max-width: 600px) {
+    body {
         height: 100% !important;
     }
 
     body {
-    {#  -webkit-background-size: cover;#}
-      {#-moz-background-size: cover;#}
-      {#-o-background-size: cover;#}
-      {#background-size: cover;#}
-      {#  height: 240%;#}
-        background-size: auto 100%;
+    {#  -webkit-background-size: cover;#}{#-moz-background-size: cover;#}{#-o-background-size: cover;#}{#background-size: cover;#}{#  height: 240%;#} background-size: auto 100%;
         background: url('/static/images/imagine_fundal.png') no-repeat fixed left top;
     }
+}
 
+@media only screen and (min-width: 601px) {
+    body, html {
+        height: 100%;
+        margin: 0;
+        background-image: url("/static/images/imagine_fundal.png");
+        /* Full height */
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
     </style>
 </head>
 <body>
@@ -51,7 +60,6 @@
                                     <label for="first_name"><b>Nume utilizator</b></label>
                                     <input placeholder="Nume utilizator" name="username" value="{{form.body}}" type="text" class="validate">
                                 </div>
-
                                 <div class="input-field col m10 offset-m1">
                                     <label for="password"><b>Parola</b></label>
                                     <input placeholder="Parola" name="password" value="{{form.body}}" type="password" class="validate">
@@ -60,11 +68,8 @@
                                     <input type="checkbox" id="remember">
                                     <label for="remember">Retine-ma</label>
                                 </div>
-
                                 <div class="col m5 offset-m4" style="margin-top: 30px;">
                                     <button class="butt" type="submit" style="margin-left: 10px;">Continua ➜</button>
-
-
                                     <p align="center" style="color: #B4B4B4;"><b>Ti-ai uitat parola?</b></p>
                                 </div>
                                 <br>

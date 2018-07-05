@@ -17,27 +17,37 @@
 
 
     <style>
-    body{
+@media only screen and (max-width: 600px) {
+    body {
         height: 100% !important;
     }
 
     body {
-    {#  -webkit-background-size: cover;#}
-      {#-moz-background-size: cover;#}
-      {#-o-background-size: cover;#}
-      {#background-size: cover;#}
-      {#  height: 240%;#}
-        background-size: auto 100%;
+    {#  -webkit-background-size: cover;#}{#-moz-background-size: cover;#}{#-o-background-size: cover;#}{#background-size: cover;#}{#  height: 240%;#} background-size: auto 100%;
         background: url('/static/images/register-cump.png') no-repeat fixed left top;
     }
+}
+
+@media only screen and (min-width: 601px) {
+    body, html {
+        height: 100%;
+        margin: 0;
+        background-image: url("/static/images/register-cump.png");
+        /* Full height */
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
     </style>
 </head>
 <body>
             <div class="container">
                 <div class="row">
                     <div class="col m12">
-                        <div class="col m8 offset-m1">
-                            <div class="rectangle-b">
+                        <div class="col m8 offset-m2" style="m">
+                            <div class="rectangle-b" style="margin-left: -20px;">
                                 <div class="col m12">
                                 <p class="important">Inregistrare</p>
 
