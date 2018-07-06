@@ -57,16 +57,16 @@
         <div class="container">
         <!-- Brand Logo -->
         <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
-        <!-- Button enables when screen size is small -->
+        <!-- Button enables when screen size is mdall -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Will get collapsed -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="form-inline my-2 my-lg-0">
-                <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
-                <input class="form-control mr-sm-2" type="search" placeholder="Cauta orice" aria-label="Search">
-                <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+                <!-- <button class="btn my-2 my-md-0" type="submit"><img src="Oval-8.png"></button> -->
+                <input class="form-control mr-md-2" type="search" placeholder="Cauta orice" aria-label="Search">
+                <button class="btn my-2 my-md-0" type="submit">Cauta</button>
             </form>
             <ul class="navbar-nav mr-auto">
 
@@ -114,7 +114,7 @@
     </nav>
 
     <div class="container content">
-        <div class="col-sm-12">
+        <div class="col-md-12">
             <h1>Creeaza un anunt</h1>
 
         <div class="path-44"></div>
@@ -125,7 +125,7 @@
             <div class="container">
                 {% if messages %}
                     <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
+                        <div class="col-md-6 col-md-offset-3">
                             {% for message in messages %}
                                 <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
                             {% endfor %}
@@ -136,11 +136,11 @@
 
            <form  method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-                <div class="col-sm-6" style="margin-left: -15px;">
+                <div class="col-md-6" style="margin-left: -15px;">
                         <label for="titlu-field">Titlul anuntului:</label>
                         <input name="name" value="{{form.body}}" type="text" placeholder="Titlu. Ex: Mere de gradina" id="titlu-field" class="form-control"/>
                          {% if form.name.errors %}
-                         <div class="alert alert-danger alert-dismissible" role="alert">
+                         <div class="alert alert-danger alert-dimdissible" role="alert">
                             <strong>Warning!</strong>
                             {% for errors in form.name.errors %}
                                     {{ errors }}
@@ -151,24 +151,24 @@
 
                 <hr>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-md-2">
                                     <label>Legume sau fructe:</label>
                             </div>
-                            <div class="col-sm-2" style="margin-left: -10px;">
+                            <div class="col-md-2" >
                                     {{ form.lfcategory|add_class:"form-control "|attr:"required:required"}}
                             </div>
-                            <div class="col-sm-2" style="margin-left: 15px;">
+                            <div class="col-md-2">
                                     <label>Anotimp produs:</label>
                             </div>
-                            <div class="col-sm-2" style="margin-left: -25px;">
+                            <div class="col-md-2">
                             {{ form.categorie|add_class:"form-control "|attr:"required:required"}}
                             </div>
-                            <div class="col-sm-2" style="margin-left: 10px;">
+                            <div class="col-md-2">
                                     <label>Produsul vandut:</label>
                             </div>
-                            <div class="col-sm-2" style="margin-left: -50px;">
+                            <div class="col-md-2" >
                             {{ form.legfruccategory|add_class:"form-control "|attr:"required:required"}}
                             </div>
                         </div>
@@ -178,21 +178,21 @@
 
 
                <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-md-2">
                                 <label>Kg / Buc:</label>
                             </div>
-                            <div class="col-sm-2" style="margin-left: -10px;">
+                            <div class="col-md-2" >
                                 {{ form.category|add_class:"form-control "|attr:"required:required"}}
                             </div>
-                            <div class="col-sm-2" style="margin-left: 15px;">
+                            <div class="col-md-2" >
                                 <label>Cantitate:</label>
                             </div>
-                            <div class="col-sm-2" style="margin-left: -25px;">
+                            <div class="col-md-2" >
                                 <input name="cantity" value="{{form.body}}" type="text" placeholder="Ex: 10" id="titlu-field" class="form-control"/>
                                 {% if form.cantity.errors %}
-                                     <div class="alert alert-danger alert-dismissible" role="alert">
+                                     <div class="alert alert-danger alert-dimdissible" role="alert">
                                         <strong>Warning!</strong>
                                         {% for errors in form.cantity.errors %}
                                                 {{ errors }}
@@ -200,13 +200,13 @@
                                      </div>
                                  {% endif %}
                             </div>
-                            <div class="col-sm-2" style="margin-left: 10px;">
+                            <div class="col-md-2">
                                     <label>Pret:</label>
                             </div>
-                            <div class="col-sm-2" style="margin-left: -50px;">
+                            <div class="col-md-2">
                                 <input name="price" value="{{form.body}}" type="text" placeholder="Ex: 2" id="titlu-field" class="form-control"/>
                                 {% if form.price.errors %}
-                                     <div class="alert alert-danger alert-dismissible" role="alert">
+                                     <div class="alert alert-danger alert-dimdissible" role="alert">
                                         <strong>Warning!</strong>
                                         {% for errors in form.price.errors %}
                                                 {{ errors }}
@@ -226,7 +226,7 @@
                     <input name="details" value="{{form.body}}" type="text" placeholder="O scurta descriere despre produs" id="titlu-field" class="form-control" />
 
                      {% if form.details.errors %}
-                     <div class="alert alert-danger alert-dismissible" role="alert">
+                     <div class="alert alert-danger alert-dimdissible" role="alert">
 
                         <strong>Warning!</strong>
                         {% for errors in form.details.errors %}
@@ -244,7 +244,7 @@
                          {{ form.image1|add_class:"form-control " }}
                             {% if form.image1.errors %}
                                 <div class="alert alert-danger fade in" id="input-alert">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <a href="#" class="close" data-dimdiss="alert" aria-label="close">&times;</a>
                                     <strong>Warning!</strong>
                                     {% for error in form.image1.errors %}
                                             {{ error }}
@@ -257,7 +257,7 @@
                          {{ form.image2|add_class:"form-control " }}
                             {% if form.image2.errors %}
                                 <div class="alert alert-danger fade in" id="input-alert">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <a href="#" class="close" data-dimdiss="alert" aria-label="close">&times;</a>
                                     <strong>Warning!</strong>
                                     {% for error in form.image2.errors %}
                                             {{ error }}
@@ -270,7 +270,7 @@
                          {{ form.image3|add_class:"form-control " }}
                             {% if form.image3.errors %}
                                 <div class="alert alert-danger fade in" id="input-alert">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <a href="#" class="close" data-dimdiss="alert" aria-label="close">&times;</a>
                                     <strong>Warning!</strong>
                                     {% for error in form.image3.errors %}
                                             {{ error }}
@@ -283,7 +283,7 @@
                          {{ form.image4|add_class:"form-control " }}
                             {% if form.image4.errors %}
                                 <div class="alert alert-danger fade in" id="input-alert">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <a href="#" class="close" data-dimdiss="alert" aria-label="close">&times;</a>
                                     <strong>Warning!</strong>
                                     {% for error in form.image4.errors %}
                                             {{ error }}

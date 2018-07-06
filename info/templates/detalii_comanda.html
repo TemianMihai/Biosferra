@@ -34,6 +34,14 @@
         font-size: 24px;
         font-weight: 500;
     }
+
+    .path-44 {
+        box-sizing: border-box;
+        height: 1px;
+        width: 170px;
+        border: 1px solid #1CC661;
+    }
+
     </style>
 </head>
 <body>
@@ -101,133 +109,155 @@
     </nav>
     <br> <br>
 
-    <h1 align="center">Creeaza-ti profilul</h1>
     <div class="container">
-        <form method="POST" enctype="multipart/form-data">
-            {%csrf_token%}
-            <label>Descirere</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+        <div class="col-md-12">
+            <form method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 align="left">Adresa de facturare</h2>
+                        <div class="path-44"></div>
+                        <br>
+                        <label>Nume</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
-                  {{ form.nume|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
-            <br>
-            <label>Leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                          {{ form.nume|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
-                  {{ form.prenume|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
-            <br>
-            <label>leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        <br>
 
-                  {{ form.email|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                        <label>Prenume</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
-            <br>
-            <label>Leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                          {{ form.prenume|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
-                  {{ form.nrdetelefon|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                        <br>
 
-            <br>
+                        <label>Email</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
-            <label>Leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                          {{ form.email|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
-                  {{ form.adresa|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                        <br>
+                        <label>Nr. de telefon</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
+                          {{ form.nrdetelefon|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
-            <br>
-            <label>Leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        <br>
 
-                  {{ form.localitate|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                        <label>Adresa</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
+                          {{ form.adresa|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
-            <label>leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        <br>
 
-                  {{ form.judet|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                        <label>Leguma/fruct</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
+                          {{ form.localitate|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
-            <label>leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        <br>
 
-                  {{ form.codpostal|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                        <label>Judet</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
+                          {{ form.judet|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
-            <label>leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        <br>
 
-                  {{ form.nume2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                        <label>Cod postal</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
+                          {{ form.codpostal|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
-                        <label>leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 align="left">Adresa de livrare</h2>
+                        <div class="path-44"></div>
+                        <br>
+                        <label>Nume</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
-                  {{ form.prenume2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                          {{ form.nume2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
+                        <br>
 
-                        <label>leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        <label>Prenume</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
-                  {{ form.adresa2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                          {{ form.prenume2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
+                        <br>
 
-                        <label>leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        <label>Adresa</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
-                  {{ form.judet2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                          {{ form.adresa2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
+                        <br>
 
-                        <label>leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        <label>Judet</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
-                  {{ form.localitate2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                          {{ form.judet2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
+                        <br>
 
-                        <label>leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        <label>Localitate</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
-                  {{ form.codpostal2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                          {{ form.localitate2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
+                        <br>
 
-                        <label>leguma/fruct</label>
-                <div class="input-group">
-                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        <label>Cod postal</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
-                  {{ form.comentarii|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                </div>
+                          {{ form.codpostal2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
 
+                        <br>
 
-            <br>
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+                        <label>Comentarii</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                          {{ form.comentarii|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                    </div>
+            </form>
+        </div>
     </div>
 
     <br>
