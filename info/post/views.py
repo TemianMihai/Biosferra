@@ -6,7 +6,7 @@ from .models import PostModel, Comment, CosulMeu, AdresaDeFacturare
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
-
+from user_profile.models import Profile
 
 
 @login_required(login_url='/login')
@@ -28,6 +28,7 @@ def create_post(request):
 def get_post(request, slug):
     post = get_object_or_404(PostModel,slug=slug)
     comm_parent = Comment.objects.filter(is_parent=True).filter(post=post)
+    profiles = Profile.objects.all().get(userul=post.author)
     form2 = CreateCosForm(request.POST)
     if request.method == "POST" and 'btnform1' in request.POST:
         form = CommentForm(request.POST)
@@ -64,6 +65,7 @@ def get_post(request, slug):
     return render(request, 'Post-page.html', {
         'posts':post ,
         'user':request.user,
+        'profiles':profiles,
         'comm_parent':comm_parent,
         'form2': form2
     })
