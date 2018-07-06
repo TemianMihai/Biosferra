@@ -3,13 +3,13 @@ from django.core.validators import validate_email
 from .models import PostModel, Comment, CosulMeu, AdresaDeFacturare, Comanda
 from category.models import Category
 from categorie.models import Categorie
-from lfcat.models import Lfcategory
+from lfcat.models import Lfcategory,Legfruccategory
 from django.shortcuts import get_object_or_404
 
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = PostModel
-        fields = ['name', 'cantity', 'price', 'details', 'image1', 'image2','image3','image4','category','categorie','lfcategory']
+        fields = ['name', 'cantity', 'price', 'details', 'image1', 'image2', 'image3', 'image4', 'category', 'categorie', 'lfcategory', 'legfruccategory']
         widgets = {
             'image1': forms.FileInput({'required': 'required', 'placeholder': "Image1"}),
             'image2': forms.FileInput({'required': 'required', 'placeholder': "Image2"}),
@@ -70,6 +70,12 @@ class CreatePostForm(forms.ModelForm):
         lfcategory = get_object_or_404(Lfcategory,
         name=self.cleaned_data['lfcategory'])
         return lfcategory
+
+    def clean_legfruccategory(self):
+        legfruccategory = get_object_or_404(Legfruccategory,
+        name=self.cleaned_data['legfruccategory'])
+        return legfruccategory
+
 
     def clean_cantity(self):
         cantity = self.cleaned_data['cantity']

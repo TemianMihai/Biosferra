@@ -102,10 +102,9 @@
                     <div class="col-sm-4">
                         <div class="hold">
                             <ul class="items">
-                                <li>Toamna</li>
-                                <li>Vara</li>
-                                <li>Primavara</li>
-                                <li>Toate</li>
+                                {% for categorie in categorie %}
+                                    <li>{{ categorie.name }}</li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -125,10 +124,9 @@
                     <div class="col-sm-4">
                         <div class="hold">
                             <ul class="items">
-                                <li>Toamna</li>
-                                <li>Vara</li>
-                                <li>Primavara</li>
-                                <li>Toate</li>
+                                {% for categorie in categorie %}
+                                    <li>{{ categorie.name }}</li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -193,58 +191,16 @@
                     </div>
                     <br> <br>
 
-                    <!-- Fructe -->
-                    <div class="side-menu">
-                        <p class="head">Fructe</p>
-                        <form>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">Ananas</label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">Lamaie</label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">Mar</label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">Lime</label>
-                          </div>
-                        <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">Portocale</label>
-                        </div>
-                        </form>
-                    </div>
-                    <br> <br>
-
                     <!-- Legume -->
                     <div class="side-menu">
-                        <p class="head">Legume</p>
+                        <p class="head">Produse</p>
                         <form>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">Morcovi</label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">Dovleci</label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">Cartofi</label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">Rosii</label>
-                          </div>
-                        <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews">Pastarnac</label>
-                        </div>
+                            {% for legfruc in legfruc %}
+                              <div>
+                                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                                <label for="subscribeNews">{{ legfruc.name }}</label>
+                              </div>
+                            {% endfor %}
                         </form>
                     </div>
 

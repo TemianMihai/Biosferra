@@ -7,7 +7,8 @@ from django.conf import settings
 from django.utils import timezone
 from category.models import Category
 from categorie.models import Categorie
-from lfcat.models import Lfcategory
+from lfcat.models import Lfcategory, Legfruccategory
+
 
 
 # Create your models here.
@@ -33,6 +34,7 @@ class PostModel(models.Model):
     categorie = models.ForeignKey(Categorie, null=True)
     category = models.ForeignKey(Category, null=True)
     lfcategory = models.ForeignKey(Lfcategory, null=True)
+    legfruccategory = models.ForeignKey(Legfruccategory, null=True)
     approved = models.BooleanField(default=False)
 
     def get_delete_url(self):
