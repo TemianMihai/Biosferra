@@ -16,6 +16,24 @@
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="{% static "images/brand.png" %}" />
+
+    <style>
+        .path-11 {
+            box-sizing: border-box;
+            width: auto;
+            border: 1px solid #E5E5E5;
+        }
+
+        .tabel {
+            height: 130px;
+            width: auto;
+            border: 1px solid #E5E5E5;
+            border-radius: 3px;
+        }
+    </style>
+
+
+
     </head>
 <body>
     <div class="navbar-box">
@@ -23,7 +41,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
         <!-- Brand Logo -->
-        <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
+        <a class="navbar-brand" href="/" style="margin-left: 20px;"><img src="{% static "images/brand.png" %}"></a>
         <!-- Button enables when screen size is small -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -91,74 +109,81 @@
     </nav>
     </div>
     <div class="break-line"></div>
+    <br> <br>
 
-    <div class="container content">
-        <div class="row">
-            <div class="col-5 thumbnail">
-                <img src="{{  posts.image1.url }}" class="img-fluid" alt="Responsive image">
-                <img src="{{  posts.image2.url }}" class="img-fluid" alt="Responsive image" style=" width: 20%;margin-top: 2%;position: absolute;">
-                <img src="{{  posts.image3.url }}" class="img-fluid" alt="Responsive image" style="    margin-left: 23%; width: 20%;position: absolute;margin-top: 10px;">
-                <img src="{{  posts.image4.url }}" class="img-fluid" alt="Responsive image" style="margin-left: 46%;width: 20%;position: absolute;margin-top: 2%;">
-            </div>
-            <div class="col-6 info">
-                <h1 style="color: #1CC661">{{ posts.name }}</h1>
-                  {% if posts.author == user %}
-      <a href='{{posts.get_delete_url}}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete post</a>
-  {% endif %}
-                <table style="width: 100%">
-                    <tr>
-                        <th></th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                    </tr>
-                    <tr> <td>
-                        <div class="profile">
-                            <div class="upper-side">
-                                <div class="profile-image"></div>
-                                <a href="/view-profile/{{ posts.author.account2.slug }}"><p style="color:#1CC661;"><b>{{ posts.author }}</b></p></a>
-                                <div class="rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    &nbsp;&nbsp;&nbsp;3
-                                </div>
-                                <div class="break"></div>
-                            </div>
-                            <div class="lower-side">
-                                <div>
-                                    <img src="">
-                                    <p>{{ posts.author.account2.city }}, Jud. {{ posts.author.account2.state }}</p>
-                                </div>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-3"><br>
+                            <img src="{{  posts.image2.url }}" class="img-fluid" alt="Responsive image" style="margin-bottom: 10px;">
+                            <img src="{{  posts.image3.url }}" class="img-fluid" alt="Responsive image" style="margin-bottom: 10px;">
+                            <img src="{{  posts.image4.url }}" class="img-fluid" alt="Responsive image" style="margin-bottom: 10px;">
+                        </div>
+                        <div class="col-md-8"><br>
+                            <img src="{{  posts.image1.url }}" class="img-fluid" alt="Responsive image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5" style="margin-left: -25px;">
+                    <h2 style="color:#4B4B4B;">{{ posts.name }}</h2>
+                    <div class="path-11"></div>
+                        <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="tabel">
 
                             </div>
                         </div>
-                    </td>
-                    <td>
-                        <div class="cumpara">
-                            <h2>Cantitate: {{ posts.cantity }} {{ posts.category }}</h2>
-                            <h2>Pret: {{ posts.price }} lei</h2>
-                            {% if posts.author != user %}
-                                <form  method="POST" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <input type="submit" value="{{ form2.body }}" class="btn btn-primary active" name="btnform2">
-                                </form>
-                                <a href='{{posts.get_comanda_url}}'><button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span>Comanda</button></a>
-                            {% endif %}
+                        <div class="col-md-6">
+                            <div class="cumpara">
+                                <h4><b>Cantitate: </b></h4><h4> {{ posts.cantity }} {{ posts.category }}</h4>
+                                <h4><b>Pret:</b> {{ posts.price }} lei</h4>
+
+                                {% if posts.author == user %}
+                                    <a href='{{posts.get_delete_url}}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete post</a>
+                                {% endif %}
+                                {% if posts.author != user %}
+                                    <form  method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <input type="submit" class="btn btn-primary active" name="btnform2">
+                                    </form>
+                                    <a href='{{posts.get_comanda_url}}'><button class="btn btn-xs btn-danger" type="submit"><span class="glyphicon glyphicon-send"></span>Comanda produs</button></a>
+                                {% endif %}
+                            </div>
                         </div>
-                    </td>
-                    </tr>
-                </table>
+                    </div>
+                </div>
+                <div class="row descriere">
+                    <div class="col-sm-12"><h2>Descriere:</h2></div>
+                    <br><br>
+                    <p>{{ posts.details }}</p>
+                </div>
+                <hr>
             </div>
         </div>
-        <hr>
-        <br>
-        <div class="row descriere" style="margin-top: 5%;">
-            <div class="col-sm-12"><h2>Descriere:</h2></div>
-            <br><br>
-            <p>{{ posts.details }}</p>
-        </div>
-    <hr>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   <div class="container">
@@ -213,7 +238,7 @@
                         </li>
                     {% endfor %}
                 </ul>
-<br>
+                <br>
                 <form action="." method='post'>
                     {% csrf_token %}
                     <div class="col-lg-9">

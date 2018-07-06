@@ -9,7 +9,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required
+@login_required(login_url='/login')
 def profile_detail(request):
     current_user = request.user
     user_form = Edit_profile(data=request.POST or None, instance=current_user, user=current_user)
@@ -27,7 +27,7 @@ def profile_detail(request):
         'account_form': account_form
     })
 
-@login_required()
+@login_required(login_url='/login')
 def create_profile(request):
     current_user = request.user
     form = CreateProfileForm(request.POST or None, request.FILES or None, user=current_user.account2)
@@ -67,13 +67,15 @@ def profile(request, slug):
     form2 = CreateReportForm(request.POST or None)
     form3 = CreateFavoritForm(request.POST or None)
     if request.method == 'POST':
-        if form.is_valid() and 'btnform1' in request.POST:
+        if form.is_valid() and 'btnform1' in request.POST and request.user.is_authenticated:
             mesaj = form.instance
             mesaj.autor = current_user
             mesaj.destinatar = user2.user
             form.save()
             messages.success(request, 'Mesajul dumneavoastra a fost trimis')
-        if form2.is_valid() and 'btnform2' in request.POST:
+        else:
+            return redirect('/login')
+        if form2.is_valid() and 'btnform2' in request.POST and request.user.is_authenticated :
             report = form2.instance
             report.autor = current_user
             report.destinatar = user2.user
@@ -84,7 +86,9 @@ def profile(request, slug):
             from_email = settings.EMAIL_HOST_USER
             to_list = [settings.EMAIL_HOST_USER]
             send_mail(subject, message, from_email, to_list, fail_silently=True)
-        if form3.is_valid() and 'btnform3' in request.POST:
+        else:
+            return redirect('/login')
+        if form3.is_valid() and 'btnform3' in request.POST  and request.user.is_authenticated:
             favoriit = Favorit.objects.all().filter(ales=user2.user, alegator=current_user)
             if len(favoriit) > 0:
                 favoriit.delete()
@@ -95,6 +99,8 @@ def profile(request, slug):
                 favorit.ales = user2.user
                 form3.save()
                 messages.success(request, 'Acest user a fost adaugat la Favorit')
+        else:
+            return redirect('/login')
     query = request.GET.get("q")
     if query:
         anunturi = anunturi.filter(name__contains=query)
@@ -108,7 +114,7 @@ def profile(request, slug):
         'user2': user2
     })
 
-@login_required
+@login_required(login_url='/login')
 def favoriti(request):
     current_user = request.user
     favoriti = Favorit.objects.all().filter(alegator = current_user)
@@ -119,7 +125,7 @@ def favoriti(request):
         'posturi':posturi
     })
 
-@login_required
+@login_required(login_url='/login')
 def mesaje(request):
     current_user = request.user
     mesaje = Mesaje.objects.all().filter(destinatar = current_user)
@@ -128,7 +134,7 @@ def mesaje(request):
         'mesaje':mesaje
     })
 
-@login_required
+@login_required(login_url='/login')
 def mesaje_trimise(request):
     current_user = request.user
     mesaje = Mesaje.objects.all().filter(autor = current_user)

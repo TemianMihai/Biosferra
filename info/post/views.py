@@ -31,7 +31,7 @@ def get_post(request, slug):
     form2 = CreateCosForm(request.POST)
     if request.method == "POST" and 'btnform1' in request.POST:
         form = CommentForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and request.user.is_authenticated:
             comment = form.save(commit=False)
             parent_obj = None
             try:
@@ -49,14 +49,18 @@ def get_post(request, slug):
             comment.user = request.user
             comment.parent = parent_obj
             comment.save()
+        else:
+            return redirect('/login')
     if request.method == "POST" and 'btnform2' in request.POST:
-        if form2.is_valid():
+        if form2.is_valid() and request.user.is_authenticated:
             cos = form2.instance
             cos.anunturi = post
             cos.cumparator = request.user
             cos.vanzator = post.author
             form2.save()
             messages.success(request, 'Produsul a fost adaugat in cos')
+        else:
+            return redirect('/login')
     return render(request, 'Post-page.html', {
         'posts':post ,
         'user':request.user,
@@ -65,13 +69,13 @@ def get_post(request, slug):
     })
 
 
-@login_required
+@login_required(login_url='/login')
 def delete_post(request, slug):
     PostModel.objects.filter(slug=slug).delete()
     return redirect('/')
 
 
-@login_required
+@login_required(login_url='/login')
 def produsele(request):
     current_user = request.user
     cosul = CosulMeu.objects.all().filter(cumparator = current_user)
@@ -81,26 +85,28 @@ def produsele(request):
     })
 
 
-@login_required
+@login_required(login_url='/login')
 def get_comanda(request,slug):
     current_user = request.user
     comanda = PostModel.objects.get(slug=slug)
     form = CreateComandaForm(request.POST)
     if request.method == 'POST':
-        if form.is_valid():
+        if form.is_valid() and request.user.is_authenticated:
             comanda1 = form.instance
             comanda1.creator = current_user
             comanda1.posesor = comanda.author
             comanda1.postcomanda = comanda
             form.save()
             return redirect(comanda.get_finalizare_url())
+        else:
+            return redirect('/login')
     return render(request, 'detalii_comanda.html', {
         'user':current_user,
         'form':form
     })
 
 
-@login_required
+@login_required(login_url='/login')
 def comanda(request):
     current_user = request.user
     comenzi = AdresaDeFacturare.objects.all().filter(posesor = current_user)
@@ -112,13 +118,13 @@ def comanda(request):
     })
 
 
-@login_required
+@login_required(login_url='/login')
 def delete_comanda(request, slug):
     AdresaDeFacturare.objects.filter(slug=slug).delete()
     return redirect('/comenzile-mele')
 
 
-@login_required
+@login_required(login_url='/login')
 def get_finalizare(request, slug):
     current_user = request.user
     comanda = PostModel.objects.get(slug=slug)
