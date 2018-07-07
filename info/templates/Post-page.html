@@ -24,6 +24,13 @@
             border: 1px solid #E5E5E5;
         }
 
+        .path-42 {
+        box-sizing: border-box;
+        height: 1px;
+        width: 100px;
+        border: 1px solid #1CC661;
+        }
+
         .tabel {
             height: 130px;
             width: auto;
@@ -172,6 +179,8 @@
             <div class="row ">
                 <div class="col-md-5">
                     <h2>Descriere:</h2>
+                    <div class="path-42"></div>
+                    <br>
                     <p>{{ posts.details }}</p>
                 </div>
                 <div class="col-md-4 offset-md-3">
@@ -186,77 +195,67 @@
         </div>
         <hr>
 
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="blog-comment">
+                        <h2>Comentarii:</h2>
+                        <div class="path-42"></div>
+                        <br>
+                        {% for comment in comm_parent %}
+                            <ul class="comments">
+                                <li class="clearfix">
+                                    <img src="https://bootdey.com/img/Content/user_1.jpg" class="avatar" alt="">
+                                    <div class="post-comments">
+                                        <p class="meta">Dec 18, 2014 <a href="/view-profile/{{ comment.user.account2.slug }}">{{ comment.user }}</a> spune:</p>
+                                        <p>
+                                            {{ comment.body }}
+                                        </p>
+                                    </div>
+                                    {% for reply in comment.children %}
+                                        <ul class="comments">
+                                          <li class="clearfix">
+                                              <img src="https://bootdey.com/img/Content/user_3.jpg" class="avatar" alt="">
+                                              <div class="post-comments">
+                                                  <p class="meta">Dec 20, 2014 <a href="/view-profile/{{ reply.user.account2.slug }}">{{ reply.user }}</a> spune:</p>
+                                                  <p>
+                                                      {{ reply.body }}
+                                                  </p>
+                                              </div>
+                                          </li>
+                                        </ul>
+                                    {% endfor %}
 
-        <div class="row">
-        <!-- Contenedor Principal -->
-            <div class="comments-container">
-                <h1>Comentarii:</h1>
-                <ul id="comments-list" class="comments-list">
-                    {% for comment in comm_parent %}
-                        <li>
-                            <div class="comment-main-level">
-                                <!-- Avatar -->
-                                <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-                                <!-- Contenedor del Comentario -->
-                                <div class="comment-box">
-                                    <div class="comment-head">
-                                        <h6 class="comment-name by-author"><a href="/view-profile/{{ comment.user.account2.slug }}">{{ comment.user }}</a></h6>
-                                    </div>
-                                    <div class="comment-content">
-                                        {{ comment.body }}
-                                    </div>
-                                </div>
-                            </div>
-                            {% for reply in comment.children %}
-                            <!-- Respuestas de los comentarios -->
-                            <ul class="comments-list reply-list">
-                                <li>
-                                    <!-- Avatar -->
-                                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-                                    <!-- Contenedor del Comentario -->
-                                    <div class="comment-box">
-                                        <div class="comment-head">
-                                            <h6 class="comment-name"><a href="/view-profile/{{ reply.user.account2.slug }}">{{ reply.user }}</a></h6>
+                                    <form action="." method='post'>
+                                        {% csrf_token %}
+                                        <div class="col-md-6" style="margin-left: 85px;">
+                                            <p><b>Raspundeti la comentariu:</b></p>
+                                          <input type='hidden' name='parent_id' value={{comment.id}}>
+                                          <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Raspunsul dumneavoastra" />
+                                          <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1" style="border-radius: 1px;width: 55%;background-color: #1CC661; border-color: #1CC661;"><span class="glyphicon glyphicon-send"></span> Raspundeti</button>
                                         </div>
-                                        <div class="comment-content">
-                                        {{ reply.body }}
-                                        </div>
-                                    </div>
+                                    </form>
                                 </li>
                             </ul>
-                            {% endfor %}
-
-                            <form action="." method='post'>
-                                {% csrf_token %}
-                                <div class="col-lg-5">
-                                <input type='hidden' name='parent_id' value={{comment.id}}>
-                                <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Raspunsul dumneavoastra" />
-                                    <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1"><span class="glyphicon glyphicon-send"></span> Raspundeti</button>
-                                </div>
-                            </form>
-
-                        </li>
-                    {% endfor %}
-                </ul>
-                <br>
-                <form action="." method='post'>
-                    {% csrf_token %}
-                    <div class="col-lg-9">
-                        <label class="col-sm-6 control-label"><h5>Postati un comentariu</h5> </label>
-
+                        {% endfor %}
+                    </div>
+                    <br>
+                    <form action="." method='post'>
+                        {% csrf_token %}
+                        <div class="col-md-9">
+                            <label class=" control-label"><h4>Postati un comentariu:</h4> </label>
                             <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Comentariul dumneavoastra"/>
                             <div class="form-group">
-                                <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1"><span class="glyphicon glyphicon-send"></span>Comentati</button>
+                                <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1" style="border-radius: 1px;width: 50%;background-color: #1CC661; border-color: #1CC661;"><span class="glyphicon glyphicon-send"></span>Comentati</button>
                             </div>
-
-                    </div>
-                </form>
-
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-  </div>
+    </div>
 
- <br>
+    <br>
 
     <footer class="footer">
             <div class="row">
