@@ -133,11 +133,6 @@
                             <div> <img src=""> <p>{{ user2.city }}, Jud. {{ user2.state }}</p> </div>
                         </div>
                         <hr>
-                        <div class="lower-side" style="display: inline-flex;">
-                            <div> <img src=""> <p>In concediu</p>
-                                <input type="checkbox" name="">
-                            </div>
-                        </div>
                     </div>
 
                     <div class="side-menu">
@@ -172,8 +167,6 @@
                         <p style="font-size: 18px;"><b>Descriere</b></p>
                         <p>{{ p.descriere }}</p>
                         <div class="break"></div> <br>
-                        <p style="font-size: 18px;">Alte conturi</p>
-                        <p style="color: #6FC564; font-size: 18px;"><i class="fa fa-facebook-official"></i>&nbsp;&nbsp;&nbsp;{{ profile.link }}</p>
                     </div>
                 </div>
                 <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
@@ -225,26 +218,29 @@
                             </form>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="card-deck">
-                            {% for post in anunturi %}
-                                {% if user2.user == post.author %}
-                                    <div class="card" style="width: 18rem;">
-                                        <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h5>
-                                            <hr>
-                                            <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
-                                            <hr>
-                                            <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
-                                            <hr>
-                                            <p class="card-text"><b>Desciere: </b>{{ post.details|truncatechars:50 }}</p>
+
+                        <div class="row">
+                            <div class="card-deck">
+                                {% for post in anunturi %}
+                                    {% if user2.user == post.author %}
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h5>
+                                                    <hr>
+                                                    <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
+                                                    <hr>
+                                                    <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
+                                                    <hr>
+                                                    <p class="card-text"><b>Desciere: </b>{{ post.details|truncatechars:50 }}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

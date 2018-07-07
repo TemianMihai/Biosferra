@@ -68,7 +68,7 @@ thumbnail img {
 /* Navbar CSS Classes */
 .navbar-box {     
     background-color: #FFFFFF;  
-    /* box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); */
+     box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);
     align-items: center;
 }
 

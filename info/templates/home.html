@@ -19,6 +19,16 @@
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="{% static "images/brand.png" %}" />
+    <style>
+
+        .path-19 {
+            box-sizing: border-box;
+            height: 1px;
+            width: 270.27px;
+            border: 1px solid #1CC661;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -139,36 +149,47 @@
                 </div>
             </div>
         </div>
+
+
         <br> <br>
+
+
         <div class="container anunturi">
-            <h1>Anunturi la reducere</h1>
-            <div class="card-deck">
-                {% for post in post %}
-                    {% if post.approved == True %}
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h5>
-                                <hr>
-                                <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
-                                <hr>
-                                <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
-                                <hr>
-                                <p class="card-text"><b>Desciere: </b>{{ post.details|truncatechars:50 }}</p>
+            <div class="col-md-12">
+                <h1>Anunturi la reducere</h1>
+                <div class="path-19"></div>
+                <br>
+                <div class="row">
+                    {% for post in post %}
+                        {% if post.approved == True %}
+                            <div class="col-md-4">
+                                <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 35px;">
+                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h6 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h6>
+                                        <hr>
+                                        <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
+                                        <hr>
+                                        <h6><b>Pret: <a style="color:#1CC661; ">{{ post.price }} lei / {{post.category }}</a></b></h6>
+                                        <p class="card-text">{{ post.details|truncatechars:50 }}</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <br> <br>
 
         <div class="container producator">
             <h1>Cumpara dupa utilizator</h1>
+            <div class="path-19"></div>
+            <br>
             <div class="row">
-                <div class="col-3">
+                <div class="col-md-2">
                     <!-- Sorteaza dupa -->
-                    <div class="side-menu">
+                    <div class="side-menu" style="margin-left: -95px; margin-right: 30px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p class="head">Sorteaza dupa</p>
                         <form>
                           <div>
@@ -192,7 +213,7 @@
                     <br> <br>
 
                     <!-- Legume -->
-                    <div class="side-menu">
+                    <div class="side-menu" style="margin-left: -95px; margin-right: 30px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p class="head">Produse</p>
                         <form>
                             {% for legfruc in legfruc %}
@@ -207,7 +228,7 @@
                     <br> <br>
 
                     <!-- Gramaj -->
-                    <div class="side-menu">
+                    <div class="side-menu" style="margin-left: -95px; margin-right: 30px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p class="head">Gramaj</p>
                         <form>
                           <div>
@@ -231,7 +252,7 @@
                     <br> <br>
 
                     <!-- Pret -->
-                    <div class="side-menu">
+                    <div class="side-menu" style="margin-left: -95px; margin-right: 30px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p class="head">Pret</p>
                         <form>
                           <div>
@@ -254,33 +275,32 @@
                     </div>
                     <br> <br>
                 </div>
-                <div class="col-9">
+                <div class="col-md-10">
                     {% for users in users %}
                         {% if users.account2.slug %}
-                            <!-- Carduri pentru clienti -->
                             <h1><a href="/view-profile/{{ users.account2.slug }}">{{ users.username }}&nbsp;</a></h1>
-
-                                <div class="card-deck">
-                                    {% for post in post %}
-                                        {% if users == post.author %}
-                                            {% if post.approved == True %}
-                                                <div class="card" style="width: 18rem;">
+                            <div class="row">
+                                {% for post in post %}
+                                    {% if users == post.author %}
+                                        {% if post.approved == True%}
+                                            <div class="col-md-4">
+                                                <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 35px;">
                                                     <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
                                                     <div class="card-body">
-                                                        <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h5>
+                                                        <h6 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h6>
                                                         <hr>
                                                         <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                                         <hr>
-                                                        <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
-                                                        <hr>
-                                                        <p class="card-text"><b>Desciere: </b>{{ post.details|truncatechars:50 }}</p>
+                                                        <h6><b>Pret: <a style="color:#1CC661; ">{{ post.price }} lei / {{post.category }}</a></b></h6>
+                                                        <p class="card-text">{{ post.details|truncatechars:50 }}</p>
                                                     </div>
                                                 </div>
-                                            {% endif %}
+                                            </div>
                                         {% endif %}
-                                    {% endfor %}
-                                </div>
-                            <br> <br>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <br>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -288,45 +308,39 @@
         <br>
     </div>
 
-        <div style="text-align: center;">
-            <div id="vezi-mai-mult">
-                <p>Vezi mai mult</p>
-            </div>
-        </div>
     </div>
 
-    <br>
 
     <footer class="footer">
-            <div class="row">
-                <div class="col-4">
-                    <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
-                </div>
-                <div class="col-2">
-                    <a href="/" style="color: #fff"><p>Acasa</p></a>
-                </div>
+        <div class="row">
+            <div class="col-4">
+                <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
+            </div>
+            <div class="col-2">
+                <a href="/" style="color: #fff"><p>Acasa</p></a>
+            </div>
+            {% if current_user.account2.slug %}
+            <div class="col-2">
+                <a href="/view-profile/{{ current_user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
+            </div>
+            <div class="col-2">
+                <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
+            </div>
+            {% endif %}
+            <div class="col-2">
                 {% if current_user.account2.slug %}
-                <div class="col-2">
-                    <a href="/view-profile/{{ current_user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
-                </div>
-                <div class="col-2">
-                    <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
-                </div>
+               <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
+                {% else %}
+                <p><a href="/register-vanzator" style="color: #fff">Devino vanzator</p></a>
                 {% endif %}
-                <div class="col-2">
-                    {% if current_user.account2.slug %}
-                   <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
-                    {% else %}
-                    <p><a href="/register-vanzator" style="color: #fff">Devino vanzator</p></a>
-                    {% endif %}
-                </div>
             </div>
-            <hr class="hr">
-            <div class="row">
-                <div class="col-12">
-                    <p>@All rights reserverd</p>
-                </div>
+        </div>
+        <hr class="hr">
+        <div class="row">
+            <div class="col-12">
+                <p>@All rights reserverd</p>
             </div>
+        </div>
     </footer>
 </body>
 </html>
