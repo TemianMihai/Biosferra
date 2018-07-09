@@ -164,7 +164,7 @@
                         {% if post.approved == True %}
                             <div class="col-md-4">
                                 <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 35px;">
-                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
+                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap" style="max-height: 175px;min-height: 175px;">
                                     <div class="card-body">
                                         <h6 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h6>
                                         <hr>
@@ -285,7 +285,7 @@
                                         {% if post.approved == True%}
                                             <div class="col-md-4">
                                                 <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 35px;">
-                                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
+                                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap" style="max-height: 175px;min-height: 175px;">
                                                     <div class="card-body">
                                                         <h6 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h6>
                                                         <hr>

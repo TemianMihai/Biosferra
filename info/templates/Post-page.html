@@ -41,6 +41,8 @@
         a {
             color:#1CC661;
         }
+        .mySlides {display:none}
+        .demo {cursor:pointer}
     </style>
 
 
@@ -128,13 +130,16 @@
                 <div class="col-md-7">
                     <div class="row">
                         <div class="col-md-3"><br>
-                            <img src="{{  posts.image1.url }}" class="img-fluid" alt="Responsive image" style="margin-bottom: 10px;">
-                            <img src="{{  posts.image2.url }}" class="img-fluid" alt="Responsive image" style="margin-bottom: 10px;">
-                            <img src="{{  posts.image3.url }}" class="img-fluid" alt="Responsive image" style="margin-bottom: 10px;">
-                            <img src="{{  posts.image4.url }}" class="img-fluid" alt="Responsive image" style="margin-bottom: 10px;">
+                            <img src="{{  posts.image1.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(1)">
+                            <img src="{{  posts.image2.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(2)">
+                            <img src="{{  posts.image3.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(3)">
+                            <img src="{{  posts.image4.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(4)">
                         </div>
                         <div class="col-md-8"><br>
-                            <img src="{{  posts.image1.url }}" class="img-fluid" alt="Responsive image">
+                            <img src="{{  posts.image1.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
+                            <img src="{{  posts.image2.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
+                            <img src="{{  posts.image3.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
+                            <img src="{{  posts.image4.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
                         </div>
                     </div>
                 </div>
@@ -175,6 +180,7 @@
                 </div>
             </div>
         </div>
+        <hr>
         <div class="col-md-12">
             <div class="row ">
                 <div class="col-md-5">
@@ -186,9 +192,9 @@
                 <div class="col-md-4 offset-md-3">
                     <div class="row">
                         <img src="{% static "images/fast-delivery.png" %}"><h5 style="margin-left: 15px; color: #00C853"><b>Livrare in 24 de ore</b></h5>
-                        <h6 style="color: #B4B4B4;">ssadasdadasdsadasdasdasdsad</h6><br>
-                        <h6 style="color: #B4B4B4;">ssadasdadasdsadasdasdasdsad</h6><br>
-                        <h6 style="color: #B4B4B4;">ssadasdadasdsadasdasdasdsad</h6>
+                        <h6 style="color: #B4B4B4;margin-bottom: 0;">ssadasdadasdsadasdasdasdsad</h6><br>
+                        <h6 style="color: #B4B4B4;margin-bottom: 0;">ssadasdadasdsadasdasdasdsad</h6><br>
+                        <h6 style="color: #B4B4B4;margin-bottom: 0;">ssadasdadasdsadasdasdasdsad</h6>
                     </div>
                 </div>
             </div>
@@ -289,5 +295,33 @@
             </div>
     </footer>
 
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+  }
+  x[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " w3-opacity-off";
+}
+</script>
 </body>
 </html>
