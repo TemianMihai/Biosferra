@@ -145,11 +145,11 @@
                         <br>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="tabel">
+                            <div class="tabel" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                                 <img src="{{  profiles.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%; width: 50%; margin-left: 25%; margin-top: 5%;">
                                 <a href="/view-profile/{{posts.author.account2.slug}}"><h6 align="center"><b>{{ posts.author }}</b></h6></a>
                                 <hr style="margin-bottom: 5px;">
-                                <h6 align="center">{{ posts.author.account2.city }}, {{ posts.author.account2.state }}</h6>
+                                <h6 align="center" style="color:#4B4B4B;">{{ posts.author.account2.city }}, Jud {{ posts.author.account2.state }}</h6>
                             </div>
                             {% if posts.author != user %}
                                 <a href='{{posts.get_comanda_url}}'><button class="btn btn-success" type="submit" style="border-radius: 2px; margin-top: 5px;"><span class="glyphicon glyphicon-send"></span>Comanda produs</button></a>
@@ -178,10 +178,10 @@
         <div class="col-md-12">
             <div class="row ">
                 <div class="col-md-5">
-                    <h2>Descriere:</h2>
+                    <h2 style="color:#4B4B4B;">Descriere:</h2>
                     <div class="path-42"></div>
                     <br>
-                    <p>{{ posts.details }}</p>
+                    <p style="color:#4B4B4B;">{{ posts.details }}</p>
                 </div>
                 <div class="col-md-4 offset-md-3">
                     <div class="row">
