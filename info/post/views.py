@@ -111,12 +111,12 @@ def get_comanda(request,slug):
 @login_required(login_url='/login')
 def comanda(request):
     current_user = request.user
-    comenzi = AdresaDeFacturare.objects.all().filter(posesor = current_user)
     comenzi2 = AdresaDeFacturare.objects.all().filter(creator = current_user)
+    profil = Profile.objects.all()
     return render(request, 'comenzi.html',{
         'user':current_user,
         'comenzi2':comenzi2,
-        'comenzi':comenzi
+        'profil':profil
     })
 
 
