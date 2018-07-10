@@ -1,0 +1,196 @@
+/* Responsive CSS */
+@media only screen and (max-width: 435px) {
+    .sub-title {
+        padding-top: 1rem;
+        color: #4B4B4B;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .sub-title-price {
+        color: #1CC661;
+        font-size: 20px;    
+        font-weight: bold;
+    }
+
+    .sub-title-break {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 435px) {
+    .sub-title {
+        color: #4B4B4B;
+        font-size: 28px;
+        font-weight: bold;
+        float: left;
+    }
+
+    .sub-title-price {
+        color: #1CC661;
+        font-size: 28px;    
+        font-weight: bold;
+        float: right;
+    }
+}
+
+/* Sort of footer CSS */
+.footer .col-lg-4 {
+    text-align: center;
+    padding: 2rem 3rem 2rem 3rem;
+}
+
+.footer h4 {
+    color: #4B4B4B;
+    font-size: 24px;    
+    font-weight: bold;
+}
+
+.footer p {
+    color: #6C6C6C;
+    font-size: 16px;    
+}
+
+.footer {
+    background-color: #F7F7F7;
+}
+
+/* Section CSS */
+#cosul-meu {
+    color: #4B4B4B;
+    font-size: 34px;
+    font-weight: bold;
+    margin: 1rem 4rem 1rem 0;
+    padding: 1rem 1rem 0.5rem 0;
+
+    border-bottom: 2px solid #1CC661;
+
+    max-width: 20rem;
+    min-width: 10rem;
+    height: auto;
+}
+
+.producator-name {
+    display: inline-flex;  
+}
+
+.producator-name h6 {
+    margin-top: 0.6rem;
+    padding-left: 0.55rem;
+
+    color: #4B4B4B;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.producator-name p {
+    color: #1CC661;
+    font-size: 18px;
+
+    padding: 0.6rem;
+    margin-left: 5rem;
+}
+
+.producator-name p:hover {
+    cursor: pointer;
+}
+
+/*****************************************/
+/* Navbar CSS Classes */
+.navbar-box {     
+    background-color: #FFFFFF;  
+    /* box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); */
+    align-items: center;
+}
+
+.navbar {
+    padding: 10px;
+    color: #FFFFFF;
+}
+
+.navbar .nav-item {
+    padding: 0 50px 0 0;
+}
+
+.navbar li img {
+    padding-top: 7px;
+    padding-left: 50px;
+}
+
+.navbar .btn {
+    height: 100%;
+
+    color: white;
+    background-color: #1CC661;
+}
+
+.dropdown-item:hover {
+    background-color: #1CC661;
+}
+
+.pseudo-nav .row .col-sm{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.break-line {
+    box-sizing: border-box;
+    height: 2px;
+    width: 100%;
+    border: 1px solid #E5E5E5;
+}
+
+.tab-button {
+    height: 45px;
+    text-align: center;
+    padding: 8px;
+    border-left: 1px solid #E5E5E5;
+}
+
+.tab-button-active {
+    color: #6FC564;
+    border-bottom: 5px solid #6FC564
+}
+
+.tab-button-bot {
+    box-sizing: border-box;
+    height: 1px;
+    width: 100%;
+    border: 4px solid #6FC564;
+}
+
+.tab-button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Dots CSS */
+.dot {
+    height: 0.7rem;
+    width: 0.7rem;
+
+    border-radius: 50%;
+    border: 2px solid #B8B8B8;
+    display: inline-block;
+}
+
+.dot-filled {
+    height: 0.7rem;
+    width: 0.7rem;
+
+    background-color: #1CC661;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Global CSS */
+.container-flex {
+    margin-top: 5rem;
+}
+
+.btn-bio {
+    color: white;
+    background-color: #1CC661;
+
+    padding: auto 1rem auto 1rem;
+}
