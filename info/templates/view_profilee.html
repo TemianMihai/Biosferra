@@ -131,7 +131,7 @@
                         </div>
                         <div class="lower-side">
                             <div> <img src=""> <p style="color: #6C6C6C;">{{ user2.city }}, Jud. {{ user2.state }}</p> </div>
-                            <hr>
+                            <hr style="margin-right: 25px;">
                             <div><p style="color: #6C6C6C;">{{ user2.user.email }}</p></div>
                             <br>
                         </div>
@@ -189,16 +189,24 @@
                         </div>
                         <br>
                         {% if user != user2.user %}
-                            <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-primary " style="border-radius: 2px; background-color: #E53046;">&nbsp Raporteaza!</button>
-                            <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaj privat</button>
-                            <form  method="POST" enctype="multipart/form-data">
-                               {% csrf_token %}
-                                        <input type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3">
-                           </form>
+                            <div class="col-md-12" style="margin-left: -15px;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-success btn-circle" style="border-radius: 1px; background-color: #E53046; border-color: #E53046">&nbsp Raporteaza!</button>
+                                    </div>
+                                    <div class="col-md-3 offset-md-5">
+                                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaj privat</button>
+                                    </div>
+                                    <form  method="POST" enctype="multipart/form-data" class="col-md-2">
+                                       {% csrf_token %}
+                                        <button type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3" style="border-radius: 1px;background-color: #E53046;border-color: #E53046;"><span><img src="{% static "images/read hearth.png" %}"></span>
+                                    </form>
+                                </div>
+                            </div>
                         {% endif %}
                             <br>
                         {% if user == user2.user %}
-                            <div style="width: 92%;border: 1px solid #B4B4B4;border-radius: 0px;">
+                            <div style="width: 92%;border: 1px solid #B4B4B4;border-radius: 0;">
                                 <button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 34%" >Mesaje</button>
                                 <button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 33%;margin-left: -4px" >Comenzi primite</button>
                                 <button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 33%;margin-left: -5px;" >Comenzi plasate</button>
@@ -333,6 +341,5 @@
                     </div>
                 </div>
         </footer>
-
 </body>
 </html>
