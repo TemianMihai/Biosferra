@@ -195,7 +195,7 @@
                                         <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-success btn-circle" style="border-radius: 1px; background-color: #E53046; border-color: #E53046">&nbsp Raporteaza!</button>
                                     </div>
                                     <div class="col-md-3 offset-md-5">
-                                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaj privat</button>
+                                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button>
                                     </div>
                                     <form  method="POST" enctype="multipart/form-data" class="col-md-2">
                                        {% csrf_token %}
@@ -242,8 +242,7 @@
                                                 <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                                 <hr>
                                                 <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
-                                                <hr>
-                                                <p class="card-text"><b>Desciere: </b>{{ post.details|truncatechars:40 }}</p>
+                                                <p class="card-text" style="color: #6C6C6C">{{ post.details|truncatechars:40 }}</p>
                                             </div>
                                         </div>
                                     </div>
