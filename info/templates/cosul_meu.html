@@ -23,6 +23,16 @@
                     .dropdown-item:hover{
             color:#fff;
         }
+                        .path-44 {
+                box-sizing: border-box;
+                height: 1px;
+                width: 170px;
+                border: 1px solid #1CC661;
+            }
+
+            a:hover{
+            color:#1CC661;
+            }
         </style>
     </head>
 <body>
@@ -97,9 +107,75 @@
             </div>
         </nav>
     </div>
-{% for cos in cosul %}
-    <p>{{cos.anunturi.name}}</p>
-    <a href="/post/{{cos.anunturi.slug}}" class="btn btn-default">Vezi produs</a>
-{% endfor %}
+
+ <div class="container">
+        <br><br>
+        <div class="col-md-12">
+            <h2>Cosul meu</h2>
+            <div class="path-44"></div>
+            <br><hr>
+        </div>
+        {% if cosul %}
+            {% for cosul in cosul %}
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="{{  cosul.anunturi.image1.url }}" class="img-fluid" alt="Responsive image" style="min-height: 180px;max-height: 180px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h4><a href="/post/{{cosul.anunturi.slug}}"><b>{{ cosul.anunturi.name }}</b></a></h4>
+                                                </div>
+                                                <div class="col-md-3 offset-md-3">
+                                                    <h3 style="color: #1CC661;">{{ cosul.anunturi.price }} lei / {{ cosul.anunturi.category }}</h3>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <p style="color: #6C6C6C;">{{ cosul.anunturi.details|truncatechars:100 }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="row">
+                                                            {% for profil in profil %}
+                                                                {% if cosul.anunturi.author == profil.userul %}
+                                                                    <img src="{{  profil.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;min-height: 40px;max-height: 40px;">
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                            <a href="/view-profile/{{cosul.anunturi.author.account2.slug}}"><h6 style="margin-left: 10px; margin-top: 10px;color: #4B4B4B;">{{ cosul.anunturi.author }}</h6></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 offset-md-5">
+                                                        <h5 style="margin-left: 10px; margin-top: 10px;color: #4B4B4B;">Cantitate: {{ cosul.anunturi.cantity }} {{ cosul.anunturi.category }}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <a href='{{cosul.anunturi.get_delete_url}}'><button class="btn btn-success btn-circle text-uppercase" type="submit" style="border-radius: 1px;width: 55%;background-color: #1CC661; border-color: #1CC661;"><span class="glyphicon glyphicon-send"></span> Comanda</button></a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <br>
+            {% endfor %}
+
+            {% else %}
+                <h1>Nu exista nici un produs in cos </h1>
+        {% endif %}
+    </div>
 </body>
 </html>
