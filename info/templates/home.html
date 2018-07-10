@@ -28,6 +28,19 @@
             border: 1px solid #1CC661;
         }
 
+        .hold > ul > li:hover{
+            background-color:#1cc661;
+            color:#fff;
+        }
+
+        .dropdown-item{
+            color:#6C6C6C;
+        }
+
+        .dropdown-item:hover{
+            color:#fff;
+        }
+
     </style>
 </head>
 <body>
@@ -113,7 +126,7 @@
                         <div class="hold">
                             <ul class="items" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                                 {% for categorie in categorie %}
-                                    <li>{{ categorie.name }}</li>
+                                    <li><a>{{ categorie.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
