@@ -108,6 +108,16 @@ class CreateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['produs1', 'produs2', 'produs3', 'produs4', 'produs5', 'descriere', 'image1', 'image2',]
+        widgets = {
+            'produs1' : forms.TextInput({'required':'required','placeholder':'Produs1'}),
+            'produs2': forms.TextInput({'required':'required','placeholder':'Produs2'}),
+            'produs3': forms.TextInput({'required': 'required', 'placeholder': 'Produs3'}),
+            'produs4': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
+            'produs5': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
+            'descriere': forms.TextInput({'required': 'required', 'placeholder': 'Descriere'}),
+            'image1': forms.FileInput({'required': 'required', 'placeholder': 'Country'}),
+            'image2': forms.FileInput({'required': 'required', 'placeholder': 'Country'})
+        }
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -149,6 +159,50 @@ class CreateProfileForm(forms.ModelForm):
             raise forms.ValidationError("You can't upload 2 images"
                                         "that are the same")
         return image2
+
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['produs1', 'produs2', 'produs3', 'produs4', 'produs5', 'descriere']
+        widgets = {
+            'produs1' : forms.TextInput({'required':'required','placeholder':'Produs1'}),
+            'produs2': forms.TextInput({'required':'required','placeholder':'Produs2'}),
+            'produs3': forms.TextInput({'required': 'required', 'placeholder': 'Produs3'}),
+            'produs4': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
+            'produs5': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
+            'descriere': forms.TextInput({'required': 'required', 'placeholder': 'Descriere'}),
+
+        }
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(EditProfileForm, self).__init__(*args, **kwargs)
+
+    def clean_produs1(self):
+        produs1 = self.cleaned_data['produs1']
+        return produs1
+
+    def clean_produs2(self):
+        produs2 = self.cleaned_data['produs2']
+        return produs2
+
+    def clean_produs3(self):
+        produs3 = self.cleaned_data['produs3']
+        return produs3
+
+    def clean_produs4(self):
+        produs4 = self.cleaned_data['produs4']
+        return produs4
+
+    def clean_produs5(self):
+        produs5 = self.cleaned_data['produs5']
+        return produs5
+
+    def clean_descriere(self):
+        descriere = self.cleaned_data['descriere']
+        return descriere
+
 
 class CreateMesajeForm(forms.ModelForm):
     class Meta:

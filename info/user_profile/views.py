@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import Edit_profile, Edit_profile2, CreateMesajeForm, CreateReportForm, CreateFavoritForm, CreateProfileForm
+from .forms import Edit_profile, Edit_profile2, EditProfileForm, CreateMesajeForm, CreateReportForm, CreateFavoritForm, CreateProfileForm
 from authentication.models import Account2
 from post.models import PostModel
 from .models import Favorit, Profile, Mesaje
@@ -14,15 +14,18 @@ def profile_detail(request):
     current_user = request.user
     user_form = Edit_profile(data=request.POST or None, instance=current_user, user=current_user)
     account_form = Edit_profile2(data=request.POST or None, instance=current_user.account2)
+    profile_form = EditProfileForm(data=request.POST or None, instance=current_user.profile)
     post = PostModel.objects.filter(author=current_user)
     if request.method == 'POST':
-        if user_form.is_valid() and account_form.is_valid():
+        if user_form.is_valid() and account_form.is_valid() and profile_form.is_valid() and 'btnform4' in request.POST:
             user_form.save()
             account_form.save()
+            profile_form.save()
             messages.success(request, 'Profilul dumneavoastra a fost actualizat')
     return render(request, 'edit_profile.html', {
         'form': user_form,
         'user': current_user,
+        'profile_form':profile_form,
         'posts': post,
         'account_form': account_form
     })

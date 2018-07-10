@@ -103,6 +103,15 @@
 
     <h1 align="center">Editeaza-ti profilul</h1>
     <div class="container">
+        {% if messages %}
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    {% for message in messages %}
+                        <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
         <form method="POST" enctype="multipart/form-data">
             {%csrf_token%}
             <label>Username</label>
@@ -165,9 +174,47 @@
 
                   {{ form.email|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
                 </div>
+            <br>
+            <label>Descriere</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+
+                  {{ profile_form.descriere|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+            <br>
+            <label>Produsele din gradina</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+
+                  {{ profile_form.produs1|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+
+                  {{ profile_form.produs2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+
+                  {{ profile_form.produs3|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+
+                  {{ profile_form.produs4|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+
+                  {{ profile_form.produs5|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
 
             <br>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success" name="btnform4">Submit</button>
         </form>
     </div>
 

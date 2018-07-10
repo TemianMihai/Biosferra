@@ -34,8 +34,7 @@ class Favorit(models.Model):
     slug = models.SlugField(default=uuid.uuid1, unique=True)
 
 class Profile(models.Model):
-    userul = models.ForeignKey(to = User, related_name='profile',
-                               null=True, blank = True)
+    userul = models.OneToOneField(User, primary_key=True)
     produs1 = models.CharField(max_length=30)
     produs2 = models.CharField(max_length=30)
     produs3 = models.CharField(max_length=30)
