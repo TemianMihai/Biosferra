@@ -137,7 +137,7 @@ def favoriti(request):
 @login_required(login_url='/login')
 def mesaje(request):
     current_user = request.user
-    mesaje = Mesaje.objects.all().filter(destinatar = current_user)
+    mesaje = Mesaje.objects.all().filter(destinatar = current_user.account.user)
     return render(request, 'mesaje.html', {
         'user':current_user,
         'mesaje':mesaje
@@ -146,7 +146,7 @@ def mesaje(request):
 @login_required(login_url='/login')
 def mesaje_trimise(request):
     current_user = request.user
-    mesaje = Mesaje.objects.all().filter(autor = current_user)
+    mesaje = Mesaje.objects.all().filter(autor = current_user.account.user)
     return render(request, 'mesaje_trimise.html', {
         'user':current_user,
         'mesaje':mesaje
