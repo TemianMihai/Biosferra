@@ -1,9 +1,9 @@
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
 from .forms import Edit_profile, Edit_profile2, EditProfileForm, CreateMesajeForm, CreateReportForm, CreateFavoritForm, CreateProfileForm
 from authentication.models import Account2
-from post.models import PostModel
+from post.models import PostModel, AdresaDeFacturare
 from .models import Favorit, Profile, Mesaje
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
@@ -64,7 +64,7 @@ def create_profile(request):
 def profile(request, slug):
     current_user = request.user
     anunturi = PostModel.objects.all()
-    user2 = Account2.objects.get(slug=slug)
+    user2 = get_object_or_404(Account2,slug=slug)
     profiles = Profile.objects.all().filter(userul=user2.user)
     form = CreateMesajeForm(request.POST or None)
     form2 = CreateReportForm(request.POST or None)
@@ -151,3 +151,34 @@ def mesaje_trimise(request):
         'user':current_user,
         'mesaje':mesaje
     })
+
+@login_required(login_url='/login')
+def get_mesajep(request, slug):
+    current_user = request.user
+    anunturi = PostModel.objects.all()
+    user2 = get_object_or_404(Account2,slug=slug)
+    profiles = Profile.objects.all().filter(userul=user2.user)
+    mesaje = Mesaje.objects.all().filter(destinatar=current_user)
+    return render(request,'view-profilee-mesaje.html', {
+        'user': current_user,
+        'anunturi': anunturi,
+        'profiles': profiles,
+        'user2': user2,
+        'mesaje':mesaje
+    })
+
+@login_required(login_url='/login')
+def get_mesajet(request, slug):
+    current_user = request.user
+    anunturi = PostModel.objects.all()
+    user2 = get_object_or_404(Account2,slug=slug)
+    profiles = Profile.objects.all().filter(userul=user2.user)
+    mesaje = Mesaje.objects.all().filter(autor=current_user)
+    return render(request,'view-profilee-mesaje-t.html', {
+        'user': current_user,
+        'anunturi': anunturi,
+        'profiles': profiles,
+        'user2': user2,
+        'mesaje':mesaje
+    })
+

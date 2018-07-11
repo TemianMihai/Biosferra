@@ -6,7 +6,8 @@ from .models import PostModel, Comment, CosulMeu, AdresaDeFacturare
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
-from user_profile.models import Profile
+from authentication.models import Account2
+from user_profile.models import Profile, Mesaje
 
 
 @login_required(login_url='/login')
@@ -139,4 +140,36 @@ def get_finalizare(request, slug):
         'user':current_user,
         'comanda':comanda
     })
+
+@login_required(login_url='/login')
+def get_comandap(request, slug):
+    current_user = request.user
+    anunturi = PostModel.objects.all()
+    user2 = get_object_or_404(Account2, slug=slug)
+    profiles = Profile.objects.all().filter(userul=user2.user)
+    comanda = AdresaDeFacturare.objects.all().filter(posesor=current_user)
+    return render(request, 'view-profilee-comenzi.html', {
+        'user': current_user,
+        'anunturi': anunturi,
+        'profiles': profiles,
+        'user2': user2,
+        'comanda':comanda
+    })
+
+@login_required(login_url='/login')
+def get_comandat(request, slug):
+    current_user = request.user
+    anunturi = PostModel.objects.all()
+    user2 = get_object_or_404(Account2, slug=slug)
+    profiles = Profile.objects.all().filter(userul=user2.user)
+    comanda = AdresaDeFacturare.objects.all().filter(posesor=current_user)
+    return render(request, 'view-profilee-comenzi-t.html', {
+        'user': current_user,
+        'anunturi': anunturi,
+        'profiles': profiles,
+        'user2': user2,
+        'comanda':comanda
+    })
+
+
 

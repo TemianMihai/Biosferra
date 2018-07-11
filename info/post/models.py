@@ -9,8 +9,6 @@ from category.models import Category
 from categorie.models import Categorie
 from lfcat.models import Lfcategory, Legfruccategory
 
-
-
 # Create your models here.
 def upload_location(instance, filename):
     return "%s/%s" % (instance.slug, filename)
@@ -104,4 +102,10 @@ class AdresaDeFacturare(models.Model):
     slug = models.SlugField(default=uuid.uuid1, unique=True)
 
     def get_delete_comanda_url(self):
-        return reverse("post:delete-comanda", kwargs={"slug": self.slug})
+        return reverse("comanda:delete-comanda", kwargs={"slug": self.slug})
+
+    def get_comandap_url(self):
+        return reverse("comanda:get-comandap", kwargs={"slug":self.slug})
+
+    def get_comandat_url(self):
+        return reverse("comanda:get-comandat", kwargs={"slug":self.slug})

@@ -11,4 +11,7 @@ urlpatterns = [
     url(r'^cosul-meu/$', produsele, name='produse'),
     url(r'^comenzile-mele/$', comanda, name='produse'),
     url(r'^comenzile-mele/(?P<slug>[\w-]+)/delete/$', delete_comanda, name='delete-comanda'),
+    url(r'^view-profile/(?P<slug>[^\.]+)/comenzi-primite/', get_comandap, name='get-comandap'),
+    url(r'^view-profile/(?P<slug>[^\.]+)/comenzi-trimise/', get_comandat, name='get-comandat')
+
 ]

@@ -52,9 +52,9 @@ INSTALLED_APPS = [
     'categorie',
     'category',
     'lfcat',
+    'post',
     'user_profile',
-    'authentication',
-    'post'
+    'authentication'
 ]
 
 MIDDLEWARE_CLASSES = [
