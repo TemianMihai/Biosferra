@@ -141,58 +141,58 @@
             <h2>Mesaje primite</h2>
             <div class="path-44"></div>
             <br>
-                <div class="row">
-                    <div class="hold">
-                        <div class="tabel">
-                            <ul class="items" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                                <div class="row">
-                                    <div class="col-md-6" style="padding-right:0;">
-                                        <a href="/mesaje"><li style="background-color: #1cc661; color: #fff;"><p align="center">Mesaje primite</p></li></a>
-                                    </div>
-                                    <div class="col-md-6" style="padding-left: 0;">
-                                        <a href="/mesaje-trimise"><li><p align="center">Mesaje trimise</p></li></a>
-                                    </div>
+            <div class="row">
+                <div class="hold">
+                    <div class="tabel">
+                        <ul class="items" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                            <div class="row">
+                                <div class="col-md-6" style="padding-right:0;">
+                                    <a href="/mesaje"><li style="background-color: #1cc661; color: #fff;"><p align="center">Mesaje primite</p></li></a>
                                 </div>
-                            </ul>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-2 offset-md-1">
-                                         <p style="color: #848484;"><b>Mesajul</b></p>
-                                    </div>
-                                    <div class="col-md-4 offset-md-5">
-                                        <p style="color: #848484;"><b>Nume utilizator</b></p>
-                                    </div>
+                                <div class="col-md-6" style="padding-left: 0;">
+                                    <a href="/mesaje-trimise"><li><p align="center">Mesaje trimise</p></li></a>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="container">
-                                {% if mesaje %}
-                                    {% for mesaje in mesaje %}
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <p><b>{{ mesaje.titlu }}</b></p>
-                                                <p style="color: #6C6C6C;">{{ mesaje.mesaj }}</p>
-                                            </div>
-                                            <div class="col-md-2 offset-md-3">
-                                                <div class="row">
-                                                    <span><img src="{% static "images/forward-arrow.png" %}"></span>
-                                                    <a href="/view-profile/{{mesaje.autor.account2.slug}}"><p style="color: #848484;"><b>{{ mesaje.autor }}</b></p></a>
-                                                </div>
-                                                <p style="color: #B4B4B4;">12/12/2017</p>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <a href="/view-profile/{{mesaje.autor.account2.slug}}"><button  class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
-                                            </div>
+                        </ul>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2 offset-md-1">
+                                     <p style="color: #848484;"><b>Mesajul</b></p>
+                                </div>
+                                <div class="col-md-4 offset-md-5">
+                                    <p style="color: #848484;"><b>Nume utilizator</b></p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="container">
+                            {% if mesaje %}
+                                {% for mesaje in mesaje %}
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <p><b>{{ mesaje.titlu }}</b></p>
+                                            <p style="color: #6C6C6C;">{{ mesaje.mesaj }}</p>
                                         </div>
-                                        <hr>
-                                    {% endfor %}
-                                    {% else %}
-                                    <h4 align="center">Nu ati primit nici un mesaj</h4>
-                                {% endif %}
-                            </div>
+                                        <div class="col-md-2 offset-md-3">
+                                            <div class="row">
+                                                <span><img src="{% static "images/forward-arrow.png" %}"></span>
+                                                <a href="/view-profile/{{mesaje.autor.account2.slug}}"><p style="color: #848484;"><b>{{ mesaje.autor }}</b></p></a>
+                                            </div>
+                                            <p style="color: #B4B4B4;">12/12/2017</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href="/view-profile/{{mesaje.autor.account2.slug}}"><button  class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                {% endfor %}
+                                {% else %}
+                                <h4 align="center">Nu ati primit nici un mesaj</h4>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </html>

@@ -112,7 +112,7 @@ def get_comanda(request,slug):
 @login_required(login_url='/login')
 def comanda(request):
     current_user = request.user
-    comenzi2 = AdresaDeFacturare.objects.all().filter(creator = current_user)
+    comenzi2 = AdresaDeFacturare.objects.all().filter(creator = current_user.account.user)
     profil = Profile.objects.all()
     return render(request, 'comenzi.html',{
         'user':current_user,
@@ -124,7 +124,7 @@ def comanda(request):
 @login_required(login_url='/login')
 def delete_comanda(request, slug):
     AdresaDeFacturare.objects.filter(slug=slug).delete()
-    return redirect('/comenzile-mele')
+    return redirect('/')
 
 
 @login_required(login_url='/login')
@@ -147,13 +147,13 @@ def get_comandap(request, slug):
     anunturi = PostModel.objects.all()
     user2 = get_object_or_404(Account2, slug=slug)
     profiles = Profile.objects.all().filter(userul=user2.user)
-    comanda = AdresaDeFacturare.objects.all().filter(posesor=current_user)
+    comandar = AdresaDeFacturare.objects.all().filter(posesor=current_user)
     return render(request, 'view-profilee-comenzi.html', {
         'user': current_user,
         'anunturi': anunturi,
         'profiles': profiles,
         'user2': user2,
-        'comanda':comanda
+        'comenzi2':comandar
     })
 
 @login_required(login_url='/login')
@@ -162,13 +162,13 @@ def get_comandat(request, slug):
     anunturi = PostModel.objects.all()
     user2 = get_object_or_404(Account2, slug=slug)
     profiles = Profile.objects.all().filter(userul=user2.user)
-    comanda = AdresaDeFacturare.objects.all().filter(posesor=current_user)
+    comandar = AdresaDeFacturare.objects.all().filter(creator=current_user)
     return render(request, 'view-profilee-comenzi-t.html', {
         'user': current_user,
         'anunturi': anunturi,
         'profiles': profiles,
         'user2': user2,
-        'comanda':comanda
+        'comenzi2':comandar
     })
 
 

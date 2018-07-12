@@ -7,6 +7,5 @@ urlpatterns = [
     url(r'^mesaje/$', views.mesaje, name='mesaje'),
     url(r'^mesaje-trimise/$', views.mesaje_trimise, name='mesaje-trimise'),
     url(r'^view-profile/(?P<slug>[^\.]+)/mesaje-trimise/$', views.get_mesajet, name='get-mesajt'),
-    url(r'^view-profile/(?P<slug>[^\.]+)/mesaje-primite/$', views.get_mesajep, name='get-mesajp'),
     url(r'^view-profile/(?P<slug>[^\.]+)/$', views.profile, name='profil')
 ]

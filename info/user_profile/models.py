@@ -17,9 +17,6 @@ class Mesaje(models.Model):
                                    null=True, blank=True)
     slug = models.SlugField(default=uuid.uuid1, unique=True)
 
-    def get_mesajp_url(self):
-        return reverse("mesaj:get-mesajp", kwargs={"slug":self.slug})
-
     def get_mesajt_url(self):
         return reverse("mesaj:get-mesajt", kwargs={"slug":self.slug})
 

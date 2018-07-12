@@ -101,11 +101,11 @@ class AdresaDeFacturare(models.Model):
     comentarii = models.CharField(max_length=1000, null=True)
     slug = models.SlugField(default=uuid.uuid1, unique=True)
 
-    def get_delete_comanda_url(self):
-        return reverse("comanda:delete-comanda", kwargs={"slug": self.slug})
+    def get_delete_comands_url(self):
+        return reverse("post:delete-comanda", kwargs={"slug": self.slug})
 
     def get_comandap_url(self):
-        return reverse("comanda:get-comandap", kwargs={"slug":self.slug})
+        return reverse("post:get-comandap", kwargs={"slug":self.slug})
 
     def get_comandat_url(self):
-        return reverse("comanda:get-comandat", kwargs={"slug":self.slug})
+        return reverse("post:get-comandat", kwargs={"slug":self.slug})

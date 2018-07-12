@@ -65,6 +65,7 @@ def profile(request, slug):
     current_user = request.user
     anunturi = PostModel.objects.all()
     user2 = get_object_or_404(Account2,slug=slug)
+    mesaje = Mesaje.objects.all().filter(destinatar=current_user)
     profiles = Profile.objects.all().filter(userul=user2.user)
     form = CreateMesajeForm(request.POST or None)
     form2 = CreateReportForm(request.POST or None)
@@ -116,6 +117,7 @@ def profile(request, slug):
     return render(request, 'view_profilee.html', {
         'user': current_user,
         'anunturi': anunturi,
+        'mesaje':mesaje,
         'form': form,
         'form2': form2,
         'form3': form3,
@@ -152,20 +154,6 @@ def mesaje_trimise(request):
         'mesaje':mesaje
     })
 
-@login_required(login_url='/login')
-def get_mesajep(request, slug):
-    current_user = request.user
-    anunturi = PostModel.objects.all()
-    user2 = get_object_or_404(Account2,slug=slug)
-    profiles = Profile.objects.all().filter(userul=user2.user)
-    mesaje = Mesaje.objects.all().filter(destinatar=current_user)
-    return render(request,'view-profilee-mesaje.html', {
-        'user': current_user,
-        'anunturi': anunturi,
-        'profiles': profiles,
-        'user2': user2,
-        'mesaje':mesaje
-    })
 
 @login_required(login_url='/login')
 def get_mesajet(request, slug):

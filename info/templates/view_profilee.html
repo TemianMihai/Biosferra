@@ -51,6 +51,15 @@
         color:#6C6C6C;
     }
 
+    .hold {
+        width: 100%;
+        height: 100%;
+    }
+
+    .tabel {
+        border: 1px solid #E5E5E5;
+    }
+
     </style>
 
 <body>
@@ -183,7 +192,7 @@
                 <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
                     <div class="row" id="up-side">
                         <div>
-                            <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 200px; width: 92%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                            <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 200px; width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         </div>
                         <div class="container">
                             {% if messages %}
@@ -215,15 +224,66 @@
                         {% endif %}
                             <br>
                         {% if user == user2.user %}
-                            <div style="width: 92%;border: 1px solid #B4B4B4;border-radius: 0;">
-                                <button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 34%" >Mesaje</button>
-                                <button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 33%;margin-left: -4px" >Comenzi primite</button>
-                                <button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 33%;margin-left: -5px;" >Comenzi plasate</button>
-                            </div>
                             <div class="col-md-12">
                                 <div class="row">
-                                 <div class="col-sm-6"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px;width: 99%" >Mesaje</button></div>
-                                    <div class="col-sm-6"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 93%;margin-left: -35px" >Comenzi primite</button></div>
+                                    <div class="hold">
+                                        <div class="tabel">
+                                            <div class="row">
+                                                <div class="col-md-4" style="padding-right: 0;">
+                                                    <a href="/view-profile/{{user.account2.slug}}"><button  class="btn btn-primary " style="color: #fff; background-color: #1CC661; border: 1px solid #B4B4B4;border-radius: 0px;width: 100%;" >Mesaje</button></a>
+                                                </div>
+                                                <div class="col-md-4" style="padding-right: 0;padding-left: 0;">
+                                                    <a href="/view-profile/{{user.account2.slug}}/comenzi-primite"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 100%;" >Comenzi primite</button></a>
+                                                </div>
+                                                <div class="col-md-4" style="padding-left: 0;">
+                                                    <a href="/view-profile/{{user.account2.slug}}/comenzi-trimise"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 100%;" >Comenzi plasate</button></a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6" style="padding-right: 0;"><a href="/view-profile/{{user.account2.slug}}"><button  class="btn btn-primary " style="color: #fff; background-color: #1CC661; border: 1px solid #B4B4B4;border-radius: 0px;width: 100%;" >Mesaje primite</button></a></div>
+                                                <div class="col-md-6" style="padding-left: 0;"><a href="/view-profile/{{user.account2.slug}}/mesaje-trimise"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width:100%;" >Mesaje trimise</button></a></div>
+                                            </div>
+                                            <br>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-2 offset-md-1">
+                                                         <p style="color: #848484;"><b>Mesajul</b></p>
+                                                    </div>
+                                                    <div class="col-md-4 offset-md-5">
+                                                        <p style="color: #848484;"><b>Nume utilizator</b></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="container">
+                                                <div class="col-md-12">
+                                                    {% if mesaje %}
+                                                        {% for mesaje in mesaje %}
+                                                            <div class="row">
+                                                                <div class="col-md-5">
+                                                                    <p><b>{{ mesaje.titlu }}</b></p>
+                                                                    <p style="color: #6C6C6C;">{{ mesaje.mesaj }}</p>
+                                                                </div>
+                                                                <div class="col-md-2 offset-md-3">
+                                                                    <div class="row">
+                                                                        <span><img src="{% static "images/forward-arrow.png" %}"></span>
+                                                                        <a href="/view-profile/{{mesaje.autor.account2.slug}}"><p style="color: #848484;"><b>{{ mesaje.autor }}</b></p></a>
+                                                                    </div>
+                                                                    <p style="color: #B4B4B4;">12/12/2017</p>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <a href="/view-profile/{{mesaje.autor.account2.slug}}"><button  class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                        {% endfor %}
+                                                        {% else %}
+                                                        <h4 align="center">Nu ati primit nici un mesaj</h4>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         {% endif %}
