@@ -135,23 +135,18 @@
     <div class="container content">
         <div class="col-md-12">
             <h1>Creeaza un anunt</h1>
-
-        <div class="path-44"></div>
-
+            <div class="path-44"></div>
             <hr>
             <br>
-
-            <div class="container">
-                {% if messages %}
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            {% for message in messages %}
-                                <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
-                            {% endfor %}
-                        </div>
+            {% if messages %}
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        {% for message in messages %}
+                            <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
+                        {% endfor %}
                     </div>
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
 
            <form  method="POST" enctype="multipart/form-data">
             {% csrf_token %}

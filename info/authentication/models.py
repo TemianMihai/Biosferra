@@ -14,7 +14,7 @@ class Account(models.Model):
     city = models.CharField(max_length = 20)
     adress = models.CharField(max_length= 50, null= True)
     state = models.CharField(max_length= 20, null= True)
-
+    slug = models.SlugField(unique=True, default=uuid.uuid1)
 
 class Account2(models.Model):
     user = models.OneToOneField(User, primary_key=True)

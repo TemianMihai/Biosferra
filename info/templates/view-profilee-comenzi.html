@@ -184,7 +184,6 @@
                         <div>
                             <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 200px; width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         </div>
-                        <div class="container">
                             {% if messages %}
                                 <div class="row">
                                     <div class="col-sm-6 col-sm-offset-3">
@@ -194,7 +193,6 @@
                                     </div>
                                 </div>
                             {% endif %}
-                        </div>
                         <br>
                         {% if user != user2.user %}
                             <div class="col-md-12" style="margin-left: -15px;">
@@ -270,7 +268,11 @@
                                                                                             <p style="color: #4B4B4B;"><b>Cumparator: {{ comenzi.creator }}</b></p>
                                                                                             </div>
                                                                                             <div class="col-md-6">
-                                                                                            <button  class="btn btn-primary " data-toggle="modal" data-target="#squarespaceModal3" style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button>
+                                                                                                {% if mesaje.autor.account %}
+                                                                                                    <a href="/mesaje/{{mesaje.autor.account.slug}}"><button  class="btn btn-primary"  style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
+                                                                                                    {% else %}
+                                                                                                        <a href="/view-profile/{{mesaje.autor.account2.slug}}"><button  class="btn btn-primary"  style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
+                                                                                                {% endif %}
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -406,32 +408,6 @@
                                 <input name="mesajj" value="{{form2.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
                             </div>
                             <button type="submit" class="btn btn-default" name="btnform2">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="squarespaceModal3" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="lineModalLabel"><b>Trimite un mesaj</b></h3>
-                    </div>
-                    <div class="modal-body">
-
-                       <form  method="POST" enctype="multipart/form-data">
-                           {% csrf_token %}
-                           <div class="form-group">
-                                <label for="titlu-field">Titlu:</label>
-                                <input name="titlu" value="{{form4.body}}" type="text" placeholder="Subiectul" id="titlu-field" class="form-control"/>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="titlu-field">Mesaj:</label>
-                                <input name="mesaj" value="{{form4.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
-                            </div>
-                            <button type="submit" class="btn btn-default" name="btnform4">Submit</button>
                         </form>
                     </div>
                 </div>

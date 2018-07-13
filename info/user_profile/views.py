@@ -2,7 +2,8 @@ from django.conf import settings
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
 from .forms import Edit_profile, Edit_profile2, EditProfileForm, CreateMesajeForm, CreateReportForm, CreateFavoritForm, CreateProfileForm
-from authentication.models import Account2
+from authentication.models import Account2, Account
+from django.contrib.auth.models import User
 from post.models import PostModel, AdresaDeFacturare
 from .models import Favorit, Profile, Mesaje
 from django.core.mail import send_mail
@@ -60,6 +61,24 @@ def create_profile(request):
         'user': current_user
     })
 
+def mesaj_profile(request, slug):
+    current_user = request.user
+    useru = get_object_or_404(Account,slug=slug)
+    form = CreateMesajeForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            print form.errors
+            mesaj = form.instance
+            mesaj.autor = current_user
+            mesaj.destinatar = useru.user
+            form.save()
+            messages.success(request, 'Mesajul dumneavoastra a fost trimis')
+    return render(request, "mesaj_useri.html", {
+        'useru':useru,
+        'user':current_user,
+        'form':form
+    })
+
 
 def profile(request, slug):
     current_user = request.user
@@ -70,7 +89,6 @@ def profile(request, slug):
     form = CreateMesajeForm(request.POST or None)
     form2 = CreateReportForm(request.POST or None)
     form3 = CreateFavoritForm(request.POST or None)
-    form4 = CreateMesajeForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid() and 'btnform1' in request.POST:
             if request.user.is_authenticated:
@@ -111,13 +129,6 @@ def profile(request, slug):
                     messages.success(request, 'Acest user a fost adaugat la Favorit')
             else:
                 return redirect('/login')
-
-        if form4.is_valid() and 'btnform4' in request.POST:
-            mesaj = form4.instance
-            mesaj.autor = current_user
-            mesaj.destinatar = mesaje.autor
-            form4.save()
-            messages.success(request, 'Mesajul dumneavoastra a fost trimis')
     query = request.GET.get("q")
     if query:
         anunturi = anunturi.filter(name__contains=query)
