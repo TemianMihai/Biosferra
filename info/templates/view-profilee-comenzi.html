@@ -257,7 +257,7 @@
                                                                                             <p style="color: #4B4B4B;"><b>Cantitate: {{ comenzi.postcomanda.cantity }} {{ comenzi.postcomanda.category }}</b></p>
                                                                                         </div>
                                                                                         <div class="col-md-6">
-                                                                                            {% if comezni.postcomanda.author == user %}
+                                                                                            {% if comezni.postcomanda.author == user.user %}
                                                                                                 <a href='{{comenzi.get_delete_comands_url}}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span>Incheie comanda</a>
                                                                                             {% endif %}
                                                                                         </div>

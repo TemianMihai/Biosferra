@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 from django.db import models
 import uuid
 
@@ -15,6 +16,7 @@ class Mesaje(models.Model):
     titlu = models.CharField(max_length=100, null=True)
     destinatar = models.ForeignKey(to=User, related_name='mesajee',
                                    null=True, blank=True)
+    created_date = models.DateField(default=timezone.now)
     slug = models.SlugField(default=uuid.uuid1, unique=True)
 
     def get_mesajt_url(self):

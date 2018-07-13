@@ -256,13 +256,17 @@
                                                                 <div class="col-md-2 offset-md-3">
                                                                     <div class="row">
                                                                         <span><img src="{% static "images/forward-arrow.png" %}"></span>
-                                                                        <a href="/view-profile/{{mesaje.autor.account2.slug}}"><p style="color: #848484;"><b>{{ mesaje.autor }}</b></p></a>
+                                                                         {% if mesaje.autor.account2 %}
+                                                                            <a href="/view-profile/{{mesaje.autor.account2.slug}}"><p style="color: #848484;"><b>{{ mesaje.autor }}</b></p></a>
+                                                                             {% else %}
+                                                                             <a href="/trimite-mesaje/{{mesaje.autor.account.slug}}"><p style="color: #848484;"><b>{{ mesaje.autor }}</b></p></a>
+                                                                        {% endif %}
                                                                     </div>
-                                                                    <p style="color: #B4B4B4;">12/12/2017</p>
+                                                                    <p style="color: #B4B4B4;">{{ mesaje.created_date }}</p>
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     {% if mesaje.autor.account %}
-                                                                        <a href="/mesaje/{{mesaje.autor.account.slug}}"><button  class="btn btn-primary"  style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
+                                                                        <a href="/trimite-mesaje/{{mesaje.autor.account.slug}}"><button  class="btn btn-primary"  style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
                                                                         {% else %}
                                                                             <a href="/view-profile/{{mesaje.autor.account2.slug}}"><button  class="btn btn-primary"  style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
                                                                     {% endif %}
