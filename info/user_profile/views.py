@@ -70,6 +70,7 @@ def profile(request, slug):
     form = CreateMesajeForm(request.POST or None)
     form2 = CreateReportForm(request.POST or None)
     form3 = CreateFavoritForm(request.POST or None)
+    form4 = CreateMesajeForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid() and 'btnform1' in request.POST:
             if request.user.is_authenticated:
@@ -111,6 +112,12 @@ def profile(request, slug):
             else:
                 return redirect('/login')
 
+        if form4.is_valid() and 'btnform4' in request.POST:
+            mesaj = form4.instance
+            mesaj.autor = current_user
+            mesaj.destinatar = mesaje.autor
+            form4.save()
+            messages.success(request, 'Mesajul dumneavoastra a fost trimis')
     query = request.GET.get("q")
     if query:
         anunturi = anunturi.filter(name__contains=query)
@@ -160,12 +167,21 @@ def get_mesajet(request, slug):
     current_user = request.user
     anunturi = PostModel.objects.all()
     user2 = get_object_or_404(Account2,slug=slug)
+    form4 = CreateMesajeForm(request.POST or None)
     profiles = Profile.objects.all().filter(userul=user2.user)
     mesaje = Mesaje.objects.all().filter(autor=current_user)
+    if request.method == 'POST':
+        if form4.is_valid() and 'btnform4' in request.POST:
+            mesaj = form4.instance
+            mesaj.autor = current_user
+            mesaj.destinatar = mesaje.destinatar
+            form4.save()
+            messages.success(request, 'Mesajul dumneavoastra a fost trimis')
     return render(request,'view-profilee-mesaje-t.html', {
         'user': current_user,
         'anunturi': anunturi,
         'profiles': profiles,
+        'form4':form4,
         'user2': user2,
         'mesaje':mesaje
     })

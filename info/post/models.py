@@ -53,6 +53,7 @@ class CosulMeu(models.Model):
     vanzator = models.ForeignKey(to=User, related_name='cos_vanzator',
                                  null=True, blank=True)
 
+
 class Comanda(models.Model):
     comenzi = models.ForeignKey(to = PostModel, related_name='comanda',
                                 null=True, blank=True)

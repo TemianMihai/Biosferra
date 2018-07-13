@@ -39,78 +39,79 @@
 
     </head>
 <body>
-    <div class="navbar-box">
-    <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <!-- Brand Logo -->
-                <a class="navbar-brand" href="/"><img src= "{% static "images/brand.png" %}"></a>
-                <!-- Button enables when screen size is small -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <!-- Will get collapsed -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="form-inline my-2 my-lg-0">
-                        <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
-                        <input class="form-control mr-sm-2" type="search" placeholder="Cauta orice" aria-label="Search">
-                        <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
-                    </form>
-                    <ul class="navbar-nav mr-auto">
-                        {% if user.is_authenticated %}
-                            <!-- Username dropdown -->
-                            <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ user.username }}
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <!-- Brand Logo -->
+            <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
+            <!-- Button enables when screen size is small -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Will get collapsed -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0" method="GET" action="">
+                    <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
+                    <input class="form-control mr-sm-2" name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
+                    <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+                </form>
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                        <!-- Username dropdown -->
+                        <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ user.username }}
                             </a>
-                             {% if user.account2.slug %}
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/view-profile/{{current_user.account2.slug }}">Profilul Tau</a>
-                                <a class="dropdown-item" href="/">Mesaje</a>
-                                <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
-                                <a class="dropdown-item" href="/favoriti">Favoriti</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/logout">Deconectare</a>
-                            </div>
-                                {% else %}
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Mesaje</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/logout">Deconectare</a>
-                            </div>
-                            {% endif %}
-                            </li>
-
-                            <!-- Cosul meu -->
-                            <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Cosul Meu</a>
-                            </li>
-
                             {% if user.account2.slug %}
-                            <li class="nav-item" id="creeazaPostare">
-                                <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
-                            </li>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
+                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi primite</a>
+                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-trimise">Comenzi trimise</a>
+                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Mesaje</a>
+                                    <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                    <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/logout">Deconectare</a>
+                                </div>
                                 {% else %}
-                                <li class="nav-item" id="creeazaPostare">
-                                    <a href="/register-vanzator"><button class="btn">Devino vanzator</button></a>
-                                </li>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/mesaje">Mesaje</a>
+                                        <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
+                                        <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/logout">Deconectare</a>
+                                    </div>
                             {% endif %}
+                        </li>
 
+                        <!-- Cosul meu -->
+                        <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cosul-meu">Cosul Meu</a>
+                        </li>
+
+                        {% if user.account2.slug %}
+                        <li class="nav-item" id="creeazaPostare">
+                            <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
+                        </li>
                             {% else %}
-                                <li class="nav-item" id="creeazaPostare" style="margin-left: 97%;">
-                                        <a href="/register-vanzator"><button class="btn">Devino vanzator</button></a>
-                                </li>
-                                <li class="nav-item" id="creeazaPostare">
-                                    <a href="/register-cumparator"><button class="btn">Devino cumparator</button></a>
-                                </li>
+                            <li class="nav-item" id="creeazaPostare">
+                                <a href="/register-vanzator"><button class="btn">Devino vanzator</button></a>
+                            </li>
                         {% endif %}
-                    </ul>
-                </div>
+
+                        {% else %}
+                            <li class="nav-item" id="creeazaPostare" style="margin-left: 97%;">
+                                <a href="/register-cumparator"><button class="btn">Inregistreaza-te!</button></a>
+                            </li>
+                            <li class="nav-item" id="creeazaPostare">
+                                <a href="/login"><button class="btn">Autentificare</button></a>
+                            </li>
+                    {% endif %}
+                </ul>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
 
 
     <div class="container">

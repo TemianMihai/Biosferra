@@ -23,7 +23,7 @@ def index(request):
     else:
         template = "home.html"
     return render_to_response(template, {
-        'user':request.user,
+        'user':current_user,
         'post':post,
         'users':users,
         'categorii':categorii,
@@ -31,6 +31,5 @@ def index(request):
         'lfcat':lfcat,
         'legfruc':legfruc,
         'account2':account2,
-        'current_user':current_user
     })
 

@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from authentication.models import Account2
 from user_profile.models import Profile, Mesaje
-
+from user_profile.forms import CreateMesajeForm
 
 @login_required(login_url='/login')
 def create_post(request):
@@ -22,7 +22,7 @@ def create_post(request):
             messages.success(request, 'Anuntul dumneavoastra a fost salvat. Va rugam sa asteptati cateva momente pana cand acesta va fi verificat de catre un administrator. Va multumim!')
     return render(request, "create_post.html", {
         'form': form,
-        'current_user':request.user
+        'user':request.user
     })
 
 
@@ -87,7 +87,6 @@ def produsele(request):
         'cosul':cosul
     })
 
-
 @login_required(login_url='/login')
 def get_comanda(request,slug):
     current_user = request.user
@@ -148,10 +147,18 @@ def get_comandap(request, slug):
     user2 = get_object_or_404(Account2, slug=slug)
     profiles = Profile.objects.all().filter(userul=user2.user)
     comandar = AdresaDeFacturare.objects.all().filter(posesor=current_user)
+    form4 = CreateMesajeForm(request.POST or None)
+    if request.method == 'POST':
+        if form4.is_valid() and 'btnform4' in request.POST:
+            mesaj = form4.instance
+            mesaj.autor = current_user
+            form4.save()
+            messages.success(request, 'Mesajul dumneavoastra a fost trimis')
     return render(request, 'view-profilee-comenzi.html', {
         'user': current_user,
         'anunturi': anunturi,
         'profiles': profiles,
+        'form4':form4,
         'user2': user2,
         'comenzi2':comandar
     })
