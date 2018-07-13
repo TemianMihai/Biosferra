@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<body>
 <head>
     {% load staticfiles %}
     {% load widget_tweaks %}
@@ -127,7 +127,6 @@
             </div>
         </div>
     </nav>
-</body>
 <div class="container">
     <br><br>
     <div class="col-md-12">
@@ -203,14 +202,5 @@
         <br>
     {% endfor %}
 </div>
-    {% for favoriti in favoriti %}
-        {{ favoriti.ales }}
-
-        {% for posturi in posturi %}
-            {% if posturi.author == favoriti.ales %}
-                {{ posturi.name }}
-            {% endif %}
-        {% endfor %}
-
-    {% endfor %}
+</body>
 </html>

@@ -148,6 +148,9 @@ def favoriti(request):
     current_user = request.user
     favoriti = Favorit.objects.all().filter(alegator = current_user)
     posturi = PostModel.objects.all()
+    query = request.GET.get("q")
+    if query:
+        posturi = posturi.filter(name__contains=query)
     return render(request, 'favoriti.html', {
         'user':current_user,
         'favoriti':favoriti,
@@ -188,6 +191,9 @@ def get_mesajet(request, slug):
             mesaj.destinatar = mesaje.destinatar
             form4.save()
             messages.success(request, 'Mesajul dumneavoastra a fost trimis')
+    query = request.GET.get("q")
+    if query:
+        anunturi = anunturi.filter(name__contains=query)
     return render(request,'view-profilee-mesaje-t.html', {
         'user': current_user,
         'anunturi': anunturi,

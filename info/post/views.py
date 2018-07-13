@@ -82,6 +82,9 @@ def delete_post(request, slug):
 def produsele(request):
     current_user = request.user
     cosul = CosulMeu.objects.all().filter(cumparator = current_user)
+    query = request.GET.get("q")
+    if query:
+        cosul = cosul.filter(name__contains=query)
     return render(request, 'cosul_meu.html', {
         'user':current_user,
         'cosul':cosul
@@ -113,6 +116,9 @@ def comanda(request):
     current_user = request.user
     comenzi2 = AdresaDeFacturare.objects.all().filter(creator = current_user.account.user)
     profil = Profile.objects.all()
+    query = request.GET.get("q")
+    if query:
+        comenzi2 = comenzi2.filter(name__contains=query)
     return render(request, 'comenzi.html',{
         'user':current_user,
         'comenzi2':comenzi2,
@@ -154,6 +160,9 @@ def get_comandap(request, slug):
             mesaj.autor = current_user
             form4.save()
             messages.success(request, 'Mesajul dumneavoastra a fost trimis')
+    query = request.GET.get("q")
+    if query:
+        anunturi = anunturi.filter(name__contains=query)
     return render(request, 'view-profilee-comenzi.html', {
         'user': current_user,
         'anunturi': anunturi,
@@ -170,6 +179,9 @@ def get_comandat(request, slug):
     user2 = get_object_or_404(Account2, slug=slug)
     profiles = Profile.objects.all().filter(userul=user2.user)
     comandar = AdresaDeFacturare.objects.all().filter(creator=current_user)
+    query = request.GET.get("q")
+    if query:
+        anunturi = anunturi.filter(name__contains=query)
     return render(request, 'view-profilee-comenzi-t.html', {
         'user': current_user,
         'anunturi': anunturi,
