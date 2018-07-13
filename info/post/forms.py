@@ -24,13 +24,13 @@ class CreatePostForm(forms.ModelForm):
     def clean_price(self):
         price = self.cleaned_data['price']
         if price.isdigit() == False:
-            raise forms.ValidationError("Invalid price")
+            raise forms.ValidationError("Pret invalid")
         return price
 
     def clean_name(self):
         name = self.cleaned_data['name']
         if name.isdigit():
-            raise forms.ValidationError("Name contains invalid characters")
+            raise forms.ValidationError("Numele contine caractere invalide")
         return name
 
     def clean_details(self):
@@ -52,8 +52,7 @@ class CreatePostForm(forms.ModelForm):
         if (image4 and not isinstance(image4, (int, float))):
             image_names.append(image4.name)
         if (len(image_names) - 1 == len(set(image_names))):
-            raise forms.ValidationError("You can't upload 2 images"
-                                        "that are the same")
+            raise forms.ValidationError("Imaginile trebuie sa fie diferite")
         return image4
 
     def clean_category(self):
@@ -80,7 +79,7 @@ class CreatePostForm(forms.ModelForm):
     def clean_cantity(self):
         cantity = self.cleaned_data['cantity']
         if cantity.isdigit() == False:
-            raise forms.ValidationError("Invalid cantity")
+            raise forms.ValidationError("Cantitate invalida")
         return cantity
 
 
@@ -91,7 +90,6 @@ class DeleteNewForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-
     class Meta:
         model = Comment
         fields = ['body']

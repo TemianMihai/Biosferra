@@ -112,11 +112,11 @@
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                      <label style="font-size: 16px;">Atestat de producator</label>
                                      {{ acc_form2.file1|add_class:"form-control " }}
-                                        {% if form.image1.errors %}
+                                        {% if acc_form2.file1.errors %}
                                             <div class="alert alert-danger fade in" id="input-alert">
                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                <strong>Warning!</strong>
-                                                {% for error in form.image1.errors %}
+                                                <strong>Atentie!</strong>
+                                                {% for error in acc_form2.file1.errors %}
                                                         {{ error }}
                                                 {% endfor %}
                                             </div>
@@ -126,11 +126,11 @@
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <label style="font-size: 16px;">Carnet de comercializare</label>
                                      {{ acc_form2.file2|add_class:"form-control " }}
-                                        {% if form.image1.errors %}
+                                        {% if acc_form2.file2.errors %}
                                             <div class="alert alert-danger fade in" id="input-alert">
                                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                                <strong>Warning!</strong>
-                                                {% for error in form.image1.errors %}
+                                                <strong>Atentie!</strong>
+                                                {% for error in acc_form2.file2.errors %}
                                                         {{ error }}
                                                 {% endfor %}
                                             </div>
@@ -141,15 +141,17 @@
                                 </div>
                                 <br>
                                 {% if form.errors %}
-                                  <div class="alert alert-danger alert-dismissible" role="alert">
-                                     <b>Atentie! Va rugam reintroduceti:</b>
-                                     {% for message in form.errors %}
-                                             {{ message }}
-                                    {% endfor %}
-                                      {% for message in acc_form.errors %}
-                                             {{ message }}
-                                    {% endfor %}
-                                  </div>
+                                    <div class="container">
+                                        <div class="col m12">
+                                             <b>Atentie! Va rugam reintroduceti:</b>
+                                             {% for message in form.errors %}
+                                                     {{ message }}
+                                             {% endfor %}
+                                              {% for message in acc_form2.errors %}
+                                                     {{ message }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
                                 {% endif %}
                             </div>
                         </form>

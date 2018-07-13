@@ -73,15 +73,21 @@
                                     <p align="center" style="color: #B4B4B4;"><b>Ti-ai uitat parola?</b></p>
                                 </div>
                                 <br>
-                                <div class="col s10 offset-s4">
-                                    {% if errors %}
-                                      <div class="alert alert-danger alert-dismissible" role="alert">
-                                         <strong>Warning!</strong>
-                                         {% for message in errors %}
-                                                 {{ message }}
-                                        {% endfor %}
-                                      </div>
-                                    {% endif %}
+                                <div class="container">
+                                    <div class="col m9 offset-m2">
+                                        {% if errors %}
+                                            <div class="row">
+                                                <div class="col m3">
+                                                    <b>Atentie!</b>
+                                                </div>
+                                                <div class="col m9">
+                                                     {% for message in errors %}
+                                                         {{ message }}
+                                                     {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </form>
                         </div>

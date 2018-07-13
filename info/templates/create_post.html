@@ -68,7 +68,7 @@
             </button>
             <!-- Will get collapsed -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <h2 style="color: #1CC661;margin-right: 15%;">BIOsferaa</h2>
+                <h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2>
                 <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
                         <!-- Username dropdown -->
@@ -151,7 +151,7 @@
                         <input name="name" value="{{form.body}}" type="text" placeholder="Titlu. Ex: Mere de gradina" id="titlu-field" class="form-control"/>
                          {% if form.name.errors %}
                          <div class="alert alert-danger alert-dimdissible" role="alert">
-                            <strong>Warning!</strong>
+                            <strong>Atentie!</strong>
                             {% for errors in form.name.errors %}
                                     {{ errors }}
                             {% endfor %}
@@ -203,7 +203,7 @@
                                 <input name="cantity" value="{{form.body}}" type="text" placeholder="Ex: 10" id="titlu-field" class="form-control"/>
                                 {% if form.cantity.errors %}
                                      <div class="alert alert-danger alert-dimdissible" role="alert">
-                                        <strong>Warning!</strong>
+                                        <strong>Atentie!</strong>
                                         {% for errors in form.cantity.errors %}
                                                 {{ errors }}
                                         {% endfor %}
@@ -217,7 +217,7 @@
                                 <input name="price" value="{{form.body}}" type="text" placeholder="Ex: 2" id="titlu-field" class="form-control"/>
                                 {% if form.price.errors %}
                                      <div class="alert alert-danger alert-dimdissible" role="alert">
-                                        <strong>Warning!</strong>
+                                        <strong>Atentie!</strong>
                                         {% for errors in form.price.errors %}
                                                 {{ errors }}
                                         {% endfor %}
@@ -238,7 +238,7 @@
                      {% if form.details.errors %}
                      <div class="alert alert-danger alert-dimdissible" role="alert">
 
-                        <strong>Warning!</strong>
+                        <strong>Atentie!</strong>
                         {% for errors in form.details.errors %}
                                 {{ errors }}
                         {% endfor %}
@@ -255,7 +255,7 @@
                             {% if form.image1.errors %}
                                 <div class="alert alert-danger fade in" id="input-alert">
                                     <a href="#" class="close" data-dimdiss="alert" aria-label="close">&times;</a>
-                                    <strong>Warning!</strong>
+                                    <strong>Atentie!</strong>
                                     {% for error in form.image1.errors %}
                                             {{ error }}
                                     {% endfor %}
@@ -268,7 +268,7 @@
                             {% if form.image2.errors %}
                                 <div class="alert alert-danger fade in" id="input-alert">
                                     <a href="#" class="close" data-dimdiss="alert" aria-label="close">&times;</a>
-                                    <strong>Warning!</strong>
+                                    <strong>Atentie!</strong>
                                     {% for error in form.image2.errors %}
                                             {{ error }}
                                     {% endfor %}
@@ -281,7 +281,7 @@
                             {% if form.image3.errors %}
                                 <div class="alert alert-danger fade in" id="input-alert">
                                     <a href="#" class="close" data-dimdiss="alert" aria-label="close">&times;</a>
-                                    <strong>Warning!</strong>
+                                    <strong>Atentie!</strong>
                                     {% for error in form.image3.errors %}
                                             {{ error }}
                                     {% endfor %}
@@ -294,7 +294,7 @@
                             {% if form.image4.errors %}
                                 <div class="alert alert-danger fade in" id="input-alert">
                                     <a href="#" class="close" data-dimdiss="alert" aria-label="close">&times;</a>
-                                    <strong>Warning!</strong>
+                                    <strong>Atentie!</strong>
                                     {% for error in form.image4.errors %}
                                             {{ error }}
                                     {% endfor %}

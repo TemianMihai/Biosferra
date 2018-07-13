@@ -127,15 +127,19 @@
                                 </div>
                                 <br>
                                 {% if form.errors %}
-                                  <div class="alert alert-danger alert-dismissible" role="alert">
-                                     <b>Atentie! Va rugam reintroduceti:</b>
-                                     {% for message in form.errors %}
-                                             {{ message }}
-                                    {% endfor %}
-                                      {% for message in acc_form.errors %}
-                                             {{ message }}
-                                    {% endfor %}
-                                  </div>
+                                    <div class="container">
+                                        <div class="col m12">
+                                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                                  <b>Atentie! Va rugam reintroduceti:</b>
+                                                  {% for message in form.errors %}
+                                                         {{ message }}
+                                                  {% endfor %}
+                                                  {% for message in acc_form.errors %}
+                                                         {{ message }}
+                                                  {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
                                 {% endif %}
                             </div>
                         </form>
