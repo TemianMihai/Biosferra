@@ -35,6 +35,13 @@
         font-weight: 500;
     }
 
+    .path-44 {
+            box-sizing: border-box;
+            height: 1px;
+            width: 170px;
+            border: 1px solid #1CC661;
+            }
+
     .dropdown-item{
         color:#6C6C6C;
     }
@@ -108,6 +115,81 @@
         </div>
     </nav>
 </body>
+<div class="container">
+    <br><br>
+    <div class="col-md-12">
+        <h1>Useri favoriti:</h1>
+        <div class="path-44"></div>
+        <br><hr>
+    </div>
+    {% for favoriti in favoriti %}
+        <div class="col-md-12">
+            <h1 style="color: #de6969"><b>{{ favoriti.ales }}</b></h1>
+            <div class="col-md-2"> <hr></div>
+            <br>
+        </div>
+        {% if posturi %}
+            {% for posturi in posturi %}
+                {% if posturi.author == favoriti.ales %}
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="{{  posturi.image1.url }}" class="img-fluid" alt="Responsive image" style="min-height: 145px;max-height: 145px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h4><a href="/post/{{posturi.slug}}"><b>{{ posturi.name }}</b></a></h4>
+                                                    </div>
+                                                    <div class="col-md-3 offset-md-3">
+                                                        <h3 style="color: #1CC661;">{{ posturi.price }} lei / {{ posturi.category }}</h3>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <p style="color: #6C6C6C;">{{ posturi.details|truncatechars:100 }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="row">
+                                                                {% for profil in profil %}
+                                                                    {% if posturi.author == profil.userul %}
+                                                                        <img src="{{  profil.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;min-height: 40px;max-height: 40px;">
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                                <a href="/view-profile/{{posturi.author.account2.slug}}"><h6 style="margin-left: 10px; margin-top: 10px;color: #4B4B4B;">{{ posturi.author }}</h6></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 offset-md-5">
+                                                            <h5 style="margin-left: 10px; margin-top: 10px;color: #4B4B4B;">Cantitate: {{ posturi.cantity }} {{ posturi.category }}</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <br>
+                {% endif %}
+            {% endfor %}
+            {% else %}
+                <h1 align="center">Nu exista nici user favorit </h1>
+        {% endif %}
+        <br>
+    {% endfor %}
+</div>
     {% for favoriti in favoriti %}
         {{ favoriti.ales }}
 
