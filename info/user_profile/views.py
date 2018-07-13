@@ -65,7 +65,7 @@ def profile(request, slug):
     current_user = request.user
     anunturi = PostModel.objects.all()
     user2 = get_object_or_404(Account2,slug=slug)
-    mesaje = Mesaje.objects.all().filter(destinatar=current_user)
+    mesaje = Mesaje.objects.all().filter(destinatar=user2.user)
     profiles = Profile.objects.all().filter(userul=user2.user)
     form = CreateMesajeForm(request.POST or None)
     form2 = CreateReportForm(request.POST or None)
