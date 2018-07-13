@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    {% load widget_tweaks %}
+
+    <title>Biosferra</title>
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="{% static "images/brand.png" %}" />
+
+    <style>
+    h1 {
+        color: #4B4B4B;
+        font-size: 34px;
+        font-weight: bold;
+    }
+
+    label {
+        color: #4B4B4B;
+        font-size: 24px;
+        font-weight: 500;
+    }
+    .path-44 {
+        box-sizing: border-box;
+        height: 1px;
+        width: 170px;
+        border: 1px solid #1CC661;
+    }
+
+    .dropdown-item{
+        color:#6C6C6C;
+    }
+    .dropdown-item:hover{
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <!-- Brand Logo -->
+            <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
+            <!-- Button enables when screen size is small -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Will get collapsed -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0">
+                    <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
+                    <input class="form-control mr-sm-2" type="search" placeholder="Cauta orice" aria-label="Search">
+                    <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</body>
+<div class="container">
+    <div class="col-md-12">
+        <br><br>
+        <h2>Finalizarea inregistarii</h2>
+        <div class="path-44"></div>
+    </div>
+    <br>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2 offset-md-5">
+                <img src="{% static "images/accept-circular-button-outline.png" %}">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+        <h2 align="center" style="color: #1CC661;"><b>Felicitari, ai terminat inregistrarea cu succes</b></h2>
+    </div>
+    <br>
+    <div class="col-md-6 offset-md-3">
+        <p style="color: #4B4B4B;">Felicitări ai completat cu succes toti pasii pentru a te inregistra.<br> Acum, unul dintre administartori va analiza profilul dumneavoastra si va accepta sau nu inegistrarea dumneavoastra </p>
+        <br>
+        <div class="col-md-2 offset-md-4">
+            <a href="/"><button class="btn btn-success" type="submit" style="border-radius: 2px; margin-top: 5px; background-color:#1CC661; border-color: #1CC661;">Inapoi acasa</button></a>
+        </div>
+    </div>
+</div>
+</html>

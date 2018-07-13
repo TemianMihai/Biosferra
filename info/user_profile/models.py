@@ -49,3 +49,6 @@ class Profile(models.Model):
                                null=True, blank=True)
     image2 = models.ImageField(upload_to=upload_location,
                                null=True, blank=True)
+
+    def get_profilf_url(self):
+        return reverse("profil:get-profilt")

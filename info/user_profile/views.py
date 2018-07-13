@@ -54,7 +54,7 @@ def create_profile(request):
             from_email = settings.EMAIL_HOST_USER
             to_list = [settings.EMAIL_HOST_USER, userul.email]
             send_mail(subject, message, from_email, to_list, fail_silently=True)
-            return redirect('/')
+            return redirect('/create-profile/finalizare')
     return render(request, 'create_profile.html', {
         'form': form,
         'user': current_user
@@ -169,4 +169,7 @@ def get_mesajet(request, slug):
         'user2': user2,
         'mesaje':mesaje
     })
+
+def get_profilf(request):
+    return render(request, "finalizare_profil.html")
 

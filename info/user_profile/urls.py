@@ -3,6 +3,7 @@ from . import views
 urlpatterns = [
     url(r'^edit-profile/$', views.profile_detail, name='profill'),
     url(r'^create-profile/$', views.create_profile, name='profiil'),
+    url(r'^create-profile/finalizare/$', views.get_profilf, name='get-profilt'),
     url(r'^favoriti/$', views.favoriti, name='favorit'),
     url(r'^mesaje/$', views.mesaje, name='mesaje'),
     url(r'^mesaje-trimise/$', views.mesaje_trimise, name='mesaje-trimise'),
