@@ -52,7 +52,10 @@ class CosulMeu(models.Model):
                                    null=True, blank=True)
     vanzator = models.ForeignKey(to=User, related_name='cos_vanzator',
                                  null=True, blank=True)
+    slug = models.SlugField(default=uuid.uuid1, unique=True)
 
+    def get_delete_cos_url(self):
+        return reverse("post:delete-anunt-cos", kwargs={"slug": self.slug})
 
 class Comanda(models.Model):
     comenzi = models.ForeignKey(to = PostModel, related_name='comanda',

@@ -91,6 +91,11 @@ def produsele(request):
     })
 
 @login_required(login_url='/login')
+def delete_cos(request, slug):
+    CosulMeu.objects.filter(slug=slug).delete()
+    return redirect('/cosul-meu')
+
+@login_required(login_url='/login')
 def get_comanda(request,slug):
     current_user = request.user
     comanda = PostModel.objects.get(slug=slug)
