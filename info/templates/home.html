@@ -182,7 +182,7 @@
                         {% if post.approved == True %}
                             <div class="col-md-4">
                                 <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 35px;">
-                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap" style="max-height: 175px;min-height: 175px;">
+                                    <a href="/post/{{post.slug}}"><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap" style="max-height: 175px;min-height: 175px;"></a>
                                     <div class="card-body">
                                         <h6 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h6>
                                         <hr>
@@ -205,9 +205,9 @@
             <div class="path-19"></div>
             <br><br>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <!-- Sorteaza dupa -->
-                    <div class="side-menu" style="margin-left: -95px; margin-right: 30px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p class="head" style="color: #6C6C6C;"><b>Sorteaza dupa</b></p>
                         <form>
                           <div>
@@ -231,7 +231,7 @@
                     <br> <br>
 
                     <!-- Legume -->
-                    <div class="side-menu" style="margin-left: -95px; margin-right: 30px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p class="head" style="color: #6C6C6C;"><b>Produse</b></p>
                         <form>
                             {% for legfruc in legfruc %}
@@ -246,7 +246,7 @@
                     <br> <br>
 
                     <!-- Gramaj -->
-                    <div class="side-menu" style="margin-left: -95px; margin-right: 30px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p class="head" style="color: #6C6C6C;"><b>Gramaj</b></p>
                         <form>
                           <div>
@@ -270,7 +270,7 @@
                     <br> <br>
 
                     <!-- Pret -->
-                    <div class="side-menu" style="margin-left: -95px; margin-right: 30px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p class="head" style="color: #6C6C6C;"><b>Pret</b></p>
                         <form>
                           <div>
@@ -293,7 +293,7 @@
                     </div>
                     <br> <br>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-9">
                     {% for users in users %}
                         {% if users.account2.slug %}
                             <h2><b><a href="/view-profile/{{ users.account2.slug }}" style="color: #4B4B4B;">{{ users.username }}&nbsp;</b></a></h2>
@@ -303,7 +303,7 @@
                                         {% if post.approved == True%}
                                             <div class="col-md-4">
                                                 <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 35px;">
-                                                    <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap" style="max-height: 175px;min-height: 175px;">
+                                                    <a href="/post/{{post.slug}}"><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap" style="max-height: 175px;min-height: 175px;"></a>
                                                     <div class="card-body">
                                                         <h6 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h6>
                                                         <hr>

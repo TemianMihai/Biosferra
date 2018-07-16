@@ -205,9 +205,9 @@
                 <div class="col-md-4 offset-md-3">
                     <div class="row">
                         <img src="{% static "images/fast-delivery.png" %}"><h5 style="margin-left: 15px; color: #00C853"><b>Livrare in 24 de ore</b></h5>
-                        <h6 style="color: #B4B4B4;margin-bottom: 0;">ssadasdadasdsadasdasdasdsad</h6><br>
-                        <h6 style="color: #B4B4B4;margin-bottom: 0;">ssadasdadasdsadasdasdasdsad</h6><br>
-                        <h6 style="color: #B4B4B4;margin-bottom: 0;">ssadasdadasdsadasdasdasdsad</h6>
+                        <h6 style="color: #B4B4B4;margin-bottom: 0;">Livrarea se va face in maxim 24 de ore</h6><br>
+                        <h6 style="color: #B4B4B4;margin-bottom: 0;">de la incheierea comenzii de catre </h6><br>
+                        <h6 style="color: #B4B4B4;margin-bottom: 0;">vanzatorul produsului. </h6><br>
                     </div>
                 </div>
             </div>
@@ -251,7 +251,7 @@
                                             <p><b>Raspundeti la comentariu:</b></p>
                                           <input type='hidden' name='parent_id' value={{comment.id}}>
                                           <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Raspunsul dumneavoastra" />
-                                          <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1" style="border-radius: 1px;width: 55%;background-color: #1CC661; border-color: #1CC661;"><span class="glyphicon glyphicon-send"></span> Raspundeti</button>
+                                          <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1" style="border-radius: 1px;width: 55%;background-color: #1CC661; border-color: #1CC661;margin-top: 10px;"><span class="glyphicon glyphicon-send"></span> Raspundeti</button>
                                         </div>
                                     </form>
                                 </li>
@@ -261,11 +261,11 @@
                     <br>
                     <form action="." method='post'>
                         {% csrf_token %}
-                        <div class="col-md-9">
+                        <div class="col-md-7" style="padding-left: 0;">
                             <label class=" control-label"><h4>Postati un comentariu:</h4> </label>
                             <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Comentariul dumneavoastra"/>
                             <div class="form-group">
-                                <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1" style="border-radius: 1px;width: 50%;background-color: #1CC661; border-color: #1CC661;"><span class="glyphicon glyphicon-send"></span>Comentati</button>
+                                <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1" style="border-radius: 1px;width: 50%;background-color: #1CC661; border-color: #1CC661;margin-top: 10px;"><span class="glyphicon glyphicon-send"></span>Comentati</button>
                             </div>
                         </div>
                     </form>

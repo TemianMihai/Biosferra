@@ -182,18 +182,18 @@
                 <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
                     <div class="row" id="up-side">
                         <div class="col-md-12" style="padding-left: 0;">
-                            <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 200px; width: 92%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                            <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 200px; width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         </div>
-                            <hr>
-                            {% if messages %}
-                                <div class="row">
-                                    <div class="col-md-9 col-md-offset-3">
-                                        {% for message in messages %}
-                                            <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
-                                        {% endfor %}
-                                    </div>
+                        <hr>
+                        {% if messages %}
+                            <div class="row">
+                                <div class="col-md-9 col-md-offset-3">
+                                    {% for message in messages %}
+                                        <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
+                                    {% endfor %}
                                 </div>
-                            {% endif %}
+                            </div>
+                        {% endif %}
                         <br>
                         {% if user != user2.user %}
                             <div class="col-md-12" style="margin-left: -15px;">
@@ -301,7 +301,7 @@
                                 {% if user2.user == post.author %}
                                     <div class="col-md-6">
                                         <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 30px;">
-                                            <img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap">
+                                            <a href="/post/{{post.slug}}"><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap"></a>
                                             <div class="card-body">
                                                 <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h5>
                                                 <hr>

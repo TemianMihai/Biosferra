@@ -99,7 +99,7 @@ def delete_cos(request, slug):
 def get_comanda(request,slug):
     current_user = request.user
     comanda = PostModel.objects.get(slug=slug)
-    form = CreateComandaForm(request.POST)
+    form = CreateComandaForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid() and request.user.is_authenticated:
             comanda1 = form.instance
