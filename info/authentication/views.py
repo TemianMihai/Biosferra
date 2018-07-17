@@ -32,11 +32,11 @@ def logout_view(request):
     return redirect('/')
 
 def register_view(request):
-    form = UserRegisterForm(data=request.POST or None)
-    acc_form = AccRegisterForm(data=request.POST or None)
+    form = UserRegisterForm(request.POST or None)
+    acc_form = AccRegisterForm(request.POST or None)
     errors = []
     if request.method == 'POST':
-        if form.is_valid() == True and acc_form.is_valid() == True:
+        if form.is_valid() and acc_form.is_valid():
             form.instance.set_password(form.cleaned_data['password'])
             form.save()
             acc_form.instance.user = form.instance
@@ -63,7 +63,7 @@ def register_view2(request):
     acc_form2 = AccRegisterForm2(request.POST or None, request.FILES or None)
     errors = []
     if request.method == 'POST':
-        if form.is_valid() == True and acc_form2.is_valid() == True:
+        if form.is_valid() and acc_form2.is_valid():
             form.instance.set_password(form.cleaned_data['password'])
             form.save()
             acc_form2.instance.user = form.instance
@@ -74,6 +74,6 @@ def register_view2(request):
             return redirect('/create-profile')
     return render(request, "register2.html", {
         'form': form,
-        'acc_form2' : acc_form2,
+        'acc_form2': acc_form2,
         'errors': errors
     })

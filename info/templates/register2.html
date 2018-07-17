@@ -59,54 +59,54 @@
 
                                 <div class="input-field" style=" margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <label>Nume utilizator</label>
-                                    <input placeholder="Nume utilizator"  name="username" value="{{form.body}}" type="text" class="validate">
+                                    <input placeholder="Nume utilizator"  name="username" value="{{form.username.value|default:""}}" type="text" class="validate">
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <label>Email</label>
-                                    <input placeholder="Email"  name="email" value="{{form.body}}" type="text" class="validate">
+                                    <input placeholder="Email"  name="email" value="{{form.email.value|default:""}}" type="text" class="validate">
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <label>Prenume</label>
-                                    <input placeholder="Prenume" name="first_name" value="{{form.body}}" type="text" class="validate">
+                                    <input placeholder="Prenume" name="first_name" value="{{form.first_name.value|default:""}}" type="text" class="validate">
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <label>Nume</label>
-                                    <input placeholder="Nume" name="last_name" value="{{form.body}}" type="text" class="validate">
+                                    <input placeholder="Nume" name="last_name" value="{{form.last_name.value|default:""}}" type="text" class="validate">
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <label>Parola</label>
-                                    <input placeholder="Parola" name="password" value="{{form.body}}" type="password" class="validate">
+                                    <input placeholder="Parola" name="password" value="{{form.password.value|default:""}}" type="password" class="validate">
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <label>Confirma parola</label>
-                                    <input placeholder="Confirma parola" name="retypepassword" value="{{form.body}}" type="password" class="validate">
+                                    <input placeholder="Confirma parola" name="retypepassword" value="{{form.retypepassword.value|default:""}}" type="password" class="validate">
                                 </div>
                             </div>
 
                             <div class="col m6">
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <label>Oras</label>
-                                    <input placeholder="Oras" name="city" value="{{acc_form2.body}}" type="text" class="validate">
+                                    <input placeholder="Oras" name="city" value="{{acc_form2.city.value|default:""}}" type="text" class="validate">
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <label>Judet</label>
-                                    <input placeholder="Judet"  name="state" value="{{acc_form2.body}}" type="text" class="validate">
+                                    <input placeholder="Judet"  name="state" value="{{acc_form2.state.value|default:""}}" type="text" class="validate">
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <label>Adresa</label>
-                                    <input placeholder="Adresa" name="adress" value="{{acc_form2.body}}" type="text" class="validate">
+                                    <input placeholder="Adresa" name="adress" value="{{acc_form2.adress.value|default:""}}" type="text" class="validate">
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">
                                     <label>Numar de telefon</label>
-                                    <input placeholder="Numar de telefon" name="phonenumber" value="{{acc_form2.body}}" type="text" class="validate">
+                                    <input placeholder="Numar de telefon" name="phonenumber" value="{{acc_form2.phonenumber.value|default:""}}" type="text" class="validate">
                                 </div>
 
                                 <div class="input-field" style="margin-left: 9%;margin-right: 20%; margin-bottom:2%;">

@@ -148,7 +148,7 @@
             {% csrf_token %}
                 <div class="col-md-6" style="margin-left: -15px;">
                         <label for="titlu-field">Titlul anuntului:</label>
-                        <input name="name" value="{{form.body}}" type="text" placeholder="Titlu. Ex: Mere de gradina" id="titlu-field" class="form-control"/>
+                        <input name="name" value="{{form.name.value|default:""}}" type="text" placeholder="Titlu. Ex: Mere de gradina" id="titlu-field" class="form-control"/>
                          {% if form.name.errors %}
                          <div class="alert alert-danger alert-dimdissible" role="alert">
                             <strong>Atentie!</strong>
@@ -200,7 +200,7 @@
                                 <label>Cantitate:</label>
                             </div>
                             <div class="col-md-2" >
-                                <input name="cantity" value="{{form.body}}" type="text" placeholder="Ex: 10" id="titlu-field" class="form-control"/>
+                                <input name="cantity" value="{{form.cantity.value|default:""}}" type="text" placeholder="Ex: 10" id="titlu-field" class="form-control"/>
                                 {% if form.cantity.errors %}
                                      <div class="alert alert-danger alert-dimdissible" role="alert">
                                         <strong>Atentie!</strong>
@@ -214,7 +214,7 @@
                                     <label>Pret:</label>
                             </div>
                             <div class="col-md-2">
-                                <input name="price" value="{{form.body}}" type="text" placeholder="Ex: 2" id="titlu-field" class="form-control"/>
+                                <input name="price" value="{{form.price.value|default:""}}" type="text" placeholder="Ex: 2" id="titlu-field" class="form-control"/>
                                 {% if form.price.errors %}
                                      <div class="alert alert-danger alert-dimdissible" role="alert">
                                         <strong>Atentie!</strong>
@@ -233,7 +233,7 @@
 
                 <div class="form-group">
                     <label>Descriere:</label>
-                    <input name="details" value="{{form.body}}" type="text" placeholder="O scurta descriere despre produs" id="titlu-field" class="form-control" />
+                    <input name="details" value="{{form.details.value|default:""}}" type="text" placeholder="O scurta descriere despre produs" id="titlu-field" class="form-control" />
 
                      {% if form.details.errors %}
                      <div class="alert alert-danger alert-dimdissible" role="alert">
