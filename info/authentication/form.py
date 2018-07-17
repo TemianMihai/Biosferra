@@ -136,7 +136,6 @@ class AccRegisterForm2(forms.ModelForm):
             'state': forms.TextInput({'required': 'required', 'placeholder': 'Country'}),
             'file1': forms.FileInput({'required': 'required', 'placeholder': "country"}),
             'file2': forms.FileInput({'required': 'required', 'placeholder': "country"})
-
         }
     def clean_phonenumber(self):
         phone_number = self.cleaned_data['phonenumber']
@@ -170,4 +169,8 @@ class AccRegisterForm2(forms.ModelForm):
             file_names.append(file1.name)
         if (file2 and not isinstance(file2, (int, float))):
              file_names.append(file2.name)
+        if file1._size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
+        if file2._size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
         return file2
