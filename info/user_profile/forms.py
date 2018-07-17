@@ -98,10 +98,14 @@ class Edit_profile2(forms.ModelForm):
 
     def clean_file1(self):
         file1 = self.cleaned_data['file1']
+        if file1._size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
         return file1
 
     def clean_file2(self):
         file2 = self.cleaned_data['file2']
+        if file2._size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
         return file2
 
 class CreateProfileForm(forms.ModelForm):

@@ -53,6 +53,14 @@ class CreatePostForm(forms.ModelForm):
             image_names.append(image4.name)
         if (len(image_names) - 1 == len(set(image_names))):
             raise forms.ValidationError("Imaginile trebuie sa fie diferite")
+        if image1._size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
+        if image2._size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
+        if image3._size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
+        if image4._size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
         return image4
 
     def clean_category(self):
