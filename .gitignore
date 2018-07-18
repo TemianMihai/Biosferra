@@ -116,3 +116,4 @@ migrations/
 
 database.yml
 .ideainfo/db.sqlite3
+.*pyc
