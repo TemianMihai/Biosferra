@@ -115,4 +115,4 @@ migrations/
 /media/
 
 database.yml
-.idea
+.ideainfo/db.sqlite3
