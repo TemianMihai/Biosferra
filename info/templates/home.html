@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Add icon library -->
@@ -272,24 +273,17 @@
                     <!-- Pret -->
                     <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p class="head" style="color: #6C6C6C;"><b>Pret</b></p>
-                        <form>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews" style="color: #6C6C6C;">0 - 1,00 leu</label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews" style="color: #6C6C6C;">1,00 - 2,00 lei</label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews" style="color: #6C6C6C;">2,00 - 3,00 lei</label>
-                          </div>
-                          <div>
-                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
-                            <label for="subscribeNews" style="color: #6C6C6C;">Peste 4,00 lei</label>
-                          </div>
-                        </form>
+                        <div data-role="main" class="ui-content">
+                            <form method="post" action="/action_page_post.php">
+                                  <div class="col-md-12">
+                                      <div class="row">
+                                          <p>0 lei</p>
+                                        <input type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+                                          <p>15+ lei</p>
+                                      </div>
+                                  </div>
+                              </form>
+                        </div>
                     </div>
                     <br> <br>
                 </div>

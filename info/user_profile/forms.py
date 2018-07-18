@@ -113,11 +113,11 @@ class CreateProfileForm(forms.ModelForm):
         model = Profile
         fields = ['produs1', 'produs2', 'produs3', 'produs4', 'produs5', 'descriere', 'image1', 'image2',]
         widgets = {
-            'produs1' : forms.TextInput({'required':'required','placeholder':'Produs1'}),
-            'produs2': forms.TextInput({'required':'required','placeholder':'Produs2'}),
-            'produs3': forms.TextInput({'required': 'required', 'placeholder': 'Produs3'}),
-            'produs4': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
-            'produs5': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
+            'produs1' : forms.TextInput({'required':'required','placeholder':'Produs din gradina dumneavoastra'}),
+            'produs2': forms.TextInput({'required':'required','placeholder':'Produs din gradina dumneavoastra'}),
+            'produs3': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'produs4': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'produs5': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
             'descriere': forms.TextInput({'required': 'required', 'placeholder': 'Descriere'}),
             'image1': forms.FileInput({'required': 'required', 'placeholder': 'Country'}),
             'image2': forms.FileInput({'required': 'required', 'placeholder': 'Country'})

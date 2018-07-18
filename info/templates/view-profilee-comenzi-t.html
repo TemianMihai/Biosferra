@@ -59,7 +59,9 @@
     .tabel {
         border: 1px solid #E5E5E5;
     }
-
+    a:link {
+        text-decoration: none;
+    }
     </style>
 
 <body>
@@ -73,11 +75,7 @@
             </button>
             <!-- Will get collapsed -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="form-inline my-2 my-lg-0" method="GET" action="">
-                    <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
-                    <input class="form-control mr-sm-2" name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
-                    <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
-                </form>
+                <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
                 <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
                         <!-- Username dropdown -->

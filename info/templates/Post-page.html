@@ -32,6 +32,7 @@
         }
 
         .tabel {
+            height:75%;
             width: auto;
             border: 1px solid #E5E5E5;
             border-radius: 3px;
@@ -48,6 +49,9 @@
         a {
             color:#1CC661;
         }
+            a:link {
+        text-decoration: none;
+    }
         .mySlides {display:none}
         .demo {cursor:pointer}
     </style>
@@ -66,7 +70,7 @@
             </button>
             <!-- Will get collapsed -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2>
+                <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
                 <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
                         <!-- Username dropdown -->
@@ -134,10 +138,10 @@
                 <div class="col-md-7">
                     <div class="row">
                         <div class="col-md-3"><br>
-                            <img src="{{  posts.image1.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(1)">
-                            <img src="{{  posts.image2.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(2)">
-                            <img src="{{  posts.image3.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(3)">
-                            <img src="{{  posts.image4.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(4)">
+                            <img src="{{  posts.image1.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(1)">
+                            <img src="{{  posts.image2.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(2)">
+                            <img src="{{  posts.image3.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; min-width: 100%;max-width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(3)">
+                            <img src="{{  posts.image4.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(4)">
                         </div>
                         <div class="col-md-8"><br>
                             <img src="{{  posts.image1.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
@@ -152,32 +156,33 @@
                     <h2 style="color:#4B4B4B;">{{ posts.name }}</h2>
                     <div class="path-11"></div>
                         <br>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="tabel" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                                <img src="{{  profiles.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%; width: 50%; margin-left: 25%; margin-top: 5%;">
-                                <a href="/view-profile/{{posts.author.account2.slug}}"><h6 align="center"><b>{{ posts.author }}</b></h6></a>
-                                <hr style="margin-bottom: 5px;">
-                                <h6 align="center" style="color:#4B4B4B;">{{ posts.author.account2.city }}, Jud {{ posts.author.account2.state }}</h6>
+                    <div class="tabel">
+                        <div class="row">
+                            <div class="col-md-6">
+                                    <img src="{{  profiles.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%; width: 50%; margin-left: 25%; margin-top: 5%;">
+                                    <a href="/view-profile/{{posts.author.account2.slug}}"><h6 align="center"><b>{{ posts.author }}</b></h6></a>
+                                    <hr style="margin-bottom: 15px;margin-left: 15px;">
+                                    <h6 align="center" style="color:#4B4B4B;">{{ posts.author.account2.user.first_name }} {{ posts.author.account2.user.last_name }}</h6>
+                                    <hr style="margin-bottom: 15px; margin-left: 15px;">
+                                    <h6 align="center" style="color:#4B4B4B;">{{ posts.author.account2.city }}, Jud {{ posts.author.account2.state }}</h6>
                             </div>
-                            {% if posts.author != user %}
-                                <a href='{{posts.get_comanda_url}}'><button class="btn btn-success" type="submit" style="border-radius: 2px; margin-top: 5px;"><span class="glyphicon glyphicon-send"></span>Comanda produs</button></a>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-6">
-                            <div class="cumpara">
-                                <h4><b>Cantitate: </b> {{ posts.cantity }} {{ posts.category }}</h4>
-                                <h4><b>Pret:</b> {{ posts.price }} lei</h4>
+                            <div class="col-md-6">
+                                <div class="cumpara">
+                                    <h4><b>Produs: </b> {{ posts.legfruccategory }}</h4>
+                                    <h4><b>Cantitate: </b> {{ posts.cantity }} {{ posts.category }}</h4>
+                                    <h4><b>Pret:</b> {{ posts.price }} lei</h4>
 
-                                {% if posts.author == user %}
-                                    <a href='{{posts.get_delete_url}}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete post</a>
-                                {% endif %}
-                                {% if posts.author != user %}
-                                    <form  method="POST" enctype="multipart/form-data">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-success" name="btnform2" style="border-radius: 2px; margin-top: 5px;"><span class="glyphicon glyphicon-shopping-cart"></span>Adauga in cos</button>
-                                    </form>
-                                {% endif %}
+                                    {% if posts.author == user %}
+                                        <a href='{{posts.get_delete_url}}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete post</a>
+                                    {% endif %}
+                                    {% if posts.author != user %}
+                                        <form  method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success" name="btnform2" style="border-radius: 2px; margin-top: 5px;"><span class="glyphicon glyphicon-shopping-cart"></span>Adauga in cos</button>
+                                        </form>
+                                        <a href='{{posts.get_comanda_url}}'><button class="btn btn-success" type="submit" style="border-radius: 2px; margin-top: 5px;"><span class="glyphicon glyphicon-send"></span>Comanda produs</button></a>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
