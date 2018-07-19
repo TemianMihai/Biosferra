@@ -75,23 +75,39 @@
         text-decoration: none;
     }
 
+    @media only screen and (max-width: 600px) {
+        .navbar li img{
+            padding-left: 5px;
+            padding-top: 7px;
+        }
+    }
+
+    @media only screen and (min-width: 601px) {
+        .navbar  li img{
+            padding-left: 50px;
+            padding-top: 7px;
+        }
+    }
     </style>
 </head>
 <body>
-
-    <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <!-- Brand Logo -->
-            <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
-            <!-- Button enables when screen size is small -->
+            <div class="navbar-brand">
+                <div class="row">
+                    <a  href="/"><img src="{% static "images/brand.png" %}"></a>
+                    <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
+                </form>
+                </div>
+            </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- Will get collapsed -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
+
                 <ul class="navbar-nav mr-auto">
+                    <div class="row">
                     {% if user.is_authenticated %}
                         <!-- Username dropdown -->
                         <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
@@ -128,7 +144,7 @@
 
                         {% if user.account2.slug %}
                         <li class="nav-item" id="creeazaPostare">
-                            <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
+                            <a href="/create-post"><button class="btn">+ Creaza o postare</button></a>
                         </li>
                             {% else %}
                             <li class="nav-item" id="creeazaPostare">
@@ -144,11 +160,11 @@
                                 <a href="/login"><button class="btn">Autentificare</button></a>
                             </li>
                     {% endif %}
+                    </div>
                 </ul>
             </div>
         </div>
     </nav>
-</body>
     <br>
     <div class="container">
         <div class="col-md-9 offset-md-1">
@@ -210,4 +226,5 @@
             </div>
         </div>
     </div>
+</body>
 </html>

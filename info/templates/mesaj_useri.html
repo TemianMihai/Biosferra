@@ -46,29 +46,47 @@
         color:#6C6C6C;
     }
 
-            .dropdown-item:hover{
+    .dropdown-item:hover{
             color:#fff;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .navbar li img{
+            padding-left: 5px;
+            padding-top: 7px;
         }
+    }
+
+    @media only screen and (min-width: 601px) {
+        .navbar  li img{
+            padding-left: 50px;
+            padding-top: 7px;
+        }
+    }
+
     a:link {
         text-decoration: none;
     }
     </style>
 </head>
 <body>
-
-    <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <!-- Brand Logo -->
-            <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
-            <!-- Button enables when screen size is small -->
+            <div class="navbar-brand">
+                <div class="row">
+                    <a  href="/"><img src="{% static "images/brand.png" %}"></a>
+                    <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
+                </form>
+                </div>
+            </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- Will get collapsed -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
+
                 <ul class="navbar-nav mr-auto">
+                    <div class="row">
                     {% if user.is_authenticated %}
                         <!-- Username dropdown -->
                         <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
@@ -105,7 +123,7 @@
 
                         {% if user.account2.slug %}
                         <li class="nav-item" id="creeazaPostare">
-                            <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
+                            <a href="/create-post"><button class="btn">+ Creaza o postare</button></a>
                         </li>
                             {% else %}
                             <li class="nav-item" id="creeazaPostare">
@@ -121,6 +139,7 @@
                                 <a href="/login"><button class="btn">Autentificare</button></a>
                             </li>
                     {% endif %}
+                    </div>
                 </ul>
             </div>
         </div>
@@ -163,38 +182,6 @@
         </div>
     </div>
     <br>
-
-    <footer class="footer">
-            <div class="row">
-                <div class="col-4">
-                    <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
-                </div>
-                <div class="col-2">
-                    <a href="/" style="color: #fff"><p>Acasa</p></a>
-                </div>
-                {% if user.account2.slug %}
-                <div class="col-2">
-                    <a href="/view-profile/{{ user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
-                </div>
-                <div class="col-2">
-                    <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
-                </div>
-                {% endif %}
-                <div class="col-2">
-                    {% if user.account2.slug %}
-                   <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
-                    {% else %}
-                    <p><a href="/register-vanzator" style="color: #fff">Devino vanzator</p></a>
-                    {% endif %}
-                </div>
-            </div>
-            <hr class="hr">
-            <div class="row">
-                <div class="col-12">
-                    <p>@All rights reserverd</p>
-                </div>
-            </div>
-    </footer>
 
 </body>
 </html>
