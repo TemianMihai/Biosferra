@@ -63,13 +63,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <div class="navbar-brand">
-                <div class="row">
+                <div class="row" style="flex-wrap: nowrap;">
                     <a  href="/"><img src="{% static "images/brand.png" %}"></a>
-                     <form class="form-inline my-2 my-lg-0" method="GET" action="" style="margin-left: 10px;">
-                    <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
-                    <input class="form-control mr-sm-2" name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
-                    <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
-                </form>
+                     <form class="form-inline my-2 my-lg-0" method="GET" action="" style="margin-left: 10px;flex-wrap: nowrap;">
+                        <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
+                        <input class="form-control mr-sm-2" name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
+                        <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+                    </form>
                 </div>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +79,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav mr-auto">
-                    <div class="row">
+                    <div class="row" style="flex-wrap: nowrap;">
                     {% if user.is_authenticated %}
                         <!-- Username dropdown -->
                         <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>

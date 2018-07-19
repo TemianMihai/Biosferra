@@ -60,10 +60,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <div class="navbar-brand">
-                <div class="row">
+                <div class="row" style="flex-wrap: nowrap;">
                     <a  href="/"><img src="{% static "images/brand.png" %}"></a>
                     <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
-                </form>
                 </div>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +72,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <ul class="navbar-nav mr-auto">
-                    <div class="row">
+                    <div class="row" style="flex-wrap: nowrap;">
                     {% if user.is_authenticated %}
                         <!-- Username dropdown -->
                         <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
