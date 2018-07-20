@@ -227,5 +227,66 @@
             </div>
         </div>
     </div>
+
+<footer class="footer" style="margin-top: 100px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-5" style="margin-top: 40px;padding-left: 35px;">
+                            <h2 align="left"><b>BIOsferra</b></h2>
+                            <div class="path-57"></div>
+                            <p align="left" style="margin-top: 35px;">Fagadar Cezar</p>
+                            <p align="left">Temian Mihai</p>
+                        </div>
+                        <div class="col-md-6" style="margin-top: 40px;">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="path-56"></div>
+                                </div>
+                                <div class="col-md-5">
+                                    <p align="left"><b>Pagini</b></p>
+                                    {% if user.is_authenticated %}
+                                        {% if user.account2.slug %}
+                                            <a href="/" style="color: #FFFFFF"><p align="left">Acasa</p></a>
+                                            <a href="/view-profile/{{ user.account2.slug }}" style="color: #FFFFFF"><p align="left">Profilul Tau</p></a>
+                                            {% else %}
+                                                <a href="/mesaje" style="color: #FFFFFF"><p align="left">Mesaje</p></a>
+                                                <a href="/comenzile-mele" style="color: #FFFFFF"><p align="left">Comenzi</p></a>
+                                                <a href="/favoriti" style="color: #FFFFFF"><p align="left">Favoriti</p></a>
+                                        {% endif %}
+                                        <a href="/cosul-meu" style="color: #FFFFFF"><p align="left">Cosul Meu</p></a>
+                                        {% if user.account2.slug %}
+                                            <a href="/create-post" style="color: #FFFFFF"><p align="left">Creaza o postare</p></a>
+                                            {% else %}
+                                            <a href="/register-vanzator" style="color: #FFFFFF"><p align="left">Devino vanzator</p></a>
+                                        {% endif %}
+
+                                        {% else %}
+                                            <a href="/register-cumparator" style="color: #FFFFFF"><p align="left">Inregistrare</p></a>
+                                            <a href="/login" style="color: #FFFFFF"><p align="left">Autentificare</p></a>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="path-56"></div>
+                                </div>
+                                <div class="col-md-5">
+                                    <p align="left"><b>Contact</b></p>
+                                    <p align="left">Romania, Timis, Timisoara</p>
+                                    <p align="left" style="margin-top: 95px;">biosferra.noreplay@gmail.com</p>
+                                    <p align="left">+40 733 625 927</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="col-md-12">
+        <div class="rectangle-60">
+            <p align="center" style="color: #1CC661;margin-top: 20px;">@ 2018 Biosferra. All rights reserved.</p>
+        </div>
+    </div>
 </body>
 </html>

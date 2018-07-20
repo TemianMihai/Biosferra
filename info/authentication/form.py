@@ -16,7 +16,6 @@ class LoginForm(forms.Form):
                                }))
 
 class UserRegisterForm(forms.ModelForm):
-
     retypepassword = forms.CharField(widget=forms.PasswordInput(attrs={
         'placeholder': 'Retype password',
         'label': 'Retype password',
