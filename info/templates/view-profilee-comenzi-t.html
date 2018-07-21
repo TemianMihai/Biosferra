@@ -142,7 +142,7 @@
                         </li>
                             {% else %}
                             <li class="nav-item" id="creeazaPostare">
-                                <a href="/register-vanzator"><button class="btn">Devino vanzator</button></a>
+                                <a href="/logout"><button class="btn">Deconectare</button></a>
                             </li>
                         {% endif %}
 
@@ -348,12 +348,12 @@
                                         <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 30px;">
                                             <a href="/post/{{post.slug}}"><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap"></a>
                                             <div class="card-body">
-                                                <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h5>
+                                                <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name|truncatechars:10 }}</a></b></h5>
                                                 <hr>
                                                 <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                                 <hr>
                                                 <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
-                                                <p class="card-text" style="color: #6C6C6C">{{ post.details|truncatechars:40 }}</p>
+                                                <p class="card-text" style="color: #6C6C6C">{{ post.details|truncatechars:35 }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -451,7 +451,7 @@
                                         {% if user.account2.slug %}
                                             <a href="/create-post" style="color: #FFFFFF"><p align="left">Creaza o postare</p></a>
                                             {% else %}
-                                            <a href="/register-vanzator" style="color: #FFFFFF"><p align="left">Devino vanzator</p></a>
+                                            <a href="/logout" style="color: #FFFFFF"><p align="left">Deconectare</p></a>
                                         {% endif %}
 
                                         {% else %}

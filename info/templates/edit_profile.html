@@ -120,7 +120,7 @@
                         </li>
                             {% else %}
                             <li class="nav-item" id="creeazaPostare">
-                                <a href="/register-vanzator"><button class="btn">Devino vanzator</button></a>
+                                <a href="/logout"><button class="btn">Deconecatre</button></a>
                             </li>
                         {% endif %}
 
@@ -289,7 +289,7 @@
                                         {% if user.account2.slug %}
                                             <a href="/create-post" style="color: #FFFFFF"><p align="left">Creaza o postare</p></a>
                                             {% else %}
-                                            <a href="/register-vanzator" style="color: #FFFFFF"><p align="left">Devino vanzator</p></a>
+                                            <a href="/logout" style="color: #FFFFFF"><p align="left">Deconectare</p></a>
                                         {% endif %}
 
                                         {% else %}

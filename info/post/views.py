@@ -19,6 +19,11 @@ def create_post(request):
             post = form.instance
             post.author = current_user
             form.save()
+            subject = 'Creare anunt'
+            message = "Anuntul dumneavoastra a fost creat. Acesta va trebui verificat de un administrator inainte ca el sa fie vizualizat pe site."
+            from_email = settings.EMAIL_HOST_USER
+            to_list = [settings.EMAIL_HOST_USER, current_user.email]
+            send_mail(subject, message, from_email, to_list, fail_silently=True)
             messages.success(request, 'Anuntul dumneavoastra a fost salvat. Va rugam sa asteptati cateva momente pana cand acesta va fi verificat de catre un administrator. Va multumim!')
     return render(request, "create_post.html", {
         'form': form,
