@@ -171,6 +171,9 @@
                                 <img src="{{  p.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;">
                             </div>
                             <h5>{{ user2.user.username }}</h5>
+                            {% if user != user2.user %}
+                                <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-success btn-circle" style="border-radius: 1px; background-color: #E53046; border-color: #E53046">&nbsp Raporteaza!</button>
+                            {% endif %}
                             <div class="break"></div>
                         </div>
                         <div class="lower-side">
@@ -208,28 +211,27 @@
                             <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 200px; width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         </div>
                         {% if messages %}
-                            <div class="row">
-                                <div class="col-sm-6 col-sm-offset-3">
-                                    {% for message in messages %}
-                                        <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
-                                    {% endfor %}
-                                </div>
+                            <div class="col-md-12">
+                                {% for message in messages %}
+                                    <br>
+                                    <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
+                                {% endfor %}
                             </div>
                         {% endif %}
                         <br>
                         {% if user != user2.user %}
-                            <div class="col-md-12" style="margin-left: -15px;">
+                            <div class="col-md-12">
+                                <br>
                                 <div class="row">
-                                    <div class="col-md-2">
-                                        <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-success btn-circle" style="border-radius: 1px; background-color: #E53046; border-color: #E53046">&nbsp Raporteaza!</button>
+                                    <div class="col-md-4">
+                                        <form  method="POST" enctype="multipart/form-data">
+                                           {% csrf_token %}
+                                            <button type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3" style="border-radius: 1px;background-color: #E53046;border-color: #E53046;"><span><img src="{% static "images/favorite.png" %}">&nbsp Adauga la favorit</span>
+                                        </form>
                                     </div>
-                                    <div class="col-md-3 offset-md-5">
-                                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button>
+                                    <div class="col-md-4 offset-md-4">
+                                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #fff;border-radius: 1px;color: #B4B4B4;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Trimite mesaj privat</button>
                                     </div>
-                                    <form  method="POST" enctype="multipart/form-data" class="col-md-2">
-                                       {% csrf_token %}
-                                        <button type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3" style="border-radius: 1px;background-color: #E53046;border-color: #E53046;"><span><img src="{% static "images/read hearth.png" %}"></span>
-                                    </form>
                                 </div>
                             </div>
                         {% endif %}
@@ -306,14 +308,19 @@
                                 </div>
                             </div>
                         {% endif %}
-                        <div class="col-md-12" style="margin-left: 10px;">
+                        <div class="col-md-12" >
                             <br>
                             <div class="row">
-                            <h1 id="Anunturile">Anunturile producatorului</h1>
-                            <form class="cauta-anunt" method="GET" action="">
-                                <input  id="cauta-anunt"  name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
-                                <button>Cauta</button>
-                            </form>
+                                <div class="col-md-6">
+                                    <h4 style="color: #4B4B4B;"><b>Anunturile producatorului</b></h4>
+                                    <div class="path-44"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <form class="cauta-anunt" method="GET" action="">
+                                        <input  id="cauta-anunt"  name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
+                                        <button>Cauta</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -349,8 +356,9 @@
         <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header"  style="display: initial;padding-bottom: 20px;">
                         <h3 class="modal-title" id="lineModalLabel"><b>Scrie un mesaj </b></h3>
+                        <div class="path-44"></div>
                     </div>
                     <div class="modal-body">
 
@@ -365,7 +373,7 @@
                                 <label for="titlu-field">Mesaj:</label>
                                 <input name="mesaj" value="{{form.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
                             </div>
-                            <button type="submit" class="btn btn-default" name="btnform1">Submit</button>
+                            <button class="btn btn-success" type="submit" style="border-radius: 0px; margin-top: 5px; width: 150px;" name="btnform1">Trimite mesaj</button>
                         </form>
                     </div>
                 </div>
@@ -376,8 +384,9 @@
         <div class="modal fade" id="squarespaceModal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header"  style="display: initial;padding-bottom: 20px;">
                         <h3 class="modal-title" id="lineModalLabel"><b>Spune-ne ce s-a intamplat</b></h3>
+                        <div class="path-44"></div>
                     </div>
                     <div class="modal-body">
 
@@ -392,7 +401,7 @@
                                 <label for="titlu-field">Ce s-a intamplat:</label>
                                 <input name="mesajj" value="{{form2.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
                             </div>
-                            <button type="submit" class="btn btn-default" name="btnform2">Submit</button>
+                            <button class="btn btn-success" type="submit" style="border-radius: 0px; margin-top: 5px; width: 150px;" name="btnform2">Raporteaza</button>
                         </form>
                     </div>
                 </div>
