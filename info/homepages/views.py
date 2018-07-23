@@ -16,6 +16,15 @@ def index(request):
     account2 = Account2.objects.all()
     users = User.objects.all()
     query = request.GET.get("q")
+
+    a = Legfruccategory.objects.all().filter(name="Pere")
+    b = Legfruccategory.objects.all().filter(name="Mere")
+    print a
+    print b
+    c = []
+    c.append(a)
+    c.append(b)
+    print c
     if query:
         post = post.filter(name__contains=query)
         return redirect('/search')

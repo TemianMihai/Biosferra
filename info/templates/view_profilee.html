@@ -187,6 +187,12 @@
                         </div>
                     </div>
 
+                    <div class="descriere" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 30px;">
+                        <p style="font-size: 18px;color: #6C6C6C;"><b>Descriere</b></p>
+                        <p style="color: #6C6C6C;">{{ p.descriere }}</p>
+                        <div class="break"></div> <br>
+                    </div>
+
                     <div class="gradina" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p style="color: #6C6C6C;"><b>Gradina utilizatorului</b></p>
                         <div class="items">
@@ -198,12 +204,6 @@
                                 <li>{{ p.produs5 }}</li>
                             </ul>
                         </div>
-                    </div>
-
-                    <div class="descriere" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                        <p style="font-size: 18px;color: #6C6C6C;"><b>Descriere</b></p>
-                        <p style="color: #6C6C6C;">{{ p.descriere }}</p>
-                        <div class="break"></div> <br>
                     </div>
                 </div>
                 <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
@@ -256,6 +256,7 @@
                                             <a href="/view-profile/{{user.account2.slug}}/comenzi-trimise"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 100%;" >Comenzi plasate</button></a>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row">
                                         <div class="col-md-6" style="padding-right: 0;"><a href="/view-profile/{{user.account2.slug}}"><button  class="btn btn-primary " style="color: #fff; background-color: #1CC661; border: 1px solid #B4B4B4;border-radius: 0px;width: 100%;" >Mesaje primite</button></a></div>
                                         <div class="col-md-6" style="padding-left: 0;"><a href="/view-profile/{{user.account2.slug}}/mesaje-trimise"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width:100%;" >Mesaje trimise</button></a></div>
@@ -340,7 +341,7 @@
                                                 <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                                 <hr>
                                                 <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
-                                                <p class="card-text" style="color: #6C6C6C">{{ post.details|truncatechars:35 }}</p>
+                                                <p class="card-text" style="color: #6C6C6C">{{ post.details|truncatechars:10 }}</p>
                                             </div>
                                         </div>
                                     </div>
