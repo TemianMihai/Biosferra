@@ -1,3 +1,5 @@
+from io import BytesIO
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import CreatePostForm, CommentForm
@@ -9,6 +11,8 @@ from django.core.mail import send_mail
 from authentication.models import Account2
 from user_profile.models import Profile, Mesaje
 from user_profile.forms import CreateMesajeForm
+from django.views.generic import View
+
 
 @login_required(login_url='/login')
 def create_post(request):
@@ -138,6 +142,41 @@ def comanda(request):
 
 @login_required(login_url='/login')
 def delete_comanda(request, slug):
+    comandar = AdresaDeFacturare.objects.filter(slug=slug).first()
+    data = {
+        'anunt':comandar.postcomanda.name,
+        'pret': comandar.postcomanda.price,
+        'cantitate':comandar.postcomanda.cantity,
+        'cumparator1':comandar.nume,
+        'cumparator2':comandar.prenume,
+        'email':comandar.email,
+        'nrdetelefon':comandar.nrdetelefon,
+        'localitate':comandar.localitate,
+        'judet':comandar.judet,
+        'adresa': comandar.adresa,
+        'vanzator1':comandar.posesor.first_name,
+        'vanzator2':comandar.posesor.last_name,
+        'oras':comandar.posesor.account2.city,
+        'judeet':comandar.posesor.account2.state,
+        'adresa2': comandar.posesor.account2.adress,
+        'email2': comandar.posesor.email,
+        'nrdetelefon2': comandar.posesor.account2.phonenumber,
+    }
+    from django.template.loader import get_template
+    template_object = get_template('invoice.html')
+    html = template_object.render(data)
+    from StringIO import StringIO
+    pdf_file = StringIO()
+    from xhtml2pdf import pisa
+    pisa.CreatePDF(html.encode(), pdf_file, encoding='UTF-8')
+    from django.core.mail import EmailMessage
+    subject="Factura comanda"
+    message="Comanda dumneavoastra: %s a fost incheiata cu succes ce catre %s."
+    from_email = settings.EMAIL_HOST_USER
+    to_list = [settings.EMAIL_HOST_USER, comandar.email]
+    mail = EmailMessage(subject, message, from_email, to_list)
+    mail.attach('factura.pdf', pdf_file.getvalue(), 'application/pdf')
+    mail.send()
     AdresaDeFacturare.objects.filter(slug=slug).delete()
     return redirect('/')
 
