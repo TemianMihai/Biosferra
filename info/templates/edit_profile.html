@@ -43,6 +43,13 @@
             color:#fff;
         }
 
+    .path-44 {
+        box-sizing: border-box;
+        height: 1px;
+        width: 150px;
+        border: 1px solid #1CC661;
+    }
+
     a:link {
         text-decoration: none;
     }
@@ -64,9 +71,9 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <div class="navbar-brand">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container" style="margin-left: 130px;">
+            <div class="navbar-brand" style="margin-right: 18rem;">
                 <div class="row" style="flex-wrap: nowrap;">
                     <a  href="/"><img src="{% static "images/brand.png" %}"></a>
                     <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
@@ -75,13 +82,10 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- Will get collapsed -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
                 <ul class="navbar-nav mr-auto">
                     <div class="row" style="flex-wrap: nowrap;">
                     {% if user.is_authenticated %}
-                        <!-- Username dropdown -->
                         <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -93,7 +97,6 @@
                                     <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi</a>
                                     <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Mesaje</a>
                                     <a class="dropdown-item" href="/favoriti">Favoriti</a>
-                                    <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/logout">Deconectare</a>
                                 </div>
@@ -107,29 +110,25 @@
                                     </div>
                             {% endif %}
                         </li>
-
-                        <!-- Cosul meu -->
                         <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
                         <li class="nav-item">
                             <a class="nav-link" href="/cosul-meu">Cosul Meu</a>
                         </li>
-
                         {% if user.account2.slug %}
                         <li class="nav-item" id="creeazaPostare">
-                            <a href="/create-post"><button class="btn">+ Creaza o postare</button></a>
+                            <a href="/create-post"><button class="btn" style="border-radius: 1px;">+ Creaza o postare</button></a>
                         </li>
                             {% else %}
                             <li class="nav-item" id="creeazaPostare">
-                                <a href="/logout"><button class="btn">Deconecatre</button></a>
+                                <a href="/logout"><button class="btn" style="border-radius: 1px;width: 180px;">Deconectare</button></a>
                             </li>
                         {% endif %}
-
                         {% else %}
-                            <li class="nav-item" id="creeazaPostare" style="margin-left: 97%;">
-                                <a href="/register-cumparator"><button class="btn">Inregistreaza-te!</button></a>
+                            <li class="nav-item" id="creeazaPostare" style="margin-left: 65%;">
+                                <a href="/register-cumparator"><button class="btn" style="border-radius: 1px;">Inregistreaza-te!</button></a>
                             </li>
                             <li class="nav-item" id="creeazaPostare">
-                                <a href="/login"><button class="btn">Autentificare</button></a>
+                                <a href="/login"><button class="btn" style="border-radius: 1px;width: 150px;">Autentificare</button></a>
                             </li>
                     {% endif %}
                     </div>
@@ -137,10 +136,12 @@
             </div>
         </div>
     </nav>
-<br> <br>
+    <br> <br>
 
-    <h1 align="center">Editeaza-ti profilul</h1>
     <div class="container">
+        <h2 align="left">Editeaza-ti profilul</h2>
+        <div class="path-44"></div>
+        <br>
         {% if messages %}
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
@@ -266,8 +267,8 @@
                         <div class="col-md-5" style="margin-top: 40px;padding-left: 35px;">
                             <h2 align="left"><b>BIOsferra</b></h2>
                             <div class="path-57"></div>
-                            <p align="left" style="margin-top: 35px;">Fagadar Cezar</p>
-                            <p align="left">Temian Mihai</p>
+                            <a href="https://dribbble.com/FagadarCezar" style="color: #FFFFFF"><p align="left" style="margin-top: 35px;">Fagadar Cezar</p></a>
+                            <a href="https://github.com/temi4000" style="color: #FFFFFF"><p align="left">Temian Mihai</p></a>
                         </div>
                         <div class="col-md-6" style="margin-top: 40px;">
                             <div class="row">
@@ -303,7 +304,8 @@
                                 <div class="col-md-5">
                                     <p align="left"><b>Contact</b></p>
                                     <p align="left">Romania, Timis, Timisoara</p>
-                                    <p align="left" style="margin-top: 95px;">biosferra.noreplay@gmail.com</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d22269.631879759865!2d21.215498148071287!3d45.75708007361393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sro!2sro!4v1532376892664" width="auto" height="80px;" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    <p align="left">biosferra.noreplay@gmail.com</p>
                                     <p align="left">+40 733 625 927</p>
                                 </div>
                             </div>

@@ -87,78 +87,70 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <div class="navbar-brand">
-                <div class="row" style="flex-wrap: nowrap;">
-                    <a  href="/"><img src="{% static "images/brand.png" %}"></a>
-                    <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
-                </div>
+    <div class="container" style="margin-left: 130px;">
+        <div class="navbar-brand" style="margin-right: 18rem;">
+            <div class="row" style="flex-wrap: nowrap;">
+                <a  href="/"><img src="{% static "images/brand.png" %}"></a>
+                <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Will get collapsed -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                <ul class="navbar-nav mr-auto">
-                    <div class="row" style="flex-wrap: nowrap;">
-                    {% if user.is_authenticated %}
-                        <!-- Username dropdown -->
-                        <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ user.username }}
-                            </a>
-                            {% if user.account2.slug %}
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <div class="row" style="flex-wrap: nowrap;">
+                {% if user.is_authenticated %}
+                    <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ user.username }}
+                        </a>
+                        {% if user.account2.slug %}
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
+                                <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi</a>
+                                <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Mesaje</a>
+                                <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout">Deconectare</a>
+                            </div>
+                            {% else %}
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
-                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi</a>
-                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Mesaje</a>
+                                    <a class="dropdown-item" href="/mesaje">Mesaje</a>
+                                    <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
                                     <a class="dropdown-item" href="/favoriti">Favoriti</a>
-                                    <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/logout">Deconectare</a>
                                 </div>
-                                {% else %}
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="/mesaje">Mesaje</a>
-                                        <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
-                                        <a class="dropdown-item" href="/favoriti">Favoriti</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/logout">Deconectare</a>
-                                    </div>
-                            {% endif %}
-                        </li>
-
-                        <!-- Cosul meu -->
-                        <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/cosul-meu">Cosul Meu</a>
-                        </li>
-
-                        {% if user.account2.slug %}
-                        <li class="nav-item" id="creeazaPostare">
-                            <a href="/create-post"><button class="btn">+ Creaza o postare</button></a>
-                        </li>
-                            {% else %}
-                            <li class="nav-item" id="creeazaPostare">
-                                <a href="/logout"><button class="btn">Deconectare</button></a>
-                            </li>
                         {% endif %}
-
+                    </li>
+                    <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cosul-meu">Cosul Meu</a>
+                    </li>
+                    {% if user.account2.slug %}
+                    <li class="nav-item" id="creeazaPostare">
+                        <a href="/create-post"><button class="btn" style="border-radius: 1px;">+ Creaza o postare</button></a>
+                    </li>
                         {% else %}
-                            <li class="nav-item" id="creeazaPostare" style="margin-left: 97%;">
-                                <a href="/register-cumparator"><button class="btn">Inregistreaza-te!</button></a>
-                            </li>
-                            <li class="nav-item" id="creeazaPostare">
-                                <a href="/login"><button class="btn">Autentificare</button></a>
-                            </li>
+                        <li class="nav-item" id="creeazaPostare">
+                            <a href="/logout"><button class="btn" style="border-radius: 1px;width: 180px;">Deconectare</button></a>
+                        </li>
                     {% endif %}
-                    </div>
-                </ul>
-            </div>
+                    {% else %}
+                        <li class="nav-item" id="creeazaPostare" style="margin-left: 65%;">
+                            <a href="/register-cumparator"><button class="btn" style="border-radius: 1px;">Inregistreaza-te!</button></a>
+                        </li>
+                        <li class="nav-item" id="creeazaPostare">
+                            <a href="/login"><button class="btn" style="border-radius: 1px;width: 150px;">Autentificare</button></a>
+                        </li>
+                {% endif %}
+                </div>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 {% for p in profiles %}
     <div class="break-line"></div>
         <div class="content">
@@ -172,7 +164,8 @@
                             </div>
                             <h5>{{ user2.user.username }}</h5>
                             {% if user != user2.user %}
-                                <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-success btn-circle" style="border-radius: 1px; background-color: #E53046; border-color: #E53046">&nbsp Raporteaza!</button>
+                                {% else %}
+                                    <a href="/edit-profile"><button class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #fff;border-radius: 1px;color: #B4B4B4;" >&nbsp Editeaza profilul</button></a>
                             {% endif %}
                             <div class="break"></div>
                         </div>
@@ -208,7 +201,7 @@
                 <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
                     <div class="row" id="up-side">
                         <div class="col-md-12">
-                            <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 200px; width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                            <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 245px; width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         </div>
                         {% if messages %}
                             <div class="col-md-12">
@@ -224,13 +217,20 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <form  method="POST" enctype="multipart/form-data">
-                                           {% csrf_token %}
-                                            <button type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3" style="border-radius: 1px;background-color: #E53046;border-color: #E53046;"><span><img src="{% static "images/favorite.png" %}">&nbsp Adauga la favorit</span>
-                                        </form>
+                                        {% if favoritt %}
+                                            <form  method="POST" enctype="multipart/form-data">
+                                               {% csrf_token %}
+                                                <button type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3" style="border-radius: 1px;background-color: #E53046;border-color: #E53046;"><span><img src="{% static "images/favorite.png" %}">&nbsp Nu mai urmari</span>
+                                            </form>
+                                            {% else %}
+                                            <form  method="POST" enctype="multipart/form-data">
+                                               {% csrf_token %}
+                                                <button type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3" style="border-radius: 1px;background-color: #E53046;border-color: #E53046;"><span><img src="{% static "images/favorite.png" %}">&nbsp Adauga la favorit</span>
+                                            </form>
+                                        {% endif %}
                                     </div>
                                     <div class="col-md-4 offset-md-4">
-                                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #fff;border-radius: 1px;color: #B4B4B4;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Trimite mesaj privat</button>
+                                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 2px solid #1CC661; background-color: #fff;border-radius: 1px;color: #1CC661;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Trimite mesaj privat</button>
                                     </div>
                                 </div>
                             </div>
@@ -254,6 +254,7 @@
                                             <a href="/view-profile/{{user.account2.slug}}/comenzi-trimise"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 100%;" >Comenzi plasate</button></a>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row">
                                         <div class="col-md-6" style="padding-right: 0;"><a href="/view-profile/{{user.account2.slug}}"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px;width: 100%;" >Mesaje primite</button></a></div>
                                         <div class="col-md-6" style="padding-left: 0;"><a href="/view-profile/{{user.account2.slug}}/mesaje-trimise"><button  class="btn btn-primary " style="color: #fff; background-color: #1CC661; border: 1px solid #B4B4B4;border-radius: 0px; width:100%;" >Mesaje trimise</button></a></div>
@@ -416,8 +417,8 @@
                         <div class="col-md-5" style="margin-top: 40px;padding-left: 35px;">
                             <h2 align="left"><b>BIOsferra</b></h2>
                             <div class="path-57"></div>
-                            <p align="left" style="margin-top: 35px;">Fagadar Cezar</p>
-                            <p align="left">Temian Mihai</p>
+                            <a href="https://dribbble.com/FagadarCezar" style="color: #FFFFFF"><p align="left" style="margin-top: 35px;">Fagadar Cezar</p></a>
+                            <a href="https://github.com/temi4000" style="color: #FFFFFF"><p align="left">Temian Mihai</p></a>
                         </div>
                         <div class="col-md-6" style="margin-top: 40px;">
                             <div class="row">
@@ -453,7 +454,8 @@
                                 <div class="col-md-5">
                                     <p align="left"><b>Contact</b></p>
                                     <p align="left">Romania, Timis, Timisoara</p>
-                                    <p align="left" style="margin-top: 95px;">biosferra.noreplay@gmail.com</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d22269.631879759865!2d21.215498148071287!3d45.75708007361393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sro!2sro!4v1532376892664" width="auto" height="80px;" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    <p align="left">biosferra.noreplay@gmail.com</p>
                                     <p align="left">+40 733 625 927</p>
                                 </div>
                             </div>

@@ -67,7 +67,6 @@ def mesaj_profile(request, slug):
     form = CreateMesajeForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-            print form.errors
             mesaj = form.instance
             mesaj.autor = current_user
             mesaj.destinatar = useru.user
@@ -86,6 +85,7 @@ def profile(request, slug):
     user2 = get_object_or_404(Account2,slug=slug)
     mesaje = Mesaje.objects.all().filter(destinatar=user2.user)
     profiles = Profile.objects.all().filter(userul=user2.user)
+    favoritt = Favorit.objects.all().filter(ales = user2.user)
     form = CreateMesajeForm(request.POST or None)
     form2 = CreateReportForm(request.POST or None)
     form3 = CreateFavoritForm(request.POST or None)
@@ -140,6 +140,7 @@ def profile(request, slug):
         'form2': form2,
         'form3': form3,
         'profiles':profiles,
+        'favoritt':favoritt,
         'user2': user2
     })
 
@@ -182,6 +183,7 @@ def get_mesajet(request, slug):
     anunturi = PostModel.objects.all()
     user2 = get_object_or_404(Account2,slug=slug)
     form4 = CreateMesajeForm(request.POST or None)
+    favoritt = Favorit.objects.all().filter(ales = user2.user)
     profiles = Profile.objects.all().filter(userul=user2.user)
     mesaje = Mesaje.objects.all().filter(autor=current_user)
     if request.method == 'POST':
@@ -198,6 +200,7 @@ def get_mesajet(request, slug):
         'user': current_user,
         'anunturi': anunturi,
         'profiles': profiles,
+        'favoritt':favoritt,
         'form4':form4,
         'user2': user2,
         'mesaje':mesaje
