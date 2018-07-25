@@ -4,3 +4,4 @@ django-widget-tweaks==1.4.2
 Pillow==5.1.0
 six==1.11.0
 typing==3.6.4
+xhtml2pdf

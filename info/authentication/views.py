@@ -4,6 +4,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from .form import LoginForm,UserRegisterForm, AccRegisterForm, AccRegisterForm2
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.models import User
 
 def login_view(request):
     if request.user.is_authenticated():

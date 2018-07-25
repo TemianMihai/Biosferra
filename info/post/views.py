@@ -171,7 +171,7 @@ def delete_comanda(request, slug):
     pisa.CreatePDF(html.encode(), pdf_file, encoding='UTF-8')
     from django.core.mail import EmailMessage
     subject="Factura comanda"
-    message="Comanda dumneavoastra: %s a fost incheiata cu succes ce catre %s."
+    message="Comanda dumneavoastra: %s a fost incheiata cu succes ce catre %s." %(comandar.postcomanda.name, comandar.posesor)
     from_email = settings.EMAIL_HOST_USER
     to_list = [settings.EMAIL_HOST_USER, comandar.email]
     mail = EmailMessage(subject, message, from_email, to_list)
