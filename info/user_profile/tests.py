@@ -11,10 +11,10 @@ class ProfileTest(TestCase):
         self.user2 = User.objects.create_user(username='omcaretesteaza2',password='cevaparola2',email='wtf@wtf2.com')
         self.user2.save()
 
-        self.profil = Profile.objects.create(userul=self.user, produs1='mere', produs2='para',
-                                            produs3='visine', produs4='cartofi', produs5='rosii',
-                                            descriere='alabalaportocala', image1='tests/tests2.png',
-                                            image2='tests/tests')
+        self.profil = Profile.objects.create(user=self.user, product1='mere', product2='para',
+                                            product3='visine', product4='cartofi', product5='rosii',
+                                            description='alabalaportocala', cover_image='tests/tests2.png',
+                                            profile_image='tests/tests')
         self.profil.save()
 
         self.report = Report.objects.create(autor=self.user, mesajj="wtf is wrong", titluu='report', destinatar=self.user2, slug='sadsadsadsasddsds')

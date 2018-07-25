@@ -160,7 +160,7 @@
                     <div class="profile" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <div class="upper-side">
                             <div class="profile-image">
-                                <img src="{{  p.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;">
+                                <img src="{{  p.profile_image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;">
                             </div>
                             <h5>{{ user2.user.username }}</h5>
                             {% if user != user2.user %}
@@ -181,7 +181,7 @@
 
                     <div class="descriere" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 30px;">
                         <p style="font-size: 18px;color: #6C6C6C;"><b>Descriere</b></p>
-                        <p style="color: #6C6C6C;">{{ p.descriere }}</p>
+                        <p style="color: #6C6C6C;">{{ p.description }}</p>
                         <div class="break"></div> <br>
                     </div>
 
@@ -189,11 +189,11 @@
                         <p style="color: #6C6C6C;"><b>Gradina utilizatorului</b></p>
                         <div class="items">
                             <ul>
-                                <li>{{p.produs1}}</li>
-                                <li>{{ p.produs2 }}</li>
-                                <li>{{ p.produs3 }}</li>
-                                <li>{{ p.produs4 }}</li>
-                                <li>{{ p.produs5 }}</li>
+                                <li>{{p.product1}}</li>
+                                <li>{{ p.product2 }}</li>
+                                <li>{{ p.product3 }}</li>
+                                <li>{{ p.product4 }}</li>
+                                <li>{{ p.product5 }}</li>
                             </ul>
                         </div>
                     </div>
@@ -201,7 +201,7 @@
                 <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
                     <div class="row" id="up-side">
                         <div class="col-md-12">
-                            <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 245px; width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                            <img src="{{  p.cover_image.url }}" class="img-fluid" alt="Responsive image" style="height: 245px; width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         </div>
                         {% if messages %}
                             <div class="col-md-12">
@@ -277,16 +277,16 @@
                                                 {% for mesaje in mesaje %}
                                                     <div class="row">
                                                         <div class="col-md-5">
-                                                            <p><b>{{ mesaje.titlu }}</b></p>
-                                                            <p style="color: #6C6C6C;">{{ mesaje.mesaj }}</p>
+                                                            <p><b>{{ mesaje.title }}</b></p>
+                                                            <p style="color: #6C6C6C;">{{ mesaje.content }}</p>
                                                         </div>
                                                         <div class="col-md-2 offset-md-3">
                                                             <div class="row">
                                                                 <span><img src="{% static "images/forward-arrow.png" %}"></span>
                                                                 {% if mesaje.destinatar.account2 %}
-                                                                    <a href="/view-profile/{{mesaje.destinatar.account2.slug}}"><p style="color: #848484;"><b>{{ mesaje.destinatar }}</b></p></a>
+                                                                    <a href="/view-profile/{{mesaje.receiver.account2.slug}}"><p style="color: #848484;"><b>{{ mesaje.receiver }}</b></p></a>
                                                                     {% else %}
-                                                                    <a href="/trimite-mesaje/{{mesaje.destinatar.account.slug}}"><p style="color: #848484;"><b>{{ mesaje.destinatar }}</b></p></a>
+                                                                    <a href="/trimite-mesaje/{{mesaje.receiver.account.slug}}"><p style="color: #848484;"><b>{{ mesaje.receiver }}</b></p></a>
                                                                 {% endif %}
                                                             </div>
                                                             <p style="color: #B4B4B4;">{{ mesaje.created_date }}</p>

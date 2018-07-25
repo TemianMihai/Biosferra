@@ -177,22 +177,16 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-2">
-                                    <label>Legume sau fructe:</label>
-                            </div>
-                            <div class="col-md-2" >
-                                    {{ form.lfcategory|add_class:"form-control "|attr:"required:required"}}
-                            </div>
-                            <div class="col-md-2">
                                     <label>Anotimp produs:</label>
                             </div>
                             <div class="col-md-2">
-                            {{ form.categorie|add_class:"form-control "|attr:"required:required"}}
+                            {{ form.season|add_class:"form-control "|attr:"required:required"}}
                             </div>
                             <div class="col-md-2">
                                     <label>Produsul vandut:</label>
                             </div>
                             <div class="col-md-2" >
-                            {{ form.legfruccategory|add_class:"form-control "|attr:"required:required"}}
+                            {{ form.product_type|add_class:"form-control "|attr:"required:required"}}
                             </div>
                         </div>
                     </div>
@@ -207,13 +201,13 @@
                                 <label>Kg / Buc:</label>
                             </div>
                             <div class="col-md-2" >
-                                {{ form.category|add_class:"form-control "|attr:"required:required"}}
+                                {{ form.um|add_class:"form-control "|attr:"required:required"}}
                             </div>
                             <div class="col-md-2" >
                                 <label>Cantitate:</label>
                             </div>
                             <div class="col-md-2" >
-                                <input name="cantity" value="{{form.cantity.value|default:""}}" type="text" placeholder="Ex: 10" id="titlu-field" class="form-control"/>
+                                <input name="quantity" value="{{form.quantity.value|default:0}}" type="number" placeholder="Ex: 10" id="titlu-field" class="form-control"/>
                                 {% if form.cantity.errors %}
                                      <div class="alert alert-danger alert-dimdissible" role="alert">
                                         <strong>Atentie!</strong>

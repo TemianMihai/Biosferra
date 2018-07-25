@@ -7,9 +7,13 @@ from django.conf import settings
 from django.utils import timezone
 from category.models import Category
 from categorie.models import Categorie
-from lfcat.models import Lfcategory, Legfruccategory
+from lfcat.models import Products
 
 # Create your models here.
+CHOICES_UM = ((0, "Kilogram"), (1, "Bucata"))
+CHOICES_SEASON = ((0, "Primavara"), (1, "Vara"), (2, "Toamna"), (3, "Iarna"))
+
+
 def upload_location(instance, filename):
     return "%s/%s" % (instance.slug, filename)
 
@@ -18,7 +22,7 @@ class PostModel(models.Model):
                                null=True, blank=True)
     name = models.CharField(max_length=100)
     details = models.CharField(max_length=1000)
-    cantity = models.CharField(max_length=100)
+    quantity = models.IntegerField()
     slug = models.SlugField(default=uuid.uuid1, unique=True)
     image1 = models.ImageField(upload_to = upload_location,
                               null=True, blank=True)
@@ -29,10 +33,9 @@ class PostModel(models.Model):
     image4 = models.ImageField(upload_to = upload_location,
                               null=True, blank=True)
     price = models.CharField(max_length=15)
-    categorie = models.ForeignKey(Categorie, null=True)
-    category = models.ForeignKey(Category, null=True)
-    lfcategory = models.ForeignKey(Lfcategory, null=True)
-    legfruccategory = models.ForeignKey(Legfruccategory, null=True)
+    season = models.IntegerField(choices=CHOICES_SEASON)
+    um = models.IntegerField(choices=CHOICES_UM)
+    product_type = models.ForeignKey(Products, null=True)
     approved = models.BooleanField(default=False)
 
     def get_delete_url(self):

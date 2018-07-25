@@ -169,7 +169,7 @@
                     <div class="tabel">
                         <div class="row">
                             <div class="col-md-6">
-                                    <img src="{{  profiles.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%; width: 50%; margin-left: 25%; margin-top: 5%;">
+                                    <img src="{{  profiles.profile_image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%; width: 50%; margin-left: 25%; margin-top: 5%;">
                                     <a href="/view-profile/{{posts.author.account2.slug}}"><h6 align="center"><b>{{ posts.author }}</b></h6></a>
                                     <hr style="margin-bottom: 15px;margin-left: 15px;">
                                     <h6 align="center" style="color:#4B4B4B;">{{ posts.author.account2.user.first_name }} {{ posts.author.account2.user.last_name }}</h6>
@@ -186,8 +186,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="cumpara">
-                                    <h4><b>Produs: </b> {{ posts.legfruccategory }}</h4>
-                                    <h4><b>Cantitate: </b> {{ posts.cantity }} {{ posts.category }}</h4>
+                                    <h4><b>Produs: </b> {{ posts.product_type}}</h4>
+                                    <h4><b>Cantitate: </b> {{ posts.quantity }}/{{ posts.get_um_display }}</h4>
                                     <h4><b>Pret:</b> {{ posts.price }} lei</h4>
 
                                     {% if posts.author == user %}

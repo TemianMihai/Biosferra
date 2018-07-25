@@ -146,13 +146,13 @@
     {% if favoriti %}
         {% for favoriti in favoriti %}
             <div class="col-md-12">
-                <a href="/view-profile/{{favoriti.ales.account2.slug}}"><h1 style="color: #de6969"><b>{{ favoriti.ales }}</b></h1></a>
+                <a href="/view-profile/{{favoriti.receiver.account2.slug}}"><h1 style="color: #de6969"><b>{{ favoriti.receiver }}</b></h1></a>
                 <div class="col-md-2"> <hr></div>
                 <br>
             </div>
             {% if posturi %}
                 {% for posturi in posturi %}
-                    {% if posturi.author == favoriti.ales %}
+                    {% if posturi.author == favoriti.receiver %}
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
@@ -182,7 +182,7 @@
                                                             <div class="col-md-3">
                                                                 <div class="row">
                                                                     {% for profil in profil %}
-                                                                        {% if posturi.author == profil.userul %}
+                                                                        {% if posturi.author == profil.user %}
                                                                             <img src="{{  profil.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;min-height: 40px;max-height: 40px;">
                                                                         {% endif %}
                                                                     {% endfor %}
@@ -207,7 +207,7 @@
                     {% endif %}
                 {% endfor %}
                 {% else %}
-                    <h2 align="center">Userul nu a postat nici un anunt </h2>
+                    <h2 align="center">user nu a postat nici un anunt </h2>
             {% endif %}
             <br>
         {% endfor %}

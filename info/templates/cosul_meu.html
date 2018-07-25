@@ -157,7 +157,7 @@
                                                 <div class="col-md-3">
                                                     <div class="row">
                                                         {% for profil in profil %}
-                                                            {% if cosul.anunturi.author == profil.userul %}
+                                                            {% if cosul.anunturi.author == profil.user %}
                                                                 <img src="{{  profil.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;min-height: 40px;max-height: 40px;">
                                                             {% endif %}
                                                         {% endfor %}

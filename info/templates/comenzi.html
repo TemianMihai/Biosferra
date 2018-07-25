@@ -162,8 +162,8 @@
                                                     <div class="col-md-3">
                                                         <div class="row">
                                                             {% for profil in profil %}
-                                                                {% if comenzi.postcomanda.author == profil.userul %}
-                                                                    <img src="{{  profil.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;min-height: 40px;max-height: 40px;">
+                                                                {% if comenzi.postcomanda.author == profil.user %}
+                                                                    <img src="{{  profil.profile_image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;min-height: 40px;max-height: 40px;">
                                                                 {% endif %}
                                                             {% endfor %}
                                                             <a href="/view-profile/{{comenzi.postcomanda.author.account2.slug}}"><h6 style="margin-left: 10px; margin-top: 10px;color: #4B4B4B;">{{ comenzi.postcomanda.author }}</h6></a>

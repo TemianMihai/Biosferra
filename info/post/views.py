@@ -1,22 +1,24 @@
+import json
 from io import BytesIO
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import CreatePostForm, CommentForm
+from .forms import CreatePostForm, CommentForm, FilterForm
 from .forms import CreateCosForm, CreateComandaForm
+from  .models import CHOICES_UM
 from .models import PostModel, Comment, CosulMeu, AdresaDeFacturare
 from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 from authentication.models import Account2
-from user_profile.models import Profile, Mesaje
+from user_profile.models import Profile, Message
 from user_profile.forms import CreateMesajeForm
 
 @login_required(login_url='/login')
 def create_post(request):
     current_user = request.user
     try:
-        profil = Profile.objects.get(userul=current_user)
+        profil = Profile.objects.get(user=current_user)
     except:
         return redirect('/create-profile')
     form = CreatePostForm(request.POST or None, request.FILES or None,user=current_user.account2)
@@ -31,6 +33,7 @@ def create_post(request):
             to_list = [settings.EMAIL_HOST_USER, current_user.email]
             send_mail(subject, message, from_email, to_list, fail_silently=True)
             messages.success(request, 'Anuntul dumneavoastra a fost salvat. Va rugam sa asteptati cateva momente pana cand acesta va fi verificat de catre un administrator. Va multumim!')
+    print form.errors
     return render(request, "create_post.html", {
         'form': form,
         'user':request.user
@@ -38,9 +41,10 @@ def create_post(request):
 
 
 def get_post(request, slug):
+
     post = get_object_or_404(PostModel,slug=slug)
     comm_parent = Comment.objects.filter(is_parent=True).filter(post=post)
-    profiles = Profile.objects.all().get(userul=post.author)
+    profiles = Profile.objects.all().get(user=post.author)
     form2 = CreateCosForm(request.POST)
     if request.method == "POST" and 'btnform1' in request.POST:
         form = CommentForm(request.POST)
@@ -202,7 +206,7 @@ def get_comandap(request, slug):
     current_user = request.user
     anunturi = PostModel.objects.all()
     user2 = get_object_or_404(Account2, slug=slug)
-    profiles = Profile.objects.all().filter(userul=user2.user)
+    profiles = Profile.objects.all().filter(user=user2.user)
     comandar = AdresaDeFacturare.objects.all().filter(posesor=current_user)
     form4 = CreateMesajeForm(request.POST or None)
     if request.method == 'POST':
@@ -228,7 +232,7 @@ def get_comandat(request, slug):
     current_user = request.user
     anunturi = PostModel.objects.all()
     user2 = get_object_or_404(Account2, slug=slug)
-    profiles = Profile.objects.all().filter(userul=user2.user)
+    profiles = Profile.objects.all().filter(user=user2.user)
     comandar = AdresaDeFacturare.objects.all().filter(creator=current_user)
     query = request.GET.get("q")
     if query:
@@ -241,5 +245,47 @@ def get_comandat(request, slug):
         'comenzi2':comandar
     })
 
+def posts_filter(request):
+    POST = json.loads(request.body)
+    form = FilterForm(data=POST)
+    if form.is_valid():
+        sort_by = POST.get("sort_by", 0)
+        products = POST.get("products", [])
+        um = POST.get("um", None)
+        min_quantity = POST.get("min_quantity", None)
+        max_quantity = POST.get("max_quantity", None)
+        min_price = POST.get("min_price", None)
+        max_price = POST.get("max_price", None)
+        print(products, POST)
+        qs = PostModel.objects.all()
+        if len(products) > 0:
+            qs = qs.filter(product_type__in=products)
 
+        if um:
+            qs = qs.filter(um=um)
+            if min_quantity:
+                qs = qs.filter(quantity__gt=min_quantity)
+            if max_quantity:
+                qs = qs.filter(quantity__lt=max_quantity)
 
+        if min_price:
+            qs = qs.filter(price__gt=min_price)
+        if max_price:
+            qs = qs.filter(price__lt=max_price)
+
+        if sort_by is 0:
+            qs = qs.order_by("author")
+        elif sort_by is 1:
+            qs = qs.order_by("price")
+        elif sort_by is 2:
+            qs = qs.order_by("-price")
+        else:
+            qs = qs.order_by("title")
+
+        print(list(qs))
+
+        return render(request, 'post_list_content.html', {
+            'posts': list(qs)
+        })
+    else:
+        print(form.errors)

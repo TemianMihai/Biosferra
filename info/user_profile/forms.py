@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django import forms
 from authentication.models import Account2
-from .models import Mesaje, Report, Favorit, Profile
+from .models import Message, Report, Favourite, Profile
 
 class Edit_profile(forms.ModelForm):
     class Meta:
@@ -110,49 +110,50 @@ class Edit_profile2(forms.ModelForm):
 class CreateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['produs1', 'produs2', 'produs3', 'produs4', 'produs5', 'descriere', 'image1', 'image2',]
+        fields = ['product1', 'product2', 'product3', 'product4', 'product5', 'description', 'profile_image',
+                  'cover_image', ]
         widgets = {
-            'produs1' : forms.TextInput({'required':'required','placeholder':'Produs din gradina dumneavoastra'}),
-            'produs2': forms.TextInput({'required':'required','placeholder':'Produs din gradina dumneavoastra'}),
-            'produs3': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
-            'produs4': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
-            'produs5': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
-            'descriere': forms.TextInput({'required': 'required', 'placeholder': 'Descriere'}),
-            'image1': forms.FileInput({'required': 'required', 'placeholder': 'Country'}),
-            'image2': forms.FileInput({'required': 'required', 'placeholder': 'Country'})
+            'product1': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'product2': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'product3': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'product4': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'product5': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'description': forms.TextInput({'required': 'required', 'placeholder': 'Descriere'}),
+            'profile_image': forms.FileInput({'required': 'required', 'placeholder': 'Country'}),
+            'cover_image': forms.FileInput({'required': 'required', 'placeholder': 'Country'})
         }
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(CreateProfileForm, self).__init__(*args, **kwargs)
 
-    def clean_produs1(self):
-        produs1 = self.cleaned_data['produs1']
+    def clean_product1(self):
+        produs1 = self.cleaned_data['product1']
         return produs1
 
-    def clean_produs2(self):
-        produs2 = self.cleaned_data['produs2']
+    def clean_product2(self):
+        produs2 = self.cleaned_data['product2']
         return produs2
 
-    def clean_produs3(self):
-        produs3 = self.cleaned_data['produs3']
+    def clean_product3(self):
+        produs3 = self.cleaned_data['product3']
         return produs3
 
-    def clean_produs4(self):
-        produs4 = self.cleaned_data['produs4']
+    def clean_product4(self):
+        produs4 = self.cleaned_data['product4']
         return produs4
 
-    def clean_produs5(self):
-        produs5 = self.cleaned_data['produs5']
+    def clean_product5(self):
+        produs5 = self.cleaned_data['product5']
         return produs5
 
-    def clean_descriere(self):
-        descriere = self.cleaned_data['descriere']
+    def clean_description(self):
+        descriere = self.cleaned_data['description']
         return descriere
 
-    def clean_image2(self):
-        image1 = self.cleaned_data['image1']
-        image2 = self.cleaned_data['image2']
+    def clean_cover_image(self):
+        image1 = self.cleaned_data['profile_image']
+        image2 = self.cleaned_data['cover_image']
         image_names = []
         if (image1 and not isinstance(image1, (int, float))):
             image_names.append(image1.name)
@@ -167,14 +168,14 @@ class CreateProfileForm(forms.ModelForm):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['produs1', 'produs2', 'produs3', 'produs4', 'produs5', 'descriere']
+        fields = ['product1', 'product2', 'product3', 'product4', 'product5', 'description']
         widgets = {
-            'produs1' : forms.TextInput({'required':'required','placeholder':'Produs1'}),
-            'produs2': forms.TextInput({'required':'required','placeholder':'Produs2'}),
-            'produs3': forms.TextInput({'required': 'required', 'placeholder': 'Produs3'}),
-            'produs4': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
-            'produs5': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
-            'descriere': forms.TextInput({'required': 'required', 'placeholder': 'Descriere'}),
+            'product1': forms.TextInput({'required': 'required', 'placeholder': 'Produs1'}),
+            'product2': forms.TextInput({'required': 'required', 'placeholder': 'Produs2'}),
+            'product3': forms.TextInput({'required': 'required', 'placeholder': 'Produs3'}),
+            'product4': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
+            'product5': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
+            'description': forms.TextInput({'required': 'required', 'placeholder': 'Descriere'}),
 
         }
 
@@ -182,70 +183,70 @@ class EditProfileForm(forms.ModelForm):
         self.user = kwargs.pop('user', None)
         super(EditProfileForm, self).__init__(*args, **kwargs)
 
-    def clean_produs1(self):
-        produs1 = self.cleaned_data['produs1']
+    def clean_product1(self):
+        produs1 = self.cleaned_data['product1']
         return produs1
 
-    def clean_produs2(self):
-        produs2 = self.cleaned_data['produs2']
+    def clean_product2(self):
+        produs2 = self.cleaned_data['product2']
         return produs2
 
-    def clean_produs3(self):
-        produs3 = self.cleaned_data['produs3']
+    def clean_product3(self):
+        produs3 = self.cleaned_data['product3']
         return produs3
 
-    def clean_produs4(self):
-        produs4 = self.cleaned_data['produs4']
+    def clean_product4(self):
+        produs4 = self.cleaned_data['product4']
         return produs4
 
-    def clean_produs5(self):
-        produs5 = self.cleaned_data['produs5']
+    def clean_product5(self):
+        produs5 = self.cleaned_data['product5']
         return produs5
 
-    def clean_descriere(self):
-        descriere = self.cleaned_data['descriere']
+    def clean_description(self):
+        descriere = self.cleaned_data['description']
         return descriere
 
 
 class CreateMesajeForm(forms.ModelForm):
     class Meta:
-        model = Mesaje
-        fields = ['mesaj', 'titlu']
+        model = Message
+        fields = ['content', 'title']
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(CreateMesajeForm, self).__init__(*args, **kwargs)
 
     def clean_mesaj(self):
-        mesaj = self.cleaned_data['mesaj']
+        mesaj = self.cleaned_data['content']
         return mesaj
 
     def clean_titlu(self):
-        titlu = self.cleaned_data['titlu']
+        titlu = self.cleaned_data['title']
         return titlu
 
 
 class CreateReportForm(forms.ModelForm):
     class Meta:
         model = Report
-        fields = ['mesajj', 'titluu']
+        fields = ['content', 'title']
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(CreateReportForm, self).__init__(*args, **kwargs)
 
     def clean_mesaj(self):
-        mesajj = self.cleaned_data['mesajj']
+        mesajj = self.cleaned_data['content']
         return mesajj
 
     def clean_titlu(self):
-        titluu = self.cleaned_data['titluu']
+        titluu = self.cleaned_data['title']
         return titluu
 
 
 class CreateFavoritForm(forms.ModelForm):
     class Meta:
-        model = Favorit
+        model = Favourite
         fields = []
 
     def  __init__(self, *args, **kwargs):

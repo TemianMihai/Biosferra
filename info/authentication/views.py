@@ -24,7 +24,7 @@ def login_view(request):
                         return redirect('/')
                 except:
                     if user.account2 is not None:
-                        a = len(Profile.objects.all().filter(userul = user))
+                        a = len(Profile.objects.all().filter(user = user))
                         print a
                         if  a is 0:
                             login(request, user)
