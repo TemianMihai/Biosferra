@@ -11,12 +11,14 @@ from django.core.mail import send_mail
 from authentication.models import Account2
 from user_profile.models import Profile, Mesaje
 from user_profile.forms import CreateMesajeForm
-from django.views.generic import View
-
 
 @login_required(login_url='/login')
 def create_post(request):
     current_user = request.user
+    try:
+        profil = Profile.objects.get(userul=current_user)
+    except:
+        return redirect('/create-profile')
     form = CreatePostForm(request.POST or None, request.FILES or None,user=current_user.account2)
     if request.method == 'POST':
         if form.is_valid():

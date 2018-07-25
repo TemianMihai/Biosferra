@@ -78,6 +78,13 @@ def mesaj_profile(request, slug):
         'form':form
     })
 
+def profile2(request):
+    current_user = request.user
+    user2 = Account.objects.get(user = current_user.account)
+    return render(request, 'profile_account.html',{
+        'user':current_user,
+        'user2':user2
+    })
 
 def profile(request, slug):
     current_user = request.user
