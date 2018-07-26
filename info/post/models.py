@@ -32,7 +32,7 @@ class PostModel(models.Model):
                               null=True, blank=True)
     image4 = models.ImageField(upload_to = upload_location,
                               null=True, blank=True)
-    price = models.CharField(max_length=15)
+    price = models.IntegerField(default=0)
     season = models.IntegerField(choices=CHOICES_SEASON)
     um = models.IntegerField(choices=CHOICES_UM)
     product_type = models.ForeignKey(Products, null=True)

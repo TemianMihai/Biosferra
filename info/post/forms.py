@@ -10,8 +10,7 @@ class FilterForm(forms.Form):
     sort_by = forms.ChoiceField(label="Sorteaza dupa", choices=(
         (0, "Autor"),
         (1, "Pret crescator"),
-        (2, "Pret descrescator"),
-        (3, "Ordine Alfabetica")
+        (2, "Pret descrescator")
     ), widget=forms.RadioSelect, required=False)
     products = forms.ModelMultipleChoiceField(label="Produse", queryset=Products.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
     um = forms.ChoiceField(choices=CHOICES_UM, label="Unitate de masura", widget=forms.RadioSelect, required=False)

@@ -248,14 +248,13 @@ def posts_filter(request):
     POST = json.loads(request.body)
     form = FilterForm(data=POST)
     if form.is_valid():
-        sort_by = POST.get("sort_by", 0)
+        sort_by = int(POST.get("sort_by", 0))
         products = POST.get("products", [])
         um = POST.get("um", None)
         min_quantity = POST.get("min_quantity", None)
         max_quantity = POST.get("max_quantity", None)
         min_price = POST.get("min_price", None)
         max_price = POST.get("max_price", None)
-        print(products, POST)
         qs = PostModel.objects.all()
         if len(products) > 0:
             qs = qs.filter(product_type__in=products)
@@ -275,11 +274,11 @@ def posts_filter(request):
         if sort_by is 0:
             qs = qs.order_by("author")
         elif sort_by is 1:
-            qs = qs.order_by("+price")
+            qs = qs.order_by("price")
         elif sort_by is 2:
             qs = qs.order_by("-price")
         else:
-            qs = qs.order_by("name")
+            qs = qs.order_by("+name")
         return render(request, 'post_list_content.html', {
             'posts': list(qs)
         })
