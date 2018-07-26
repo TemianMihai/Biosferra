@@ -1,4 +1,4 @@
-# BIOsferra
+# BIOsferra [![Build Status](https://travis-ci.org/temi4000/Biosferra.svg?branch=master)](https://travis-ci.org/temi4000/Biosferra)
 
 Biosferra is a web platform that helps small producers of fruits and vegetable to sell their products.
 
