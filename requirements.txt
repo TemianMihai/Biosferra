@@ -1,4 +1,5 @@
 Django==1.10
+django-jet
 django-extensions==2.0.7
 django-widget-tweaks==1.4.2
 Pillow==5.1.0
