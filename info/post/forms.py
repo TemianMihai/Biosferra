@@ -3,7 +3,7 @@ from django.core.validators import validate_email
 from .models import PostModel, Comment, CosulMeu, AdresaDeFacturare, Comanda, CHOICES_UM, CHOICES_SEASON
 from category.models import Category
 from categorie.models import Categorie
-from lfcat.models import  Products
+from lfcat.models import Products
 from django.shortcuts import get_object_or_404
 
 class FilterForm(forms.Form):
@@ -15,10 +15,10 @@ class FilterForm(forms.Form):
     ), widget=forms.RadioSelect, required=False)
     products = forms.ModelMultipleChoiceField(label="Produse", queryset=Products.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
     um = forms.ChoiceField(choices=CHOICES_UM, label="Unitate de masura", widget=forms.RadioSelect, required=False)
-    min_quantity = forms.IntegerField(label="Min", required=False)
-    max_quantity = forms.IntegerField(required=False)
-    min_price = forms.IntegerField(required=False)
-    max_price = forms.IntegerField(required=False)
+    min_quantity = forms.IntegerField(label="Minq", required=False)
+    max_quantity = forms.IntegerField(required=False, label="Maxq")
+    min_price = forms.IntegerField(required=False, label="Minp")
+    max_price = forms.IntegerField(required=False, label="Maxp")
 
 class CreatePostForm(forms.ModelForm):
     class Meta:

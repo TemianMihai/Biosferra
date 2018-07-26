@@ -88,8 +88,8 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container"  style="padding-left: 2%">
-        <div class="navbar-brand" style="margin-right: 18rem;">
+    <div class="container"  style="padding-left: 1%">
+        <div class="navbar-brand" style="margin-right: 16rem;">
             <div class="row" style="flex-wrap: nowrap;">
                 <a  href="/"><img src="{% static "images/brand.png" %}"></a>
                 <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
@@ -113,6 +113,7 @@
                                 <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi</a>
                                 <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Mesaje</a>
                                 <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                <a class="dropdown-item" href="/edit-profile-buyer">Editeaza profilul</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/logout">Deconectare</a>
                             </div>
@@ -161,7 +162,7 @@
                         <div class="profile" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                             <div class="upper-side">
                                 <div class="profile-image">
-                                    <img src="{{  p.profile_image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;">
+                                    <img src="{{  p.profile_image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;max-height: 110px;min-height: 110px;">
                                 </div>
                                 <h5>{{ user2.user.username }}</h5>
                                 {% if user != user2.user %}
@@ -267,7 +268,7 @@
                                                                                         <p><a href="/post/{{comenzi.postcomanda.slug}}"><b>{{ comenzi.postcomanda.name }}</b></a></p>
                                                                                     </div>
                                                                                     <div class="col-md-6">
-                                                                                        <p style="color: #1CC661;"><b>Pret: {{ comenzi.postcomanda.price }} lei / {{ comenzi.postcomanda.category }}</b></p>
+                                                                                        <p style="color: #1CC661;"><b>Pret: {{ comenzi.postcomanda.price }} RON / {{ comenzi.postcomanda.get_um_display }}</b></p>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -275,7 +276,7 @@
                                                                             <div class="col-md-12">
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
-                                                                                        <p style="color: #4B4B4B;"><b>Cantitate: {{ comenzi.postcomanda.cantity }} {{ comenzi.postcomanda.category }}</b></p>
+                                                                                        <p style="color: #4B4B4B;"><b>Cantitate: {{ comenzi.postcomanda.quantity }} {{ comenzi.postcomanda.get_um_display }}</b></p>
                                                                                     </div>
                                                                                     <div class="col-md-6">
                                                                                         {% if comezni.postcomanda.author == user.user %}
@@ -364,13 +365,13 @@
                                     {% if user2.user == post.author %}
                                         <div class="col-md-6">
                                             <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 30px;">
-                                                <a href="/post/{{post.slug}}"><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap"></a>
+                                                <a href="/post/{{post.slug}}"><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap" style="max-height: 175px;min-height: 175px;"></a>
                                                 <div class="card-body">
                                                     <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name|truncatechars:10 }}</a></b></h5>
                                                     <hr>
                                                     <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                                     <hr>
-                                                    <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
+                                                    <h6><b>Pret: <a>{{ post.price }} RON / {{post.category }}</a></b></h6>
                                                     <p class="card-text" style="color: #6C6C6C">{{ post.details|truncatechars:10 }}</p>
                                                 </div>
                                             </div>

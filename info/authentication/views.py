@@ -1,45 +1,50 @@
 from django.conf import settings
-from django.contrib import messages
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect
-from user_profile.models import Profile
-from .models import Account2
-from .form import LoginForm,UserRegisterForm, AccRegisterForm, AccRegisterForm2
 from django.contrib.auth import logout, authenticate, login
-from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+
+from user_profile.models import Profile
+
+from .form import LoginForm, UserRegisterForm, AccRegisterForm, AccRegisterForm2
+
+def _login(form):
+    if not form.is_valid():
+        return None, ['Form is not valid']
+
+    user = authenticate(username=form.cleaned_data['username'],
+                        password=form.cleaned_data['password'])
+
+    if not user:
+        return None, ['Invalid credentials']
+
+    return user, []
+
 
 def login_view(request):
     if request.user.is_authenticated():
         return redirect('/')
-    else:
-        errors = []
-        form = LoginForm(request.POST)
-        if request.method == 'POST':
-            if form.is_valid():
-                user = authenticate(username=form.cleaned_data['username'],
-                                    password=form.cleaned_data['password'])
-                try:
-                   if user.account is not None:
-                        login(request, user)
-                        return redirect('/')
-                except:
-                    if user.account2 is not None:
-                        a = len(Profile.objects.all().filter(user = user))
-                        print a
-                        if  a is 0:
-                            login(request, user)
-                            return redirect('/create-profile')
-                        else:
-                            login(request, user)
-                            return redirect('/')
-                    else:
-                     errors.append('Incorrect username or password')
-            else:
-                errors.append('Form is not valid')
-        return render(request, "login.html", {
-            'form':form,
-            'errors':errors
-        })
+
+    errors = []
+    form = LoginForm(request.POST)
+
+    if request.method == 'POST':
+        user, form_errors = _login(form)
+
+        if not user:
+            errors = form_errors
+        else:
+            login(request, user)
+            merchant_profile = Profile.objects.filter(user=user).first()
+
+            if hasattr(user, 'account2') and not merchant_profile:
+                return redirect('/create-profile')
+
+            return redirect('/')
+
+    return render(request, "login.html", {
+        'form': form,
+        'errors': errors
+    })
 
 def logout_view(request):
     logout(request)

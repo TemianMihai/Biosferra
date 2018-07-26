@@ -72,7 +72,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container" style="padding-left: 2%">
+    <div class="container" style="padding-left: 1%">
         <div class="navbar-brand" style="margin-right: 16rem;">
             <div class="row" style="flex-wrap: nowrap;">
                 <a  href="/"><img src="{% static "images/brand.png" %}"></a>
@@ -105,6 +105,7 @@
                                     <a class="dropdown-item" href="/mesaje">Mesaje</a>
                                     <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
                                     <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                    <a class="dropdown-item" href="/edit-profile-buyer">Editeaza profilul</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/logout">Deconectare</a>
                                 </div>
@@ -158,7 +159,7 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <a href="/post/{{posturi.slug}}"><img src="{{  posturi.image1.url }}" class="img-fluid" alt="Responsive image" style="min-height: 145px;max-height: 145px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);"></a>
+                                            <a href="/post/{{posturi.slug}}"><img src="{{  posturi.image1.url }}" class="img-fluid" alt="Responsive image" style="min-height: 145px;max-height: 145px; max-width: 100%;min-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);"></a>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="row">
@@ -168,7 +169,7 @@
                                                             <h4><a href="/post/{{posturi.slug}}"><b>{{ posturi.name }}</b></a></h4>
                                                         </div>
                                                         <div class="col-md-3 offset-md-3">
-                                                            <h3 style="color: #1CC661;">{{ posturi.price }} lei / {{ posturi.category }}</h3>
+                                                            <h3 style="color: #1CC661;">{{ posturi.price }} RON / {{ posturi.get_um_display }}</h3>
                                                         </div>
                                                     </div>
                                                     <hr>
@@ -186,11 +187,11 @@
                                                                             <img src="{{  profil.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;min-height: 40px;max-height: 40px;">
                                                                         {% endif %}
                                                                     {% endfor %}
-                                                                    <a href="/view-profile/{{posturi.author.account2.slug}}"><h6 style="margin-left: 10px; margin-top: 10px;color: #4B4B4B;">{{ posturi.author }}</h6></a>
+                                                                    <a href="/view-profile/{{posturi.author.account2.slug}}"><h6 style="margin-left: 10px; margin-top: 10px;color: #4B4B4B;"><b>{{ posturi.author }}</b></h6></a>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4 offset-md-5">
-                                                                <h5 style="margin-left: 10px; margin-top: 10px;color: #4B4B4B;">Cantitate: {{ posturi.cantity }} {{ posturi.category }}</h5>
+                                                                <h5 style="margin-left: 10px; margin-top: 10px;color: #4B4B4B;">Cantitate: {{ posturi.quantity }} {{ posturi.get_um_display }}</h5>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -10,7 +10,7 @@ from categorie.models import Categorie
 from lfcat.models import Products
 
 # Create your models here.
-CHOICES_UM = ((0, "Kilogram"), (1, "Bucata"))
+CHOICES_UM = ((0, "Kg"), (1, "Buc"))
 CHOICES_SEASON = ((0, "Primavara"), (1, "Vara"), (2, "Toamna"), (3, "Iarna"))
 
 

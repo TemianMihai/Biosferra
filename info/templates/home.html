@@ -75,8 +75,8 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container" style="padding-left: 2%">
-        <div class="navbar-brand" style="margin-right: 5rem;">
+    <div class="container" style="padding-left: 1%">
+        <div class="navbar-brand" style="margin-right: 3rem;">
             <div class="row" style="flex-wrap: nowrap;">
                 <a href="/"><img src="{% static "images/brand.png" %}"></a>
                 <form class="form-inline my-2 my-lg-0" method="GET" action=""
@@ -121,6 +121,7 @@
                                     <a class="dropdown-item" href="/mesaje">Mesaje</a>
                                     <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
                                     <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                    <a class="dropdown-item" href="/edit-profile-buyer">Editeaza profilul</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/logout">Deconectare</a>
                                 </div>
@@ -249,7 +250,10 @@
                     <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p class="head" style="color: #6C6C6C;"><b>Unitate Masura</b></p>
                         {{ form.um }}
+                        <p class="head" style="color: #6C6C6C;"><b>Cantitate</b></p>
+                        <b style="color: #6C6C6C;">Min:</b>
                         {{ form.min_quantity }}
+                        <b style="color: #6C6C6C;">Max:</b>
                         {{ form.max_quantity }}
                     </div>
                     <br> <br>
@@ -257,7 +261,10 @@
                     <!-- Pret -->
                     <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p class="head" style="color: #6C6C6C;"><b>Pret</b></p>
+
+                        <b style="color: #6C6C6C;">Min:</b>
                         {{ form.min_price }}
+                        <b style="color: #6C6C6C;">Max:</b>
                         {{ form.max_price }}
                     </div>
                     <br> <br>
@@ -391,13 +398,13 @@
                 inputs.forEach(function (value1, index1) {
                     if (value1.type === "checkbox" && value1.checked) {
                         var tmp = data[value1.name];
-                        console.log(tmp)
+                        console.log(tmp);
                         data[value1.name] = tmp ? tmp : [];
                         data[value1.name].push(value1.value);
                     } else if (value1.type === "radio" && value1.checked) {
                         data[value1.name] = value1.value;
                     } else if (value1.type !== "checkbox" && value1.type !== "radio") {
-                        data[value1.name] = value1.value
+                        data[value1.name] = value1.value;
                     }
                 });
                 fetch("/posts-filter/", {

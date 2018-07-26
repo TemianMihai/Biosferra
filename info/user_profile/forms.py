@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
-from authentication.models import Account2
+from authentication.models import Account2, Account
 from .models import Message, Report, Favourite, Profile
 
 class Edit_profile(forms.ModelForm):
@@ -54,6 +54,46 @@ class Edit_profile(forms.ModelForm):
         return last_name
 
 
+class Edit_profile_buyer(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['phonenumber','city', 'adress', 'state']
+        widgets = {
+            'phonenumber' : forms.TextInput({'required':'required','placeholder':'Phonenumber'}),
+            'city' : forms.TextInput({'required':'required','placeholder':'City'}),
+            'adress': forms.TextInput({'required': 'required', 'placeholder': 'Country'}),
+            'state': forms.TextInput({'required': 'required', 'placeholder': 'Country'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(Edit_profile_buyer, self).__init__(*args, **kwargs)
+
+    def clean_phonenumber(self):
+        phone_number = self.cleaned_data['phonenumber']
+        if phone_number[0] != '0' or phone_number[1] != '7' or len(phone_number) != 10 or phone_number.isdigit() == False:
+            raise forms.ValidationError("Invalid phonenumber")
+        return phone_number
+
+    def clean_city(self):
+        city = self.cleaned_data['city']
+        if city.isalpha == False:
+            raise forms.ValidationError("City name contains invalid characters")
+        return city
+
+    def clean_adress(self):
+        adress = self.cleaned_data['adress']
+        if adress.isalpha == False:
+            raise forms.ValidationError("Adress name contains invalid characters")
+        return adress
+
+    def clean_state(self):
+        state = self.cleaned_data['state']
+        if state.isalpha == False:
+            raise forms.ValidationError("State name contains invalid characters")
+        return state
+
+
 class Edit_profile2(forms.ModelForm):
     class Meta:
         model = Account2
@@ -97,13 +137,13 @@ class Edit_profile2(forms.ModelForm):
 
     def clean_file1(self):
         file1 = self.cleaned_data['file1']
-        if file1._size > 5242880:
+        if file1.size > 5242880:
             raise forms.ValidationError("Imaginile sunt prea mari")
         return file1
 
     def clean_file2(self):
         file2 = self.cleaned_data['file2']
-        if file2._size > 5242880:
+        if file2.size > 5242880:
             raise forms.ValidationError("Imaginile sunt prea mari")
         return file2
 

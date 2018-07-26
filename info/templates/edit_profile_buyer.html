@@ -43,33 +43,10 @@
             color:#fff;
         }
 
-    .hold {
-        width: 100%;
-        height: 100%;
-        }
-    .hold .items{
-        list-style: none;
-        padding-left: 0;
-        padding-bottom: 0;
-    }
-
-    .tabel {
-        border: 1px solid #E5E5E5;
-    }
-
-    .hold .items li {
-        padding: 0;
-    }
-
-   .hold .items li:hover{
-        background-color:#1cc661;
-        color:#fff;
-   }
-
     .path-44 {
         box-sizing: border-box;
         height: 1px;
-        width: 170px;
+        width: 150px;
         border: 1px solid #1CC661;
     }
 
@@ -78,11 +55,11 @@
     }
 
     @media only screen and (max-width: 600px) {
-        .navbar li img{
-            padding-left: 5px;
-            padding-top: 7px;
+            .navbar li img{
+                padding-left: 5px;
+                padding-top: 7px;
+            }
         }
-    }
 
     @media only screen and (min-width: 601px) {
         .navbar  li img{
@@ -91,6 +68,7 @@
         }
     }
     </style>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -119,7 +97,6 @@
                                     <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi</a>
                                     <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Mesaje</a>
                                     <a class="dropdown-item" href="/favoriti">Favoriti</a>
-                                    <a class="dropdown-item" href="/edit-profile-buyer">Editeaza profilul</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/logout">Deconectare</a>
                                 </div>
@@ -128,6 +105,7 @@
                                         <a class="dropdown-item" href="/mesaje">Mesaje</a>
                                         <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
                                         <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                        <a class="dropdown-item" href="/edit-profile-buyer">Editeaza profilul</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="/logout">Deconectare</a>
                                     </div>
@@ -159,69 +137,95 @@
             </div>
         </div>
     </nav>
-    <br>
+    <br> <br>
+
     <div class="container">
-        <div class="col-md-9 offset-md-1">
-            <br>
-            <h2>Mesaje primite</h2>
-            <div class="path-44"></div>
-            <br>
+        <h2 align="left">Editeaza-ti profilul</h2>
+        <div class="path-44"></div>
+        <br>
+        {% if messages %}
             <div class="row">
-                <div class="hold">
-                    <div class="tabel">
-                        <ul class="items" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                            <div class="row">
-                                <div class="col-md-6" style="padding-right:0;">
-                                    <a href="/mesaje"><li style="background-color: #1cc661; color: #fff;"><p align="center" style="margin-top: 10px;"">Mesaje primite</p></li></a>
-                                </div>
-                                <div class="col-md-6" style="padding-left: 0;">
-                                    <a href="/mesaje-trimise"><li style=><p align="center" style="margin-top: 10px;">Mesaje trimise</p></li></a>
-                                </div>
-                            </div>
-                        </ul>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-2 offset-md-1">
-                                     <p style="color: #848484;"><b>Mesajul</b></p>
-                                </div>
-                                <div class="col-md-4 offset-md-5">
-                                    <p style="color: #848484;"><b>Nume utilizator</b></p>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="container">
-                            {% if mesaje %}
-                                {% for mesaje in mesaje %}
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <p><b>{{ mesaje.title }}</b></p>
-                                            <p style="color: #6C6C6C;">{{ mesaje.content }}</p>
-                                        </div>
-                                        <div class="col-md-2 offset-md-3">
-                                            <div class="row">
-                                                <span><img src="{% static "images/forward-arrow.png" %}"></span>
-                                                <a href="/view-profile/{{mesaje.author.account2.slug}}"><p style="color: #848484;"><b>{{ mesaje.author }}</b></p></a>
-                                            </div>
-                                            <p style="color: #B4B4B4;">12/12/2017</p>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <a href="/view-profile/{{mesaje.author.account2.slug}}"><button  class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                {% endfor %}
-                                {% else %}
-                                <h4 align="center">Nu ati primit nici un mesaj</h4>
-                            {% endif %}
-                        </div>
-                    </div>
+                <div class="col-sm-6 col-sm-offset-3">
+                    {% for message in messages %}
+                        <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
+                    {% endfor %}
                 </div>
             </div>
-        </div>
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Username</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                              {{ form.username|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                            </div>
+                        <br>
+                        <label>First Name</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                              {{ form.first_name|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                            </div>
+                        <br>
+                        <label>Last name</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                              {{ form.last_name|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                            </div>
+
+                        <br>
+                        <label>Phonenumber</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                              {{ account_form.phonenumber|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>City</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                              {{ account_form.city|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                            </div>
+
+                        <br>
+                        <label>State</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                              {{ account_form.state|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                            </div>
+
+                        <br>
+                        <label>Adress</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                              {{ account_form.adress|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                            </div>
+
+                        <br>
+                        <label>E-mail</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+
+                              {{ form.email|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                            </div>
+                        <br>
+                    </div>
+                </div>
+            <button type="submit" class="btn btn-success" name="btnform4">Submit</button>
+        </form>
     </div>
 
-<footer class="footer" style="margin-top: 100px; ">
+    <br>
+
+<footer class="footer"style="margin-top: 100px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -282,5 +286,6 @@
             <p align="center" style="color: #1CC661;margin-top: 20px;">@ 2018 Biosferra. All rights reserved.</p>
         </div>
     </div>
+
 </body>
 </html>

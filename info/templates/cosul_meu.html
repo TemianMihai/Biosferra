@@ -55,8 +55,8 @@
     </head>
 <body>
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container"  style="padding-left: 2%">
-        <div class="navbar-brand" style="margin-right: 18rem;">
+    <div class="container"  style="padding-left: 1%">
+        <div class="navbar-brand" style="margin-right: 16rem;">
             <div class="row" style="flex-wrap: nowrap;">
                 <a  href="/"><img src="{% static "images/brand.png" %}"></a>
                 <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
@@ -88,6 +88,7 @@
                                     <a class="dropdown-item" href="/mesaje">Mesaje</a>
                                     <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
                                     <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                    <a class="dropdown-item" href="/edit-profile-buyer">Editeaza profilul</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/logout">Deconectare</a>
                                 </div>
@@ -143,7 +144,7 @@
                                                 <h4><a href="/post/{{cosul.anunturi.slug}}"><b>{{ cosul.anunturi.name }}</b></a></h4>
                                             </div>
                                             <div class="col-md-3 offset-md-3">
-                                                <h3 style="color: #1CC661;">{{ cosul.anunturi.price }} lei / {{ cosul.anunturi.category }}</h3>
+                                                <h5 style="color: #1CC661;">{{ cosul.anunturi.price }} RON / {{ cosul.anunturi.get_um_display }}</h5>
                                             </div>
                                         </div>
                                         <hr>
@@ -165,7 +166,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 offset-md-5">
-                                                    <h5 style="margin-left: 10px; margin-top: 10px;color: #4B4B4B;">Cantitate: {{ cosul.anunturi.cantity }} {{ cosul.anunturi.category }}</h5>
+                                                    <h5 style="margin-left: 10px; margin-top: 10px;color: #4B4B4B;">Cantitate: {{ cosul.anunturi.quantity }} {{ cosul.anunturi.get_um_display }}</h5>
                                                 </div>
                                             </div>
                                         </div>

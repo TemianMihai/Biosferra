@@ -152,7 +152,7 @@ def delete_comanda(request, slug):
     data = {
         'anunt':comandar.postcomanda.name,
         'pret': comandar.postcomanda.price,
-        'cantitate':comandar.postcomanda.cantity,
+        'cantitate':comandar.postcomanda.quantity,
         'cumparator1':comandar.nume,
         'cumparator2':comandar.prenume,
         'email':comandar.email,

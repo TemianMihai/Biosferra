@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
-from .forms import Edit_profile, Edit_profile2, EditProfileForm, CreateMesajeForm, CreateReportForm, CreateFavoritForm, CreateProfileForm
+from .forms import Edit_profile, Edit_profile2, EditProfileForm, Edit_profile_buyer, CreateMesajeForm, CreateReportForm, CreateFavoritForm, CreateProfileForm
 from authentication.models import Account2, Account
 from django.contrib.auth.models import User
 from post.models import PostModel, AdresaDeFacturare
@@ -30,6 +30,23 @@ def profile_detail(request):
         'posts': post,
         'account_form': account_form
     })
+
+
+def profile_detail2(request):
+    current_user = request.user
+    user_form = Edit_profile(data=request.POST or None, instance=current_user, user=current_user)
+    account_form = Edit_profile_buyer(data=request.POST or None, instance=current_user.account)
+    if request.method == 'POST':
+        if user_form.is_valid() and account_form.is_valid() and 'btnform4' in request.POST:
+            user_form.save()
+            account_form.save()
+            messages.success(request, 'Profilul dumneavoastra a fost actualizat')
+    return render(request, 'edit_profile_buyer.html', {
+        'form': user_form,
+        'user': current_user,
+        'account_form': account_form
+    })
+
 
 @login_required(login_url='/login')
 def create_profile(request):
