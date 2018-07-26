@@ -41,7 +41,6 @@ def create_post(request):
 
 
 def get_post(request, slug):
-
     post = get_object_or_404(PostModel,slug=slug)
     comm_parent = Comment.objects.filter(is_parent=True).filter(post=post)
     profiles = Profile.objects.all().get(user=post.author)
@@ -276,14 +275,11 @@ def posts_filter(request):
         if sort_by is 0:
             qs = qs.order_by("author")
         elif sort_by is 1:
-            qs = qs.order_by("price")
+            qs = qs.order_by("+price")
         elif sort_by is 2:
             qs = qs.order_by("-price")
         else:
-            qs = qs.order_by("title")
-
-        print(list(qs))
-
+            qs = qs.order_by("name")
         return render(request, 'post_list_content.html', {
             'posts': list(qs)
         })
