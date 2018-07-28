@@ -1,12 +1,14 @@
 from django.conf import settings
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
-from .forms import Edit_profile, Edit_profile2, EditProfileForm, CreateMesajeForm, CreateReportForm, CreateFavoritForm, CreateProfileForm
+from .forms import Edit_profile, Edit_profile2, EditProfileForm, Edit_profile_buyer, CreateMesajeForm, CreateReportForm, CreateFavoritForm, CreateProfileForm
 from authentication.models import Account2, Account
 from django.contrib.auth.models import User
 from post.models import PostModel, AdresaDeFacturare
-from .models import Favorit, Profile, Mesaje
+from .models import Favourite, Profile, Message
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -31,30 +33,52 @@ def profile_detail(request):
         'account_form': account_form
     })
 
+
+def profile_detail2(request):
+    current_user = request.user
+    user_form = Edit_profile(data=request.POST or None, instance=current_user, user=current_user)
+    account_form = Edit_profile_buyer(data=request.POST or None, instance=current_user.account)
+    if request.method == 'POST':
+        if user_form.is_valid() and account_form.is_valid() and 'btnform4' in request.POST:
+            user_form.save()
+            account_form.save()
+            messages.success(request, 'Profilul dumneavoastra a fost actualizat')
+    return render(request, 'edit_profile_buyer.html', {
+        'form': user_form,
+        'user': current_user,
+        'account_form': account_form
+    })
+
+
 @login_required(login_url='/login')
 def create_profile(request):
     current_user = request.user
     form = CreateProfileForm(request.POST or None, request.FILES or None, user=current_user.account2)
-    profiles = Profile.objects.all().filter(userul=current_user)
-    if len(profiles) > 0 :
+    profiles = Profile.objects.all().filter(user=current_user)
+    if len(profiles) > 0:
         return redirect('/edit-profile')
     if request.method == 'POST':
         if form.is_valid():
-            userul = current_user
+            user = current_user
             profile = form.instance
-            profile.userul = current_user
+            profile.user = current_user
             form.save()
-            userul.is_active = False
-            userul.save()
-            subject = 'Registrare Biosferra'
-            message = "Bine ati venit pe Biosferra. Un administrator va verifica accountul dumneavoastra, iar in cateva minute veti putea sa va inregistarti in cazul in care ati fost acceptat. " \
-                      "Va multumim pentru intelegere. " \
-                      "Mai jos puteti sa gasiti detalile despre accountul dumneavoastra: Username: %s Prenume: %s Nume: %s Numar de telefon: %s Oras: %s Judet: %s" % (
-                      userul.username, userul.first_name, userul.last_name,
-                      userul.account2.phonenumber, userul.account2.city, userul.account2.state)
+            user.is_active = False
+            user.save()
+            subject = 'Inregistrare Biosferra'
+            html_message = render_to_string('mail_template_register.html', {
+                'message': 'Bine ati venit pe Biosferra. Un administrator va verifica accountul dumneavoastra, iar in cateva minute veti putea sa va inregistarti in cazul in care ati fost acceptat.',
+                'message2': 'Mai jos puteti sa gasiti detalile despre accountul dumneavoastra:',
+                'username': user.username,
+                'prenume': user.first_name,
+                'nume': user.last_name,
+                'nrtel':user.account2.phonenumber,
+                'oras':user.account2.city,
+                'judet':user.account2.state})
+            plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
-            to_list = [settings.EMAIL_HOST_USER, userul.email]
-            send_mail(subject, message, from_email, to_list, fail_silently=True)
+            to_list = [settings.EMAIL_HOST_USER, user.email]
+            send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
             return redirect('/create-profile/finalizare')
     return render(request, 'create_profile.html', {
         'form': form,
@@ -67,10 +91,9 @@ def mesaj_profile(request, slug):
     form = CreateMesajeForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-            print form.errors
             mesaj = form.instance
-            mesaj.autor = current_user
-            mesaj.destinatar = useru.user
+            mesaj.author = current_user
+            mesaj.receiver = useru.user
             form.save()
             messages.success(request, 'Mesajul dumneavoastra a fost trimis')
     return render(request, "mesaj_useri.html", {
@@ -79,74 +102,84 @@ def mesaj_profile(request, slug):
         'form':form
     })
 
+def profile2(request):
+    current_user = request.user
+    user2 = Account.objects.get(user = current_user.account)
+    return render(request, 'profile_account.html',{
+        'user':current_user,
+        'user2':user2
+    })
 
 def profile(request, slug):
     current_user = request.user
-    anunturi = PostModel.objects.all()
+    posts = PostModel.objects.all()
     user2 = get_object_or_404(Account2,slug=slug)
-    mesaje = Mesaje.objects.all().filter(destinatar=user2.user)
-    profiles = Profile.objects.all().filter(userul=user2.user)
-    form = CreateMesajeForm(request.POST or None)
-    form2 = CreateReportForm(request.POST or None)
-    form3 = CreateFavoritForm(request.POST or None)
+    mesaje = Message.objects.all().filter(receiver=user2.user)
+    profiles = Profile.objects.all().filter(user=user2.user)
+    favoritt = Favourite.objects.all().filter(receiver=user2.user)
+    messageform = CreateMesajeForm(request.POST or None)
+    reportform = CreateReportForm(request.POST or None)
+    favouriteform = CreateFavoritForm(request.POST or None)
     if request.method == 'POST':
-        if form.is_valid() and 'btnform1' in request.POST:
+        if messageform.is_valid() and 'btnform1' in request.POST:
             if request.user.is_authenticated:
-                mesaj = form.instance
-                mesaj.autor = current_user
-                mesaj.destinatar = user2.user
-                form.save()
+                mesaj = messageform.instance
+                mesaj.author = current_user
+                mesaj.receiver = user2.user
+                messageform.save()
                 messages.success(request, 'Mesajul dumneavoastra a fost trimis')
             else:
                 return redirect('/login')
 
-        if form2.is_valid() and 'btnform2' in request.POST:
+        if reportform.is_valid() and 'btnform2' in request.POST:
             if request.user.is_authenticated:
-                report = form2.instance
-                report.autor = current_user
-                report.destinatar = user2.user
-                form2.save()
+                report = reportform.instance
+                report.author = current_user
+                report.receiver = user2.user
+                reportform.save()
                 messages.success(request, 'Reportul dumneavoastra a fost salvat cu succes')
                 subject = 'Report'
-                message = "Userul: %s a trimis un report catre: %s" % (form2.instance.autor, form2.instance.destinatar)
+                html_message = render_to_string('mail_template.html', {'message': 'Userul %s a trimis un report catre %s' % (report.author, report.receiver)})
+                plain_message = strip_tags(html_message)
                 from_email = settings.EMAIL_HOST_USER
                 to_list = [settings.EMAIL_HOST_USER]
-                send_mail(subject, message, from_email, to_list, fail_silently=True)
+                send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
             else:
                 return redirect('/login')
 
-        if form3.is_valid() and 'btnform3' in request.POST:
+        if favouriteform.is_valid() and 'btnform3' in request.POST:
             if request.user.is_authenticated:
-                favoriit = Favorit.objects.all().filter(ales=user2.user, alegator=current_user)
+                favoriit = Favourite.objects.all().filter(receiver=user2.user, author=current_user)
                 if len(favoriit) > 0:
                     favoriit.delete()
-                    messages.success(request, 'Acest user nu mai este in sectiunea de Favorit')
+                    messages.success(request, 'Acest user nu mai este in sectiunea de Favourite')
                 else:
-                    favorit = form3.instance
-                    favorit.alegator = current_user
-                    favorit.ales = user2.user
-                    form3.save()
-                    messages.success(request, 'Acest user a fost adaugat la Favorit')
+                    favorit = favouriteform.instance
+                    favorit.author = current_user
+                    favorit.receiver = user2.user
+                    favouriteform.save()
+                    messages.success(request, 'Acest user a fost adaugat la Favourite')
             else:
                 return redirect('/login')
     query = request.GET.get("q")
     if query:
-        anunturi = anunturi.filter(name__contains=query)
+        posts = posts.filter(name__contains=query)
     return render(request, 'view_profilee.html', {
         'user': current_user,
-        'anunturi': anunturi,
+        'anunturi': posts,
         'mesaje':mesaje,
-        'form': form,
-        'form2': form2,
-        'form3': form3,
+        'form': messageform,
+        'form2': reportform,
+        'form3': favouriteform,
         'profiles':profiles,
+        'favoritt':favoritt,
         'user2': user2
     })
 
 @login_required(login_url='/login')
 def favoriti(request):
     current_user = request.user
-    favoriti = Favorit.objects.all().filter(alegator = current_user)
+    favoriti = Favourite.objects.all().filter(author = current_user)
     posturi = PostModel.objects.all()
     query = request.GET.get("q")
     if query:
@@ -160,7 +193,7 @@ def favoriti(request):
 @login_required(login_url='/login')
 def mesaje(request):
     current_user = request.user
-    mesaje = Mesaje.objects.all().filter(destinatar = current_user.account.user)
+    mesaje = Message.objects.all().filter(receiver = current_user.account.user)
     return render(request, 'mesaje.html', {
         'user':current_user,
         'mesaje':mesaje
@@ -169,7 +202,7 @@ def mesaje(request):
 @login_required(login_url='/login')
 def mesaje_trimise(request):
     current_user = request.user
-    mesaje = Mesaje.objects.all().filter(autor = current_user.account.user)
+    mesaje = Message.objects.all().filter(author = current_user.account.user)
     return render(request, 'mesaje_trimise.html', {
         'user':current_user,
         'mesaje':mesaje
@@ -182,13 +215,14 @@ def get_mesajet(request, slug):
     anunturi = PostModel.objects.all()
     user2 = get_object_or_404(Account2,slug=slug)
     form4 = CreateMesajeForm(request.POST or None)
-    profiles = Profile.objects.all().filter(userul=user2.user)
-    mesaje = Mesaje.objects.all().filter(autor=current_user)
+    favoritt = Favourite.objects.all().filter(receiver = user2.user)
+    profiles = Profile.objects.all().filter(user=user2.user)
+    mesaje = Message.objects.all().filter(author=current_user)
     if request.method == 'POST':
         if form4.is_valid() and 'btnform4' in request.POST:
             mesaj = form4.instance
-            mesaj.autor = current_user
-            mesaj.destinatar = mesaje.destinatar
+            mesaj.author = current_user
+            mesaj.receiver = mesaje.receiver
             form4.save()
             messages.success(request, 'Mesajul dumneavoastra a fost trimis')
     query = request.GET.get("q")
@@ -198,6 +232,7 @@ def get_mesajet(request, slug):
         'user': current_user,
         'anunturi': anunturi,
         'profiles': profiles,
+        'favoritt':favoritt,
         'form4':form4,
         'user2': user2,
         'mesaje':mesaje

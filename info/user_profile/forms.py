@@ -1,10 +1,9 @@
 from django.contrib.auth.models import User
 from django import forms
-from authentication.models import Account2
-from .models import Mesaje, Report, Favorit, Profile
+from authentication.models import Account2, Account
+from .models import Message, Report, Favourite, Profile
 
 class Edit_profile(forms.ModelForm):
-
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name']
@@ -55,6 +54,46 @@ class Edit_profile(forms.ModelForm):
         return last_name
 
 
+class Edit_profile_buyer(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['phonenumber','city', 'adress', 'state']
+        widgets = {
+            'phonenumber' : forms.TextInput({'required':'required','placeholder':'Phonenumber'}),
+            'city' : forms.TextInput({'required':'required','placeholder':'City'}),
+            'adress': forms.TextInput({'required': 'required', 'placeholder': 'Country'}),
+            'state': forms.TextInput({'required': 'required', 'placeholder': 'Country'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(Edit_profile_buyer, self).__init__(*args, **kwargs)
+
+    def clean_phonenumber(self):
+        phone_number = self.cleaned_data['phonenumber']
+        if phone_number[0] != '0' or phone_number[1] != '7' or len(phone_number) != 10 or phone_number.isdigit() == False:
+            raise forms.ValidationError("Invalid phonenumber")
+        return phone_number
+
+    def clean_city(self):
+        city = self.cleaned_data['city']
+        if city.isalpha == False:
+            raise forms.ValidationError("City name contains invalid characters")
+        return city
+
+    def clean_adress(self):
+        adress = self.cleaned_data['adress']
+        if adress.isalpha == False:
+            raise forms.ValidationError("Adress name contains invalid characters")
+        return adress
+
+    def clean_state(self):
+        state = self.cleaned_data['state']
+        if state.isalpha == False:
+            raise forms.ValidationError("State name contains invalid characters")
+        return state
+
+
 class Edit_profile2(forms.ModelForm):
     class Meta:
         model = Account2
@@ -98,58 +137,63 @@ class Edit_profile2(forms.ModelForm):
 
     def clean_file1(self):
         file1 = self.cleaned_data['file1']
+        if file1.size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
         return file1
 
     def clean_file2(self):
         file2 = self.cleaned_data['file2']
+        if file2.size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
         return file2
 
 class CreateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['produs1', 'produs2', 'produs3', 'produs4', 'produs5', 'descriere', 'image1', 'image2',]
+        fields = ['product1', 'product2', 'product3', 'product4', 'product5', 'description', 'profile_image',
+                  'cover_image', ]
         widgets = {
-            'produs1' : forms.TextInput({'required':'required','placeholder':'Produs1'}),
-            'produs2': forms.TextInput({'required':'required','placeholder':'Produs2'}),
-            'produs3': forms.TextInput({'required': 'required', 'placeholder': 'Produs3'}),
-            'produs4': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
-            'produs5': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
-            'descriere': forms.TextInput({'required': 'required', 'placeholder': 'Descriere'}),
-            'image1': forms.FileInput({'required': 'required', 'placeholder': 'Country'}),
-            'image2': forms.FileInput({'required': 'required', 'placeholder': 'Country'})
+            'product1': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'product2': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'product3': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'product4': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'product5': forms.TextInput({'required': 'required', 'placeholder': 'Produs din gradina dumneavoastra'}),
+            'description': forms.TextInput({'required': 'required', 'placeholder': 'Descriere'}),
+            'profile_image': forms.FileInput({'required': 'required', 'placeholder': 'Country'}),
+            'cover_image': forms.FileInput({'required': 'required', 'placeholder': 'Country'})
         }
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(CreateProfileForm, self).__init__(*args, **kwargs)
 
-    def clean_produs1(self):
-        produs1 = self.cleaned_data['produs1']
+    def clean_product1(self):
+        produs1 = self.cleaned_data['product1']
         return produs1
 
-    def clean_produs2(self):
-        produs2 = self.cleaned_data['produs2']
+    def clean_product2(self):
+        produs2 = self.cleaned_data['product2']
         return produs2
 
-    def clean_produs3(self):
-        produs3 = self.cleaned_data['produs3']
+    def clean_product3(self):
+        produs3 = self.cleaned_data['product3']
         return produs3
 
-    def clean_produs4(self):
-        produs4 = self.cleaned_data['produs4']
+    def clean_product4(self):
+        produs4 = self.cleaned_data['product4']
         return produs4
 
-    def clean_produs5(self):
-        produs5 = self.cleaned_data['produs5']
+    def clean_product5(self):
+        produs5 = self.cleaned_data['product5']
         return produs5
 
-    def clean_descriere(self):
-        descriere = self.cleaned_data['descriere']
+    def clean_description(self):
+        descriere = self.cleaned_data['description']
         return descriere
 
-    def clean_image2(self):
-        image1 = self.cleaned_data['image1']
-        image2 = self.cleaned_data['image2']
+    def clean_cover_image(self):
+        image1 = self.cleaned_data['profile_image']
+        image2 = self.cleaned_data['cover_image']
         image_names = []
         if (image1 and not isinstance(image1, (int, float))):
             image_names.append(image1.name)
@@ -164,14 +208,14 @@ class CreateProfileForm(forms.ModelForm):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['produs1', 'produs2', 'produs3', 'produs4', 'produs5', 'descriere']
+        fields = ['product1', 'product2', 'product3', 'product4', 'product5', 'description']
         widgets = {
-            'produs1' : forms.TextInput({'required':'required','placeholder':'Produs1'}),
-            'produs2': forms.TextInput({'required':'required','placeholder':'Produs2'}),
-            'produs3': forms.TextInput({'required': 'required', 'placeholder': 'Produs3'}),
-            'produs4': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
-            'produs5': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
-            'descriere': forms.TextInput({'required': 'required', 'placeholder': 'Descriere'}),
+            'product1': forms.TextInput({'required': 'required', 'placeholder': 'Produs1'}),
+            'product2': forms.TextInput({'required': 'required', 'placeholder': 'Produs2'}),
+            'product3': forms.TextInput({'required': 'required', 'placeholder': 'Produs3'}),
+            'product4': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
+            'product5': forms.TextInput({'required': 'required', 'placeholder': 'Produs4'}),
+            'description': forms.TextInput({'required': 'required', 'placeholder': 'Descriere'}),
 
         }
 
@@ -179,70 +223,70 @@ class EditProfileForm(forms.ModelForm):
         self.user = kwargs.pop('user', None)
         super(EditProfileForm, self).__init__(*args, **kwargs)
 
-    def clean_produs1(self):
-        produs1 = self.cleaned_data['produs1']
+    def clean_product1(self):
+        produs1 = self.cleaned_data['product1']
         return produs1
 
-    def clean_produs2(self):
-        produs2 = self.cleaned_data['produs2']
+    def clean_product2(self):
+        produs2 = self.cleaned_data['product2']
         return produs2
 
-    def clean_produs3(self):
-        produs3 = self.cleaned_data['produs3']
+    def clean_product3(self):
+        produs3 = self.cleaned_data['product3']
         return produs3
 
-    def clean_produs4(self):
-        produs4 = self.cleaned_data['produs4']
+    def clean_product4(self):
+        produs4 = self.cleaned_data['product4']
         return produs4
 
-    def clean_produs5(self):
-        produs5 = self.cleaned_data['produs5']
+    def clean_product5(self):
+        produs5 = self.cleaned_data['product5']
         return produs5
 
-    def clean_descriere(self):
-        descriere = self.cleaned_data['descriere']
+    def clean_description(self):
+        descriere = self.cleaned_data['description']
         return descriere
 
 
 class CreateMesajeForm(forms.ModelForm):
     class Meta:
-        model = Mesaje
-        fields = ['mesaj', 'titlu']
+        model = Message
+        fields = ['content', 'title']
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(CreateMesajeForm, self).__init__(*args, **kwargs)
 
     def clean_mesaj(self):
-        mesaj = self.cleaned_data['mesaj']
+        mesaj = self.cleaned_data['content']
         return mesaj
 
     def clean_titlu(self):
-        titlu = self.cleaned_data['titlu']
+        titlu = self.cleaned_data['title']
         return titlu
 
 
 class CreateReportForm(forms.ModelForm):
     class Meta:
         model = Report
-        fields = ['mesajj', 'titluu']
+        fields = ['content', 'title']
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(CreateReportForm, self).__init__(*args, **kwargs)
 
     def clean_mesaj(self):
-        mesajj = self.cleaned_data['mesajj']
+        mesajj = self.cleaned_data['content']
         return mesajj
 
     def clean_titlu(self):
-        titluu = self.cleaned_data['titluu']
+        titluu = self.cleaned_data['title']
         return titluu
 
 
 class CreateFavoritForm(forms.ModelForm):
     class Meta:
-        model = Favorit
+        model = Favourite
         fields = []
 
     def  __init__(self, *args, **kwargs):

@@ -6,16 +6,16 @@ from django.db import models
 import uuid
 
 def upload_location(instance, filename):
-    return "%s/%s" % (instance.produs1, filename)
+    return "%s/%s" % (instance.product1, filename)
 
 # Create your models here.
-class Mesaje(models.Model):
-    autor = models.ForeignKey(to=User, related_name='mesaje',
-                              null=True, blank=True)
-    mesaj = models.CharField(max_length=1000)
-    titlu = models.CharField(max_length=100, null=True)
-    destinatar = models.ForeignKey(to=User, related_name='mesajee',
-                                   null=True, blank=True)
+class Message(models.Model):
+    author = models.ForeignKey(to=User, related_name='sent_messages',
+                               null=True, blank=True)
+    content = models.CharField(max_length=1000)
+    title = models.CharField(max_length=100, null=True)
+    receiver = models.ForeignKey(to=User, related_name='received_messages',
+                                 null=True, blank=True)
     created_date = models.DateField(default=timezone.now)
     slug = models.SlugField(default=uuid.uuid1, unique=True)
 
@@ -23,34 +23,34 @@ class Mesaje(models.Model):
         return reverse("mesaj:get-mesajt", kwargs={"slug":self.slug})
 
 class Report(models.Model):
-    autor = models.ForeignKey(to=User, related_name='report',
-                              null=True, blank=True)
-    mesajj = models.CharField(max_length=1000)
-    titluu = models.CharField(max_length=100, null=True)
-    destinatar = models.ForeignKey(to=User, related_name='reportt',
-                                   null=True, blank=True)
+    author = models.ForeignKey(to=User, related_name='sent_reports',
+                               null=True, blank=True)
+    content = models.CharField(max_length=1000)
+    title = models.CharField(max_length=100, null=True)
+    receiver = models.ForeignKey(to=User, related_name='received_reports',
+                                 null=True, blank=True)
     slug = models.SlugField(default=uuid.uuid1, unique=True)
 
-class Favorit(models.Model):
-    alegator = models.ForeignKey(to=User, related_name='favorit',
+class Favourite(models.Model):
+    author = models.ForeignKey(to=User, related_name='favourites_by',
+                               null=True, blank=True)
+    is_favourite = models.BooleanField(default=False)
+    receiver = models.ForeignKey(to=User, related_name='favourites',
                                  null=True, blank=True)
-    favorite = models.BooleanField(default=False)
-    ales = models.ForeignKey(to=User, related_name='favoritt',
-                             null=True, blank=True)
     slug = models.SlugField(default=uuid.uuid1, unique=True)
 
 class Profile(models.Model):
-    userul = models.OneToOneField(User, primary_key=True)
-    produs1 = models.CharField(max_length=30)
-    produs2 = models.CharField(max_length=30)
-    produs3 = models.CharField(max_length=30)
-    produs4 = models.CharField(max_length=30)
-    produs5 = models.CharField(max_length=30)
-    descriere = models.CharField(max_length=1000)
-    image1 = models.ImageField(upload_to=upload_location,
-                               null=True, blank=True)
-    image2 = models.ImageField(upload_to=upload_location,
-                               null=True, blank=True)
+    user = models.OneToOneField(User, primary_key=True, related_name="profile")
+    product1 = models.CharField(max_length=30)
+    product2 = models.CharField(max_length=30)
+    product3 = models.CharField(max_length=30)
+    product4 = models.CharField(max_length=30)
+    product5 = models.CharField(max_length=30)
+    description = models.CharField(max_length=1000)
+    profile_image = models.ImageField(upload_to=upload_location,
+                                      null=True, blank=True)
+    cover_image = models.ImageField(upload_to=upload_location,
+                                    null=True, blank=True)
 
     def get_profilf_url(self):
         return reverse("profil:get-profilt")

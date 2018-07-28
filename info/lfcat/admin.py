@@ -1,16 +1,10 @@
 from django.contrib import admin
 
-from .models import Lfcategory, Legfruccategory
+from .models import Products
 # Register your models here.
 
-class LfcategoryAdmin(admin.ModelAdmin):
-    list_display = ['name']
+class ProductsAdmin(admin.ModelAdmin):
+    list_display = ['name', 'type']
     ordering = ['name']
 
-class LegfruccategoryAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    ordering = ['name']
-
-
-admin.site.register(Lfcategory, LfcategoryAdmin)
-admin.site.register(Legfruccategory, LegfruccategoryAdmin)
+admin.site.register(Products, ProductsAdmin)

@@ -16,7 +16,6 @@ class LoginForm(forms.Form):
                                }))
 
 class UserRegisterForm(forms.ModelForm):
-
     retypepassword = forms.CharField(widget=forms.PasswordInput(attrs={
         'placeholder': 'Retype password',
         'label': 'Retype password',
@@ -45,30 +44,30 @@ class UserRegisterForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data['email']
         if validate_email(email):
-            raise forms.ValidationError("Email is not valid")
+            raise forms.ValidationError("Email-ul nu e valid")
         elif User.objects.filter(email=email):
-            raise forms.ValidationError("This email already exists")
+            raise forms.ValidationError("Acest email exista deja")
         return email
 
     def clean_username(self):
         user_name = self.cleaned_data['username']
         if User.objects.filter(username=user_name).count():
-            raise forms.ValidationError("This username already exists")
+            raise forms.ValidationError("Acest username exista deja")
         elif (
                 not (user_name.isalnum() or user_name.isalpha())
         ):
-            raise forms.ValidationError("Username contains invalid characters")
+            raise forms.ValidationError("Username-ul contine caractere invalide")
         return user_name
 
     def clean_retypepassword(self):
         password = self.cleaned_data['password']
         password2 = self.cleaned_data['retypepassword']
         if password.isdigit():
-            raise forms.ValidationError("Password is entirely numeric")
+            raise forms.ValidationError("Parola e formata doar din cifre")
         if password != password2:
-            raise forms.ValidationError("Passwords do not match")
+            raise forms.ValidationError("Parolele nu corespund")
         if len(password) < 8:
-            raise forms.ValidationError("Password is too short")
+            raise forms.ValidationError("Parola e prea scurta")
         return password2
 
 
@@ -77,7 +76,7 @@ class UserRegisterForm(forms.ModelForm):
         if (
                 not (first_name.isalnum() or first_name.isalpha())
         ):
-            raise forms.ValidationError("Name contains invalid characters")
+            raise forms.ValidationError("Prenumele contine caractere invalide")
         return first_name
 
 
@@ -86,7 +85,7 @@ class UserRegisterForm(forms.ModelForm):
         if (
                 not (last_name.isalnum() or last_name.isalpha())
         ):
-            raise forms.ValidationError("Name contains invalid characters")
+            raise forms.ValidationError("Numele contine caractere invalide")
         return last_name
 
 
@@ -103,25 +102,25 @@ class AccRegisterForm(forms.ModelForm):
     def clean_phonenumber(self):
         phone_number = self.cleaned_data['phonenumber']
         if phone_number[0] != '0' or phone_number[1] != '7' or len(phone_number) != 10 or phone_number.isdigit() == False:
-            raise forms.ValidationError("Invalid phonenumber")
+            raise forms.ValidationError("Numar de telefon invalid")
         return phone_number
 
     def clean_city(self):
         city = self.cleaned_data['city']
         if city.isalpha == False:
-            raise forms.ValidationError("City name contains invalid characters")
+            raise forms.ValidationError("Orasul contine caractere invalide")
         return city
 
     def clean_adress(self):
         adress = self.cleaned_data['adress']
         if adress.isalpha == False:
-            raise forms.ValidationError("Adress name contains invalid characters")
+            raise forms.ValidationError("Adresa contine caractere invalide")
         return adress
 
     def clean_state(self):
         state = self.cleaned_data['state']
         if state.isalpha == False:
-            raise forms.ValidationError("State name contains invalid characters")
+            raise forms.ValidationError("Judetul contine caractere invalide")
         return state
 
 
@@ -136,30 +135,29 @@ class AccRegisterForm2(forms.ModelForm):
             'state': forms.TextInput({'required': 'required', 'placeholder': 'Country'}),
             'file1': forms.FileInput({'required': 'required', 'placeholder': "country"}),
             'file2': forms.FileInput({'required': 'required', 'placeholder': "country"})
-
         }
     def clean_phonenumber(self):
         phone_number = self.cleaned_data['phonenumber']
         if phone_number[0] != '0' or phone_number[1] != '7' or len(phone_number) != 10 or phone_number.isdigit() == False:
-            raise forms.ValidationError("Invalid phonenumber")
+            raise forms.ValidationError("Numar de telefon invalid")
         return phone_number
 
     def clean_city(self):
         city = self.cleaned_data['city']
         if city.isalpha == False:
-            raise forms.ValidationError("City name contains invalid characters")
+            raise forms.ValidationError("Orasul contine caractere invalide")
         return city
 
     def clean_adress(self):
         adress = self.cleaned_data['adress']
         if adress.isalpha == False:
-            raise forms.ValidationError("Adress name contains invalid characters")
+            raise forms.ValidationError("Adresa contine caractere invalide")
         return adress
 
     def clean_state(self):
         state = self.cleaned_data['state']
         if state.isalpha == False:
-            raise forms.ValidationError("State name contains invalid characters")
+            raise forms.ValidationError("Judetul contine caractere invalide")
         return state
 
     def clean_file2(self):
@@ -170,4 +168,8 @@ class AccRegisterForm2(forms.ModelForm):
             file_names.append(file1.name)
         if (file2 and not isinstance(file2, (int, float))):
              file_names.append(file2.name)
+        if file1._size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
+        if file2._size > 5242880:
+            raise forms.ValidationError("Imaginile sunt prea mari")
         return file2

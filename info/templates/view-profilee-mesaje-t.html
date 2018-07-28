@@ -59,83 +59,99 @@
     .tabel {
         border: 1px solid #E5E5E5;
     }
+    a:link {
+        text-decoration: none;
+    }
 
+    @media only screen and (max-width: 600px) {
+        .navbar li img{
+            padding-left: 5px;
+            padding-top: 7px;
+        }
+    }
+
+    @media only screen and (min-width: 601px) {
+        .navbar  li img{
+            padding-left: 50px;
+            padding-top: 7px;
+        }
+    }
+
+    .path-44 {
+        box-sizing: border-box;
+        height: 1px;
+        width: 150px;
+        border: 1px solid #1CC661;
+    }
     </style>
 
 <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <!-- Brand Logo -->
-            <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
-            <!-- Button enables when screen size is small -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Will get collapsed -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="form-inline my-2 my-lg-0" method="GET" action="">
-                    <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
-                    <input class="form-control mr-sm-2" name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
-                    <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
-                </form>
-                <ul class="navbar-nav mr-auto">
-                    {% if user.is_authenticated %}
-                        <!-- Username dropdown -->
-                        <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ user.username }}
-                            </a>
-                            {% if user.account2.slug %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container"  style="padding-left: 1%">
+        <div class="navbar-brand" style="margin-right: 16rem;">
+            <div class="row" style="flex-wrap: nowrap;">
+                <a  href="/"><img src="{% static "images/brand.png" %}"></a>
+                <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
+            </div>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <div class="row" style="flex-wrap: nowrap;">
+                {% if user.is_authenticated %}
+                    <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ user.username }}
+                        </a>
+                        {% if user.account2.slug %}
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
+                                <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi</a>
+                                <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Mesaje</a>
+                                <a class="dropdown-item" href="/edit-profile-buyer">Editeaza profilul</a>
+                                <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout">Deconectare</a>
+                            </div>
+                            {% else %}
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
-                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi primite</a>
-                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-trimise">Comenzi trimise</a>
-                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Mesaje</a>
+                                    <a class="dropdown-item" href="/mesaje">Mesaje</a>
+                                    <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
                                     <a class="dropdown-item" href="/favoriti">Favoriti</a>
-                                    <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/logout">Deconectare</a>
                                 </div>
-                                {% else %}
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="/mesaje">Mesaje</a>
-                                        <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
-                                        <a class="dropdown-item" href="/favoriti">Favoriti</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/logout">Deconectare</a>
-                                    </div>
-                            {% endif %}
-                        </li>
-
-                        <!-- Cosul meu -->
-                        <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/cosul-meu">Cosul Meu</a>
-                        </li>
-
-                        {% if user.account2.slug %}
-                        <li class="nav-item" id="creeazaPostare">
-                            <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
-                        </li>
-                            {% else %}
-                            <li class="nav-item" id="creeazaPostare">
-                                <a href="/register-vanzator"><button class="btn">Devino vanzator</button></a>
-                            </li>
                         {% endif %}
-
+                    </li>
+                    <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cosul-meu">Cosul Meu</a>
+                    </li>
+                    {% if user.account2.slug %}
+                    <li class="nav-item" id="creeazaPostare">
+                        <a href="/create-post"><button class="btn" style="border-radius: 1px;">+ Creaza o postare</button></a>
+                    </li>
                         {% else %}
-                            <li class="nav-item" id="creeazaPostare" style="margin-left: 97%;">
-                                <a href="/register-cumparator"><button class="btn">Inregistreaza-te!</button></a>
-                            </li>
-                            <li class="nav-item" id="creeazaPostare">
-                                <a href="/login"><button class="btn">Autentificare</button></a>
-                            </li>
+                        <li class="nav-item" id="creeazaPostare">
+                            <a href="/logout"><button class="btn" style="border-radius: 1px;width: 180px;">Deconectare</button></a>
+                        </li>
                     {% endif %}
-                </ul>
-            </div>
+                    {% else %}
+                        <li class="nav-item" id="creeazaPostare" style="margin-left: 65%;">
+                            <a href="/register-cumparator"><button class="btn" style="border-radius: 1px;">Inregistreaza-te!</button></a>
+                        </li>
+                        <li class="nav-item" id="creeazaPostare">
+                            <a href="/login"><button class="btn" style="border-radius: 1px;width: 150px;">Autentificare</button></a>
+                        </li>
+                {% endif %}
+                </div>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 {% for p in profiles %}
     <div class="break-line"></div>
         <div class="content">
@@ -145,9 +161,13 @@
                     <div class="profile" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <div class="upper-side">
                             <div class="profile-image">
-                                <img src="{{  p.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;">
+                                <img src="{{  p.profile_image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;max-height: 110px;min-height: 110px;">
                             </div>
                             <h5>{{ user2.user.username }}</h5>
+                            {% if user != user2.user %}
+                                {% else %}
+                                    <a href="/edit-profile"><button class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #fff;border-radius: 1px;color: #B4B4B4;" >&nbsp Editeaza profilul</button></a>
+                            {% endif %}
                             <div class="break"></div>
                         </div>
                         <div class="lower-side">
@@ -160,136 +180,149 @@
                         </div>
                     </div>
 
+                    <div class="descriere" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 30px;">
+                        <p style="font-size: 18px;color: #6C6C6C;"><b>Descriere</b></p>
+                        <p style="color: #6C6C6C;">{{ p.description }}</p>
+                        <div class="break"></div> <br>
+                    </div>
+
                     <div class="gradina" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <p style="color: #6C6C6C;"><b>Gradina utilizatorului</b></p>
                         <div class="items">
                             <ul>
-                                <li>{{p.produs1}}</li>
-                                <li>{{ p.produs2 }}</li>
-                                <li>{{ p.produs3 }}</li>
-                                <li>{{ p.produs4 }}</li>
-                                <li>{{ p.produs5 }}</li>
+                                <li>{{p.product1}}</li>
+                                <li>{{ p.product2 }}</li>
+                                <li>{{ p.product3 }}</li>
+                                <li>{{ p.product4 }}</li>
+                                <li>{{ p.product5 }}</li>
                             </ul>
                         </div>
-                    </div>
-
-                    <div class="descriere" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                        <p style="font-size: 18px;color: #6C6C6C;"><b>Descriere</b></p>
-                        <p style="color: #6C6C6C;">{{ p.descriere }}</p>
-                        <div class="break"></div> <br>
                     </div>
                 </div>
                 <div class="col-md-8" style="padding: 5%; padding-top: 10px;">
                     <div class="row" id="up-side">
-                        <div class="col-md-12" style="padding-left: 0;">
-                            <img src="{{  p.image1.url }}" class="img-fluid" alt="Responsive image" style="height: 200px; width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                        <div class="col-md-12">
+                            <img src="{{  p.cover_image.url }}" class="img-fluid" alt="Responsive image" style="height: 245px; width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         </div>
                         {% if messages %}
-                            <div class="row">
-                                <div class="col-sm-6 col-sm-offset-3">
-                                    {% for message in messages %}
-                                        <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
-                                    {% endfor %}
-                                </div>
+                            <div class="col-md-12">
+                                {% for message in messages %}
+                                    <br>
+                                    <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
+                                {% endfor %}
                             </div>
                         {% endif %}
                         <br>
                         {% if user != user2.user %}
-                            <div class="col-md-12" style="margin-left: -15px;">
+                            <div class="col-md-12">
+                                <br>
                                 <div class="row">
-                                    <div class="col-md-2">
-                                        <button data-toggle="modal" data-target="#squarespaceModal2" class="btn btn-success btn-circle" style="border-radius: 1px; background-color: #E53046; border-color: #E53046">&nbsp Raporteaza!</button>
+                                    <div class="col-md-4">
+                                        {% if favoritt %}
+                                            <form  method="POST" enctype="multipart/form-data">
+                                               {% csrf_token %}
+                                                <button type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3" style="border-radius: 1px;background-color: #E53046;border-color: #E53046;"><span><img src="{% static "images/favorite.png" %}">&nbsp Nu mai urmari</span>
+                                            </form>
+                                            {% else %}
+                                            <form  method="POST" enctype="multipart/form-data">
+                                               {% csrf_token %}
+                                                <button type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3" style="border-radius: 1px;background-color: #E53046;border-color: #E53046;"><span><img src="{% static "images/favorite.png" %}">&nbsp Adauga la favorit</span>
+                                            </form>
+                                        {% endif %}
                                     </div>
-                                    <div class="col-md-3 offset-md-5">
-                                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 1px solid #B4B4B4; background-color: #cccccc;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button>
+                                    <div class="col-md-4 offset-md-4">
+                                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary " style="border: 2px solid #1CC661; background-color: #fff;border-radius: 1px;color: #1CC661;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Trimite mesaj privat</button>
                                     </div>
-                                    <form  method="POST" enctype="multipart/form-data" class="col-md-2">
-                                       {% csrf_token %}
-                                        <button type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3" style="border-radius: 1px;background-color: #E53046;border-color: #E53046;"><span><img src="{% static "images/read hearth.png" %}"></span>
-                                    </form>
                                 </div>
                             </div>
                         {% endif %}
                             <br>
                         {% if user == user2.user %}
                             <div class="col-md-12">
-                                <div class="row">
-                                    <div class="hold">
-                                        <div class="tabel">
-                                            <div class="row">
-                                                <div class="col-md-4" style="padding-right: 0;">
-                                                    <a href="/view-profile/{{user.account2.slug}}"><button  class="btn btn-primary " style="color: #fff; background-color: #1CC661; border: 1px solid #B4B4B4;border-radius: 0px;width: 100%;" >Mesaje</button></a>
-                                                </div>
-                                                <div class="col-md-4" style="padding-right: 0;padding-left: 0;">
-                                                    <a href="/view-profile/{{user.account2.slug}}/comenzi-primite"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 100%;" >Comenzi primite</button></a>
-                                                </div>
-                                                <div class="col-md-4" style="padding-left: 0;">
-                                                    <a href="/view-profile/{{user.account2.slug}}/comenzi-trimise"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 100%;" >Comenzi plasate</button></a>
-                                                </div>
+                                <hr>
+                                <h2>Management:</h2>
+                                <div class="path-44"></div>
+                                <br>
+                                <div class="tabel">
+                                    <div class="row">
+                                        <div class="col-md-4" style="padding-right: 0;">
+                                            <a href="/view-profile/{{user.account2.slug}}"><button  class="btn btn-primary " style="color: #fff; background-color: #1CC661; border: 1px solid #B4B4B4;border-radius: 0px;width: 100%;" >Mesaje</button></a>
+                                        </div>
+                                        <div class="col-md-4" style="padding-right: 0;padding-left: 0;">
+                                            <a href="/view-profile/{{user.account2.slug}}/comenzi-primite"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 100%;" >Comenzi primite</button></a>
+                                        </div>
+                                        <div class="col-md-4" style="padding-left: 0;">
+                                            <a href="/view-profile/{{user.account2.slug}}/comenzi-trimise"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px; width: 100%;" >Comenzi plasate</button></a>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6" style="padding-right: 0;"><a href="/view-profile/{{user.account2.slug}}"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px;width: 100%;" >Mesaje primite</button></a></div>
+                                        <div class="col-md-6" style="padding-left: 0;"><a href="/view-profile/{{user.account2.slug}}/mesaje-trimise"><button  class="btn btn-primary " style="color: #fff; background-color: #1CC661; border: 1px solid #B4B4B4;border-radius: 0px; width:100%;" >Mesaje trimise</button></a></div>
+                                    </div>
+                                    <br>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-2 offset-md-1">
+                                                 <p style="color: #848484;"><b>Mesajul</b></p>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6" style="padding-right: 0;"><a href="/view-profile/{{user.account2.slug}}"><button  class="btn btn-primary " style="color: #6C6C6C; background-color: #fff; border: 1px solid #B4B4B4;border-radius: 0px;width: 100%;" >Mesaje primite</button></a></div>
-                                                <div class="col-md-6" style="padding-left: 0;"><a href="/view-profile/{{user.account2.slug}}/mesaje-trimise"><button  class="btn btn-primary " style="color: #fff; background-color: #1CC661; border: 1px solid #B4B4B4;border-radius: 0px; width:100%;" >Mesaje trimise</button></a></div>
+                                            <div class="col-md-4 offset-md-5">
+                                                <p style="color: #848484;"><b>Nume utilizator</b></p>
                                             </div>
-                                            <br>
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-md-2 offset-md-1">
-                                                         <p style="color: #848484;"><b>Mesajul</b></p>
-                                                    </div>
-                                                    <div class="col-md-4 offset-md-5">
-                                                        <p style="color: #848484;"><b>Nume utilizator</b></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="container">
-                                                <div class="col-md-12">
-                                                    {% if mesaje %}
-                                                        {% for mesaje in mesaje %}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="container">
+                                        <div class="col-md-12">
+                                            {% if mesaje %}
+                                                {% for mesaje in mesaje %}
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <p><b>{{ mesaje.title }}</b></p>
+                                                            <p style="color: #6C6C6C;">{{ mesaje.content }}</p>
+                                                        </div>
+                                                        <div class="col-md-3 offset-md-2">
                                                             <div class="row">
-                                                                <div class="col-md-5">
-                                                                    <p><b>{{ mesaje.titlu }}</b></p>
-                                                                    <p style="color: #6C6C6C;">{{ mesaje.mesaj }}</p>
-                                                                </div>
-                                                                <div class="col-md-2 offset-md-3">
-                                                                    <div class="row">
-                                                                        <span><img src="{% static "images/forward-arrow.png" %}"></span>
-                                                                        {% if mesaje.destinatar.account2 %}
-                                                                            <a href="/view-profile/{{mesaje.destinatar.account2.slug}}"><p style="color: #848484;"><b>{{ mesaje.destinatar }}</b></p></a>
-                                                                            {% else %}
-                                                                            <a href="/trimite-mesaje/{{mesaje.destinatar.account.slug}}"><p style="color: #848484;"><b>{{ mesaje.destinatar }}</b></p></a>
-                                                                        {% endif %}
-                                                                    </div>
-                                                                    <p style="color: #B4B4B4;">{{ mesaje.created_date }}</p>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    {% if mesaje.destinatar.account %}
-                                                                        <a href="/trimite-mesaje/{{mesaje.destinatar.account.slug}}"><button  class="btn btn-primary"  style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
-                                                                        {% else %}
-                                                                            <a href="/view-profile/{{mesaje.destinatar.account2.slug}}"><button  class="btn btn-primary"  style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
-                                                                    {% endif %}
-                                                                </div>
+                                                                <span><img src="{% static "images/forward-arrow.png" %}"></span>
+                                                                {% if mesaje.destinatar.account2 %}
+                                                                    <a href="/view-profile/{{mesaje.receiver.account2.slug}}"><p style="color: #848484;"><b>{{ mesaje.receiver }}</b></p></a>
+                                                                    {% else %}
+                                                                    <a href="/trimite-mesaje/{{mesaje.receiver.account.slug}}"><p style="color: #848484;"><b>{{ mesaje.receiver }}</b></p></a>
+                                                                {% endif %}
                                                             </div>
-                                                            <hr>
-                                                        {% endfor %}
-                                                        {% else %}
-                                                        <h4 align="center">Nu ati primit nici un mesaj</h4>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
+                                                            <p style="color: #B4B4B4;">{{ mesaje.created_date }}</p>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            {% if mesaje.destinatar.account %}
+                                                                <a href="/trimite-mesaje/{{mesaje.destinatar.account.slug}}"><button  class="btn btn-primary"  style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
+                                                                {% else %}
+                                                                    <a href="/view-profile/{{mesaje.destinatar.account2.slug}}"><button  class="btn btn-primary"  style="border: 1px solid #B4B4B4; background-color: #1CC661;border-radius: 1px;" ><span><img src="{% static "images/speech-bubble.png" %}"></span>&nbsp Mesaje</button></a>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                {% endfor %}
+                                                {% else %}
+                                                <h4 align="center">Nu ati trimis nici un mesaj</h4>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         {% endif %}
-                        <div class="col-md-12">
+                        <div class="col-md-12" >
+                            <br>
                             <div class="row">
-                            <h1 id="Anunturile">Anunturile producatorului</h1>
-                            <form class="cauta-anunt" method="GET" action="">
-                                <input  id="cauta-anunt"  name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
-                                <button>Cauta</button>
-                            </form>
+                                <div class="col-md-6">
+                                    <h4 style="color: #4B4B4B;"><b>Anunturile producatorului</b></h4>
+                                    <div class="path-44"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <form class="cauta-anunt" method="GET" action="">
+                                        <input  id="cauta-anunt"  name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
+                                        <button>Cauta</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -300,14 +333,14 @@
                                 {% if user2.user == post.author %}
                                     <div class="col-md-6">
                                         <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 30px;">
-                                            <a href="/post/{{post.slug}}"><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap"></a>
+                                            <a href="/post/{{post.slug}}"><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap" style="max-height: 175px;min-height: 175px;"></a>
                                             <div class="card-body">
-                                                <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h5>
+                                                <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name|truncatechars:10 }}</a></b></h5>
                                                 <hr>
                                                 <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                                 <hr>
-                                                <h6><b>Pret: <a>{{ post.price }} lei / {{post.category }}</a></b></h6>
-                                                <p class="card-text" style="color: #6C6C6C">{{ post.details|truncatechars:40 }}</p>
+                                                <h6><b>Pret: <a>{{ post.price }} RON / {{post.category }}</a></b></h6>
+                                                <p class="card-text" style="color: #6C6C6C">{{ post.details|truncatechars:10 }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -325,8 +358,9 @@
         <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header"  style="display: initial;padding-bottom: 20px;">
                         <h3 class="modal-title" id="lineModalLabel"><b>Scrie un mesaj </b></h3>
+                        <div class="path-44"></div>
                     </div>
                     <div class="modal-body">
 
@@ -341,7 +375,7 @@
                                 <label for="titlu-field">Mesaj:</label>
                                 <input name="mesaj" value="{{form.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
                             </div>
-                            <button type="submit" class="btn btn-default" name="btnform1">Submit</button>
+                            <button class="btn btn-success" type="submit" style="border-radius: 0px; margin-top: 5px; width: 150px;" name="btnform1">Trimite mesaj</button>
                         </form>
                     </div>
                 </div>
@@ -352,8 +386,9 @@
         <div class="modal fade" id="squarespaceModal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header"  style="display: initial;padding-bottom: 20px;">
                         <h3 class="modal-title" id="lineModalLabel"><b>Spune-ne ce s-a intamplat</b></h3>
+                        <div class="path-44"></div>
                     </div>
                     <div class="modal-body">
 
@@ -368,43 +403,73 @@
                                 <label for="titlu-field">Ce s-a intamplat:</label>
                                 <input name="mesajj" value="{{form2.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
                             </div>
-                            <button type="submit" class="btn btn-default" name="btnform2">Submit</button>
+                            <button class="btn btn-success" type="submit" style="border-radius: 0px; margin-top: 5px; width: 150px;" name="btnform2">Raporteaza</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
 
-        <footer class="footer">
-                <div class="row">
-                    <div class="col-4">
-                        <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
-                    </div>
-                    <div class="col-2">
-                        <a href="/" style="color: #fff"><p>Acasa</p></a>
-                    </div>
-                    {% if user.account2.slug %}
-                    <div class="col-2">
-                        <a href="/view-profile/{{ user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
-                    </div>
-                    <div class="col-2">
-                        <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
-                    </div>
-                    {% endif %}
-                    <div class="col-2">
-                        {% if user.account2.slug %}
-                       <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
-                        {% else %}
-                        <p><a href="/register-vanzator" style="color: #fff">Devino vanzator</p></a>
-                        {% endif %}
+<footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-5" style="margin-top: 40px;padding-left: 35px;">
+                            <h2 align="left"><b>BIOsferra</b></h2>
+                            <div class="path-57"></div>
+                            <a href="https://dribbble.com/FagadarCezar" style="color: #FFFFFF"><p align="left" style="margin-top: 35px;">Fagadar Cezar</p></a>
+                            <a href="https://github.com/temi4000" style="color: #FFFFFF"><p align="left">Temian Mihai</p></a>
+                        </div>
+                        <div class="col-md-6" style="margin-top: 40px;">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="path-56"></div>
+                                </div>
+                                <div class="col-md-5">
+                                    <p align="left"><b>Pagini</b></p>
+                                    {% if user.is_authenticated %}
+                                        {% if user.account2.slug %}
+                                            <a href="/" style="color: #FFFFFF"><p align="left">Acasa</p></a>
+                                            <a href="/view-profile/{{ user.account2.slug }}" style="color: #FFFFFF"><p align="left">Profilul Tau</p></a>
+                                            {% else %}
+                                                <a href="/mesaje" style="color: #FFFFFF"><p align="left">Mesaje</p></a>
+                                                <a href="/comenzile-mele" style="color: #FFFFFF"><p align="left">Comenzi</p></a>
+                                                <a href="/favoriti" style="color: #FFFFFF"><p align="left">Favoriti</p></a>
+                                        {% endif %}
+                                        <a href="/cosul-meu" style="color: #FFFFFF"><p align="left">Cosul Meu</p></a>
+                                        {% if user.account2.slug %}
+                                            <a href="/create-post" style="color: #FFFFFF"><p align="left">Creaza o postare</p></a>
+                                            {% else %}
+                                            <a href="/logout" style="color: #FFFFFF"><p align="left">Deconectare</p></a>
+                                        {% endif %}
+
+                                        {% else %}
+                                            <a href="/register-cumparator" style="color: #FFFFFF"><p align="left">Inregistrare</p></a>
+                                            <a href="/login" style="color: #FFFFFF"><p align="left">Autentificare</p></a>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="path-56"></div>
+                                </div>
+                                <div class="col-md-5">
+                                    <p align="left"><b>Contact</b></p>
+                                    <p align="left">Romania, Timis, Timisoara</p>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d22269.631879759865!2d21.215498148071287!3d45.75708007361393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sro!2sro!4v1532376892664" width="auto" height="80px;" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    <p align="left">biosferra.noreplay@gmail.com</p>
+                                    <p align="left">+40 733 625 927</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <hr class="hr">
-                <div class="row">
-                    <div class="col-12">
-                        <p>@All rights reserverd</p>
-                    </div>
-                </div>
-        </footer>
+            </div>
+        </div>
+    </footer>
+    <div class="col-md-12">
+        <div class="rectangle-60">
+            <p align="center" style="color: #1CC661;margin-top: 20px;">@ 2018 Biosferra. All rights reserved.</p>
+        </div>
+    </div>
 </body>
 </html>
