@@ -4,4 +4,4 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  -cd info && y | python manage.py makemigrations && y |  python manage.py migrate && y | python manage.py test
+  -cd info && yes | python manage.py makemigrations && yes |  python manage.py migrate && yes | python manage.py test
