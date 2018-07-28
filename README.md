@@ -14,6 +14,10 @@ Every single user has to complete a formular with personal informations. The dif
 
 Here, buyers can buy fruits or vegetables from sellers and rating/reviewing their profile/posts. Users don't have to worry about transportation because biosferra's company will get rid of that.
 
+# DATABASE DIAGRAM
+![database_diagram](https://user-images.githubusercontent.com/19783030/43359105-b1aa75f2-92a5-11e8-9f5e-a96f402ebd92.png)
+
+
 # Deploy
 
 ```sh
