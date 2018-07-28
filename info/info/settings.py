@@ -100,25 +100,21 @@ WSGI_APPLICATION = 'info.wsgi.application'
 if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
-            'ENGINE':   'django.db.backends.postgresql_psycopg2',
-            'NAME':     'travisci',
-            'USER':     'postgres',
-            'PASSWORD': '',
-            'HOST':     'localhost',
-            'PORT':     '',
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'biosferra',
-        'USER': 'biosferra',
-        'PASSWORD': 'biosferra#2018',
-        'HOST': 'localhost',
-        'PORT': '5432',
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'biosferra',
+            'USER': 'biosferra',
+            'PASSWORD': 'biosferra#2018',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
     }
-}
 
 
 # Password validation
