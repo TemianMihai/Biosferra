@@ -13,6 +13,6 @@ urlpatterns = [
     url(r'^comenzile-mele/$', comanda, name='produse'),
     url(r'^view-profile/(?P<slug>[^\.]+)/comenzi-primite/delete/$', delete_comanda, name='delete-comanda'),
     url(r'^view-profile/(?P<slug>[^\.]+)/comenzi-primite/$', get_comandap, name='get-comandap'),
-    url(r'^view-profile/(?P<slug>[^\.]+)/comenzi-trimise/$', get_comandat, name='get-comandat'),
-    url(r'^posts-filter/$', posts_filter, name='posts_filter')
+    url(r'^view-profile/(?P<slug>[^\.]+)/comenzi-trimise/$', get_comandat, name='get-comandat')
+
 ]

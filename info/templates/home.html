@@ -4,7 +4,7 @@
     {% load staticfiles %}
 
     <title>Biosferra</title>
-    <!-- Latest compiled and minified CSS -->
+        <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Custom css -->
     <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
@@ -14,17 +14,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.js"></script>
-
-
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="{% static "images/brand.png" %}"/>
+    <link rel="shortcut icon" href="{% static "images/brand.png" %}" />
     <style>
 
         .path-19 {
@@ -34,97 +28,66 @@
             border: 1px solid #1CC661;
         }
 
-        .hold > ul > a > li:hover {
-            background-color: #1cc661;
-            color: #fff;
+        .hold > ul > li:hover{
+            background-color:#1cc661;
+            color:#fff;
         }
 
-        .dropdown-item {
-            color: #6C6C6C;
+        .dropdown-item{
+            color:#6C6C6C;
         }
 
-        .dropdown-item:hover {
-            color: #fff;
-        }
-
-        @media only screen and (max-width: 600px) {
-            .navbar li img {
-                padding-left: 5px;
-                padding-top: 7px;
-            }
-        }
-
-        @media only screen and (min-width: 601px) {
-            .navbar li img {
-                padding-left: 50px;
-                padding-top: 7px;
-            }
-        }
-
-        a:link {
-            text-decoration: none;
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 0;
+        .dropdown-item:hover{
+            color:#fff;
         }
 
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container" style="padding-left: 1%">
-        <div class="navbar-brand" style="margin-right: 3rem;">
-            <div class="row" style="flex-wrap: nowrap;">
-                <a href="/"><img src="{% static "images/brand.png" %}"></a>
-                <form class="form-inline my-2 my-lg-0" method="GET" action=""
-                      style="margin-left: 10px;flex-wrap: nowrap;">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <!-- Brand Logo -->
+            <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
+            <!-- Button enables when screen size is small -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Will get collapsed -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline my-2 my-lg-0" method="GET" action="">
                     <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
-                    <input class="form-control mr-sm-2" name="q" type="text" placeholder="Cauta anunturi"
-                           value='{{ request.GET.q }}' style="width: 260px;">
+                    <input class="form-control mr-sm-2" name="q" type="text" placeholder="Cauta anunturi" value='{{ request.GET.q }}'>
                     <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
                 </form>
-            </div>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Will get collapsed -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <ul class="navbar-nav mr-auto">
-                <div class="row" style="flex-wrap: nowrap;">
+                <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
                         <!-- Username dropdown -->
                         <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ user.username }}
                             </a>
                             {% if user.account2.slug %}
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul
-                                        Tau</a>
-                                    <a class="dropdown-item"
-                                       href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi</a>
+                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
+                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi primite</a>
+                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-trimise">Comenzi trimise</a>
                                     <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Mesaje</a>
                                     <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                    <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/logout">Deconectare</a>
                                 </div>
-                            {% else %}
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/mesaje">Mesaje</a>
-                                    <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
-                                    <a class="dropdown-item" href="/favoriti">Favoriti</a>
-                                    <a class="dropdown-item" href="/edit-profile-buyer">Editeaza profilul</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/logout">Deconectare</a>
-                                </div>
+                                {% else %}
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/mesaje">Mesaje</a>
+                                        <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
+                                        <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/logout">Deconectare</a>
+                                    </div>
                             {% endif %}
                         </li>
 
@@ -135,301 +98,267 @@
                         </li>
 
                         {% if user.account2.slug %}
+                        <li class="nav-item" id="creeazaPostare">
+                            <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
+                        </li>
+                            {% else %}
                             <li class="nav-item" id="creeazaPostare">
-                                <a href="/create-post">
-                                    <button class="btn" style="border-radius: 1px;">+ Creaza o postare</button>
-                                </a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item" id="creeazaPostare">
-                                <a href="/logout">
-                                    <button class="btn" style="border-radius: 1px; width: 180px;">Deconectare</button>
-                                </a>
+                                <a href="/register-vanzator"><button class="btn">Devino vanzator</button></a>
                             </li>
                         {% endif %}
 
-                    {% else %}
-                        <li class="nav-item" id="creeazaPostare" style="margin-left: 67%;">
-                            <a href="/register-cumparator">
-                                <button class="btn" style="border-radius: 1px;">Inregistreaza-te!</button>
-                            </a>
-                        </li>
-                        <li class="nav-item" id="creeazaPostare">
-                            <a href="/login">
-                                <button class="btn" style="border-radius: 1px;width: 150px;">Autentificare</button>
-                            </a>
-                        </li>
+                        {% else %}
+                            <li class="nav-item" id="creeazaPostare" style="margin-left: 97%;">
+                                <a href="/register-cumparator"><button class="btn">Inregistreaza-te!</button></a>
+                            </li>
+                            <li class="nav-item" id="creeazaPostare">
+                                <a href="/login"><button class="btn">Autentificare</button></a>
+                            </li>
                     {% endif %}
-                </div>
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-<br> <br>
-<!-- Legume/Fructe/Anunturi reducere -->
-<div class="container">
+    </nav>
+    <br> <br>
+    <!-- Legume/Fructe/Anunturi reducere -->
+    <div class="container">
 
-    <div class="container anunturi">
-        <h1 style="margin-left: 15px;color: #4B4B4B;">Legume</h1>
-        <div class="col-sm-12">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="hold">
-                        <ul class="items" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                            {% for categorie in categorie %}
-                                <a href="/legume/{{ categorie.0 }}" style="color:#B4B4B4;">
-                                    <li>{{ categorie.1 }}</li>
-                                </a>
-                            {% endfor %}
-                        </ul>
+        <div class="container anunturi">
+            <h1 style="margin-left: 15px;color: #4B4B4B;">Legume</h1>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="hold">
+                            <ul class="items" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                                {% for categorie in categorie %}
+                                    <li><a>{{ categorie.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-8">
+                        <div class="veggie-img">
+                            <img src="{% static "images/legume.png" %}" style="height: 95%; width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.20);">
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-sm-8">
-                    <div class="veggie-img">
-                        <img src="{% static "images/legume.png" %}"
-                             style="height: 95%; width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.20);">
+            <br> <br>
+            <h1 style="margin-left: 15px;color: #4B4B4B;">Fructe</h1>
+             <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="hold">
+                            <ul class="items" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                                {% for categorie in categorie %}
+                                    <li>{{ categorie.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-8">
+                        <div class="veggie-img">
+                            <img src="{% static "images/fructe.png" %}" style="height: 95%; width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.20);">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <br> <br>
-        <h1 style="margin-left: 15px;color: #4B4B4B;">Fructe</h1>
-        <div class="col-sm-12">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="hold">
-                        <ul class="items" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                            {% for categorie in categorie %}
-                                <a href="/fructe/{{ categorie.0 }}" style="color:#B4B4B4;">
-                                    <li>{{ categorie.1 }}</li>
-                                </a>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-sm-8">
-                    <div class="veggie-img">
-                        <img src="{% static "images/fructe.png" %}"
-                             style="height: 95%; width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.20);">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
-    <br> <br>
-
-    <div class="container producator">
-        <h1 style="color: #4B4B4B;">Cumpara dupa utilizator</h1>
-        <div class="path-19"></div>
-        <br><br>
-        <div class="row">
-            <div class="col-md-3">
-                <form id="filter-form" method="POST">
-                    {% csrf_token %}
-                    <!-- Sorteaza dupa -->
-                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                        <p class="head" style="color: #6C6C6C;"><b>Sorteaza dupa</b></p>
-                        {{ form.sort_by }}
-                    </div>
-                    <br> <br>
-
-                    <!-- Legume -->
-                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                        <p class="head" style="color: #6C6C6C;"><b>Produse</b></p>
-                        {{ form.products }}
-                    </div>
-
-                    <br> <br>
-
-                    <!-- Gramaj -->
-                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                        <p class="head" style="color: #6C6C6C;"><b>Unitate Masura</b></p>
-                        {{ form.um }}
-                        <p class="head" style="color: #6C6C6C;"><b>Cantitate</b></p>
-                        <b style="color: #6C6C6C;">Cantitate min:</b>
-                        {{ form.min_quantity }}
-                        <b style="color: #6C6C6C;">Cantitate max:</b>
-                        {{ form.max_quantity }}
-                    </div>
-                    <br> <br>
-
-                    <!-- Pret -->
-                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                        <p class="head" style="color: #6C6C6C;"><b>Pret</b></p>
-
-                        <b style="color: #6C6C6C;">Min:</b>
-                        {{ form.min_price }}
-                        <b style="color: #6C6C6C;">Max:</b>
-                        {{ form.max_price }}
-                    </div>
-                    <br> <br>
-                    <input type="submit" style="display: none" id="fake-submit">
-                </form>
-            </div>
-            <div class="col-md-9" id="post-list">
+        <div class="container anunturi">
+            <div class="col-md-12">
+                <h1 style="color: #4B4B4B;">Anunturi la reducere</h1>
+                <div class="path-19"></div>
+                <br>
                 <div class="row">
                     {% for post in post %}
                         {% if post.approved == True %}
                             <div class="col-md-4">
-                                <div class="card"
-                                     style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 35px;">
-                                    <a href="/post/{{ post.slug }}"><img class="card-img-top"
-                                                                         src="{{ post.image1.url }}"
-                                                                         alt="Card image cap"
-                                                                         style="max-height: 175px;min-height: 175px;"></a>
+                                <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 35px;">
+                                    <a href="/post/{{post.slug}}"><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap" style="max-height: 175px;min-height: 175px;"></a>
                                     <div class="card-body">
-                                        <h6 class="card-title"><b>Anunt: <a href="/post/{{ post.slug }}">
-                                            {{ post.name|truncatechars:10 }}</a></b></h6>
+                                        <h6 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h6>
                                         <hr>
-                                        <h6><b>Autor: <a
-                                                href="/view-profile/{{ post.author.account2.slug }}">{{ post.author }}</a></b>
-                                        </h6>
+                                        <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                         <hr>
-                                        <h6><b>Pret: <a style="color:#1CC661; ">{{ post.price }} RON
-                                            / {{ post.get_um_display }}</a></b></h6>
-                                        <p class="card-text" style="color: #6C6C6C;">
-                                            {{ post.details|truncatechars:10 }}</p>
+                                        <h6><b>Pret: <a style="color:#1CC661; ">{{ post.price }} lei / {{post.category }}</a></b></h6>
+                                        <p class="card-text" style="color: #6C6C6C;">{{ post.details|truncatechars:40 }}</p>
                                     </div>
                                 </div>
                             </div>
                         {% endif %}
                     {% endfor %}
                 </div>
-                <br>
             </div>
+        </div>
+        <br> <br>
+
+        <div class="container producator">
+            <h1 style="color: #4B4B4B;">Cumpara dupa utilizator</h1>
+            <div class="path-19"></div>
+            <br><br>
+            <div class="row">
+                <div class="col-md-3">
+                    <!-- Sorteaza dupa -->
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                        <p class="head" style="color: #6C6C6C;"><b>Sorteaza dupa</b></p>
+                        <form>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">Utilizator</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">Pret crescator</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">Pret descrescator</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">Ordine Alfabetica</label>
+                          </div>
+                        </form>
+                    </div>
+                    <br> <br>
+
+                    <!-- Legume -->
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                        <p class="head" style="color: #6C6C6C;"><b>Produse</b></p>
+                        <form>
+                            {% for legfruc in legfruc %}
+                              <div>
+                                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                                <label for="subscribeNews" style="color: #6C6C6C;">{{ legfruc.name }}</label>
+                              </div>
+                            {% endfor %}
+                        </form>
+                    </div>
+
+                    <br> <br>
+
+                    <!-- Gramaj -->
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                        <p class="head" style="color: #6C6C6C;"><b>Gramaj</b></p>
+                        <form>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">0 - 1,00 kg</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">1,00 - 2,00 kg</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">3,00 - 5,00 kg</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">Peste 5,00 kg</label>
+                          </div>
+                        </form>
+                    </div>
+                    <br> <br>
+
+                    <!-- Pret -->
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                        <p class="head" style="color: #6C6C6C;"><b>Pret</b></p>
+                        <form>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">0 - 1,00 leu</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">1,00 - 2,00 lei</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">2,00 - 3,00 lei</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                            <label for="subscribeNews" style="color: #6C6C6C;">Peste 4,00 lei</label>
+                          </div>
+                        </form>
+                    </div>
+                    <br> <br>
+                </div>
+                <div class="col-md-9">
+                    {% for users in users %}
+                        {% if users.account2.slug %}
+                            <h2><b><a href="/view-profile/{{ users.account2.slug }}" style="color: #4B4B4B;">{{ users.username }}&nbsp;</b></a></h2>
+                            <div class="row">
+                                {% for post in post %}
+                                    {% if users == post.author %}
+                                        {% if post.approved == True%}
+                                            <div class="col-md-4">
+                                                <div class="card" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 35px;">
+                                                    <a href="/post/{{post.slug}}"><img class="card-img-top" src="{{  post.image1.url }}" alt="Card image cap" style="max-height: 175px;min-height: 175px;"></a>
+                                                    <div class="card-body">
+                                                        <h6 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name }}</a></b></h6>
+                                                        <hr>
+                                                        <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
+                                                        <hr>
+                                                        <h6><b>Pret: <a style="color:#1CC661; ">{{ post.price }} lei / {{post.category }}</a></b></h6>
+                                                        <p class="card-text" style="color: #6C6C6C;">{{ post.details|truncatechars:40 }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </div>
         </div>
         <br>
     </div>
 
-</div>
+    </div>
 
 
-<footer class="footer">
-    <div class="container">
+    <footer class="footer">
         <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-5" style="margin-top: 40px;padding-left: 35px;">
-                        <h2 align="left"><b>BIOsferra</b></h2>
-                        <div class="path-57"></div>
-                        <a href="https://dribbble.com/FagadarCezar" style="color: #FFFFFF"><p align="left"
-                                                                                              style="margin-top: 35px;">
-                            Fagadar Cezar</p></a>
-                        <a href="https://github.com/temi4000" style="color: #FFFFFF"><p align="left">Temian Mihai</p>
-                        </a>
-                    </div>
-                    <div class="col-md-6" style="margin-top: 40px;">
-                        <div class="row">
-                            <div class="col-md-1">
-                                <div class="path-56"></div>
-                            </div>
-                            <div class="col-md-5">
-                                <p align="left"><b>Pagini</b></p>
-                                {% if user.is_authenticated %}
-                                    {% if user.account2.slug %}
-                                        <a href="/" style="color: #FFFFFF"><p align="left">Acasa</p></a>
-                                        <a href="/view-profile/{{ user.account2.slug }}" style="color: #FFFFFF"><p
-                                                align="left">Profilul Tau</p></a>
-                                    {% else %}
-                                        <a href="/mesaje" style="color: #FFFFFF"><p align="left">Mesaje</p></a>
-                                        <a href="/comenzile-mele" style="color: #FFFFFF"><p align="left">Comenzi</p></a>
-                                        <a href="/favoriti" style="color: #FFFFFF"><p align="left">Favoriti</p></a>
-                                    {% endif %}
-                                    <a href="/cosul-meu" style="color: #FFFFFF"><p align="left">Cosul Meu</p></a>
-                                    {% if user.account2.slug %}
-                                        <a href="/create-post" style="color: #FFFFFF"><p align="left">Creaza o
-                                            postare</p></a>
-                                    {% else %}
-                                        <a href="/logout" style="color: #FFFFFF"><p align="left">Deconectare</p></a>
-                                    {% endif %}
-
-                                {% else %}
-                                    <a href="/register-cumparator" style="color: #FFFFFF"><p align="left">
-                                        Inregistrare</p></a>
-                                    <a href="/login" style="color: #FFFFFF"><p align="left">Autentificare</p></a>
-                                {% endif %}
-                            </div>
-                            <div class="col-md-1">
-                                <div class="path-56"></div>
-                            </div>
-                            <div class="col-md-5">
-                                <p align="left"><b>Contact</b></p>
-                                <p align="left">Romania, Timis, Timisoara</p>
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d22269.631879759865!2d21.215498148071287!3d45.75708007361393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sro!2sro!4v1532376892664"
-                                        width="auto" height="80px;" frameborder="0" style="border:0"
-                                        allowfullscreen></iframe>
-                                <p align="left">biosferra.noreplay@gmail.com</p>
-                                <p align="left">+40 733 625 927</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-4">
+                <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
+            </div>
+            <div class="col-2">
+                <a href="/" style="color: #fff"><p>Acasa</p></a>
+            </div>
+            {% if user.account2.slug %}
+            <div class="col-2">
+                <a href="/view-profile/{{ user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
+            </div>
+            <div class="col-2">
+                <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
+            </div>
+            {% endif %}
+            <div class="col-2">
+                {% if user.account2.slug %}
+               <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
+                {% else %}
+                <p><a href="/register-vanzator" style="color: #fff">Devino vanzator</p></a>
+                {% endif %}
             </div>
         </div>
-    </div>
-</footer>
-<div class="col-md-12">
-    <div class="rectangle-60">
-        <p align="center" style="color: #1CC661;margin-top: 20px;">@ 2018 Biosferra. All rights reserved.</p>
-    </div>
-</div>
-<script>
-    document.onreadystatechange = function () {
-        var form = document.querySelector("#filter-form");
-        var fake_submit = document.querySelector("#fake-submit");
-        var inputs = form.querySelectorAll("input");
-
-        var on_submit = function (event) {
-            event.preventDefault();
-            console.log(event);
-        };
-
-        form.addEventListener("submit", on_submit, true);
-
-        form.querySelectorAll("input").forEach(function (value, index) {
-            value.required = false;
-            value.onchange = function (event) {
-                var data = {};
-                inputs.forEach(function (value1, index1) {
-                    if (value1.type === "checkbox" && value1.checked) {
-                        var tmp = data[value1.name];
-                        console.log(tmp);
-                        data[value1.name] = tmp ? tmp : [];
-                        data[value1.name].push(value1.value);
-                    } else if (value1.type === "radio" && value1.checked) {
-                        data[value1.name] = value1.value;
-                    } else if (value1.type !== "checkbox" && value1.type !== "radio") {
-                        data[value1.name] = value1.value;
-                    }
-                });
-                fetch("/posts-filter/", {
-                    body: JSON.stringify(data),
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json; charset=utf-8",
-                        "X-CSRFToken": data.csrfmiddlewaretoken
-                    },
-                    credentials: 'same-origin'
-                }).then(function(response) {
-                    if (response.ok) {
-                        response.text().then(function(body) {
-                            document.querySelector("#post-list").innerHTML = body;
-                        })
-                    }
-                });
-                console.log(data);
-                fake_submit.click()
-
-            }
-        })
-
-
-    }
-</script>
+        <hr class="hr">
+        <div class="row">
+            <div class="col-12">
+                <p>@All rights reserverd</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

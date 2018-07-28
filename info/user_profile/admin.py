@@ -1,19 +1,19 @@
 from django.contrib import admin
-from .models import Message, Report, Favourite, Profile
+from .models import Mesaje, Report, Favorit, Profile
 
 class MesajeAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'receiver']
+    list_display = ['titlu', 'autor', 'destinatar']
 
 class ReportAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'receiver']
+    list_display = ['titluu', 'autor', 'destinatar']
 
 class FavoritAdmin(admin.ModelAdmin):
-    list_display = ['author', 'receiver']
+    list_display = ['alegator', 'ales']
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'product1', 'product2', 'product3', 'product4', 'product5', 'cover_image', 'profile_image', 'description']
+    list_display = ['userul', 'produs1', 'produs2', 'produs3', 'produs4', 'produs5', 'image1', 'image2', 'descriere']
 
 admin.site.register(Profile, ProfileAdmin)
-admin.site.register(Message, MesajeAdmin)
+admin.site.register(Mesaje, MesajeAdmin)
 admin.site.register(Report, ReportAdmin)
-admin.site.register(Favourite, FavoritAdmin)
+admin.site.register(Favorit, FavoritAdmin)

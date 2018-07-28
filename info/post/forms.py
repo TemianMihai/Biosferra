@@ -1,28 +1,15 @@
 from django import forms
 from django.core.validators import validate_email
-from .models import PostModel, Comment, CosulMeu, AdresaDeFacturare, Comanda, CHOICES_UM, CHOICES_SEASON
+from .models import PostModel, Comment, CosulMeu, AdresaDeFacturare, Comanda
 from category.models import Category
 from categorie.models import Categorie
-from lfcat.models import Products
+from lfcat.models import Lfcategory,Legfruccategory
 from django.shortcuts import get_object_or_404
-
-class FilterForm(forms.Form):
-    sort_by = forms.ChoiceField(label="Sorteaza dupa", choices=(
-        (0, "Autor"),
-        (1, "Pret crescator"),
-        (2, "Pret descrescator")
-    ), widget=forms.RadioSelect, required=False)
-    products = forms.ModelMultipleChoiceField(label="Produse", queryset=Products.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
-    um = forms.ChoiceField(choices=CHOICES_UM, label="Unitate de masura", widget=forms.RadioSelect, required=False)
-    min_quantity = forms.IntegerField(label="Minq", required=False)
-    max_quantity = forms.IntegerField(required=False, label="Maxq")
-    min_price = forms.IntegerField(required=False, label="Minp")
-    max_price = forms.IntegerField(required=False, label="Maxp")
 
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = PostModel
-        fields = ['name', 'quantity', 'price', 'details', 'image1', 'image2', 'image3', 'image4', 'season', 'um', 'product_type']
+        fields = ['name', 'cantity', 'price', 'details', 'image1', 'image2', 'image3', 'image4', 'category', 'categorie', 'lfcategory', 'legfruccategory']
         widgets = {
             'image1': forms.FileInput({'required': 'required', 'placeholder': "Image1"}),
             'image2': forms.FileInput({'required': 'required', 'placeholder': "Image2"}),
@@ -36,6 +23,8 @@ class CreatePostForm(forms.ModelForm):
 
     def clean_price(self):
         price = self.cleaned_data['price']
+        if price.isdigit() == False:
+            raise forms.ValidationError("Pret invalid")
         return price
 
     def clean_name(self):
@@ -64,39 +53,34 @@ class CreatePostForm(forms.ModelForm):
             image_names.append(image4.name)
         if (len(image_names) - 1 == len(set(image_names))):
             raise forms.ValidationError("Imaginile trebuie sa fie diferite")
-        if image1._size > 5242880:
-            raise forms.ValidationError("Imaginile sunt prea mari")
-        if image2._size > 5242880:
-            raise forms.ValidationError("Imaginile sunt prea mari")
-        if image3._size > 5242880:
-            raise forms.ValidationError("Imaginile sunt prea mari")
-        if image4._size > 5242880:
-            raise forms.ValidationError("Imaginile sunt prea mari")
         return image4
 
-    def clean_um(self):
-        um = self.cleaned_data['um'] if self.cleaned_data['um'] in [i[0] for i in CHOICES_UM] else None
-        if um is None:
-            raise forms.ValidationError("Unitate de masura invalida")
-        return um
+    def clean_category(self):
+        category = get_object_or_404(Category,
+        name=self.cleaned_data['category'])
+        return category
 
-    def clean_season(self):
-        print([i[0] for i in CHOICES_SEASON])
-        season = self.cleaned_data['season'] if self.cleaned_data['season'] in [i[0] for i in CHOICES_SEASON] else None
-        if season is None:
-            raise forms.ValidationError("Anotimp invalid")
-        return season
+    def clean_categorie(self):
+        categorie = get_object_or_404(Categorie,
+        name=self.cleaned_data['categorie'])
+        return categorie
 
-    def clean_product_type(self):
-        product_type = get_object_or_404(Products,
-                                         name=self.cleaned_data['product_type'])
-        return product_type
+    def clean_lfcategory(self):
+        lfcategory = get_object_or_404(Lfcategory,
+        name=self.cleaned_data['lfcategory'])
+        return lfcategory
 
-    def clean_quantity(self):
-        quantity = self.cleaned_data['quantity']
-        if quantity < 1:
+    def clean_legfruccategory(self):
+        legfruccategory = get_object_or_404(Legfruccategory,
+        name=self.cleaned_data['legfruccategory'])
+        return legfruccategory
+
+
+    def clean_cantity(self):
+        cantity = self.cleaned_data['cantity']
+        if cantity.isdigit() == False:
             raise forms.ValidationError("Cantitate invalida")
-        return quantity
+        return cantity
 
 
 class DeleteNewForm(forms.ModelForm):

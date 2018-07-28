@@ -37,95 +37,79 @@
     .dropdown-item{
         color:#6C6C6C;
     }
-    .dropdown-item:hover{
+                .dropdown-item:hover{
             color:#fff;
         }
-
-    .path-44 {
-        box-sizing: border-box;
-        height: 1px;
-        width: 190px;
-        border: 1px solid #1CC661;
-    }
     </style>
 </head>
 <body>
+    <h1 align="center">Creeaza-ti profilul</h1>
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+            <label>Descirere</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
 
-<div class="container">
-    <br><br>
-    <div class="col-md-12">
-    <h1>Creaza-ti profilul:</h1>
-        <div class="path-44"></div>
-        <br>
-        <div class="container">
-            <form method="POST" enctype="multipart/form-data">
-                {%csrf_token%}
-                <label>Descirere</label>
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                      {{ form.description|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                    </div>
-                <br>
-                <label>Leguma sau fruct</label>
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                      {{ form.product1|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                    </div>
-                <br>
-                <label>Leguma sau fruct</label>
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                      {{ form.product2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                    </div>
-
-                <br>
-                <label>Leguma sau fruct</label>
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                      {{ form.product3|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                    </div>
-
-                <br>
-                <label>Leguma sau fruct</label>
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                      {{ form.product4|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                    </div>
-
-                <br>
-                <label>Leguma sau fruct</label>
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-                      {{ form.product5|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
-                    </div>
-
-                <br>
-                <label>Poza de profil</label>
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-
-                      {{ form.profile_image|add_class:"form-control" }}
-                    </div>
-
-                <br>
-                <label>Poza de coperta</label>
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
-                    {{ form.cover_image|add_class:"form-control " }}
-                    </div>
-
-                <br>
-                <div class="col-md-3 offset-md-4">
-                <button type="submit" class="btn btn-success" style="border-radius: 2px; margin-top: 5px; background-color:#1CC661; border-color: #1CC661; width: 100%">Creaza profilul</button>
+                  {{ form.descriere|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
                 </div>
-            </form>
-        </div>
+            <br>
+            <label>Leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.produs1|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+            <br>
+            <label>leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.produs2|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+            <br>
+            <label>Leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.produs3|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+            <br>
+            <label>Leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.produs4|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+            <br>
+            <label>Leguma/fruct</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                  {{ form.produs5|add_class:"form-control"|attr:"required:required"|attr:"aria-describedby=basic-addon1"}}
+                </div>
+
+            <br>
+            <label>Poza de profil</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+
+                  {{ form.image2|add_class:"form-control" }}
+                </div>
+
+            <br>
+            <label>Poza de coperta</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+                {{ form.image1|add_class:"form-control " }}
+                </div>
+
+            <br>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
     </div>
-</div>
+
 </body>
 </html>

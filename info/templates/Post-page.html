@@ -32,7 +32,6 @@
         }
 
         .tabel {
-            height:80%;
             width: auto;
             border: 1px solid #E5E5E5;
             border-radius: 3px;
@@ -49,45 +48,28 @@
         a {
             color:#1CC661;
         }
-
-        a:link {
-            text-decoration: none;
-        }
-
-        @media only screen and (max-width: 600px) {
-            .navbar li img{
-                padding-left: 5px;
-                padding-top: 7px;
-            }
-        }
-
-        @media only screen and (min-width: 601px) {
-            .navbar  li img{
-                padding-left: 50px;
-                padding-top: 7px;
-            }
-        }
-
         .mySlides {display:none}
         .demo {cursor:pointer}
     </style>
-</head>
+
+
+
+    </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.2);">
-        <div class="container"  style="padding-left: 1%">
-            <div class="navbar-brand" style="margin-right: 16rem;">
-                <div class="row" style="flex-wrap: nowrap;">
-                    <a  href="/"><img src="{% static "images/brand.png" %}"></a>
-                    <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
-                </div>
-            </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <!-- Brand Logo -->
+            <a class="navbar-brand" href="/"><img src="{% static "images/brand.png" %}"></a>
+            <!-- Button enables when screen size is small -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <!-- Will get collapsed -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2>
                 <ul class="navbar-nav mr-auto">
-                    <div class="row" style="flex-wrap: nowrap;">
                     {% if user.is_authenticated %}
+                        <!-- Username dropdown -->
                         <li class="img"><img src="{% static "images/avatar-copy.png" %}"></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,9 +78,11 @@
                             {% if user.account2.slug %}
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Profilul Tau</a>
-                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi</a>
+                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-primite">Comenzi primite</a>
+                                    <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}/comenzi-trimise">Comenzi trimise</a>
                                     <a class="dropdown-item" href="/view-profile/{{ user.account2.slug }}">Mesaje</a>
                                     <a class="dropdown-item" href="/favoriti">Favoriti</a>
+                                    <a class="dropdown-item" href="/edit-profile">Editeaza profilul</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/logout">Deconectare</a>
                                 </div>
@@ -107,38 +91,41 @@
                                         <a class="dropdown-item" href="/mesaje">Mesaje</a>
                                         <a class="dropdown-item" href="/comenzile-mele">Comenzi</a>
                                         <a class="dropdown-item" href="/favoriti">Favoriti</a>
-                                        <a class="dropdown-item" href="/edit-profile-buyer">Editeaza profilul</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="/logout">Deconectare</a>
                                     </div>
                             {% endif %}
                         </li>
+
+                        <!-- Cosul meu -->
                         <li class="img"><img src="{% static "images/shopping-basket.png" %}"></li>
                         <li class="nav-item">
                             <a class="nav-link" href="/cosul-meu">Cosul Meu</a>
                         </li>
+
                         {% if user.account2.slug %}
                         <li class="nav-item" id="creeazaPostare">
-                            <a href="/create-post"><button class="btn" style="border-radius: 1px;">+ Creaza o postare</button></a>
+                            <a href="/create-post"><button class="btn">+ Creeaza o postare</button></a>
                         </li>
                             {% else %}
                             <li class="nav-item" id="creeazaPostare">
-                                <a href="/logout"><button class="btn" style="border-radius: 1px;width: 180px;">Deconectare</button></a>
+                                <a href="/register-vanzator"><button class="btn">Devino vanzator</button></a>
                             </li>
                         {% endif %}
+
                         {% else %}
-                            <li class="nav-item" id="creeazaPostare" style="margin-left: 65%;">
-                                <a href="/register-cumparator"><button class="btn" style="border-radius: 1px;">Inregistreaza-te!</button></a>
+                            <li class="nav-item" id="creeazaPostare" style="margin-left: 97%;">
+                                <a href="/register-cumparator"><button class="btn">Inregistreaza-te!</button></a>
                             </li>
                             <li class="nav-item" id="creeazaPostare">
-                                <a href="/login"><button class="btn" style="border-radius: 1px;width: 150px;">Autentificare</button></a>
+                                <a href="/login"><button class="btn">Autentificare</button></a>
                             </li>
                     {% endif %}
-                    </div>
                 </ul>
             </div>
         </div>
     </nav>
+    <div class="break-line"></div>
     <br> <br>
 
     <div class="container">
@@ -147,16 +134,16 @@
                 <div class="col-md-7">
                     <div class="row">
                         <div class="col-md-3"><br>
-                            <img src="{{  posts.image1.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(1)">
-                            <img src="{{  posts.image2.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(2)">
-                            <img src="{{  posts.image3.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; min-width: 100%;max-width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(3)">
-                            <img src="{{  posts.image4.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(4)">
+                            <img src="{{  posts.image1.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(1)">
+                            <img src="{{  posts.image2.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(2)">
+                            <img src="{{  posts.image3.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(3)">
+                            <img src="{{  posts.image4.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(4)">
                         </div>
                         <div class="col-md-8"><br>
-                            <img src="{{  posts.image1.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
-                            <img src="{{  posts.image2.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
-                            <img src="{{  posts.image3.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
-                            <img src="{{  posts.image4.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
+                            <img src="{{  posts.image1.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
+                            <img src="{{  posts.image2.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
+                            <img src="{{  posts.image3.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
+                            <img src="{{  posts.image4.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
                         </div>
                     </div>
                 </div>
@@ -165,44 +152,44 @@
                     <h2 style="color:#4B4B4B;">{{ posts.name }}</h2>
                     <div class="path-11"></div>
                         <br>
-                    <div class="tabel">
-                        <div class="row">
-                            <div class="col-md-6">
-                                    <img src="{{  profiles.profile_image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%; width: 50%; margin-left: 25%; margin-top: 5%;">
-                                    <a href="/view-profile/{{posts.author.account2.slug}}"><h6 align="center"><b>{{ posts.author }}</b></h6></a>
-                                    <hr style="margin-bottom: 15px;margin-left: 15px;">
-                                    <h6 align="center" style="color:#4B4B4B;">{{ posts.author.account2.user.first_name }} {{ posts.author.account2.user.last_name }}</h6>
-                                    <hr style="margin-bottom: 15px; margin-left: 15px;">
-                                    <h6 align="center" style="color:#4B4B4B;">{{ posts.author.account2.city }}, Jud {{ posts.author.account2.state }}</h6>
-                                    {% if messages %}
-                                        <div class="col-md-12">
-                                            {% for message in messages %}
-                                                <br>
-                                                <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
-                                            {% endfor %}
-                                        </div>
-                                    {% endif %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="tabel" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                                <img src="{{  profiles.image2.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%; width: 50%; margin-left: 25%; margin-top: 5%;">
+                                <a href="/view-profile/{{posts.author.account2.slug}}"><h6 align="center"><b>{{ posts.author }}</b></h6></a>
+                                <hr style="margin-bottom: 5px;">
+                                <h6 align="center" style="color:#4B4B4B;">{{ posts.author.account2.city }}, Jud {{ posts.author.account2.state }}</h6>
                             </div>
-                            <div class="col-md-6">
-                                <div class="cumpara">
-                                    <h4><b>Produs: </b> {{ posts.product_type}}</h4>
-                                    <h4><b>Cantitate: </b> {{ posts.quantity }} {{ posts.get_um_display }}</h4>
-                                    <h4><b>Pret:</b> {{ posts.price }} RON / {{ posts.get_um_display }}</h4>
+                            {% if posts.author != user %}
+                                <a href='{{posts.get_comanda_url}}'><button class="btn btn-success" type="submit" style="border-radius: 2px; margin-top: 5px;"><span class="glyphicon glyphicon-send"></span>Comanda produs</button></a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="cumpara">
+                                <h4><b>Cantitate: </b> {{ posts.cantity }} {{ posts.category }}</h4>
+                                <h4><b>Pret:</b> {{ posts.price }} lei</h4>
 
-                                    {% if posts.author == user %}
-                                        <a href='{{posts.get_delete_url}}' class="btn btn-xs btn-danger" style="border-radius: 1px;><span class="glyphicon glyphicon-minus-sign"></span> Sterge anuntul</a>
-                                    {% endif %}
-                                    {% if posts.author != user %}
-                                        <form  method="POST" enctype="multipart/form-data">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-success" name="btnform2" style="border-radius: 1px; margin-top: 5px;"><span class="glyphicon glyphicon-shopping-cart"></span>Adauga in cos</button>
-                                        </form>
-                                        <a href='{{posts.get_comanda_url}}'><button class="btn btn-success" type="submit" style="border-radius: 1px; margin-top: 5px;"><span class="glyphicon glyphicon-send"></span>Comanda produs</button></a>
-                                    {% endif %}
-                                </div>
+                                {% if posts.author == user %}
+                                    <a href='{{posts.get_delete_url}}' class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Delete post</a>
+                                {% endif %}
+                                {% if posts.author != user %}
+                                    <form  method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-success" name="btnform2" style="border-radius: 2px; margin-top: 5px;"><span class="glyphicon glyphicon-shopping-cart"></span>Adauga in cos</button>
+                                    </form>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
+                    {% if messages %}
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                {% for message in messages %}
+                                    <p {% if message.tags == 'success' %} class="alert alert-success" {% endif %} >{{ message }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -217,8 +204,8 @@
                 </div>
                 <div class="col-md-4 offset-md-3">
                     <div class="row">
-                        <img src="{% static "images/fast-delivery.png" %}"><h5 style="margin-left: 15px; color: #00C853"><b>Livrare in 48 de ore</b></h5>
-                        <h6 style="color: #B4B4B4;margin-bottom: 0;">Livrarea se va face in maxim 48 de ore</h6><br>
+                        <img src="{% static "images/fast-delivery.png" %}"><h5 style="margin-left: 15px; color: #00C853"><b>Livrare in 24 de ore</b></h5>
+                        <h6 style="color: #B4B4B4;margin-bottom: 0;">Livrarea se va face in maxim 24 de ore</h6><br>
                         <h6 style="color: #B4B4B4;margin-bottom: 0;">de la incheierea comenzii de catre </h6><br>
                         <h6 style="color: #B4B4B4;margin-bottom: 0;">vanzatorul produsului. </h6><br>
                     </div>
@@ -289,67 +276,37 @@
 
     <br>
 
-<footer class="footer" style="margin-top: 100px;">
-        <div class="container">
+    <footer class="footer">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-5" style="margin-top: 40px;padding-left: 35px;">
-                            <h2 align="left"><b>BIOsferra</b></h2>
-                            <div class="path-57"></div>
-                            <a href="https://dribbble.com/FagadarCezar" style="color: #FFFFFF"><p align="left" style="margin-top: 35px;">Fagadar Cezar</p></a>
-                            <a href="https://github.com/temi4000" style="color: #FFFFFF"><p align="left">Temian Mihai</p></a>
-                        </div>
-                        <div class="col-md-6" style="margin-top: 40px;">
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <div class="path-56"></div>
-                                </div>
-                                <div class="col-md-5">
-                                    <p align="left"><b>Pagini</b></p>
-                                    {% if user.is_authenticated %}
-                                        {% if user.account2.slug %}
-                                            <a href="/" style="color: #FFFFFF"><p align="left">Acasa</p></a>
-                                            <a href="/view-profile/{{ user.account2.slug }}" style="color: #FFFFFF"><p align="left">Profilul Tau</p></a>
-                                            {% else %}
-                                                <a href="/mesaje" style="color: #FFFFFF"><p align="left">Mesaje</p></a>
-                                                <a href="/comenzile-mele" style="color: #FFFFFF"><p align="left">Comenzi</p></a>
-                                                <a href="/favoriti" style="color: #FFFFFF"><p align="left">Favoriti</p></a>
-                                        {% endif %}
-                                        <a href="/cosul-meu" style="color: #FFFFFF"><p align="left">Cosul Meu</p></a>
-                                        {% if user.account2.slug %}
-                                            <a href="/create-post" style="color: #FFFFFF"><p align="left">Creaza o postare</p></a>
-                                            {% else %}
-                                            <a href="/logout" style="color: #FFFFFF"><p align="left">Deconectare</p></a>
-                                        {% endif %}
-
-                                        {% else %}
-                                            <a href="/register-cumparator" style="color: #FFFFFF"><p align="left">Inregistrare</p></a>
-                                            <a href="/login" style="color: #FFFFFF"><p align="left">Autentificare</p></a>
-                                    {% endif %}
-                                </div>
-                                <div class="col-md-1">
-                                    <div class="path-56"></div>
-                                </div>
-                                <div class="col-md-5">
-                                    <p align="left"><b>Contact</b></p>
-                                    <p align="left">Romania, Timis, Timisoara</p>
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d22269.631879759865!2d21.215498148071287!3d45.75708007361393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sro!2sro!4v1532376892664" width="auto" height="80px;" frameborder="0" style="border:0" allowfullscreen></iframe>
-                                    <p align="left">biosferra.noreplay@gmail.com</p>
-                                    <p align="left">+40 733 625 927</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-4">
+                    <a href="/" style="color: #fff"><h4>BIOsferra</h4></a>
+                </div>
+                <div class="col-2">
+                    <a href="/" style="color: #fff"><p>Acasa</p></a>
+                </div>
+                {% if user.account2.slug %}
+                <div class="col-2">
+                    <a href="/view-profile/{{ user.account2.slug }}" style="color: #fff"><p>Profilul tau</p></a>
+                </div>
+                <div class="col-2">
+                    <a href="/edit-profile" style="color: #fff"><p>Editeaza profilul</p></a>
+                </div>
+                {% endif %}
+                <div class="col-2">
+                    {% if user.account2.slug %}
+                   <p><a href="/create-post" style="color: #fff">Creaza o postare</p></a>
+                    {% else %}
+                    <p><a href="/register-vanzator" style="color: #fff">Devino vanzator</p></a>
+                    {% endif %}
                 </div>
             </div>
-        </div>
+            <hr class="hr">
+            <div class="row">
+                <div class="col-12">
+                    <p>@All rights reserverd</p>
+                </div>
+            </div>
     </footer>
-    <div class="col-md-12">
-        <div class="rectangle-60">
-            <p align="center" style="color: #1CC661;margin-top: 20px;">@ 2018 Biosferra. All rights reserved.</p>
-        </div>
-    </div>
 
 <script>
 var slideIndex = 1;

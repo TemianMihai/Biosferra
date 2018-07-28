@@ -17,39 +17,17 @@
     margin-left: 10px;
 }
 
-.footer  {
-    background-color: #1D1D1D;
+.footer {
+    background-color: #3B3B3B;
     margin: auto;
     width: 100%;
     text-align: center;
     color: white;
     padding: 1rem;
-    height: 300px;
-}
-
-.rectangle-60 {
-	height: 30px;
-	width: 100%;
-	background-color: #FFFFFF;
 }
 
 .footer  .col-2 {
     padding: 0.5rem;
-}
-
-.path-57 {
-	box-sizing: border-box;
-	height: 2px;
-	width: 200px;
-	border: 1px solid #FFFFFF;
-    margin-top: 30px;
-}
-
-.path-56 {
-	box-sizing: border-box;
-	height: 220px;
-	width: 2px;
-	border: 1px solid #FFFFFF;
 }
 
 .hr {
@@ -206,6 +184,7 @@ table .lower-header {
 }
 
 .descriere {
+    height: 404px;
     border: 1px solid #DCDCDC;
     border-radius: 4px;
     padding: 15px;
