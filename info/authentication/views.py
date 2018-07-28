@@ -2,6 +2,8 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth import logout, authenticate, login
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 from user_profile.models import Profile
 
@@ -60,13 +62,19 @@ def register_view(request):
             form.save()
             acc_form.instance.user = form.instance
             acc_form.save()
-            subject = 'Registrare Biosferra'
-            message = "Iti multumim ca v-ati inregistrat pe Biosferra. Mai jos puteti sa gasiti informatiile dumneavoastra:Username: %s Prenume: %s Nume: %s Numar de telefon: %s Oras: %s Judet: %s" %(form.instance.username, form.instance.first_name, form.instance.last_name, acc_form.instance.phonenumber, acc_form.instance.city, acc_form.instance.state)
+            subject = 'Inregistrare Biosferra'
+            html_message = render_to_string('mail_template_register.html', {
+                'message': 'Iti multumim ca v-ati inregistrat pe Biosferra. Mai jos puteti sa gasiti informatiile dumneavoastra',
+                'username': form.instance.username,
+                'prenume': form.instance.first_name,
+                'nume': form.instance.last_name,
+                'nrtel': acc_form.instance.phonenumber,
+                'oras': acc_form.instance.city,
+                'judet': acc_form.instance.state})
+            plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
             to_list = [settings.EMAIL_HOST_USER, form.instance.email]
-
-            send_mail(subject,message,from_email,to_list,fail_silently=True)
-
+            send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
             user = authenticate(username=form.instance.username,
                                 password=form.cleaned_data['password'])
             login(request, user)

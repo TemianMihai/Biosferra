@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from post.models import PostModel, AdresaDeFacturare
 from .models import Favourite, Profile, Message
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -63,15 +65,20 @@ def create_profile(request):
             form.save()
             user.is_active = False
             user.save()
-            subject = 'Registrare Biosferra'
-            message = "Bine ati venit pe Biosferra. Un administrator va verifica accountul dumneavoastra, iar in cateva minute veti putea sa va inregistarti in cazul in care ati fost acceptat. " \
-                      "Va multumim pentru intelegere. " \
-                      "Mai jos puteti sa gasiti detalile despre accountul dumneavoastra: Username: %s Prenume: %s Nume: %s Numar de telefon: %s Oras: %s Judet: %s" % (
-                      user.username, user.first_name, user.last_name,
-                      user.account2.phonenumber, user.account2.city, user.account2.state)
+            subject = 'Inregistrare Biosferra'
+            html_message = render_to_string('mail_template_register.html', {
+                'message': 'Bine ati venit pe Biosferra. Un administrator va verifica accountul dumneavoastra, iar in cateva minute veti putea sa va inregistarti in cazul in care ati fost acceptat.',
+                'message2': 'Mai jos puteti sa gasiti detalile despre accountul dumneavoastra:',
+                'username': user.username,
+                'prenume': user.first_name,
+                'nume': user.last_name,
+                'nrtel':user.account2.phonenumber,
+                'oras':user.account2.city,
+                'judet':user.account2.state})
+            plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
             to_list = [settings.EMAIL_HOST_USER, user.email]
-            send_mail(subject, message, from_email, to_list, fail_silently=True)
+            send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
             return redirect('/create-profile/finalizare')
     return render(request, 'create_profile.html', {
         'form': form,
@@ -132,10 +139,11 @@ def profile(request, slug):
                 reportform.save()
                 messages.success(request, 'Reportul dumneavoastra a fost salvat cu succes')
                 subject = 'Report'
-                message = "user: %s a trimis un report catre: %s" % (reportform.instance.author, reportform.instance.receiver)
+                html_message = render_to_string('mail_template.html', {'message': 'Userul %s a trimis un report catre %s' % (report.author, report.receiver)})
+                plain_message = strip_tags(html_message)
                 from_email = settings.EMAIL_HOST_USER
                 to_list = [settings.EMAIL_HOST_USER]
-                send_mail(subject, message, from_email, to_list, fail_silently=True)
+                send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
             else:
                 return redirect('/login')
 

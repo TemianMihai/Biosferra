@@ -162,7 +162,7 @@
                     <div class="profile" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
                         <div class="upper-side">
                             <div class="profile-image">
-                                <img src="{{  p.profile_image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;max-height: 110px;min-height: 110px;">
+                                <img src="{{  p.profile_image.url }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;max-height: 110px;min-height: 110px;max-width: 120px;min-width: 120px;">
                             </div>
                             <h5>{{ user2.user.username }}</h5>
                             {% if user != user2.user %}
@@ -221,10 +221,10 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        {% if favoritt %}
+                                        {% if favoritt == True  %}
                                             <form  method="POST" enctype="multipart/form-data">
                                                {% csrf_token %}
-                                                <button type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3" style="border-radius: 1px;background-color: #E53046;border-color: #E53046;"><span><img src="{% static "images/favorite.png" %}">&nbsp Nu mai urmari</span>
+                                                <button type="submit" value="{{ form3.body }}" class="btn btn-primary active" name="btnform3" style="border-radius: 1px;background-color: #E53046;border-color: #E53046;"><span><img src="{% static "images/favorite.png" %}">&nbsp  Nu mai urmari</span>
                                             </form>
                                             {% else %}
                                             <form  method="POST" enctype="multipart/form-data">

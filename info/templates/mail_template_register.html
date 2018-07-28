@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Biosferra</title>
+    <style>
+        h4 {
+            color: #3B3B3B;
+        }
+    </style>
+</head>
+<body>
+<img src="{% static "images/brand.png" %}" style="margin-left: 48%;">
+<h1 align="center" style="margin-bottom: 6%; color: #1CC661">Biosferra</h1>
+<h4 style=" margin-bottom: 2%;">{{ message }}</h4>
+<h4 >Username: {{ username }}</h4>
+<h4 >Nume: {{ nume }}</h4>
+<h4 >Prenume: {{ prenume }}</h4>
+<h4 >Numar de telefon:{{ nrtel }}</h4>
+<h4 >Oras: {{ oras }}</h4>
+<h4 style=" margin-bottom: 5%;">Judet: {{ judet }}</h4>
+<h4 style="color: #3B3B3B">O zi buna,<br>Echipa Biosferra</h4>
+</body>
+</html>

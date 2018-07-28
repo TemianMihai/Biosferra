@@ -36,8 +36,6 @@ class CreatePostForm(forms.ModelForm):
 
     def clean_price(self):
         price = self.cleaned_data['price']
-        if price.isdigit() == False:
-            raise forms.ValidationError("Pret invalid")
         return price
 
     def clean_name(self):

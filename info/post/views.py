@@ -1,6 +1,7 @@
 import json
 from io import BytesIO
-
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import CreatePostForm, CommentForm, FilterForm
@@ -28,10 +29,12 @@ def create_post(request):
             post.author = current_user
             form.save()
             subject = 'Creare anunt'
-            message = "Anuntul dumneavoastra a fost creat. Acesta va trebui verificat de un administrator inainte ca el sa fie vizualizat pe site."
+            html_message = render_to_string('mail_template.html', {
+                'message': 'Anuntul dumneavoastra a fost creat. Acesta va trebui verificat de un administrator inainte ca el sa fie vizualizat pe site.'})
+            plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
             to_list = [settings.EMAIL_HOST_USER, current_user.email]
-            send_mail(subject, message, from_email, to_list, fail_silently=True)
+            send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
             messages.success(request, 'Anuntul dumneavoastra a fost salvat. Va rugam sa asteptati cateva momente pana cand acesta va fi verificat de catre un administrator. Va multumim!')
     print form.errors
     return render(request, "create_post.html", {
@@ -148,6 +151,9 @@ def comanda(request):
 @login_required(login_url='/login')
 def delete_comanda(request, slug):
     comandar = AdresaDeFacturare.objects.filter(slug=slug).first()
+    a = comandar.postcomanda.price
+    b = comandar.postcomanda.quantity
+    c = a * b
     data = {
         'anunt':comandar.postcomanda.name,
         'pret': comandar.postcomanda.price,
@@ -166,6 +172,7 @@ def delete_comanda(request, slug):
         'adresa2': comandar.posesor.account2.adress,
         'email2': comandar.posesor.email,
         'nrdetelefon2': comandar.posesor.account2.phonenumber,
+        'total':c,
     }
     from django.template.loader import get_template
     template_object = get_template('invoice.html')
@@ -191,10 +198,12 @@ def get_finalizare(request, slug):
     current_user = request.user
     comanda = PostModel.objects.get(slug=slug)
     subject = 'Efectuare comanda'
-    message = "Comanda dumneavoastra a fost realizata. Aceasta va ajunge la dumneavoastra in cel mai scurt timp. Daca comanda nu a ajuns la dumneavoastra in cel mult o saptamana, va rugam sa ne contactati"
+    html_message = render_to_string('mail_template.html', {
+        'message': 'Comanda dumneavoastra a fost realizata. Aceasta va ajunge la dumneavoastra in cel mai scurt timp. Daca comanda nu a ajuns la dumneavoastra in cel mult o saptamana, va rugam sa ne contactati'})
+    plain_message = strip_tags(html_message)
     from_email = settings.EMAIL_HOST_USER
     to_list = [settings.EMAIL_HOST_USER, current_user.email]
-    send_mail(subject, message, from_email, to_list, fail_silently=True)
+    send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
     return render(request, "finalizare_comanda.html", {
         'user':current_user,
         'comanda':comanda
