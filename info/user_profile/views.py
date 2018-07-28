@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
-from .forms import Edit_profile, Edit_profile2, EditProfileForm, Edit_profile_buyer, CreateMesajeForm, CreateReportForm, CreateFavoritForm, CreateProfileForm
+from .forms import Edit_profile, Edit_profile2, EditProfileForm, \
+    Edit_profile_buyer, CreateMesajeForm, CreateReportForm, \
+    CreateFavoritForm, CreateProfileForm
 from authentication.models import Account2, Account
 from django.contrib.auth.models import User
 from post.models import PostModel, AdresaDeFacturare
@@ -15,12 +17,16 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/login')
 def profile_detail(request):
     current_user = request.user
-    user_form = Edit_profile(data=request.POST or None, instance=current_user, user=current_user)
-    account_form = Edit_profile2(data=request.POST or None, instance=current_user.account2)
-    profile_form = EditProfileForm(data=request.POST or None, instance=current_user.profile)
+    user_form = Edit_profile(data=request.POST or None,
+                             instance=current_user, user=current_user)
+    account_form = Edit_profile2(data=request.POST or None,
+                                 instance=current_user.account2)
+    profile_form = EditProfileForm(data=request.POST or None,
+                                   instance=current_user.profile)
     post = PostModel.objects.filter(author=current_user)
     if request.method == 'POST':
-        if user_form.is_valid() and account_form.is_valid() and profile_form.is_valid() and 'btnform4' in request.POST:
+        if user_form.is_valid() and account_form.is_valid() \
+                and profile_form.is_valid() and 'btnform4' in request.POST:
             user_form.save()
             account_form.save()
             profile_form.save()
@@ -39,7 +45,8 @@ def profile_detail2(request):
     user_form = Edit_profile(data=request.POST or None, instance=current_user, user=current_user)
     account_form = Edit_profile_buyer(data=request.POST or None, instance=current_user.account)
     if request.method == 'POST':
-        if user_form.is_valid() and account_form.is_valid() and 'btnform4' in request.POST:
+        if user_form.is_valid() and account_form.is_valid() \
+                and 'btnform4' in request.POST:
             user_form.save()
             account_form.save()
             messages.success(request, 'Profilul dumneavoastra a fost actualizat')
@@ -67,8 +74,12 @@ def create_profile(request):
             user.save()
             subject = 'Inregistrare Biosferra'
             html_message = render_to_string('mail_template_register.html', {
-                'message': 'Bine ati venit pe Biosferra. Un administrator va verifica accountul dumneavoastra, iar in cateva minute veti putea sa va inregistarti in cazul in care ati fost acceptat.',
-                'message2': 'Mai jos puteti sa gasiti detalile despre accountul dumneavoastra:',
+                'message': 'Bine ati venit pe Biosferra. Un administrator va '
+                           'verifica accountul dumneavoastra, iar in cateva '
+                           'minute veti putea sa va inregistarti in cazul in '
+                           'care ati fost acceptat.',
+                'message2': 'Mai jos puteti sa gasiti detalile despre '
+                            'accountul dumneavoastra:',
                 'username': user.username,
                 'prenume': user.first_name,
                 'nume': user.last_name,
@@ -78,7 +89,8 @@ def create_profile(request):
             plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
             to_list = [settings.EMAIL_HOST_USER, user.email]
-            send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
+            send_mail(subject, plain_message, from_email, to_list,
+                      html_message=html_message, fail_silently=True)
             return redirect('/create-profile/finalizare')
     return render(request, 'create_profile.html', {
         'form': form,
@@ -137,22 +149,29 @@ def profile(request, slug):
                 report.author = current_user
                 report.receiver = user2.user
                 reportform.save()
-                messages.success(request, 'Reportul dumneavoastra a fost salvat cu succes')
+                messages.success(request, 'Reportul dumneavoastra a fost'
+                                          ' salvat cu succes')
                 subject = 'Report'
-                html_message = render_to_string('mail_template.html', {'message': 'Userul %s a trimis un report catre %s' % (report.author, report.receiver)})
+                html_message = render_to_string('mail_template.html',
+                                {'message': 'Userul %s a trimis'
+                                ' un report catre %s' % (report.author,
+                                                         report.receiver)})
                 plain_message = strip_tags(html_message)
                 from_email = settings.EMAIL_HOST_USER
                 to_list = [settings.EMAIL_HOST_USER]
-                send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
+                send_mail(subject, plain_message, from_email, to_list,
+                          html_message=html_message, fail_silently=True)
             else:
                 return redirect('/login')
 
         if favouriteform.is_valid() and 'btnform3' in request.POST:
             if request.user.is_authenticated:
-                favoriit = Favourite.objects.all().filter(receiver=user2.user, author=current_user)
+                favoriit = Favourite.objects.all().filter(receiver=user2.user,
+                                                          author=current_user)
                 if len(favoriit) > 0:
                     favoriit.delete()
-                    messages.success(request, 'Acest user nu mai este in sectiunea de Favourite')
+                    messages.success(request, 'Acest user nu mai este in '
+                                              'sectiunea de Favourite')
                 else:
                     favorit = favouriteform.instance
                     favorit.author = current_user

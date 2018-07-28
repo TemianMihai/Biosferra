@@ -71,7 +71,8 @@ class Edit_profile_buyer(forms.ModelForm):
 
     def clean_phonenumber(self):
         phone_number = self.cleaned_data['phonenumber']
-        if phone_number[0] != '0' or phone_number[1] != '7' or len(phone_number) != 10 or phone_number.isdigit() == False:
+        if phone_number[0] != '0' or phone_number[1] != '7' or len(phone_number) \
+                != 10 or phone_number.isdigit() == False:
             raise forms.ValidationError("Invalid phonenumber")
         return phone_number
 
@@ -113,7 +114,8 @@ class Edit_profile2(forms.ModelForm):
 
     def clean_phonenumber(self):
         phone_number = self.cleaned_data['phonenumber']
-        if phone_number[0] != '0' or phone_number[1] != '7' or len(phone_number) != 10 or phone_number.isdigit() == False:
+        if phone_number[0] != '0' or phone_number[1] != '7' or len(phone_number) \
+                != 10 or phone_number.isdigit() == False:
             raise forms.ValidationError("Invalid phonenumber")
         return phone_number
 

@@ -64,7 +64,8 @@ def register_view(request):
             acc_form.save()
             subject = 'Inregistrare Biosferra'
             html_message = render_to_string('mail_template_register.html', {
-                'message': 'Iti multumim ca v-ati inregistrat pe Biosferra. Mai jos puteti sa gasiti informatiile dumneavoastra',
+                'message': 'Iti multumim ca v-ati inregistrat pe Biosferra. '
+                           'Mai jos puteti sa gasiti informatiile dumneavoastra',
                 'username': form.instance.username,
                 'prenume': form.instance.first_name,
                 'nume': form.instance.last_name,
@@ -74,7 +75,8 @@ def register_view(request):
             plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
             to_list = [settings.EMAIL_HOST_USER, form.instance.email]
-            send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
+            send_mail(subject, plain_message, from_email, to_list,
+                      html_message=html_message, fail_silently=True)
             user = authenticate(username=form.instance.username,
                                 password=form.cleaned_data['password'])
             login(request, user)

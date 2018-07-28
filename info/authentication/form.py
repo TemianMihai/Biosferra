@@ -23,7 +23,8 @@ class UserRegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email',  'password', 'first_name', 'last_name', 'retypepassword']
+        fields = ['username', 'email',  'password', 'first_name', 'last_name',
+                  'retypepassword']
         widgets = {
             'username': forms.TextInput({'required': 'required',
                                          'placeholder': 'Username'}),
@@ -101,7 +102,8 @@ class AccRegisterForm(forms.ModelForm):
         }
     def clean_phonenumber(self):
         phone_number = self.cleaned_data['phonenumber']
-        if phone_number[0] != '0' or phone_number[1] != '7' or len(phone_number) != 10 or phone_number.isdigit() == False:
+        if phone_number[0] != '0' or phone_number[1] != '7' or \
+                len(phone_number) != 10 or phone_number.isdigit() == False:
             raise forms.ValidationError("Numar de telefon invalid")
         return phone_number
 
@@ -138,7 +140,8 @@ class AccRegisterForm2(forms.ModelForm):
         }
     def clean_phonenumber(self):
         phone_number = self.cleaned_data['phonenumber']
-        if phone_number[0] != '0' or phone_number[1] != '7' or len(phone_number) != 10 or phone_number.isdigit() == False:
+        if phone_number[0] != '0' or phone_number[1] != '7' or \
+                len(phone_number) != 10 or phone_number.isdigit() == False:
             raise forms.ValidationError("Numar de telefon invalid")
         return phone_number
 

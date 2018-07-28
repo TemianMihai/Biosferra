@@ -30,13 +30,18 @@ def create_post(request):
             form.save()
             subject = 'Creare anunt'
             html_message = render_to_string('mail_template.html', {
-                'message': 'Anuntul dumneavoastra a fost creat. Acesta va trebui verificat de un administrator inainte ca el sa fie vizualizat pe site.'})
+                'message': 'Anuntul dumneavoastra a fost creat. '
+                           'Acesta va trebui verificat de un administrator'
+                           ' inainte ca el sa fie vizualizat pe site.'})
             plain_message = strip_tags(html_message)
             from_email = settings.EMAIL_HOST_USER
             to_list = [settings.EMAIL_HOST_USER, current_user.email]
-            send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
-            messages.success(request, 'Anuntul dumneavoastra a fost salvat. Va rugam sa asteptati cateva momente pana cand acesta va fi verificat de catre un administrator. Va multumim!')
-    print form.errors
+            send_mail(subject, plain_message, from_email, to_list,
+                      html_message=html_message, fail_silently=True)
+            messages.success(request, 'Anuntul dumneavoastra a fost salvat. '
+                                      'Va rugam sa asteptati cateva momente '
+                                      'pana cand acesta va fi verificat de '
+                                      'catre un administrator. Va multumim!')
     return render(request, "create_post.html", {
         'form': form,
         'user':request.user
@@ -183,7 +188,8 @@ def delete_comanda(request, slug):
     pisa.CreatePDF(html.encode(), pdf_file, encoding='UTF-8')
     from django.core.mail import EmailMessage
     subject="Factura comanda"
-    message="Comanda dumneavoastra: %s a fost incheiata cu succes ce catre %s." %(comandar.postcomanda.name, comandar.posesor)
+    message="Comanda dumneavoastra: %s a fost incheiata cu succes " \
+            "de catre %s." %(comandar.postcomanda.name, comandar.posesor)
     from_email = settings.EMAIL_HOST_USER
     to_list = [settings.EMAIL_HOST_USER, comandar.email]
     mail = EmailMessage(subject, message, from_email, to_list)
@@ -199,11 +205,15 @@ def get_finalizare(request, slug):
     comanda = PostModel.objects.get(slug=slug)
     subject = 'Efectuare comanda'
     html_message = render_to_string('mail_template.html', {
-        'message': 'Comanda dumneavoastra a fost realizata. Aceasta va ajunge la dumneavoastra in cel mai scurt timp. Daca comanda nu a ajuns la dumneavoastra in cel mult o saptamana, va rugam sa ne contactati'})
+        'message': 'Comanda dumneavoastra a fost realizata. Aceasta va ajunge'
+                   ' la dumneavoastra in cel mai scurt timp. Daca comanda nu a'
+                   ' ajuns la dumneavoastra in cel mult o saptamana, va rugam '
+                   'sa ne contactati'})
     plain_message = strip_tags(html_message)
     from_email = settings.EMAIL_HOST_USER
     to_list = [settings.EMAIL_HOST_USER, current_user.email]
-    send_mail(subject, plain_message, from_email, to_list, html_message=html_message, fail_silently=True)
+    send_mail(subject, plain_message, from_email, to_list,
+              html_message=html_message, fail_silently=True)
     return render(request, "finalizare_comanda.html", {
         'user':current_user,
         'comanda':comanda

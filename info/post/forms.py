@@ -12,8 +12,11 @@ class FilterForm(forms.Form):
         (1, "Pret crescator"),
         (2, "Pret descrescator")
     ), widget=forms.RadioSelect, required=False)
-    products = forms.ModelMultipleChoiceField(label="Produse", queryset=Products.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
-    um = forms.ChoiceField(choices=CHOICES_UM, label="Unitate de masura", widget=forms.RadioSelect, required=False)
+    products = forms.ModelMultipleChoiceField(label="Produse",
+              queryset=Products.objects.all(),
+              widget=forms.CheckboxSelectMultiple, required=False)
+    um = forms.ChoiceField(choices=CHOICES_UM, label="Unitate de masura",
+                           widget=forms.RadioSelect, required=False)
     min_quantity = forms.IntegerField(label="Minq", required=False)
     max_quantity = forms.IntegerField(required=False, label="Maxq")
     min_price = forms.IntegerField(required=False, label="Minp")
@@ -22,7 +25,8 @@ class FilterForm(forms.Form):
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = PostModel
-        fields = ['name', 'quantity', 'price', 'details', 'image1', 'image2', 'image3', 'image4', 'season', 'um', 'product_type']
+        fields = ['name', 'quantity', 'price', 'details', 'image1', 'image2',
+                  'image3', 'image4', 'season', 'um', 'product_type']
         widgets = {
             'image1': forms.FileInput({'required': 'required', 'placeholder': "Image1"}),
             'image2': forms.FileInput({'required': 'required', 'placeholder': "Image2"}),
@@ -82,7 +86,8 @@ class CreatePostForm(forms.ModelForm):
 
     def clean_season(self):
         print([i[0] for i in CHOICES_SEASON])
-        season = self.cleaned_data['season'] if self.cleaned_data['season'] in [i[0] for i in CHOICES_SEASON] else None
+        season = self.cleaned_data['season'] if self.cleaned_data['season'] \
+                                        in [i[0] for i in CHOICES_SEASON] else None
         if season is None:
             raise forms.ValidationError("Anotimp invalid")
         return season
@@ -124,7 +129,9 @@ class CreateCosForm(forms.ModelForm):
 class CreateComandaForm(forms.ModelForm):
     class Meta:
         model = AdresaDeFacturare
-        fields = ['nume','prenume','email','nrdetelefon','adresa','judet','localitate','codpostal','nume2','prenume2','adresa2','judet2','localitate2','codpostal2','comentarii']
+        fields = ['nume','prenume','email','nrdetelefon','adresa','judet',
+                  'localitate','codpostal','nume2','prenume2','adresa2','judet2'
+            ,'localitate2','codpostal2','comentarii']
         widgets = {
             'nume': forms.TextInput({'required': 'required', 'placeholder': "Nume"}),
 
@@ -181,7 +188,8 @@ class CreateComandaForm(forms.ModelForm):
 
     def clean_nrdetelefon(self):
         nrdetelefon = self.cleaned_data['nrdetelefon']
-        if nrdetelefon[0] != '0' or nrdetelefon[1] != '7' or len(nrdetelefon) != 10 or nrdetelefon.isdigit() == False:
+        if nrdetelefon[0] != '0' or nrdetelefon[1] != '7' or \
+                len(nrdetelefon) != 10 or nrdetelefon.isdigit() == False:
             raise forms.ValidationError("Numarul de telefon e invalid")
         return nrdetelefon
 
