@@ -147,10 +147,10 @@
                 <div class="col-md-7">
                     <div class="row">
                         <div class="col-md-3"><br>
-                            <img src="{{  posts.image1.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(1)">
+                            <img src="{{  posts.image1.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%;border-top-left-radius: 5px; border-top-right-radius: 5px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(1)">
                             <img src="{{  posts.image2.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(2)">
                             <img src="{{  posts.image3.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px; min-width: 100%;max-width: 100%;box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(3)">
-                            <img src="{{  posts.image4.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(4)">
+                            <img src="{{  posts.image4.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(4)">
                         </div>
                         <div class="col-md-8"><br>
                             <img src="{{  posts.image1.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);border-radius: 5px;">
@@ -206,7 +206,7 @@
                 </div>
             </div>
         </div>
-        <hr>
+        <hr style="margin-top: 32px;">
         <div class="col-md-12">
             <div class="row ">
                 <div class="col-md-5">
@@ -215,7 +215,7 @@
                     <br>
                     <p style="color:#4B4B4B;">{{ posts.details }}</p>
                 </div>
-                <div class="col-md-4 offset-md-3">
+                <div class="col-md-3 offset-md-4">
                     <div class="row">
                         <img src="{% static "images/fast-delivery.png" %}"><h5 style="margin-left: 15px; color: #00C853"><b>Livrare in 48 de ore</b></h5>
                         <h6 style="color: #B4B4B4;margin-bottom: 0;">Livrarea se va face in maxim 48 de ore</h6><br>
@@ -231,7 +231,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="blog-comment">
-                        <h3><b>Comentarii</b></h3>
+                        <h3 style="margin-bottom: 0px;"><b>Comentarii</b></h3>
                         <div class="path-42"></div>
                         <br>
                         {% for comment in comm_parent %}
