@@ -233,14 +233,14 @@
                 <form id="filter-form" method="POST">
                     {% csrf_token %}
                     <!-- Sorteaza dupa -->
-                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);overflow-y: hidden;">
                         <p class="head" style="color: #6C6C6C;"><b>Sorteaza dupa</b></p>
                         {{ form.sort_by }}
                     </div>
                     <br> <br>
 
                     <!-- Legume -->
-                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);overflow-y: hidden;">
                         <p class="head" style="color: #6C6C6C;"><b>Produse</b></p>
                         {{ form.products }}
                     </div>
@@ -248,7 +248,7 @@
                     <br> <br>
 
                     <!-- Gramaj -->
-                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);overflow-y: hidden;">
                         <p class="head" style="color: #6C6C6C;"><b>Unitate Masura</b></p>
                         {{ form.um }}
                         <p class="head" style="color: #6C6C6C;"><b>Cantitate</b></p>
@@ -260,7 +260,7 @@
                     <br> <br>
 
                     <!-- Pret -->
-                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
+                    <div class="side-menu" style=" box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);overflow-y: hidden;">
                         <p class="head" style="color: #6C6C6C;"><b>Pret</b></p>
 
                         <b style="color: #6C6C6C;">Min:</b>
