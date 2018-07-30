@@ -153,15 +153,15 @@
                             <img src="{{  posts.image4.url }}" class="img-fluid demo" alt="Responsive image" style="margin-bottom: 10px;max-height: 74px;min-height: 74px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);" onclick="currentDiv(4)">
                         </div>
                         <div class="col-md-8"><br>
-                            <img src="{{  posts.image1.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
-                            <img src="{{  posts.image2.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
-                            <img src="{{  posts.image3.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
-                            <img src="{{  posts.image4.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);">
+                            <img src="{{  posts.image1.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);border-radius: 5px;">
+                            <img src="{{  posts.image2.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);border-radius: 5px;">
+                            <img src="{{  posts.image3.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);border-radius: 5px;">
+                            <img src="{{  posts.image4.url }}" class="img-fluid mySlides" alt="Responsive image" style="min-height: 320px;max-height: 320px;min-width: 100%;max-width: 100%; box-shadow: 0 2px 25px 0 rgba(0,0,0,0.25);border-radius: 5px;">
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-5" style="margin-left: -25px;">
+                <div class="col-md-5" style="margin-left: -25px;margin-top: 15px;">
                     <h2 style="color:#4B4B4B;"><b>{{ posts.name }}</b></h2>
                     <div class="path-11"></div>
                         <br>
@@ -195,9 +195,9 @@
                                     {% if posts.author != user %}
                                         <form  method="POST" enctype="multipart/form-data">
                                             {% csrf_token %}
-                                            <button type="submit" class="btn btn-success" name="btnform2" style="border-radius: 1px; margin-top: 5px;"><span class="glyphicon glyphicon-shopping-cart"></span>Adauga in cos</button>
+                                            <button type="submit" class="btn btn-success" name="btnform2" style="border-radius: 3px; margin-top: 5px;width: 100%;"><span class="glyphicon glyphicon-shopping-cart"></span>Adauga in cos</button>
                                         </form>
-                                        <a href='{{posts.get_comanda_url}}'><button class="btn btn-success" type="submit" style="border-radius: 1px; margin-top: 5px;"><span class="glyphicon glyphicon-send"></span>Comanda produs</button></a>
+                                        <a href='{{posts.get_comanda_url}}'><button class="btn btn-success" type="submit" style="border-radius: 3px; margin-top: 5px;width: 100%"><span class="glyphicon glyphicon-send"></span>Comanda produs</button></a>
                                     {% endif %}
                                 </div>
                             </div>
