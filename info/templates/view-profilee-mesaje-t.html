@@ -90,10 +90,9 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container"  style="padding-left: 1%">
-        <div class="navbar-brand" style="margin-right: 16rem;">
+            <div class="navbar-brand" style="margin-right: 10rem;margin-left: 35px;">
             <div class="row" style="flex-wrap: nowrap;">
-                <a  href="/"><img src="{% static "images/brand.png" %}"></a>
-                <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
+                <a  href="/"><img src="{% static "images/logo_full.png" %}"></a>
             </div>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -341,7 +340,7 @@
                                                 <hr>
                                                 <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                                 <hr>
-                                                <h6><b>Pret: <a>{{ post.price }} RON / {{post.category }}</a></b></h6>
+                                                <h6><b>Pret: <a>{{ post.price }} RON / {{post.get_um_display }}</a></b></h6>
                                                 <p class="card-text" style="color: #6C6C6C">{{ post.details|truncatechars:10 }}</p>
                                             </div>
                                         </div>

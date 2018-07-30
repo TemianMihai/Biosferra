@@ -91,10 +91,9 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container"  style="padding-left: 1%">
-        <div class="navbar-brand" style="margin-right: 16rem;">
+            <div class="navbar-brand" style="margin-right: 10rem;margin-left: 35px;">
             <div class="row" style="flex-wrap: nowrap;">
-                <a  href="/"><img src="{% static "images/brand.png" %}"></a>
-                <a href="/"><h2 style="color: #1CC661;margin-right: 15%;">BIOsferra</h2></a>
+                <a  href="/"><img src="{% static "images/logo_full.png" %}"></a>
             </div>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -342,9 +341,10 @@
                                             <div class="card-body">
                                                 <h5 class="card-title"><b>Anunt: <a href="/post/{{post.slug}}">{{ post.name|truncatechars:10 }}</a></b></h5>
                                                 <hr>
-                                                <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
+                                                <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ p.author}}</a></b></h6>
+
                                                 <hr>
-                                                <h6><b>Pret: <a>{{ post.price }} RON / {{post.category }}</a></b></h6>
+                                                <h6><b>Pret: <a>{{ post.price }} RON / {{post.get_um_display }}</a></b></h6>
                                                 <p class="card-text" style="color: #6C6C6C">{{ post.details|truncatechars:10 }}</p>
                                             </div>
                                         </div>
@@ -373,12 +373,14 @@
                            {% csrf_token %}
                            <div class="form-group">
                                 <label for="titlu-field">Titlu:</label>
-                                <input name="title" value="{{form.body}}" type="text" placeholder="Subiectul" id="titlu-field" class="form-control"/>
+                                <input name="title" value="{{form.body}}" type="text" placeholder="Subiectul" id="titlu-field"
+                                       class="form-control"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="titlu-field">Mesaj:</label>
-                                <input name="content" value="{{form.body}}" type="text" placeholder="Mesajul dumneavoastra" id="titlu-field" class="form-control"/>
+                                <input name="content" value="{{form.body}}" type="text" placeholder="Mesajul dumneavoastra"
+                                       id="titlu-field" class="form-control"/>
                             </div>
                             <button class="btn btn-success" type="submit" style="border-radius: 0px; margin-top: 5px; width: 150px;" name="btnform1">Trimite mesaj</button>
                         </form>
