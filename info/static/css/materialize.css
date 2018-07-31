@@ -6084,9 +6084,9 @@ input[type=tel]:not(.browser-default):focus:not([readonly]),
 input[type=number]:not(.browser-default):focus:not([readonly]),
 input[type=search]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #6FC564;
-  -webkit-box-shadow: 0 1px 0 0 #6FC564;
-          box-shadow: 0 1px 0 0 #6FC564;
+  border-bottom: 1px solid #1cc661;
+  -webkit-box-shadow: 0 1px 0 0 #1cc661;
+          box-shadow: 0 1px 0 0 #1cc661;
 }
 
 input:not([type]):focus:not([readonly]) + label,
@@ -6102,7 +6102,7 @@ input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
 input[type=number]:not(.browser-default):focus:not([readonly]) + label,
 input[type=search]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-  color: #6FC564;
+  color: #1cc661;
 }
 
 input:not([type]).validate + label,
@@ -6267,7 +6267,7 @@ input[type=search]:not(.browser-default):focus.valid + label:after,
 textarea.materialize-textarea.valid + label:after,
 textarea.materialize-textarea:focus.valid + label:after, .select-wrapper.valid + label:after {
   content: attr(data-success);
-  color: #6FC564;
+  color:#1cc661;
   opacity: 1;
   -webkit-transform: translateY(9px);
           transform: translateY(9px);
@@ -6300,7 +6300,7 @@ input[type=search]:not(.browser-default):focus.invalid + label:after,
 textarea.materialize-textarea.invalid + label:after,
 textarea.materialize-textarea:focus.invalid + label:after, .select-wrapper.invalid + label:after {
   content: attr(data-error);
-  color: #6FC564;
+  color:#1cc661;
   opacity: 1;
   -webkit-transform: translateY(9px);
           transform: translateY(9px);

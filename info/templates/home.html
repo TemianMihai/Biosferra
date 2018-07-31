@@ -84,8 +84,8 @@
                       style="margin-left: 10px;flex-wrap: nowrap;">
                     <!-- <button class="btn my-2 my-sm-0" type="submit"><img src="Oval-8.png"></button> -->
                     <input class="form-control mr-sm-2" name="q" type="text" placeholder="Cauta anunturi"
-                           value='{{ request.GET.q }}' style="width: 260px;">
-                    <button class="btn my-2 my-sm-0" type="submit">Cauta</button>
+                           value='{{ request.GET.q }}' style="width: 270px;margin-right: 0px!important;padding: .375rem .75rem;    margin-left: 20px;border-radius: 0px;">
+                    <button class="btn my-2 my-sm-0" type="submit" style="border-radius: 0px;" >Cauta</button>
                 </form>
             </div>
         </div>
@@ -425,11 +425,8 @@
                 });
                 console.log(data);
                 fake_submit.click()
-
             }
         })
-
-
     }
 </script>
 </body>

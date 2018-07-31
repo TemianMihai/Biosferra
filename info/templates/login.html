@@ -50,27 +50,27 @@
                     <div class="rectangle">
                         <div class="col m12">
                             <div class="col m12">
-                                <h5 align="center" style="margin-top: 10%; "><b><u>Autentificare</u></b></h5>
+                                <h5 align="center" style="margin-top: 10%; "><b>Autentificare</b></h5>
                             </div>
                             <div class="col m12">
-                                <p align="center" style="color: #B4B4B4;"><b>Nu ai deja un cont?</b><a href="/register-cumparator"><b>&nbsp Inregistreaza-te aici</b></a></p>
+                                <p align="center" style="color: #B4B4B4;"><b>Nu ai deja un cont?</b><a style="color: #1cc661;" href="/register-cumparator"><b>&nbsp Inregistreaza-te aici</b></a></p>
                             </div>
                             <form method="POST">
                                 {% csrf_token %}
                                 <div class="input-field col m10 offset-m1">
-                                    <label for="first_name"><b>Nume utilizator</b></label>
+                                    <label for="first_name" style="color: #1cc661;" ><b>Nume utilizator</b></label>
                                     <input placeholder="Nume utilizator" name="username" value="{{form.body}}" type="text" class="validate">
                                 </div>
                                 <div class="input-field col m10 offset-m1">
-                                    <label for="password"><b>Parola</b></label>
+                                    <label for="password" style="color: #1cc661;" ><b>Parola</b></label>
                                     <input placeholder="Parola" name="password" value="{{form.body}}" type="password" class="validate">
                                 </div>
                                 <div class="col m10 offset-m1">
-                                    <input type="checkbox" id="remember">
-                                    <label for="remember">Retine-ma</label>
+                                    <input type="checkbox" id="remember" style="color: #1cc661;" >
+                                    <label for="remember" style="color: #1cc661;" ><b>Retine-ma</b></label>
                                 </div>
-                                <div class="col m5 offset-m4" style="margin-top: 30px;">
-                                    <button class="butt" type="submit" style="margin-left: 10px;">Continua ➜</button>
+                                <div class="col m4 offset-m4" style="margin-top: 30px;">
+                                    <button class="butt" type="submit" style="width: 90%;background-color: #1cc661;border-color:#1cc661;border-radius: 3px;">Continua</button>
                                     <a href="/password_reset"><p align="center" style="color: #B4B4B4;"><b>Ti-ai uitat parola?</b></p></a>
                                 </div>
                                 <br>
