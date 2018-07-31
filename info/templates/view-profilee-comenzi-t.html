@@ -172,23 +172,23 @@
                             <div class="break"></div>
                         </div>
                         <div class="lower-side">
-                           <div> <img src=""> <p style="color: #6C6C6C;">{{ user2.city }}, Jud. {{ user2.state }}</p> </div>
+                            <div> <img src=""> <p style="color: #6C6C6C;"><b>{{ user2.city }}, Jud. {{ user2.state }}</b></p> </div>
                             <hr style="margin-right: 25px;">
-                            <div>  <p style="color: #6C6C6C;">Nume: {{ user2.user.first_name }}</p> </div>
+                            <div>  <p style="color: #6C6C6C;"><b>Nume:</b> {{ user2.user.first_name }}</p> </div>
                             <br>
-                            <div>  <p style="color: #6C6C6C;">Prenume: {{ user2.user.last_name }}</p> </div>
+                            <div>  <p style="color: #6C6C6C;"><b>Prenume:</b> {{ user2.user.last_name }}</p> </div>
                             <br>
                         </div>
                     </div>
 
                     <div class="descriere" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15); margin-bottom: 30px;">
-                        <p style="font-size: 18px;color: #6C6C6C;"><b>Descriere</b></p>
+                        <p style="font-size: 18px;color: #424242;"><b>Descriere</b></p>
                         <p style="color: #6C6C6C;">{{ p.description }}</p>
                         <div class="break"></div> <br>
                     </div>
 
                     <div class="gradina" style="box-shadow: 0 2px 25px 0 rgba(0,0,0,0.15);">
-                        <p style="color: #6C6C6C;"><b>Gradina utilizatorului</b></p>
+                        <p style="color: #424242;"><b>Gradina utilizatorului</b></p>
                         <div class="items">
                             <ul>
                                 <li>{{p.product1}}</li>
@@ -354,7 +354,7 @@
                                                 <hr>
                                                 <h6><b>Autor: <a href="/view-profile/{{post.author.account2.slug}}">{{ post.author }}</a></b></h6>
                                                 <hr>
-                                                <h6><b>Pret: <a>{{ post.price }} RON / {{post.get_um_display }}</a></b></h6>
+                                                <h6><b>Pret: <a style="color:#1CC661">{{ post.price }} RON / {{post.get_um_display }}</a></b></h6>
                                             </div>
                                         </div>
                                     </div>

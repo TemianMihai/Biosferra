@@ -261,7 +261,7 @@
                                     <form action="." method='post'>
                                         {% csrf_token %}
                                         <div class="col-md-6" style="margin-left: 85px;">
-                                            <p><b>Raspundeti la comentariu:</b></p>
+                                            <p><b>Raspundeti la comentariu</b></p>
                                           <input type='hidden' name='parent_id' value={{comment.id}}>
                                           <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Raspunsul dumneavoastra" />
                                           <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1" style="border-radius: 1px;width: 55%;background-color: #1CC661; border-color: #1CC661;margin-top: 10px;"><span class="glyphicon glyphicon-send"></span> Raspundeti</button>
@@ -275,7 +275,7 @@
                     <form action="." method='post'>
                         {% csrf_token %}
                         <div class="col-md-7" style="padding-left: 0;">
-                            <label class=" control-label"><h4>Postati un comentariu:</h4> </label>
+                            <label class=" control-label"><h4><b>Postati un comentariu</b></h4> </label>
                             <input class="form-control" name="body" value="{{form.body}}" type="text" placeholder="Comentariul dumneavoastra"/>
                             <div class="form-group">
                                 <button class="btn btn-success btn-circle text-uppercase" type="submit" name="btnform1" style="border-radius: 1px;width: 50%;background-color: #1CC661; border-color: #1CC661;margin-top: 10px;"><span class="glyphicon glyphicon-send"></span>Comentati</button>
