@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 
 class FilterForm(forms.Form):
     sort_by = forms.ChoiceField(label="Sorteaza dupa", choices=(
-        (0, "Autor"),
+        (0, "Vanzator"),
         (1, "Pret crescator"),
         (2, "Pret descrescator")
     ), widget=forms.RadioSelect, required=False)
